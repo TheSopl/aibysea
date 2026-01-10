@@ -70,6 +70,7 @@ export interface Database {
           handler_type: string
           assigned_agent_id: string | null
           last_message_at: string | null
+          last_customer_message_at: string | null
           created_at: string
           updated_at: string
         }
@@ -81,6 +82,7 @@ export interface Database {
           handler_type?: string
           assigned_agent_id?: string | null
           last_message_at?: string | null
+          last_customer_message_at?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -92,6 +94,7 @@ export interface Database {
           handler_type?: string
           assigned_agent_id?: string | null
           last_message_at?: string | null
+          last_customer_message_at?: string | null
           created_at?: string
           updated_at?: string
         }

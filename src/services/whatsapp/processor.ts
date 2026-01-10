@@ -139,10 +139,15 @@ async function processIncomingMessage(
 
     console.log('[WhatsApp Processor] Message saved successfully:', messageId);
 
-    // Step 6: Update conversation last_message_at
+    // Step 6: Update conversation timestamps
+    // Update both last_message_at and last_customer_message_at since this is an inbound message
+    const now = new Date().toISOString();
     const { error: updateError } = await supabase
       .from('conversations')
-      .update({ last_message_at: new Date().toISOString() })
+      .update({
+        last_message_at: now,
+        last_customer_message_at: now,
+      })
       .eq('id', conversation.id);
 
     if (updateError) {
@@ -223,6 +228,7 @@ async function findOrCreateConversation(
   }
 
   // Create new conversation
+  const now = new Date().toISOString();
   const { data: newConversation, error: insertError } = await supabase
     .from('conversations')
     .insert({
@@ -230,7 +236,8 @@ async function findOrCreateConversation(
       channel: 'whatsapp',
       status: 'active',
       handler_type: 'ai',
-      last_message_at: new Date().toISOString(),
+      last_message_at: now,
+      last_customer_message_at: now,
     })
     .select('id')
     .single();
