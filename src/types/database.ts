@@ -106,6 +106,7 @@ export interface Database {
           metadata: Json
           sender_type: string
           sender_id: string | null
+          whatsapp_message_id: string | null
           created_at: string
         }
         Insert: {
@@ -117,6 +118,7 @@ export interface Database {
           metadata?: Json
           sender_type: string
           sender_id?: string | null
+          whatsapp_message_id?: string | null
           created_at?: string
         }
         Update: {
@@ -128,6 +130,7 @@ export interface Database {
           metadata?: Json
           sender_type?: string
           sender_id?: string | null
+          whatsapp_message_id?: string | null
           created_at?: string
         }
       }
