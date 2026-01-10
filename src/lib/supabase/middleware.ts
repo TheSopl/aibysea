@@ -27,8 +27,26 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
-  // Refresh session if expired
-  await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  // Protected routes - redirect to login if not authenticated
+  if (
+    !user &&
+    request.nextUrl.pathname.startsWith('/dashboard')
+  ) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/login'
+    return NextResponse.redirect(url)
+  }
+
+  // Redirect authenticated users away from login
+  if (user && request.nextUrl.pathname === '/login') {
+    const url = request.nextUrl.clone()
+    url.pathname = '/dashboard'
+    return NextResponse.redirect(url)
+  }
 
   return supabaseResponse
 }
