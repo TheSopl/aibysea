@@ -44,15 +44,18 @@ export function MessageListClient({ conversationId, initialMessages }: MessageLi
           filter: `conversation_id=eq.${conversationId}`,
         },
         (payload) => {
+          console.log('[Real-time] New message received:', payload.new)
           const newMessage = payload.new as Message
 
           // Use Set to deduplicate by id (handle race condition with initial fetch)
           setMessages((current) => {
             const messageIds = new Set(current.map(m => m.id))
             if (messageIds.has(newMessage.id)) {
+              console.log('[Real-time] Message already exists, skipping:', newMessage.id)
               return current // Message already exists, skip
             }
 
+            console.log('[Real-time] Adding new message to list:', newMessage.id)
             // Append new message and maintain sort order (created_at ascending)
             return [...current, newMessage].sort(
               (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
@@ -61,7 +64,9 @@ export function MessageListClient({ conversationId, initialMessages }: MessageLi
         }
       )
       .subscribe((status) => {
+        console.log('[Real-time] Subscription status:', status)
         if (status === 'SUBSCRIBED') {
+          console.log('[Real-time] Successfully subscribed to conversation:', conversationId)
           setConnectionState('connected')
           setShowDisconnectedBanner(false)
           // Clear any pending disconnect timeout
@@ -70,6 +75,7 @@ export function MessageListClient({ conversationId, initialMessages }: MessageLi
             disconnectTimeoutRef.current = null
           }
         } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
+          console.error('[Real-time] Connection error:', status)
           setConnectionState('disconnected')
           // Delay showing banner to avoid flicker on quick reconnects
           disconnectTimeoutRef.current = setTimeout(() => {
