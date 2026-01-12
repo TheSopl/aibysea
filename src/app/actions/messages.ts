@@ -44,17 +44,34 @@ export async function sendMessage(
       return { success: false, error: 'Not authenticated' }
     }
 
-    // Get agent ID from agents table
+    // Get or create agent record
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: agent, error: agentError } = await (supabase as any)
+    let { data: agent, error: agentError } = await (supabase as any)
       .from('agents')
       .select('id')
       .eq('id', user.id)
       .single() as { data: { id: string } | null; error: unknown }
 
+    // If agent doesn't exist, create it
     if (agentError || !agent) {
-      console.error('[SendMessage] Agent not found:', agentError)
-      return { success: false, error: 'Agent not found' }
+      console.log('[SendMessage] Agent not found, creating:', user.id)
+      const agentName = user.user_metadata?.name || user.email?.split('@')[0] || 'Agent'
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: newAgent, error: createError } = await (supabase as any)
+        .from('agents')
+        .insert({
+          id: user.id,
+          email: user.email!,
+          name: agentName,
+        })
+        .select('id')
+        .single() as { data: { id: string } | null; error: unknown }
+
+      if (createError || !newAgent) {
+        console.error('[SendMessage] Failed to create agent:', createError)
+        return { success: false, error: 'Failed to create agent record' }
+      }
+      agent = newAgent
     }
 
     // Fetch conversation with contact
