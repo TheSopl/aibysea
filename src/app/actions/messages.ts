@@ -1,6 +1,7 @@
 'use server'
 
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { sendTextMessage, isWithin24HourWindow } from '@/lib/whatsapp/client'
 import { sendTelegramMessage } from '@/lib/telegram/client'
 import type { NewMessage } from '@/types/database'
@@ -52,12 +53,13 @@ export async function sendMessage(
       .eq('id', user.id)
       .single() as { data: { id: string } | null; error: unknown }
 
-    // If agent doesn't exist, create it
+    // If agent doesn't exist, create it using admin client (bypasses RLS)
     if (agentError || !agent) {
       console.log('[SendMessage] Agent not found, creating:', user.id)
       const agentName = user.user_metadata?.name || user.email?.split('@')[0] || 'Agent'
+      const adminClient = createAdminClient()
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { data: newAgent, error: createError } = await (supabase as any)
+      const { data: newAgent, error: createError } = await (adminClient as any)
         .from('agents')
         .insert({
           id: user.id,
