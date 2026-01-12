@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import { MessageList } from '@/components/MessageList'
 import { MessageCompose } from '@/components/MessageCompose'
+import { TakeoverButton } from '@/components/TakeoverButton'
 
 interface ConversationWithContact {
   id: string
@@ -44,7 +45,6 @@ export default async function ConversationPage({ params }: ConversationPageProps
   const contact = conversation.contact
   const displayName = contact?.name || contact?.phone || 'Unknown Contact'
   const channelLabel = conversation.channel === 'whatsapp' ? 'WhatsApp' : 'Telegram'
-  const handlerLabel = conversation.handler_type === 'ai' ? 'AI' : 'Agent'
 
   return (
     <div className="h-full flex flex-col">
@@ -68,14 +68,22 @@ export default async function ConversationPage({ params }: ConversationPageProps
               <p className="text-sm text-gray-500">{channelLabel}</p>
             </div>
           </div>
-          <div className={`text-xs px-2 py-1 rounded ${
-            conversation.handler_type === 'ai'
-              ? 'bg-purple-100 text-purple-700'
-              : 'bg-blue-100 text-blue-700'
-          }`}>
-            Handled by: {handlerLabel}
-          </div>
+          <TakeoverButton
+            conversationId={conversation.id}
+            initialHandlerType={conversation.handler_type as 'ai' | 'human'}
+          />
         </div>
+      </div>
+
+      {/* Handler Indicator */}
+      <div className={`px-4 py-2 text-sm font-medium ${
+        conversation.handler_type === 'ai'
+          ? 'bg-blue-50 text-blue-700'
+          : 'bg-orange-50 text-orange-700'
+      }`}>
+        {conversation.handler_type === 'ai'
+          ? '🤖 AI is handling this conversation'
+          : '👤 You are handling this conversation'}
       </div>
 
       {/* Message List */}
