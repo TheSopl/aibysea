@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-10)
 
 **Core value:** The unified inbox works reliably — all messages appear in one place and agents can respond without messages getting lost.
-**Current focus:** Phase 5 in progress — Human Takeover UI complete
+**Current focus:** Phase 6 in progress — Real-time message updates complete
 
 ## Current Position
 
-Phase: 5 of 6 (Human Takeover) - In progress
-Plan: 1 of TBD in current phase
+Phase: 6 of 6 (Real-time & Polish) - In progress
+Plan: 1 of 2 in current phase
 Status: First plan complete
-Last activity: 2026-01-12 — Completed 05-01-PLAN.md (Human Takeover UI)
+Last activity: 2026-01-12 — Completed 06-01-PLAN.md (Real-time Message Updates)
 
-Progress: ████████░░ 67% (4 of 6 phases)
+Progress: █████████░ 93% (13 of 14 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
-- Average duration: 6.8 min
-- Total execution time: 1.5 hours
+- Total plans completed: 13
+- Average duration: 7.6 min
+- Total execution time: 1.8 hours
 
 **By Phase:**
 
@@ -33,6 +33,7 @@ Progress: ████████░░ 67% (4 of 6 phases)
 | 3 | 3 | 21 min | 7 min |
 | 4 | 1 | 5 min | 5 min |
 | 5 | 1 | 11 min | 11 min |
+| 6 | 1 | 19 min | 19 min |
 
 ## Accumulated Context
 
@@ -53,6 +54,9 @@ Recent decisions affecting current work:
 - Optimistic UI updates for takeover toggle (instant feedback, revert on error)
 - Color-coded handler states: blue for AI, orange for human
 - Auto-create agent records using admin client (system operation bypasses RLS)
+- REPLICA IDENTITY FULL required for Supabase real-time on messages table
+- Server wrapper + client component pattern for real-time subscriptions
+- Remove router.refresh() when real-time handles updates automatically
 
 ### Deferred Issues
 
@@ -65,6 +69,6 @@ None blocking Phase 4 development.
 ## Session Continuity
 
 Last session: 2026-01-12
-Stopped at: Completed 05-01-PLAN.md (Human Takeover UI) - First Phase 5 plan complete
+Stopped at: Completed 06-01-PLAN.md (Real-time Message Updates) - First Phase 6 plan complete
 Resume file: None
-Next action: Continue Phase 5 or transition to Phase 6 (Real-time updates and Arabic RTL)
+Next action: Execute 06-02-PLAN.md (Arabic RTL Support) to complete Phase 6
