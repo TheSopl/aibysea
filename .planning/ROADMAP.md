@@ -123,7 +123,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Foundation | 3/3 | Complete | 2026-01-10 |
 | 2. WhatsApp Integration | 3/3 | Complete | 2026-01-12 |
 | 2.1 Telegram Integration | 1/1 | Complete | 2026-01-12 |
-| 3. Inbox Core | 1/TBD | In progress | - |
+| 3. Inbox Core | 2/TBD | In progress | - |
 | 4. AI Integration | 0/TBD | Not started | - |
 | 5. Human Takeover | 0/TBD | Not started | - |
 | 6. Real-time & Polish | 0/TBD | Not started | - |
