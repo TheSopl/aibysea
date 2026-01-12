@@ -80,15 +80,15 @@ NEXT_PUBLIC_SUPABASE_URL=https://qzwpemaczxjmtgftckrd.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=<service-role-key>
 
 # Telegram
-TELEGRAM_BOT_TOKEN=8592169316:AAHdgi5QcPB-APNx5PnyFPAqiHLOPD3ovEQ
-TELEGRAM_WEBHOOK_SECRET=ai-seatourism-telegram-9c7f2e4b
+TELEGRAM_BOT_TOKEN=your-telegram-bot-token-here
+TELEGRAM_WEBHOOK_SECRET=your-telegram-webhook-secret-here
 
 # n8n
 N8N_INSTANCE_URL=https://n8n.alaaai.online
-N8N_WEBHOOK_SECRET=35e790f8e5df59cacfce350e80812d15d5cc0d64e77947f548a567bdb090769f
+N8N_WEBHOOK_SECRET=your-webhook-secret-here
 
 # OpenAI
-OPENAI_API_KEY=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
+OPENAI_API_KEY=sk-proj-your-openai-api-key-here
 ```
 
 ## Security Notes
