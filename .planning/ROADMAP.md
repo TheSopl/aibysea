@@ -17,7 +17,7 @@ None
 - [x] **Phase 1: Foundation** - Next.js + Supabase setup, agent authentication, database schema
 - [x] **Phase 2: WhatsApp Integration** - Cloud API webhooks, message receiving and sending
 - [x] **Phase 2.1: Telegram Integration** - INSERTED - Telegram bot webhook and messaging
-- [ ] **Phase 3: Inbox Core** - Two-panel layout, chat list, conversation view, contact management
+- [x] **Phase 3: Inbox Core** - Two-panel layout, chat list, conversation view, contact management
 - [ ] **Phase 4: AI Integration** - n8n webhook endpoints, AI agent handling, conversation state tracking
 - [ ] **Phase 5: Human Takeover** - Agent takeover mechanism, AI pause/resume, notifications
 - [ ] **Phase 6: Real-time & Polish** - Live message updates, Supabase real-time, Arabic RTL support
@@ -65,7 +65,7 @@ Key deliverables:
 **Goal**: Functional two-panel inbox where agents see and respond to conversations
 **Depends on**: Phase 2
 **Research**: Unlikely (internal UI patterns)
-**Plans**: TBD
+**Plans**: 3
 
 Key deliverables:
 - Two-panel layout (chat list + conversation)
@@ -123,7 +123,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Foundation | 3/3 | Complete | 2026-01-10 |
 | 2. WhatsApp Integration | 3/3 | Complete | 2026-01-12 |
 | 2.1 Telegram Integration | 1/1 | Complete | 2026-01-12 |
-| 3. Inbox Core | 2/TBD | In progress | - |
+| 3. Inbox Core | 3/3 | Complete | 2026-01-12 |
 | 4. AI Integration | 0/TBD | Not started | - |
 | 5. Human Takeover | 0/TBD | Not started | - |
 | 6. Real-time & Polish | 0/TBD | Not started | - |
