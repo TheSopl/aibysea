@@ -77,9 +77,9 @@ Key deliverables:
 ### Phase 4: AI Integration
 **Goal**: AI agent handles conversations via n8n until stuck or human requested
 **Depends on**: Phase 3
-**Research**: Likely (external service)
+**Research**: Complete
 **Research topics**: n8n webhook patterns, conversation state management, AI handoff triggers
-**Plans**: TBD
+**Plans**: 1+ (in progress)
 
 Key deliverables:
 - Webhook endpoints for n8n
@@ -124,6 +124,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 2. WhatsApp Integration | 3/3 | Complete | 2026-01-12 |
 | 2.1 Telegram Integration | 1/1 | Complete | 2026-01-12 |
 | 3. Inbox Core | 3/3 | Complete | 2026-01-12 |
-| 4. AI Integration | 0/TBD | Not started | - |
+| 4. AI Integration | 1/TBD | In progress | - |
 | 5. Human Takeover | 0/TBD | Not started | - |
 | 6. Real-time & Polish | 0/TBD | Not started | - |
