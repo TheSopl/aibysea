@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-10)
 
 **Core value:** The unified inbox works reliably — all messages appear in one place and agents can respond without messages getting lost.
-**Current focus:** Phase 2.1 complete, ready for Phase 3 — Inbox Core
+**Current focus:** Phase 3 in progress — Building Inbox Core UI
 
 ## Current Position
 
-Phase: 2.1 of 6 (Telegram Integration) - COMPLETE
-Plan: 1 of 1 in current phase - COMPLETE
-Status: Phase complete, ready for transition
-Last activity: 2026-01-12 — Completed 02.1-01-PLAN.md (Telegram Integration)
+Phase: 3 of 6 (Inbox Core)
+Plan: 1 of TBD in current phase
+Status: In progress
+Last activity: 2026-01-12 — Completed 03-01-PLAN.md (Conversation List)
 
-Progress: ██████░░░░ 33% (2.1 of 6 phases)
+Progress: ██████░░░░ 40% (3 of 6 phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
+- Total plans completed: 8
 - Average duration: 7 min
-- Total execution time: 0.85 hours
+- Total execution time: 1.0 hours
 
 **By Phase:**
 
@@ -30,6 +30,7 @@ Progress: ██████░░░░ 33% (2.1 of 6 phases)
 | 1 | 3 | 11 min | 4 min |
 | 2 | 3 | 28 min | 9 min |
 | 2.1 | 1 | 12 min | 12 min |
+| 3 | 1 | 8 min | 8 min |
 
 ## Accumulated Context
 
@@ -46,6 +47,7 @@ Recent decisions affecting current work:
 - Use service role client for webhook processing (RLS bypass)
 - Store whatsapp_message_id as dedicated column for deduplication
 - Track last_customer_message_at for 24h window enforcement
+- Use type assertion for Supabase join queries (types don't infer correctly)
 
 ### Deferred Issues
 
@@ -58,6 +60,6 @@ None blocking Phase 3 development.
 ## Session Continuity
 
 Last session: 2026-01-12
-Stopped at: Completed Phase 2.1 (Telegram Integration)
+Stopped at: Completed 03-01-PLAN.md (Conversation List)
 Resume file: None
-Next action: /gsd:plan-phase 3 (Inbox Core)
+Next action: Continue Phase 3 execution or plan next plan
