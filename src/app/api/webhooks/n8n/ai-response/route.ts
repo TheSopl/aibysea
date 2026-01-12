@@ -97,15 +97,14 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     // Step 4: Insert message to database
-    const { data: message, error: insertError } = await supabase
+    const { data: message, error: insertError} = await supabase
       .from('messages')
       .insert({
         conversation_id,
         direction: 'outbound',
         content,
         content_type: 'text',
-        sender_type: 'agent',
-        sender_id: 'ai-agent',
+        sender_type: 'ai',
         metadata: metadata || {},
       })
       .select('id')
