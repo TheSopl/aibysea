@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { Message } from '@/types/database'
-import { MessageBubble } from './MessageBubble'
+import { MessageListClient } from './MessageListClient'
 
 interface MessageListProps {
   conversationId: string
@@ -24,21 +24,10 @@ export async function MessageList({ conversationId }: MessageListProps) {
     )
   }
 
-  if (!messages || messages.length === 0) {
-    return (
-      <div className="flex-1 flex items-center justify-center bg-gray-50">
-        <p className="text-gray-500">No messages yet</p>
-      </div>
-    )
-  }
-
   return (
-    <div className="flex-1 overflow-y-auto p-4">
-      <div className="flex flex-col gap-2">
-        {(messages as Message[]).map((message) => (
-          <MessageBubble key={message.id} message={message} />
-        ))}
-      </div>
-    </div>
+    <MessageListClient
+      conversationId={conversationId}
+      initialMessages={(messages as Message[]) || []}
+    />
   )
 }

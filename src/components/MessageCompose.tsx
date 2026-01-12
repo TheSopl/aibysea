@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useTransition, useRef, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { sendMessage } from '@/app/actions/messages'
 
 interface MessageComposeProps {
@@ -15,7 +14,6 @@ export function MessageCompose({ conversationId, channel, onMessageSent }: Messa
   const [error, setError] = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
   const textareaRef = useRef<HTMLTextAreaElement>(null)
-  const router = useRouter()
 
   // Auto-resize textarea
   useEffect(() => {
@@ -37,7 +35,7 @@ export function MessageCompose({ conversationId, channel, onMessageSent }: Messa
 
       if (result.success) {
         setMessage('')
-        router.refresh() // Reload messages from server
+        // Real-time subscription will handle message display
         onMessageSent?.()
       } else {
         setError(result.error || 'Failed to send message')
