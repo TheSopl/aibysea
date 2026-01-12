@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import { MessageList } from '@/components/MessageList'
+import { MessageCompose } from '@/components/MessageCompose'
 
 interface ConversationWithContact {
   id: string
@@ -86,10 +87,11 @@ export default async function ConversationPage({ params }: ConversationPageProps
         <MessageList conversationId={id} />
       </Suspense>
 
-      {/* Compose placeholder */}
-      <div className="border-t border-gray-200 bg-gray-50 h-[60px] flex items-center justify-center flex-shrink-0">
-        <p className="text-sm text-gray-400">Message compose coming next...</p>
-      </div>
+      {/* Message Compose */}
+      <MessageCompose
+        conversationId={id}
+        channel={conversation.channel}
+      />
     </div>
   )
 }
