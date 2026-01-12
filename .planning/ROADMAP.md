@@ -15,7 +15,8 @@ None
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: Foundation** - Next.js + Supabase setup, agent authentication, database schema
-- [ ] **Phase 2: WhatsApp Integration** - Cloud API webhooks, message receiving and sending
+- [x] **Phase 2: WhatsApp Integration** - Cloud API webhooks, message receiving and sending
+- [ ] **Phase 2.1: Telegram Integration** - INSERTED - Telegram bot webhook and messaging
 - [ ] **Phase 3: Inbox Core** - Two-panel layout, chat list, conversation view, contact management
 - [ ] **Phase 4: AI Integration** - n8n webhook endpoints, AI agent handling, conversation state tracking
 - [ ] **Phase 5: Human Takeover** - Agent takeover mechanism, AI pause/resume, notifications
@@ -47,6 +48,18 @@ Key deliverables:
 - WhatsApp Cloud API client for sending
 - Message persistence to database
 - Webhook verification flow
+
+### Phase 2.1: Telegram Integration (INSERTED)
+**Goal**: Add Telegram as alternative messaging channel
+**Depends on**: Phase 1 (database schema)
+**Research**: Not needed (simple Bot API)
+**Plans**: 1
+
+Key deliverables:
+- Telegram webhook endpoint
+- Message receiving and persistence
+- Message sending client
+- Same database schema as WhatsApp (channel='telegram')
 
 ### Phase 3: Inbox Core
 **Goal**: Functional two-panel inbox where agents see and respond to conversations
@@ -108,7 +121,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-01-10 |
-| 2. WhatsApp Integration | 2/3 | In progress | - |
+| 2. WhatsApp Integration | 3/3 | Complete | 2026-01-12 |
+| 2.1 Telegram Integration | 0/1 | Not started | - |
 | 3. Inbox Core | 0/TBD | Not started | - |
 | 4. AI Integration | 0/TBD | Not started | - |
 | 5. Human Takeover | 0/TBD | Not started | - |

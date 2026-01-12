@@ -5,40 +5,35 @@
 See: .planning/PROJECT.md (updated 2026-01-10)
 
 **Core value:** The unified inbox works reliably — all WhatsApp messages appear in one place and agents can respond without messages getting lost.
-**Current focus:** Phase 2 — WhatsApp Integration (in progress)
+**Current focus:** Phase 2 complete, ready for Phase 3 — Inbox Core
 
 ## Current Position
 
-Phase: 2 of 6 (WhatsApp Integration)
-Plan: 2 of 3 in current phase - COMPLETE
-Status: Executing phase
-Last activity: 2026-01-10 — Completed 02-02-PLAN.md (Webhook Endpoint)
+Phase: 2 of 6 (WhatsApp Integration) - COMPLETE
+Plan: 3 of 3 in current phase - COMPLETE
+Status: Phase complete, ready for transition
+Last activity: 2026-01-12 — Completed 02-03-PLAN.md (Send Message API)
 
-Progress: █████░░░░░ 50%
+Progress: ██████░░░░ 33% (2 of 6 phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 6 min
-- Total execution time: 0.5 hours
+- Total plans completed: 6
+- Average duration: 7 min
+- Total execution time: 0.7 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1 | 3 | 11 min | 4 min |
-| 2 | 2 | 18 min | 9 min |
-
-**Recent Trend:**
-- Last 5 plans: 01-02 (2 min), 01-03 (5 min), 02-01 (3 min), 02-02 (15 min)
-- Trend: stable
+| 2 | 3 | 28 min | 9 min |
 
 ## Accumulated Context
 
 ### Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
 - Next.js 16 with Turbopack for faster dev experience
@@ -49,18 +44,19 @@ Recent decisions affecting current work:
 - Use crypto.timingSafeEqual for webhook signature verification
 - Use service role client for webhook processing (RLS bypass)
 - Store whatsapp_message_id as dedicated column for deduplication
+- Track last_customer_message_at for 24h window enforcement
 
 ### Deferred Issues
 
-None yet.
+- End-to-end WhatsApp verification (Meta dashboard setup pending)
 
 ### Blockers/Concerns
 
-None yet.
+None blocking Phase 3 development.
 
 ## Session Continuity
 
-Last session: 2026-01-10
-Stopped at: Completed Plan 02-02 (Webhook Endpoint)
+Last session: 2026-01-12
+Stopped at: Completed Phase 2 (WhatsApp Integration)
 Resume file: None
-Next action: /gsd:execute-plan 02-03-PLAN.md (Send Message API)
+Next action: /gsd:plan-phase 3 (Inbox Core)
