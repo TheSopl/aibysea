@@ -25,57 +25,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* RTL Support - CSS Logical Properties and Direction-Specific Rules */
-
-/* Default LTR layout - use CSS logical properties for direction-aware spacing */
-* {
-  /* Use logical properties by default (works for both LTR and RTL) */
-  box-sizing: border-box;
-}
-
-/* RTL-specific overrides */
-:dir(rtl) {
-  /* Text alignment for RTL */
-  text-align: start; /* 'start' means right in RTL, left in LTR */
-}
-
-/* Flex direction awareness for RTL */
-:dir(rtl) .flex-row-reverse-rtl {
-  flex-direction: row-reverse;
-}
-
-/* Message bubble alignment - swap in RTL */
-:dir(rtl) .message-ai {
-  /* AI messages: left-aligned in LTR, right-aligned in RTL */
-  margin-inline-start: auto;
-  margin-inline-end: 0;
-  text-align: start;
-}
-
-:dir(rtl) .message-human {
-  /* Human messages: right-aligned in LTR, left-aligned in RTL */
-  margin-inline-start: 0;
-  margin-inline-end: auto;
-  text-align: end;
-}
-
-/* Sidebar positioning - swap in RTL */
-:dir(rtl) .dashboard-layout {
-  flex-direction: row-reverse;
-}
-
-/* Input field button positioning */
-:dir(rtl) .compose-layout {
-  flex-direction: row-reverse;
-}
-
-/* Icon positioning - use margin-inline for spacing */
-.icon-spacing {
-  margin-inline-end: 0.5rem; /* Adds space to the right in LTR, left in RTL */
-}
-
-/* Chat list item spacing */
-.chat-item {
-  padding-inline-start: 1rem;
-  padding-inline-end: 1rem;
-}
+/* RTL Support - Text direction only, no layout changes */
+/* When dir="rtl" is set, Arabic text displays correctly right-to-left */
+/* Layout structure always stays the same */

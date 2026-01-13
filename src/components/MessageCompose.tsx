@@ -67,7 +67,7 @@ export function MessageCompose({ conversationId, channel, onMessageSent }: Messa
         </div>
       )}
 
-      {/* Compose form */}
+      {/* Compose form - layout stays same, text direction adapts */}
       <div className="flex items-end gap-3">
         <textarea
           ref={textareaRef}
