@@ -11,19 +11,19 @@ module.exports = {
     extend: {
       colors: {
         // Design System v1.1 Colors
-        navy: '#13593f',
-        'dark-surface': '#1A1F2E',
-        'accent-surface': '#252D3D',
+        navy: '#12583e',
+        'dark-surface': '#0e4530',
+        'accent-surface': '#1a6b4d',
         teal: '#00D9FF',
         purple: '#A855F7',
         pink: '#EC4899',
         green: '#10B981',
         amber: '#F59E0B',
         red: '#EF4444',
-        'text-primary': '#F5F7FA',
-        'text-secondary': '#9CA3AF',
-        'text-tertiary': '#6B7280',
-        'neutral-gray': '#4B5563',
+        'text-primary': '#FFFFFF',
+        'text-secondary': '#D1D5DB',
+        'text-tertiary': '#9CA3AF',
+        'neutral-gray': '#6B7280',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
