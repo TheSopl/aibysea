@@ -3,16 +3,16 @@ import { ConversationList } from './ConversationList'
 
 function ConversationListSkeleton() {
   return (
-    <div className="divide-y divide-gray-100">
+    <div className="divide-y divide-accent-surface">
       {[...Array(5)].map((_, i) => (
         <div key={i} className="px-4 py-3 flex items-start gap-3 animate-pulse">
-          <div className="w-4 h-4 bg-gray-200 rounded mt-0.5" />
+          <div className="w-4 h-4 bg-accent-surface rounded mt-0.5" />
           <div className="flex-1">
             <div className="flex items-center justify-between gap-2">
-              <div className="h-4 bg-gray-200 rounded w-24" />
-              <div className="h-3 bg-gray-200 rounded w-8" />
+              <div className="h-4 bg-accent-surface rounded w-24" />
+              <div className="h-3 bg-accent-surface rounded w-8" />
             </div>
-            <div className="h-3 bg-gray-200 rounded w-40 mt-2" />
+            <div className="h-3 bg-accent-surface rounded w-40 mt-2" />
           </div>
         </div>
       ))}

@@ -11,9 +11,9 @@ module.exports = {
     extend: {
       colors: {
         // Design System v1.1 Colors
-        navy: '#0a3d2a',
-        'dark-surface': '#082f21',
-        'accent-surface': '#0d4a31',
+        navy: '#1a1a1a',
+        'dark-surface': '#242424',
+        'accent-surface': '#2d2d2d',
         teal: '#00D9FF',
         purple: '#A855F7',
         pink: '#EC4899',
