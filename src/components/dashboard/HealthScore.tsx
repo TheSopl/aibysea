@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 interface HealthScoreProps {
   score: number;
@@ -11,6 +11,27 @@ interface HealthScoreProps {
 export default function HealthScore({ score, maxScore = 100 }: HealthScoreProps) {
   const [displayScore, setDisplayScore] = useState(0);
   const percentage = (score / maxScore) * 100;
+
+  // Determine color based on score (design system thresholds)
+  // Low (<50%): red, Medium (50-80%): amber, High (>80%): teal
+  const { color, glowColor } = useMemo(() => {
+    if (percentage < 50) {
+      return {
+        color: '#EF4444', // red
+        glowColor: 'rgba(239, 68, 68, 0.4)',
+      };
+    } else if (percentage < 80) {
+      return {
+        color: '#F59E0B', // amber
+        glowColor: 'rgba(245, 158, 11, 0.4)',
+      };
+    } else {
+      return {
+        color: '#00D9FF', // teal
+        glowColor: 'rgba(0, 217, 255, 0.4)',
+      };
+    }
+  }, [percentage]);
 
   useEffect(() => {
     const duration = 1500; // 1.5 seconds
@@ -53,32 +74,36 @@ export default function HealthScore({ score, maxScore = 100 }: HealthScoreProps)
             fill="none"
             className="text-accent-surface"
           />
-          {/* Progress circle */}
+          {/* Progress circle with animated color */}
           <motion.circle
             cx="64"
             cy="64"
             r="56"
-            stroke="currentColor"
             strokeWidth="8"
             fill="none"
             strokeLinecap="round"
-            className="text-teal drop-shadow-[0_0_8px_rgba(0,217,255,0.6)]"
             initial={{ strokeDasharray: '0 352' }}
-            animate={{ strokeDasharray: `${(percentage / 100) * 352} 352` }}
-            transition={{ duration: 1.5, ease: 'easeOut' }}
+            animate={{
+              strokeDasharray: `${(percentage / 100) * 352} 352`,
+              stroke: color,
+            }}
+            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
             style={{
-              filter: 'drop-shadow(0 0 12px rgba(0, 217, 255, 0.4))',
+              filter: `drop-shadow(0 0 12px ${glowColor})`,
             }}
           />
         </svg>
 
-        {/* Center text */}
+        {/* Center text with animated color */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <motion.span
-            className="text-3xl font-bold text-teal font-mono"
+            className="text-3xl font-bold font-mono"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            animate={{
+              opacity: 1,
+              color: color,
+            }}
+            transition={{ duration: 0.2 }}
           >
             {displayScore}
           </motion.span>
@@ -86,12 +111,13 @@ export default function HealthScore({ score, maxScore = 100 }: HealthScoreProps)
         </div>
       </motion.div>
 
-      {/* Glow effect */}
-      <div
+      {/* Animated glow effect */}
+      <motion.div
         className="absolute inset-0 rounded-full blur-xl opacity-30 pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(0, 217, 255, 0.4) 0%, transparent 70%)',
+        animate={{
+          background: `radial-gradient(circle, ${glowColor} 0%, transparent 70%)`,
         }}
+        transition={{ duration: 0.2 }}
       />
     </div>
   );
