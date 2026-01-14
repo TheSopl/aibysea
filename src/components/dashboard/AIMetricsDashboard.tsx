@@ -4,6 +4,9 @@ import { useMemo } from 'react';
 import MetricsCard from './MetricsCard';
 import HealthScore from './HealthScore';
 import AIAgentCard from './AIAgentCard';
+import NumericMetrics from './NumericMetrics';
+import LatencyChartContainer from './LatencyChart';
+import ConfidenceScoresContainer from './ConfidenceScores';
 import { useMetricsStore } from '@/stores/metricsStore';
 import { useMetricsSubscription } from '@/hooks/useMetricsSubscription';
 import { useMockMetricsStream } from '@/hooks/useMockMetricsStream';
@@ -100,6 +103,15 @@ export default function AIMetricsDashboard() {
           learnedToday={15}
           isOnline={true}
         />
+      </div>
+
+      {/* Numeric Metrics Row */}
+      <NumericMetrics />
+
+      {/* Charts Grid - Responsive: Stack on mobile, side-by-side on desktop */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        <LatencyChartContainer />
+        <ConfidenceScoresContainer />
       </div>
 
       {/* Metrics Grid */}
