@@ -17,7 +17,7 @@ export default function Navigation() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const navItems: NavItem[] = [
-    { id: 'dashboard', icon: '📊', label: 'Dashboard', href: '/dashboard/ai-metrics' },
+    { id: 'dashboard', icon: '📊', label: 'Dashboard', href: '/ai-metrics' },
     { id: 'contacts', icon: '👥', label: 'Contacts', href: '/dashboard' },
     { id: 'chats', icon: '💬', label: 'Chats', href: '/dashboard' },
     { id: 'settings', icon: '⚙️', label: 'Settings', href: '/dashboard' },
