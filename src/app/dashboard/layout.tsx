@@ -12,7 +12,7 @@ export default function DashboardLayout({
       {/* Layout stays the same in RTL - sidebar always on left (Instagram approach) */}
       <div className="flex-1 flex overflow-hidden">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto bg-white">
+        <main className="flex-1 overflow-y-auto bg-navy">
           {children}
         </main>
       </div>

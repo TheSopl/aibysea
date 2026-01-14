@@ -170,8 +170,8 @@ export function MessageListClient({ conversationId, initialMessages }: MessageLi
 
   if (messages.length === 0) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-gray-50">
-        <p className="text-gray-500">No messages yet</p>
+      <div className="flex-1 flex items-center justify-center bg-navy">
+        <p className="text-text-secondary">No messages yet</p>
       </div>
     )
   }

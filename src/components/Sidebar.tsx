@@ -22,15 +22,15 @@ function ConversationListSkeleton() {
 
 export function Sidebar() {
   return (
-    <aside className="w-80 border-r border-gray-200 bg-gray-50 flex flex-col">
-      <div className="p-4 border-b border-gray-200">
-        <h2 className="font-medium text-gray-900">Conversations</h2>
+    <aside className="w-80 border-r border-accent-surface bg-dark-surface flex flex-col">
+      <div className="p-4 border-b border-accent-surface">
+        <h2 className="font-medium text-text-primary">Conversations</h2>
       </div>
-      <div className="p-3 border-b border-gray-200">
+      <div className="p-3 border-b border-accent-surface">
         <input
           type="text"
           placeholder="Search conversations..."
-          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full px-3 py-2 text-sm border border-accent-surface rounded-lg bg-navy text-text-primary focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
           disabled
         />
       </div>

@@ -65,7 +65,7 @@ export function ConversationItem({
   return (
     <button
       onClick={() => router.push(`/dashboard/c/${id}`)}
-      className="w-full px-4 py-3 flex items-start gap-3 hover:bg-gray-100 border-b border-gray-100 text-left transition-colors"
+      className="w-full px-4 py-3 flex items-start gap-3 hover:bg-accent-surface border-b border-accent-surface text-left transition-colors"
     >
       <div className="flex-shrink-0 mt-0.5">
         <ChannelIcon channel={channel} />

@@ -52,10 +52,10 @@ export function MessageCompose({ conversationId, channel, onMessageSent }: Messa
   }
 
   return (
-    <div className="border-t border-gray-200 bg-white p-4 flex-shrink-0">
+    <div className="border-t border-accent-surface bg-dark-surface p-4 flex-shrink-0">
       {/* WhatsApp 24h window indicator */}
       {channel === 'whatsapp' && (
-        <p className="text-xs text-gray-400 mb-2">
+        <p className="text-xs text-text-secondary mb-2">
           Replying within 24h window
         </p>
       )}
