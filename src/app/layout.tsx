@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" dir="ltr">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased font-sans bg-navy dark:bg-navy text-text-primary dark:text-text-primary transition-colors duration-200`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased font-sans bg-light-bg dark:bg-navy text-light-text-primary dark:text-text-primary transition-colors duration-200`}
       >
         <ThemeProvider>
           {children}

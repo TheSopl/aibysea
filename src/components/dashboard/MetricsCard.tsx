@@ -56,13 +56,13 @@ export default function MetricsCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ scale: 1.02 }}
-      className="relative bg-dark-surface dark:bg-dark-surface light:bg-light-surface border border-accent-surface dark:border-accent-surface light:border-light-border rounded-design p-5 cursor-pointer group transition-all duration-200"
+      className="relative bg-light-surface dark:bg-dark-surface border border-light-border dark:border-accent-surface rounded-design p-5 cursor-pointer group transition-all duration-200"
       style={{
-        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
       }}
     >
       {/* Label */}
-      <div className="text-xs uppercase tracking-wide text-text-secondary dark:text-text-secondary light:text-light-text-secondary mb-3">
+      <div className="text-xs uppercase tracking-wide text-light-text-secondary dark:text-text-secondary mb-3">
         {label}
       </div>
 
@@ -78,7 +78,7 @@ export default function MetricsCard({
           {value}
         </motion.span>
         {unit && (
-          <span className="text-lg text-text-secondary dark:text-text-secondary light:text-light-text-secondary font-mono">{unit}</span>
+          <span className="text-lg text-light-text-secondary dark:text-text-secondary font-mono">{unit}</span>
         )}
       </div>
 
@@ -88,7 +88,7 @@ export default function MetricsCard({
           <span className={`text-sm font-medium ${trendColors[trend.direction]}`}>
             {trendIcons[trend.direction]} {trend.value}
           </span>
-          <span className="text-xs text-text-tertiary dark:text-text-tertiary light:text-light-text-tertiary">vs 15 updates ago</span>
+          <span className="text-xs text-light-text-tertiary dark:text-text-tertiary">vs 15 updates ago</span>
         </div>
       )}
 

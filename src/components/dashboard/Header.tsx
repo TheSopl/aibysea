@@ -86,7 +86,7 @@ export default function Header() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-dark-surface/80 dark:bg-dark-surface/80 light:bg-light-surface light:border-light-border backdrop-blur-lg border-b border-accent-surface dark:border-accent-surface light:border-light-border px-6 py-4 transition-colors duration-200"
+      className="bg-light-surface/80 dark:bg-dark-surface/80 backdrop-blur-lg border-b border-light-border dark:border-accent-surface px-6 py-4 transition-colors duration-200"
       style={{
         boxShadow: theme === 'dark' ? '0 4px 12px rgba(0, 0, 0, 0.2)' : '0 4px 12px rgba(0, 0, 0, 0.05)',
       }}
@@ -97,16 +97,16 @@ export default function Header() {
           <div className="w-8 h-8 bg-gradient-to-br from-teal to-purple rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-sm">AI</span>
           </div>
-          <h1 className="text-xl font-bold text-text-primary dark:text-text-primary light:text-light-text-primary">AIBYSEA</h1>
+          <h1 className="text-xl font-bold text-light-text-primary dark:text-text-primary">AIBYSEA</h1>
         </div>
 
         {/* Center: Date & Time */}
         <div className="flex items-center gap-6">
           <div className="text-center">
-            <div className="text-sm text-text-primary dark:text-text-primary light:text-light-text-primary font-medium">
+            <div className="text-sm text-light-text-primary dark:text-text-primary font-medium">
               {formatDate(currentTime)}
             </div>
-            <div className="text-xs text-text-secondary dark:text-text-secondary light:text-light-text-secondary">
+            <div className="text-xs text-light-text-secondary dark:text-text-secondary">
               {formatTime(currentTime)} | Istanbul (GMT+3:00)
             </div>
           </div>
@@ -145,7 +145,7 @@ export default function Header() {
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="px-4 py-2 bg-accent-surface dark:bg-accent-surface light:bg-light-border hover:bg-teal/20 dark:hover:bg-teal/20 light:hover:bg-light-border text-text-primary dark:text-text-primary light:text-light-text-primary hover:text-teal rounded-lg border border-accent-surface dark:border-accent-surface light:border-light-border hover:border-teal/30 transition-all duration-200 text-sm font-medium"
+            className="px-4 py-2 bg-light-border dark:bg-accent-surface hover:bg-teal/20 text-light-text-primary dark:text-text-primary hover:text-teal rounded-lg border border-light-border dark:border-accent-surface hover:border-teal/30 transition-all duration-200 text-sm font-medium"
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? '☀️' : '🌙'} {theme === 'dark' ? 'Light' : 'Dark'}
@@ -154,7 +154,7 @@ export default function Header() {
           {/* Refresh Button */}
           <button
             onClick={handleRefresh}
-            className="px-4 py-2 bg-accent-surface dark:bg-accent-surface light:bg-light-border hover:bg-teal/20 dark:hover:bg-teal/20 light:hover:bg-light-border text-text-primary dark:text-text-primary light:text-light-text-primary hover:text-teal rounded-lg border border-accent-surface dark:border-accent-surface light:border-light-border hover:border-teal/30 transition-all duration-200 text-sm font-medium"
+            className="px-4 py-2 bg-light-border dark:bg-accent-surface hover:bg-teal/20 text-light-text-primary dark:text-text-primary hover:text-teal rounded-lg border border-light-border dark:border-accent-surface hover:border-teal/30 transition-all duration-200 text-sm font-medium"
           >
             🔄 Refresh
           </button>
