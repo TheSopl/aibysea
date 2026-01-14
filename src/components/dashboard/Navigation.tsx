@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 interface NavItem {
+  id: string;
   icon: string;
   label: string;
   href: string;
@@ -16,10 +17,10 @@ export default function Navigation() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const navItems: NavItem[] = [
-    { icon: '📊', label: 'Dashboard', href: '/dashboard/ai-metrics' },
-    { icon: '👥', label: 'Contacts', href: '/dashboard' },
-    { icon: '💬', label: 'Chats', href: '/dashboard' },
-    { icon: '⚙️', label: 'Settings', href: '/dashboard' },
+    { id: 'dashboard', icon: '📊', label: 'Dashboard', href: '/dashboard/ai-metrics' },
+    { id: 'contacts', icon: '👥', label: 'Contacts', href: '/dashboard' },
+    { id: 'chats', icon: '💬', label: 'Chats', href: '/dashboard' },
+    { id: 'settings', icon: '⚙️', label: 'Settings', href: '/dashboard' },
   ];
 
   return (
@@ -50,7 +51,7 @@ export default function Navigation() {
 
             return (
               <motion.div
-                key={item.href}
+                key={item.id}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
