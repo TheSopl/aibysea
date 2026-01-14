@@ -1,11 +1,22 @@
+'use client';
+
 import { Header } from '@/components/Header'
 import { Sidebar } from '@/components/Sidebar'
+import { usePathname } from 'next/navigation'
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname();
+
+  // AI metrics has its own layout with Navigation component
+  // Don't render Header + Sidebar for those routes
+  if (pathname?.startsWith('/dashboard/ai-metrics')) {
+    return <>{children}</>;
+  }
+
   return (
     <div className="h-screen flex flex-col">
       <Header />
