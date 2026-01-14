@@ -81,7 +81,7 @@ export default function AIMetricsDashboard() {
       {/* Top section: Health Score + AI Agent Card */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Health Score Card */}
-        <div className="bg-dark-surface/60 backdrop-blur-lg border border-teal/10 rounded-design p-6">
+        <div className="bg-dark-surface/60 backdrop-blur-lg border-0 rounded-design p-6">
           <div className="text-sm uppercase tracking-wide text-text-secondary mb-4">
             Overall Health
           </div>

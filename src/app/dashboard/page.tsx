@@ -1,22 +1,28 @@
-import { createClient } from '@/lib/supabase/server'
+import AIMetricsDashboard from '@/components/dashboard/AIMetricsDashboard';
+import SmartInsights from '@/components/dashboard/SmartInsights';
+import SmartActions from '@/components/dashboard/SmartActions';
 
-export default async function DashboardPage() {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-
+export default function AIMetricsPage() {
   return (
-    <div className="h-full flex items-center justify-center">
-      <div className="text-center">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-          Welcome to AIBYSEA
-        </h2>
-        <p className="text-gray-600">
-          Logged in as {user?.email}
-        </p>
-        <p className="text-sm text-gray-500 mt-4">
-          Select a conversation from the sidebar to begin.
+    <div className="space-y-8">
+      {/* Page Header */}
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-text-primary mb-2">
+          AI Metrics Dashboard
+        </h1>
+        <p className="text-text-secondary">
+          Real-time intelligence and performance insights for your AI agent
         </p>
       </div>
+
+      {/* Main Dashboard */}
+      <AIMetricsDashboard />
+
+      {/* Insights and Actions Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <SmartInsights />
+        <SmartActions />
+      </div>
     </div>
-  )
+  );
 }

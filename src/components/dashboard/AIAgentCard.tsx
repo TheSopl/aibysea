@@ -23,7 +23,7 @@ export default function AIAgentCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="relative bg-dark-surface/60 backdrop-blur-lg border border-teal/10 rounded-design p-6 hover:scale-[1.02] transition-all duration-200"
+      className="relative bg-dark-surface/60 backdrop-blur-lg border-0 rounded-design p-6 hover:scale-[1.02] transition-all duration-200"
       style={{
         boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
       }}
@@ -44,7 +44,7 @@ export default function AIAgentCard({
               alt={name}
               width={48}
               height={48}
-              className="rounded-lg border-2 border-teal"
+              className="rounded-lg border-0"
               style={{
                 boxShadow: '0 4px 12px rgba(0, 217, 255, 0.3)',
               }}
@@ -68,7 +68,7 @@ export default function AIAgentCard({
           <h3 className="text-lg font-semibold text-text-primary">{name}</h3>
           <div className="flex items-center gap-3 mt-1">
             {/* Health badge */}
-            <div className="flex items-center gap-1.5 px-2 py-0.5 bg-teal/20 rounded-md border border-teal/30">
+            <div className="flex items-center gap-1.5 px-2 py-0.5 bg-teal/20 rounded-md border-0">
               <span className="text-xs font-mono text-teal">{healthScore}/100</span>
               <span className="text-xs text-teal">⭐</span>
             </div>

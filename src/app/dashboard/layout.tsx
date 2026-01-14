@@ -1,21 +1,18 @@
-import { Header } from '@/components/Header'
-import { Sidebar } from '@/components/Sidebar'
+import Header from '@/components/dashboard/Header';
+import Navigation from '@/components/dashboard/Navigation';
 
-export default function DashboardLayout({
+export default function AIMetricsLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <div className="h-screen flex flex-col">
-      <Header />
-      {/* Layout stays the same in RTL - sidebar always on left (Instagram approach) */}
-      <div className="flex-1 flex overflow-hidden">
-        <Sidebar />
-        <main className="flex-1 overflow-y-auto bg-navy">
-          {children}
-        </main>
+    <div className="min-h-screen bg-navy">
+      <Navigation />
+      <div className="ml-20 lg:ml-20">
+        <Header />
+        <main className="p-6 lg:p-8">{children}</main>
       </div>
     </div>
-  )
+  );
 }

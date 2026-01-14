@@ -17,10 +17,9 @@ export default function Navigation() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const navItems: NavItem[] = [
-    { id: 'dashboard', icon: '📊', label: 'Dashboard', href: '/ai-metrics' },
-    { id: 'contacts', icon: '👥', label: 'Contacts', href: '/dashboard' },
-    { id: 'chats', icon: '💬', label: 'Chats', href: '/dashboard' },
-    { id: 'settings', icon: '⚙️', label: 'Settings', href: '/dashboard' },
+    { id: 'dashboard', icon: '📊', label: 'Dashboard', href: '/dashboard' },
+    { id: 'chats', icon: '💬', label: 'Chats', href: '/conversations' },
+    { id: 'settings', icon: '⚙️', label: 'Settings', href: '/conversations' },
   ];
 
   return (
@@ -30,7 +29,7 @@ export default function Navigation() {
       transition={{ duration: 0.5 }}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
-      className="fixed left-0 top-0 h-full bg-dark-surface border-r border-accent-surface transition-all duration-300 z-40"
+      className="fixed left-0 top-0 h-full bg-dark-surface/95 backdrop-blur-xl border-r border-dark-surface transition-all duration-300 z-50"
       style={{
         width: isExpanded ? '280px' : '80px',
         boxShadow: '4px 0 12px rgba(0, 0, 0, 0.2)',
@@ -38,7 +37,7 @@ export default function Navigation() {
     >
       <div className="flex flex-col h-full">
         {/* Logo area */}
-        <div className="h-16 flex items-center justify-center border-b border-accent-surface">
+        <div className="h-16 flex items-center justify-center border-b border-dark-surface">
           <div className="w-10 h-10 bg-gradient-to-br from-teal to-purple rounded-lg flex items-center justify-center">
             <span className="text-white font-bold">AI</span>
           </div>
@@ -95,7 +94,7 @@ export default function Navigation() {
         </div>
 
         {/* Logout button */}
-        <div className="border-t border-accent-surface p-4">
+        <div className="border-t border-dark-surface p-4">
           <button className="flex items-center gap-4 px-6 py-4 w-full text-text-secondary hover:text-red hover:bg-accent-surface transition-all duration-200 rounded-lg">
             <span className="text-2xl">↪️</span>
             <motion.span

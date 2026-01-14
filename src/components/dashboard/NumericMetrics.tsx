@@ -65,7 +65,7 @@ export default function NumericMetrics() {
     : 0;
 
   return (
-    <div className="bg-dark-surface/60 backdrop-blur-lg border border-teal/10 rounded-design p-6">
+    <div className="bg-dark-surface/60 backdrop-blur-lg border-0 rounded-design p-6">
       <h3 className="text-lg font-semibold text-text-primary mb-6">Current Metrics</h3>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
