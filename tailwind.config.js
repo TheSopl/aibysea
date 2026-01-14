@@ -25,8 +25,8 @@ module.exports = {
         'neutral-gray': '#4B5563',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-jetbrains-mono)', 'monospace'],
       },
       boxShadow: {
         'teal-glow': '0 0 24px rgba(0, 217, 255, 0.4), 0 0 12px rgba(0, 217, 255, 0.2)',
