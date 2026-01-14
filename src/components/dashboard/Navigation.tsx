@@ -30,15 +30,15 @@ export default function Navigation() {
       transition={{ duration: 0.5 }}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
-      className="fixed left-0 top-0 h-full bg-light-surface dark:bg-dark-surface border-r border-light-border dark:border-accent-surface transition-all duration-300 z-40"
+      className="fixed left-0 top-0 h-full bg-dark-surface border-r border-accent-surface transition-all duration-300 z-40"
       style={{
         width: isExpanded ? '280px' : '80px',
-        boxShadow: '4px 0 12px rgba(0, 0, 0, 0.1)',
+        boxShadow: '4px 0 12px rgba(0, 0, 0, 0.2)',
       }}
     >
       <div className="flex flex-col h-full">
         {/* Logo area */}
-        <div className="h-16 flex items-center justify-center border-b border-light-border dark:border-accent-surface">
+        <div className="h-16 flex items-center justify-center border-b border-accent-surface">
           <div className="w-10 h-10 bg-gradient-to-br from-teal to-purple rounded-lg flex items-center justify-center">
             <span className="text-white font-bold">AI</span>
           </div>
@@ -61,7 +61,7 @@ export default function Navigation() {
                   className={`flex items-center gap-4 px-6 py-4 mb-2 transition-all duration-200 relative group ${
                     isActive
                       ? 'bg-teal/20 text-teal border-r-2 border-teal'
-                      : 'text-light-text-secondary dark:text-text-secondary hover:text-teal hover:bg-light-surface-alt dark:hover:bg-accent-surface'
+                      : 'text-text-secondary hover:text-teal hover:bg-accent-surface'
                   }`}
                 >
                   <span className="text-2xl">{item.icon}</span>

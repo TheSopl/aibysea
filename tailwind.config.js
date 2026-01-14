@@ -10,8 +10,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Design System v1.1 Colors - Dark Mode (default)
-        navy: '#0F1419',
+        // Design System v1.1 Colors
+        navy: '#13593f',
         'dark-surface': '#1A1F2E',
         'accent-surface': '#252D3D',
         teal: '#00D9FF',
@@ -24,15 +24,6 @@ module.exports = {
         'text-secondary': '#9CA3AF',
         'text-tertiary': '#6B7280',
         'neutral-gray': '#4B5563',
-
-        // Light Mode Colors
-        'light-bg': '#FFFFFF',
-        'light-surface': '#F9FAFB',
-        'light-surface-alt': '#F3F4F6',
-        'light-border': '#E5E7EB',
-        'light-text-primary': '#1F2937',
-        'light-text-secondary': '#6B7280',
-        'light-text-tertiary': '#9CA3AF',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
