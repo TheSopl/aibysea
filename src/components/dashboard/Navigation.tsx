@@ -56,7 +56,7 @@ export default function Navigation() {
               >
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-4 px-6 py-4 mb-2 transition-all duration-300 relative group rounded-design mx-3 ${
+                  className={`flex items-center gap-4 px-6 py-4 mb-2 transition-all duration-300 relative group rounded-design mx-3 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                     isActive
                       ? 'bg-accent/20 text-primary shadow-sm'
                       : 'text-text-secondary hover:text-primary hover:bg-light-bg'
@@ -91,7 +91,7 @@ export default function Navigation() {
 
         {/* Logout button */}
         <div className="border-t border-gray-200 p-4">
-          <button className="flex items-center gap-4 px-6 py-4 w-full text-text-secondary hover:text-red hover:bg-red/10 transition-all duration-200 rounded-design">
+          <button className="flex items-center gap-4 px-6 py-4 w-full text-text-secondary hover:text-red hover:bg-red/10 transition-all duration-200 rounded-design focus:outline-none focus:ring-2 focus:ring-red focus:ring-offset-2">
             <span className="text-2xl">↪️</span>
             <motion.span
               className="text-sm font-semibold whitespace-nowrap"

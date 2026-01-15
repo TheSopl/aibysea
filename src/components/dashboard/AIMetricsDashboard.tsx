@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import { motion } from 'framer-motion';
 import MetricsCard from './MetricsCard';
 import HealthScore from './HealthScore';
 import AIAgentCard from './AIAgentCard';
@@ -77,9 +78,19 @@ export default function AIMetricsDashboard() {
   }, [latency, quality, sentiment, metricsHistory]);
 
   return (
-    <div className="space-y-8 md:space-y-10">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="space-y-8 md:space-y-10"
+    >
       {/* Top section: Health Score + AI Agent Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
+      >
         {/* Health Score Card */}
         <div className="bg-white border border-gray-200 rounded-design-lg p-8 shadow-card">
           <div className="text-sm uppercase tracking-wider text-text-secondary mb-6 font-semibold">
@@ -103,33 +114,53 @@ export default function AIMetricsDashboard() {
           learnedToday={15}
           isOnline={true}
         />
-      </div>
+      </motion.div>
 
       {/* Numeric Metrics Row */}
-      <NumericMetrics />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        <NumericMetrics />
+      </motion.div>
 
       {/* Charts Grid - Responsive: Stack on mobile, side-by-side on desktop */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8"
+      >
         <LatencyChartContainer />
         <ConfidenceScoresContainer />
-      </div>
+      </motion.div>
 
       {/* Metrics Grid */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
         <h2 className="text-2xl font-extrabold text-dark mb-6">Key Metrics</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {metrics.map((metric, index) => (
             <MetricsCard key={metric.label} {...metric} index={index} />
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Active Conversations Counter */}
       {activeConversations > 0 && (
-        <div className="text-sm text-text-secondary text-center font-medium pb-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="text-sm text-text-secondary text-center font-medium pb-8"
+        >
           {activeConversations} active conversation{activeConversations !== 1 ? 's' : ''}
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }

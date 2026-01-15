@@ -140,7 +140,7 @@ export default function Header() {
           {/* Refresh Button */}
           <button
             onClick={handleRefresh}
-            className="px-4 py-2 bg-primary hover:bg-primary-600 text-white rounded-design transition-all duration-200 text-sm font-semibold shadow-sm hover:shadow-md"
+            className="px-4 py-2 bg-primary hover:bg-primary-600 text-white rounded-design transition-all duration-200 text-sm font-semibold shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
             🔄 Refresh
           </button>

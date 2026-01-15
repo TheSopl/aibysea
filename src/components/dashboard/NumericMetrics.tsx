@@ -11,16 +11,16 @@ const formatNumber = (value: number, format: string): string => {
 // Badge component for AI State
 const AIStateBadge = ({ state }: { state: string }) => {
   const stateStyles = {
-    idle: 'bg-gray-500/20 text-gray-300 border-gray-500/30',
-    thinking: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-    responding: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-    waiting: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+    idle: 'bg-gray-100 text-gray-600 border-gray-300',
+    thinking: 'bg-purple-100 text-purple-600 border-purple-300',
+    responding: 'bg-primary/10 text-primary border-primary/30',
+    waiting: 'bg-amber-100 text-amber-600 border-amber-300',
   };
 
   const style = stateStyles[state as keyof typeof stateStyles] || stateStyles.idle;
 
   return (
-    <span className={`px-3 py-1 rounded-full text-xs font-medium border ${style} capitalize`}>
+    <span className={`px-3 py-1.5 rounded-design text-xs font-semibold border transition-all duration-200 ${style} capitalize`}>
       {state}
     </span>
   );
@@ -30,7 +30,7 @@ const AIStateBadge = ({ state }: { state: string }) => {
 const ConnectionStatus = ({ status }: { status: string }) => {
   const statusStyles = {
     connected: 'bg-green text-green',
-    connecting: 'bg-yellow text-yellow',
+    connecting: 'bg-amber text-amber',
     disconnected: 'bg-red text-red',
   };
 
@@ -38,8 +38,8 @@ const ConnectionStatus = ({ status }: { status: string }) => {
 
   return (
     <div className="flex items-center gap-2">
-      <div className={`w-2 h-2 rounded-full ${style.split(' ')[0]} animate-pulse`} />
-      <span className={`text-xs font-medium ${style.split(' ')[1]} capitalize`}>
+      <div className={`w-2.5 h-2.5 rounded-full ${style.split(' ')[0]} animate-pulse`} />
+      <span className={`text-sm font-semibold ${style.split(' ')[1]} capitalize`}>
         {status}
       </span>
     </div>
