@@ -65,54 +65,54 @@ export default function NumericMetrics() {
     : 0;
 
   return (
-    <div className="bg-dark-surface/60 backdrop-blur-lg border-0 rounded-design p-6">
-      <h3 className="text-lg font-semibold text-text-primary mb-6">Current Metrics</h3>
+    <div className="bg-white border border-gray-200 rounded-design-lg p-8 shadow-card">
+      <h3 className="text-lg font-bold text-dark mb-6">Current Metrics</h3>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {/* AI State */}
         <div className="flex flex-col gap-2">
-          <div className="text-xs text-text-secondary uppercase tracking-wide">AI State</div>
+          <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">AI State</div>
           <AIStateBadge state={aiState} />
         </div>
 
         {/* Active Conversations */}
         <div className="flex flex-col gap-2">
-          <div className="text-xs text-text-secondary uppercase tracking-wide">Conversations</div>
-          <div className="text-2xl font-bold text-text-primary">
+          <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">Conversations</div>
+          <div className="text-2xl font-extrabold text-primary">
             {formatNumber(activeConversations, '0,0')}
           </div>
         </div>
 
         {/* Average Latency */}
         <div className="flex flex-col gap-2">
-          <div className="text-xs text-text-secondary uppercase tracking-wide">Avg Latency</div>
-          <div className="text-2xl font-bold text-text-primary">
+          <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">Avg Latency</div>
+          <div className="text-2xl font-extrabold text-primary">
             {formatNumber(avgLatency, '0,0')}
-            <span className="text-sm text-text-secondary ml-1">ms</span>
+            <span className="text-sm text-text-secondary ml-1 font-medium">ms</span>
           </div>
         </div>
 
         {/* Current Confidence */}
         <div className="flex flex-col gap-2">
-          <div className="text-xs text-text-secondary uppercase tracking-wide">Confidence</div>
-          <div className="text-2xl font-bold text-text-primary">
+          <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">Confidence</div>
+          <div className="text-2xl font-extrabold text-primary">
             {formatNumber(currentConfidence * 100, '0.0')}
-            <span className="text-sm text-text-secondary ml-1">%</span>
+            <span className="text-sm text-text-secondary ml-1 font-medium">%</span>
           </div>
         </div>
 
         {/* Context Size */}
         <div className="flex flex-col gap-2">
-          <div className="text-xs text-text-secondary uppercase tracking-wide">Context Size</div>
-          <div className="text-2xl font-bold text-text-primary">
+          <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">Context Size</div>
+          <div className="text-2xl font-extrabold text-primary">
             {formatNumber(contextSize, '0.0a')}
-            <span className="text-sm text-text-secondary ml-1">tokens</span>
+            <span className="text-sm text-text-secondary ml-1 font-medium">tokens</span>
           </div>
         </div>
 
         {/* Connection Status */}
         <div className="flex flex-col gap-2">
-          <div className="text-xs text-text-secondary uppercase tracking-wide">Connection</div>
+          <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">Connection</div>
           <ConnectionStatus status={connectionStatus} />
         </div>
       </div>

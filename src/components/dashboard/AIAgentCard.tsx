@@ -23,41 +23,27 @@ export default function AIAgentCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="relative bg-dark-surface/60 backdrop-blur-lg border-0 rounded-design p-6 hover:scale-[1.02] transition-all duration-200"
-      style={{
-        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
-      }}
+      whileHover={{ scale: 1.02, y: -4 }}
+      className="relative bg-white border border-gray-200 rounded-design-lg p-8 transition-all duration-300 shadow-card hover:shadow-card-hover"
     >
       {/* Card content */}
-      <div className="flex items-center gap-4">
-        {/* Avatar with glow */}
+      <div className="flex items-center gap-6">
+        {/* Avatar */}
         <div className="relative">
-          <div
-            className="absolute inset-0 rounded-lg blur-md"
-            style={{
-              background: 'rgba(0, 217, 255, 0.3)',
-            }}
-          />
           <div className="relative">
             <Image
               src={avatarUrl}
               alt={name}
-              width={48}
-              height={48}
-              className="rounded-lg border-0"
-              style={{
-                boxShadow: '0 4px 12px rgba(0, 217, 255, 0.3)',
-              }}
+              width={56}
+              height={56}
+              className="rounded-design border-2 border-accent/30"
             />
             {/* Online indicator */}
             {isOnline && (
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="absolute -top-1 -right-1 w-3 h-3 bg-green rounded-full border-2 border-dark-surface"
-                style={{
-                  boxShadow: '0 0 8px rgba(16, 185, 129, 0.6)',
-                }}
+                className="absolute -top-1 -right-1 w-3 h-3 bg-green rounded-full border-2 border-white shadow-sm"
               />
             )}
           </div>
@@ -65,17 +51,17 @@ export default function AIAgentCard({
 
         {/* Agent info */}
         <div className="flex-1">
-          <h3 className="text-lg font-semibold text-text-primary">{name}</h3>
-          <div className="flex items-center gap-3 mt-1">
+          <h3 className="text-xl font-extrabold text-dark">{name}</h3>
+          <div className="flex items-center gap-3 mt-2">
             {/* Health badge */}
-            <div className="flex items-center gap-1.5 px-2 py-0.5 bg-teal/20 rounded-md border-0">
-              <span className="text-xs font-mono text-teal">{healthScore}/100</span>
-              <span className="text-xs text-teal">⭐</span>
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-accent/20 rounded-design border border-accent/30">
+              <span className="text-sm font-bold font-mono text-primary">{healthScore}/100</span>
+              <span className="text-sm text-accent">⭐</span>
             </div>
 
             {/* Status */}
             {isOnline && (
-              <span className="text-xs text-green font-medium">Ready</span>
+              <span className="text-sm text-green font-semibold">Ready</span>
             )}
           </div>
         </div>
@@ -86,23 +72,15 @@ export default function AIAgentCard({
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-2xl font-bold font-mono text-purple"
+            className="text-3xl font-extrabold font-mono text-accent"
           >
             +{learnedToday}
           </motion.div>
-          <div className="text-xs text-text-secondary uppercase tracking-wide">
+          <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold mt-1">
             Learned Today
           </div>
         </div>
       </div>
-
-      {/* Hover glow effect */}
-      <div
-        className="absolute inset-0 rounded-design opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none"
-        style={{
-          boxShadow: '0 0 24px rgba(0, 217, 255, 0.3)',
-        }}
-      />
     </motion.div>
   );
 }

@@ -77,18 +77,18 @@ export default function AIMetricsDashboard() {
   }, [latency, quality, sentiment, metricsHistory]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 md:space-y-10">
       {/* Top section: Health Score + AI Agent Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
         {/* Health Score Card */}
-        <div className="bg-dark-surface/60 backdrop-blur-lg border-0 rounded-design p-6">
-          <div className="text-sm uppercase tracking-wide text-text-secondary mb-4">
+        <div className="bg-white border border-gray-200 rounded-design-lg p-8 shadow-card">
+          <div className="text-sm uppercase tracking-wider text-text-secondary mb-6 font-semibold">
             Overall Health
           </div>
           <div className="flex items-center justify-center">
             <HealthScore score={Math.round(healthScore || 94)} maxScore={100} />
           </div>
-          <div className="mt-4 flex justify-center gap-4 text-xs">
+          <div className="mt-6 flex justify-center gap-6 text-sm font-medium">
             <span className="text-green">Quality ↑</span>
             <span className="text-green">Speed ↑</span>
             <span className="text-green">Escalations ↓</span>
@@ -109,15 +109,15 @@ export default function AIMetricsDashboard() {
       <NumericMetrics />
 
       {/* Charts Grid - Responsive: Stack on mobile, side-by-side on desktop */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
         <LatencyChartContainer />
         <ConfidenceScoresContainer />
       </div>
 
       {/* Metrics Grid */}
       <div>
-        <h2 className="text-xl font-semibold text-text-primary mb-4">Key Metrics</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="text-2xl font-extrabold text-dark mb-6">Key Metrics</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {metrics.map((metric, index) => (
             <MetricsCard key={metric.label} {...metric} index={index} />
           ))}
@@ -126,7 +126,7 @@ export default function AIMetricsDashboard() {
 
       {/* Active Conversations Counter */}
       {activeConversations > 0 && (
-        <div className="text-sm text-text-secondary text-center">
+        <div className="text-sm text-text-secondary text-center font-medium pb-8">
           {activeConversations} active conversation{activeConversations !== 1 ? 's' : ''}
         </div>
       )}

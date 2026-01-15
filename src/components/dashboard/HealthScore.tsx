@@ -13,7 +13,7 @@ export default function HealthScore({ score, maxScore = 100 }: HealthScoreProps)
   const percentage = (score / maxScore) * 100;
 
   // Determine color based on score (design system thresholds)
-  // Low (<50%): red, Medium (50-80%): amber, High (>80%): teal
+  // Low (<50%): red, Medium (50-80%): amber, High (>80%): primary blue
   const { color, glowColor } = useMemo(() => {
     if (percentage < 50) {
       return {
@@ -27,8 +27,8 @@ export default function HealthScore({ score, maxScore = 100 }: HealthScoreProps)
       };
     } else {
       return {
-        color: '#00D9FF', // teal
-        glowColor: 'rgba(0, 217, 255, 0.4)',
+        color: '#003EF3', // primary blue
+        glowColor: 'rgba(0, 62, 243, 0.3)',
       };
     }
   }, [percentage]);
@@ -72,7 +72,7 @@ export default function HealthScore({ score, maxScore = 100 }: HealthScoreProps)
             stroke="currentColor"
             strokeWidth="8"
             fill="none"
-            className="text-accent-surface"
+            className="text-gray-200"
           />
           {/* Progress circle with animated color */}
           <motion.circle

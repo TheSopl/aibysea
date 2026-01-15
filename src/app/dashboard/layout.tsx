@@ -7,11 +7,11 @@ export default function AIMetricsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-navy">
+    <div className="min-h-screen bg-light-bg">
       <Navigation />
       <div className="ml-20 lg:ml-20">
         <Header />
-        <main className="p-6 lg:p-8">{children}</main>
+        <main className="p-6 md:p-8 lg:p-12 max-w-[1600px] mx-auto">{children}</main>
       </div>
     </div>
   );
