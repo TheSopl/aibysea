@@ -29,17 +29,16 @@ export default function Navigation() {
       transition={{ duration: 0.5 }}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
-      className="fixed left-0 top-0 h-full bg-dark-surface/95 backdrop-blur-xl border-r border-dark-surface transition-all duration-300 z-50"
+      className="fixed left-0 top-0 h-full bg-white border-r border-gray-200 transition-all duration-500 z-50 shadow-sm"
       style={{
         width: isExpanded ? '280px' : '80px',
-        boxShadow: '4px 0 12px rgba(0, 0, 0, 0.2)',
       }}
     >
       <div className="flex flex-col h-full">
         {/* Logo area */}
-        <div className="h-16 flex items-center justify-center border-b border-dark-surface">
-          <div className="w-10 h-10 bg-gradient-to-br from-teal to-purple rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold">AI</span>
+        <div className="h-16 flex items-center justify-center border-b border-gray-200">
+          <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-design flex items-center justify-center shadow-md">
+            <span className="text-white font-extrabold">AI</span>
           </div>
         </div>
 
@@ -57,15 +56,15 @@ export default function Navigation() {
               >
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-4 px-6 py-4 mb-2 transition-all duration-200 relative group ${
+                  className={`flex items-center gap-4 px-6 py-4 mb-2 transition-all duration-300 relative group rounded-design mx-3 ${
                     isActive
-                      ? 'bg-teal/20 text-teal border-r-2 border-teal'
-                      : 'text-text-secondary hover:text-teal hover:bg-accent-surface'
+                      ? 'bg-accent/20 text-primary shadow-sm'
+                      : 'text-text-secondary hover:text-primary hover:bg-light-bg'
                   }`}
                 >
                   <span className="text-2xl">{item.icon}</span>
                   <motion.span
-                    className="text-sm font-medium whitespace-nowrap"
+                    className="text-sm font-semibold whitespace-nowrap"
                     initial={{ opacity: 0, width: 0 }}
                     animate={{
                       opacity: isExpanded ? 1 : 0,
@@ -76,15 +75,12 @@ export default function Navigation() {
                     {item.label}
                   </motion.span>
 
-                  {/* Active indicator glow */}
+                  {/* Active indicator */}
                   {isActive && (
                     <motion.div
-                      className="absolute inset-0 pointer-events-none"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      style={{
-                        boxShadow: 'inset 0 0 24px rgba(0, 217, 255, 0.2)',
-                      }}
                     />
                   )}
                 </Link>
@@ -94,11 +90,11 @@ export default function Navigation() {
         </div>
 
         {/* Logout button */}
-        <div className="border-t border-dark-surface p-4">
-          <button className="flex items-center gap-4 px-6 py-4 w-full text-text-secondary hover:text-red hover:bg-accent-surface transition-all duration-200 rounded-lg">
+        <div className="border-t border-gray-200 p-4">
+          <button className="flex items-center gap-4 px-6 py-4 w-full text-text-secondary hover:text-red hover:bg-red/10 transition-all duration-200 rounded-design">
             <span className="text-2xl">↪️</span>
             <motion.span
-              className="text-sm font-medium whitespace-nowrap"
+              className="text-sm font-semibold whitespace-nowrap"
               initial={{ opacity: 0, width: 0 }}
               animate={{
                 opacity: isExpanded ? 1 : 0,
