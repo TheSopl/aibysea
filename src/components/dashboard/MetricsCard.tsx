@@ -55,14 +55,11 @@ export default function MetricsCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ scale: 1.02 }}
-      className="relative bg-dark-surface border-0 rounded-design p-5 cursor-pointer group transition-all duration-200"
-      style={{
-        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
-      }}
+      whileHover={{ scale: 1.02, y: -4 }}
+      className="relative bg-white border border-gray-200 rounded-design-lg p-6 cursor-pointer group transition-all duration-300 shadow-card hover:shadow-card-hover"
     >
       {/* Label */}
-      <div className="text-xs uppercase tracking-wide text-text-secondary mb-3">
+      <div className="text-xs uppercase tracking-wider text-text-secondary mb-3 font-semibold">
         {label}
       </div>
 
@@ -73,28 +70,28 @@ export default function MetricsCard({
           initial={{ opacity: 0.5, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="text-3xl font-bold font-mono text-teal"
+          className="text-4xl font-extrabold font-mono text-primary"
         >
           {value}
         </motion.span>
         {unit && (
-          <span className="text-lg text-text-secondary font-mono">{unit}</span>
+          <span className="text-lg text-text-secondary font-mono font-medium">{unit}</span>
         )}
       </div>
 
       {/* Trend indicator */}
       {trend && (
         <div className="flex items-center gap-1.5 mb-3">
-          <span className={`text-sm font-medium ${trendColors[trend.direction]}`}>
+          <span className={`text-sm font-semibold ${trendColors[trend.direction]}`}>
             {trendIcons[trend.direction]} {trend.value}
           </span>
-          <span className="text-xs text-text-tertiary">vs 15 updates ago</span>
+          <span className="text-xs text-text-tertiary font-light">vs 15 updates ago</span>
         </div>
       )}
 
       {/* Sparkline */}
       {sparklineData && sparklineData.length > 0 && (
-        <div className="h-8 flex items-end gap-0.5">
+        <div className="h-10 flex items-end gap-1">
           {sparklineData.map((value, idx) => {
             const height = Math.max(10, (value / Math.max(...sparklineData)) * 100);
             return (
@@ -103,20 +100,12 @@ export default function MetricsCard({
                 initial={{ height: 0 }}
                 animate={{ height: `${height}%` }}
                 transition={{ duration: 0.5, delay: index * 0.1 + idx * 0.02 }}
-                className="flex-1 bg-teal/30 rounded-sm"
+                className="flex-1 bg-gradient-to-t from-accent to-primary rounded-sm"
               />
             );
           })}
         </div>
       )}
-
-      {/* Hover glow effect */}
-      <div
-        className="absolute inset-0 rounded-design opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
-        style={{
-          boxShadow: '0 0 24px rgba(0, 217, 255, 0.3)',
-        }}
-      />
 
       {/* Update glow animation (flashes when metrics update) */}
       <AnimatePresence>
@@ -126,10 +115,7 @@ export default function MetricsCard({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-            className="absolute inset-0 rounded-design pointer-events-none"
-            style={{
-              boxShadow: '0 0 24px rgba(0, 217, 255, 0.4), 0 0 12px rgba(0, 217, 255, 0.2)',
-            }}
+            className="absolute inset-0 rounded-design-lg pointer-events-none border-2 border-primary"
           />
         )}
       </AnimatePresence>
