@@ -12,53 +12,66 @@ interface LatencyPoint {
 
 // Memoized chart component
 const LatencyChartComponent = ({ data }: { data: LatencyPoint[] }) => (
-  <div className="bg-dark-surface/60 backdrop-blur-lg border-0 rounded-design p-6">
-    <h3 className="text-lg font-semibold text-text-primary mb-4">Latency Metrics</h3>
+  <div className="bg-white border border-gray-200 rounded-design-lg p-8 shadow-card hover:shadow-card-hover transition-all duration-300">
+    <h3 className="text-lg font-bold text-dark mb-6">Latency Metrics</h3>
     <ResponsiveContainer width="100%" height={300}>
       <LineChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+        <defs>
+          <linearGradient id="ttftGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#003EF3" stopOpacity={0.3} />
+            <stop offset="100%" stopColor="#003EF3" stopOpacity={0} />
+          </linearGradient>
+          <linearGradient id="tpotGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#4EB6C9" stopOpacity={0.3} />
+            <stop offset="100%" stopColor="#4EB6C9" stopOpacity={0} />
+          </linearGradient>
+        </defs>
+        <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
         <XAxis
           dataKey="timestamp"
           type="number"
           domain={['dataMin', 'dataMax']}
           tickFormatter={(value) => new Date(value).toLocaleTimeString()}
-          stroke="#9CA3AF"
-          style={{ fontSize: '12px' }}
+          stroke="#6B7280"
+          style={{ fontSize: '12px', fontWeight: 500 }}
         />
         <YAxis
-          label={{ value: 'ms', angle: -90, position: 'insideLeft', style: { fill: '#9CA3AF' } }}
-          stroke="#9CA3AF"
-          style={{ fontSize: '12px' }}
+          label={{ value: 'ms', angle: -90, position: 'insideLeft', style: { fill: '#6B7280', fontWeight: 600 } }}
+          stroke="#6B7280"
+          style={{ fontSize: '12px', fontWeight: 500 }}
         />
         <Tooltip
           formatter={(value: number) => `${value.toFixed(2)}ms`}
           labelFormatter={(value) => new Date(value).toLocaleTimeString()}
           contentStyle={{
-            backgroundColor: '#1F2937',
-            border: '1px solid #374151',
+            backgroundColor: '#FFFFFF',
+            border: '1px solid #E5E7EB',
             borderRadius: '8px',
-            color: '#F9FAFB',
+            color: '#1a1a1a',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
           }}
         />
         <Legend
-          wrapperStyle={{ color: '#9CA3AF', fontSize: '12px' }}
+          wrapperStyle={{ color: '#6B7280', fontSize: '12px', fontWeight: 500 }}
         />
         <Line
           type="monotone"
           dataKey="ttft"
-          stroke="#3B82F6"
+          stroke="#003EF3"
+          fill="url(#ttftGradient)"
           dot={false}
           isAnimationActive={false}
-          strokeWidth={2}
+          strokeWidth={3}
           name="Time to First Token"
         />
         <Line
           type="monotone"
           dataKey="tpot"
-          stroke="#EF4444"
+          stroke="#4EB6C9"
+          fill="url(#tpotGradient)"
           dot={false}
           isAnimationActive={false}
-          strokeWidth={2}
+          strokeWidth={3}
           name="Time Per Output Token"
         />
       </LineChart>
