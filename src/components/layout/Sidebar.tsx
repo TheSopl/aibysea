@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -10,46 +9,97 @@ import {
   Zap,
   FileText,
   Settings,
-  ChevronLeft,
-  ChevronRight
+  MessageCircle,
+  Phone,
+  File
 } from 'lucide-react';
 
-const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-  { name: 'AI Agents', href: '/agents', icon: Zap },
-  { name: 'Inbox', href: '/inbox', icon: Inbox },
-  { name: 'Contacts', href: '/contacts', icon: Users },
-  { name: 'Workflows', href: '/workflows', icon: FileText },
-  { name: 'Settings', href: '/settings', icon: Settings },
-];
+interface NavItem {
+  name: string;
+  href: string;
+  icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+}
+
+interface ServiceModule {
+  name: string;
+  color: string;
+  icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+  items: NavItem[];
+}
+
+interface NavigationStructure {
+  topSection: NavItem[];
+  modules: ServiceModule[];
+  bottomSection: NavItem[];
+}
+
+const navigation: NavigationStructure = {
+  topSection: [
+    { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+  ],
+  modules: [
+    {
+      name: 'Conversational',
+      color: 'from-accent to-primary',
+      icon: MessageCircle,
+      items: [
+        { name: 'Inbox', href: '/inbox', icon: Inbox },
+        { name: 'AI Agents', href: '/agents', icon: Zap },
+        { name: 'Contacts', href: '/contacts', icon: Users },
+      ],
+    },
+    {
+      name: 'Voice',
+      color: 'from-teal-400 to-teal-600',
+      icon: Phone,
+      items: [
+        { name: 'Voice Agents', href: '/voice-agents', icon: Zap },
+        { name: 'Call Logs', href: '/call-logs', icon: FileText },
+        { name: 'Phone Numbers', href: '/phone-numbers', icon: Users },
+      ],
+    },
+    {
+      name: 'Documents',
+      color: 'from-orange-400 to-orange-600',
+      icon: File,
+      items: [
+        { name: 'Upload', href: '/documents', icon: FileText },
+        { name: 'Processing', href: '/processing', icon: Zap },
+        { name: 'Data', href: '/data', icon: Users },
+      ],
+    },
+  ],
+  bottomSection: [
+    { name: 'Settings', href: '/settings', icon: Settings },
+  ],
+};
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(false);
+
+  // Helper to flatten all navigation items for rendering (used in Task 1 implementation)
+  const getAllNavItems = (): NavItem[] => {
+    return [
+      ...navigation.topSection,
+      ...navigation.modules.flatMap(m => m.items),
+      ...navigation.bottomSection,
+    ];
+  };
+
+  const allItems = getAllNavItems();
 
   return (
-    <div className={`fixed left-0 top-0 h-full bg-gradient-to-b from-[#1a1a2e] to-[#16213e] text-white transition-all duration-300 ${collapsed ? 'w-20' : 'w-64'} z-50 flex flex-col`}>
-      {/* Logo & Collapse Button */}
-      <div className="p-6 flex items-center justify-between border-b border-white/10">
-        {!collapsed && (
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-accent to-primary rounded-lg flex items-center justify-center shadow-lg">
-              <span className="text-white font-extrabold text-base">AI</span>
-            </div>
-            <span className="text-lg font-bold">AIBYSEA</span>
-          </div>
-        )}
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-        >
-          {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
-        </button>
+    <div className="fixed left-0 top-0 h-full w-20 bg-gradient-to-b from-[#1a1a2e] to-[#16213e] text-white z-50 flex flex-col shadow-2xl">
+      {/* Logo */}
+      <div className="p-4 flex items-center justify-center border-b border-white/10">
+        <div className="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-xl flex items-center justify-center shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105">
+          <span className="text-white font-extrabold text-lg">AI</span>
+        </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-2">
-        {navigation.map((item) => {
+      <nav className="flex-1 p-3 space-y-2">
+        {allItems.map((item) => {
           const isActive = pathname?.startsWith(item.href);
           const Icon = item.icon;
 
@@ -57,33 +107,24 @@ export default function Sidebar() {
             <Link
               key={item.name}
               href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+              className={`group flex items-center justify-center w-full h-14 rounded-xl transition-all duration-300 relative ${
                 isActive
-                  ? 'bg-accent text-white shadow-lg'
-                  : 'text-white/70 hover:bg-white/10 hover:text-white'
+                  ? 'bg-gradient-to-r from-accent to-primary text-white shadow-xl shadow-accent/30'
+                  : 'text-white/60 hover:bg-white/10 hover:text-white hover:shadow-lg'
               }`}
             >
-              <Icon size={20} strokeWidth={2} />
-              {!collapsed && (
-                <span className="font-medium">{item.name}</span>
-              )}
+              <Icon size={22} strokeWidth={2.5} className={`${isActive ? 'scale-110' : 'group-hover:scale-110'} transition-transform duration-300`} />
             </Link>
           );
         })}
       </nav>
 
       {/* User Profile at Bottom */}
-      <div className="p-4 border-t border-white/10">
-        <div className={`flex items-center gap-3 p-3 hover:bg-white/10 rounded-lg cursor-pointer transition-colors ${collapsed ? 'justify-center' : ''}`}>
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold shadow-lg">
+      <div className="p-3 border-t border-white/10">
+        <div className="flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 cursor-pointer">
             R
           </div>
-          {!collapsed && (
-            <div className="flex-1">
-              <div className="text-sm font-semibold">Rashed</div>
-              <div className="text-xs text-white/50">Admin</div>
-            </div>
-          )}
         </div>
       </div>
     </div>
