@@ -18,7 +18,10 @@
       "WebFetch(domain:motion.dev)",
       "WebFetch(domain:www.sarasoueidan.com)",
       "Bash(find:*)",
-      "Skill(gsd:execute-plan)"
+      "Skill(gsd:execute-plan)",
+      "Bash(git rev-parse:*)",
+      "Bash(grep:*)",
+      "Bash(npm install:*)"
     ]
   }
 }
