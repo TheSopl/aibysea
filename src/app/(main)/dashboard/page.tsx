@@ -1,39 +1,39 @@
 'use client';
 
 import TopBar from '@/components/layout/TopBar';
-import { MessageSquare, Users, CheckCircle, TrendingUp, Calendar } from 'lucide-react';
+import { MessageSquare, Users, CheckCircle, TrendingUp, Calendar, Zap } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 // Mock data
 const statsData = [
   {
-    label: "Today's Conversations",
-    value: '2,300',
-    change: '+5%',
+    label: 'Active AI Agents',
+    value: '12',
+    change: '+2 this week',
     trend: 'up',
-    icon: MessageSquare,
+    icon: Zap,
     bgColor: 'bg-accent',
   },
   {
-    label: 'New Contacts',
-    value: '+3,020',
-    change: '+14%',
+    label: 'Conversations Handled',
+    value: '2,847',
+    change: '+18% from yesterday',
     trend: 'up',
-    icon: Users,
+    icon: MessageSquare,
     bgColor: 'bg-primary',
   },
   {
-    label: 'Resolved Today',
-    value: '1,820',
-    change: '+8%',
+    label: 'AI Resolution Rate',
+    value: '74%',
+    change: '+3% this week',
     trend: 'up',
     icon: CheckCircle,
     bgColor: 'bg-green',
   },
   {
-    label: 'Response Rate',
-    value: '94%',
-    change: '+2%',
+    label: 'Avg Response Time',
+    value: '1.2s',
+    change: '-0.3s faster',
     trend: 'up',
     icon: TrendingUp,
     bgColor: 'bg-accent',
@@ -51,9 +51,9 @@ const conversationsData = [
 ];
 
 const queueData = [
-  { name: 'Sarah Johnson', channel: 'WhatsApp', waiting: '5m' },
-  { name: 'Mike Chen', channel: 'Telegram', waiting: '12m' },
-  { name: 'Emma Wilson', channel: 'WhatsApp', waiting: '8m' },
+  { name: 'Rashed AI', channel: 'WhatsApp', status: 'Handling 8 chats', color: 'from-accent to-primary' },
+  { name: 'Ahmed AI', channel: 'Telegram', status: 'Handling 5 chats', color: 'from-primary to-accent' },
+  { name: 'Sarah AI', channel: 'Facebook', status: 'Handling 3 chats', color: 'from-green to-accent' },
 ];
 
 const topChannels = [
@@ -103,8 +103,8 @@ export default function DashboardPage() {
           {/* Conversations Chart */}
           <div className="lg:col-span-2 bg-white rounded-2xl p-8 shadow-lg">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-extrabold text-dark">Conversations This Week</h3>
-              <button className="text-sm text-primary font-semibold hover:underline">View All</button>
+              <h3 className="text-xl font-extrabold text-dark">AI Agent Performance - This Week</h3>
+              <button className="text-sm text-primary font-semibold hover:underline">View Details</button>
             </div>
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={conversationsData}>
@@ -136,17 +136,17 @@ export default function DashboardPage() {
             </ResponsiveContainer>
           </div>
 
-          {/* Today's Queue */}
+          {/* Active AI Agents */}
           <div className="bg-white rounded-2xl p-6 shadow-lg">
             <div className="flex items-center gap-2 mb-6">
-              <Calendar className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-extrabold text-dark">Today's Queue</h3>
+              <Zap className="w-5 h-5 text-primary" />
+              <h3 className="text-lg font-extrabold text-dark">Active Agents</h3>
             </div>
             <div className="space-y-4">
               {queueData.map((item, index) => (
                 <div key={index} className="p-4 bg-light-bg rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold text-sm">
+                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-white font-bold text-sm shadow-md`}>
                       {item.name[0]}
                     </div>
                     <div className="flex-1">
@@ -156,7 +156,10 @@ export default function DashboardPage() {
                       </span>
                     </div>
                   </div>
-                  <p className="text-xs text-text-secondary">Waiting: {item.waiting}</p>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green rounded-full animate-pulse"></div>
+                    <p className="text-xs text-green font-semibold">{item.status}</p>
+                  </div>
                 </div>
               ))}
             </div>

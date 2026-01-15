@@ -15,6 +15,8 @@ const conversations = [
     status: 'resolved',
     unread: 0,
     timestamp: '2m ago',
+    aiAgent: 'Rashed AI',
+    handledBy: 'ai',
   },
   {
     id: 2,
@@ -25,6 +27,8 @@ const conversations = [
     status: 'open',
     unread: 3,
     timestamp: '5m ago',
+    aiAgent: 'Ahmed AI',
+    handledBy: 'ai',
   },
   {
     id: 3,
@@ -35,6 +39,8 @@ const conversations = [
     status: 'pending',
     unread: 1,
     timestamp: '12m ago',
+    aiAgent: 'Rashed AI',
+    handledBy: 'human',
   },
 ];
 
@@ -145,13 +151,18 @@ export default function InboxPage() {
                       <span className="text-xs text-text-secondary">{conv.timestamp}</span>
                     </div>
 
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-2 mb-2 flex-wrap">
                       <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded font-medium">
                         {conv.channel}
                       </span>
                       <span className={`text-xs px-2 py-0.5 rounded font-medium ${
+                        conv.handledBy === 'ai' ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
+                      }`}>
+                        🤖 {conv.aiAgent}
+                      </span>
+                      <span className={`text-xs px-2 py-0.5 rounded font-medium ${
                         conv.status === 'resolved' ? 'bg-green/20 text-green' :
-                        conv.status === 'open' ? 'bg-primary/20 text-primary' :
+                        conv.status === 'open' ? 'bg-blue/20 text-blue' :
                         'bg-amber/20 text-amber'
                       }`}>
                         {conv.status}
@@ -184,11 +195,15 @@ export default function InboxPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-dark">{selectedConversation.name}</h3>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded font-medium">
                     {selectedConversation.channel}
                   </span>
-                  <span className="text-xs text-text-secondary">Assigned: Rashed</span>
+                  <span className={`text-xs px-2 py-0.5 rounded font-medium ${
+                    selectedConversation.handledBy === 'ai' ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
+                  }`}>
+                    {selectedConversation.handledBy === 'ai' ? '🤖 AI' : '👤 Human'} - {selectedConversation.aiAgent}
+                  </span>
                 </div>
               </div>
             </div>

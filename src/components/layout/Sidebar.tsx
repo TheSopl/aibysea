@@ -16,10 +16,10 @@ import {
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+  { name: 'AI Agents', href: '/agents', icon: Zap },
   { name: 'Inbox', href: '/inbox', icon: Inbox },
   { name: 'Contacts', href: '/contacts', icon: Users },
-  { name: 'Automations', href: '/automations', icon: Zap },
-  { name: 'Templates', href: '/templates', icon: FileText },
+  { name: 'Workflows', href: '/workflows', icon: FileText },
   { name: 'Settings', href: '/settings', icon: Settings },
 ];
 
