@@ -56,26 +56,26 @@ export default function MetricsCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ scale: 1.02, y: -4 }}
-      className="relative bg-white border border-gray-200 rounded-design-lg p-5 md:p-6 cursor-pointer group transition-all duration-300 shadow-card hover:shadow-card-hover"
+      className="relative bg-white border border-gray-200 rounded-design-lg p-8 md:p-10 cursor-pointer group transition-all duration-300 shadow-lg hover:shadow-xl"
     >
       {/* Label */}
-      <div className="text-xs uppercase tracking-wider text-text-secondary mb-3 font-semibold">
+      <div className="text-xs uppercase tracking-widest text-text-secondary mb-4 font-bold">
         {label}
       </div>
 
       {/* Main metric value */}
-      <div className="flex items-baseline gap-2 mb-2">
+      <div className="flex items-baseline gap-2 mb-3">
         <motion.span
           key={value}
           initial={{ opacity: 0.5, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="text-4xl font-extrabold font-mono text-primary"
+          className="text-5xl md:text-6xl font-extrabold font-mono text-primary leading-none"
         >
           {value}
         </motion.span>
         {unit && (
-          <span className="text-lg text-text-secondary font-mono font-medium">{unit}</span>
+          <span className="text-xl text-text-secondary font-mono font-semibold">{unit}</span>
         )}
       </div>
 

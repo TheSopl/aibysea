@@ -11,8 +11,8 @@ interface ConfidencePoint {
 
 // Memoized chart component
 const ConfidenceScoresComponent = ({ data }: { data: ConfidencePoint[] }) => (
-  <div className="bg-white border border-gray-200 rounded-design-lg p-6 md:p-8 shadow-card hover:shadow-card-hover transition-all duration-300">
-    <h3 className="text-lg font-bold text-dark mb-4 md:mb-6">Decision Confidence</h3>
+  <div className="bg-white border border-gray-200 rounded-design-lg p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300">
+    <h3 className="text-2xl font-extrabold text-dark mb-6 md:mb-8">Decision Confidence</h3>
     <ResponsiveContainer width="100%" height={300}>
       <AreaChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
         <defs>

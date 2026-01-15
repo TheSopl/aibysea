@@ -4,13 +4,13 @@ import SmartActions from '@/components/dashboard/SmartActions';
 
 export default function AIMetricsPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-10 md:space-y-12">
       {/* Page Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-text-primary mb-2">
+      <div className="mb-8 md:mb-10">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-dark mb-3">
           AI Metrics Dashboard
         </h1>
-        <p className="text-text-secondary">
+        <p className="text-lg text-text-secondary font-medium">
           Real-time intelligence and performance insights for your AI agent
         </p>
       </div>
@@ -19,7 +19,7 @@ export default function AIMetricsPage() {
       <AIMetricsDashboard />
 
       {/* Insights and Actions Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <SmartInsights />
         <SmartActions />
       </div>

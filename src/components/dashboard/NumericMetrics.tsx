@@ -65,10 +65,10 @@ export default function NumericMetrics() {
     : 0;
 
   return (
-    <div className="bg-white border border-gray-200 rounded-design-lg p-6 md:p-8 shadow-card">
-      <h3 className="text-lg font-bold text-dark mb-4 md:mb-6">Current Metrics</h3>
+    <div className="bg-white border border-gray-200 rounded-design-lg p-8 md:p-10 shadow-lg">
+      <h3 className="text-2xl font-extrabold text-dark mb-6 md:mb-8">Current Metrics</h3>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
         {/* AI State */}
         <div className="flex flex-col gap-2">
           <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">AI State</div>
@@ -76,37 +76,37 @@ export default function NumericMetrics() {
         </div>
 
         {/* Active Conversations */}
-        <div className="flex flex-col gap-2">
-          <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">Conversations</div>
-          <div className="text-2xl font-extrabold text-primary">
+        <div className="flex flex-col gap-3">
+          <div className="text-xs text-text-secondary uppercase tracking-widest font-bold">Conversations</div>
+          <div className="text-3xl md:text-4xl font-extrabold text-primary leading-none">
             {formatNumber(activeConversations, '0,0')}
           </div>
         </div>
 
         {/* Average Latency */}
-        <div className="flex flex-col gap-2">
-          <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">Avg Latency</div>
-          <div className="text-2xl font-extrabold text-primary">
+        <div className="flex flex-col gap-3">
+          <div className="text-xs text-text-secondary uppercase tracking-widest font-bold">Avg Latency</div>
+          <div className="text-3xl md:text-4xl font-extrabold text-primary leading-none">
             {formatNumber(avgLatency, '0,0')}
-            <span className="text-sm text-text-secondary ml-1 font-medium">ms</span>
+            <span className="text-base text-text-secondary ml-2 font-semibold">ms</span>
           </div>
         </div>
 
         {/* Current Confidence */}
-        <div className="flex flex-col gap-2">
-          <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">Confidence</div>
-          <div className="text-2xl font-extrabold text-primary">
+        <div className="flex flex-col gap-3">
+          <div className="text-xs text-text-secondary uppercase tracking-widest font-bold">Confidence</div>
+          <div className="text-3xl md:text-4xl font-extrabold text-primary leading-none">
             {formatNumber(currentConfidence * 100, '0.0')}
-            <span className="text-sm text-text-secondary ml-1 font-medium">%</span>
+            <span className="text-base text-text-secondary ml-2 font-semibold">%</span>
           </div>
         </div>
 
         {/* Context Size */}
-        <div className="flex flex-col gap-2">
-          <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">Context Size</div>
-          <div className="text-2xl font-extrabold text-primary">
+        <div className="flex flex-col gap-3">
+          <div className="text-xs text-text-secondary uppercase tracking-widest font-bold">Context Size</div>
+          <div className="text-3xl md:text-4xl font-extrabold text-primary leading-none">
             {formatNumber(contextSize, '0.0a')}
-            <span className="text-sm text-text-secondary ml-1 font-medium">tokens</span>
+            <span className="text-base text-text-secondary ml-2 font-semibold">tokens</span>
           </div>
         </div>
 

@@ -82,18 +82,18 @@ export default function AIMetricsDashboard() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="space-y-8 md:space-y-10"
+      className="space-y-10 md:space-y-12"
     >
       {/* Top section: Health Score + AI Agent Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10"
       >
         {/* Health Score Card */}
-        <div className="bg-white border border-gray-200 rounded-design-lg p-6 md:p-8 shadow-card">
-          <div className="text-sm uppercase tracking-wider text-text-secondary mb-4 md:mb-6 font-semibold">
+        <div className="bg-white border border-gray-200 rounded-design-lg p-8 md:p-10 shadow-lg">
+          <div className="text-xs uppercase tracking-widest text-text-secondary mb-6 md:mb-8 font-bold">
             Overall Health
           </div>
           <div className="flex items-center justify-center">
@@ -130,7 +130,7 @@ export default function AIMetricsDashboard() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8"
+        className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-10"
       >
         <LatencyChartContainer />
         <ConfidenceScoresContainer />
