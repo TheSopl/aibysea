@@ -2,17 +2,18 @@
 
 import TopBar from '@/components/layout/TopBar';
 import { useState } from 'react';
-import { Search, Filter, MoreVertical, Paperclip, Send, Phone, Video, Info } from 'lucide-react';
+import { Search, MoreVertical, Paperclip, Send, Phone, Video, UserCheck, Bot, Smile, Image as ImageIcon } from 'lucide-react';
 
 // Mock data
 const conversations = [
   {
     id: 1,
     name: 'Sarah Johnson',
-    avatar: '/images/avatar1.jpg',
+    avatar: 'SJ',
     channel: 'WhatsApp',
     lastMessage: 'Thank you for your help! The issue is resolved.',
     status: 'resolved',
+    lifecycle: 'Customer',
     unread: 0,
     timestamp: '2m ago',
     aiAgent: 'Rashed AI',
@@ -21,10 +22,11 @@ const conversations = [
   {
     id: 2,
     name: 'Mike Chen',
-    avatar: '/images/avatar2.jpg',
+    avatar: 'MC',
     channel: 'Telegram',
     lastMessage: 'When will my order arrive?',
     status: 'open',
+    lifecycle: 'Lead',
     unread: 3,
     timestamp: '5m ago',
     aiAgent: 'Ahmed AI',
@@ -33,10 +35,11 @@ const conversations = [
   {
     id: 3,
     name: 'Emma Wilson',
-    avatar: '/images/avatar3.jpg',
+    avatar: 'EW',
     channel: 'WhatsApp',
     lastMessage: 'I need assistance with my account',
     status: 'pending',
+    lifecycle: 'Prospect',
     unread: 1,
     timestamp: '12m ago',
     aiAgent: 'Rashed AI',
@@ -44,7 +47,7 @@ const conversations = [
   },
 ];
 
-const messages = [
+const mockMessages = [
   {
     id: 1,
     sender: 'customer',
@@ -54,27 +57,42 @@ const messages = [
   {
     id: 2,
     sender: 'ai',
-    text: 'Hello! I\'d be happy to help you with your order. Could you please provide your order number?',
+    text: "Hello! I'd be happy to help you with your order. Could you please provide your order number?",
     timestamp: '10:31 AM',
   },
   {
     id: 3,
     sender: 'customer',
-    text: 'Sure, it\'s #12345',
+    text: "Sure, it's #12345",
     timestamp: '10:32 AM',
   },
   {
     id: 4,
     sender: 'ai',
-    text: 'Thank you! I\'m looking up your order now. One moment please.',
+    text: "Thank you! I'm looking up your order now. One moment please.",
     timestamp: '10:32 AM',
   },
 ];
 
 export default function InboxPage() {
-  const [selectedConversation, setSelectedConversation] = useState(conversations[0]);
+  const [selectedConversation, setSelectedConversation] = useState<typeof conversations[0] | null>(null);
   const [activeTab, setActiveTab] = useState<'all' | 'assigned' | 'unassigned'>('all');
-  const [contextTab, setContextTab] = useState<'profile' | 'timeline' | 'notes' | 'files'>('profile');
+  const [contextTab, setContextTab] = useState<'profile' | 'timeline' | 'notes'>('profile');
+  const [message, setMessage] = useState('');
+  const [isAIMode, setIsAIMode] = useState(true);
+
+  const handleSend = () => {
+    if (!message.trim()) return;
+    // TODO: Implement send message
+    console.log('Sending:', message);
+    setMessage('');
+  };
+
+  const handleTakeover = () => {
+    setIsAIMode(!isAIMode);
+    // TODO: Implement takeover logic to notify N8N
+    console.log('Takeover toggled:', !isAIMode);
+  };
 
   return (
     <>
@@ -88,9 +106,9 @@ export default function InboxPage() {
             <div className="flex gap-2 mb-4">
               <button
                 onClick={() => setActiveTab('all')}
-                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'all'
-                    ? 'bg-primary text-white'
+                    ? 'bg-primary text-white shadow-md'
                     : 'bg-light-bg text-text-secondary hover:bg-gray-200'
                 }`}
               >
@@ -98,19 +116,19 @@ export default function InboxPage() {
               </button>
               <button
                 onClick={() => setActiveTab('assigned')}
-                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'assigned'
-                    ? 'bg-primary text-white'
+                    ? 'bg-primary text-white shadow-md'
                     : 'bg-light-bg text-text-secondary hover:bg-gray-200'
                 }`}
               >
-                Assigned to me
+                Assigned
               </button>
               <button
                 onClick={() => setActiveTab('unassigned')}
-                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'unassigned'
-                    ? 'bg-primary text-white'
+                    ? 'bg-primary text-white shadow-md'
                     : 'bg-light-bg text-text-secondary hover:bg-gray-200'
                 }`}
               >
@@ -124,7 +142,7 @@ export default function InboxPage() {
               <input
                 type="text"
                 placeholder="Search conversations..."
-                className="w-full pl-10 pr-4 py-2 bg-light-bg border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                className="w-full pl-10 pr-4 py-2.5 bg-light-bg border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
               />
             </div>
           </div>
@@ -135,45 +153,46 @@ export default function InboxPage() {
               <div
                 key={conv.id}
                 onClick={() => setSelectedConversation(conv)}
-                className={`p-4 border-b border-gray-100 cursor-pointer transition-colors ${
-                  selectedConversation.id === conv.id ? 'bg-primary/5' : 'hover:bg-light-bg'
+                className={`p-4 border-b border-gray-100 cursor-pointer transition-all hover:bg-light-bg ${
+                  selectedConversation?.id === conv.id ? 'bg-primary/5 border-l-4 border-l-primary' : ''
                 }`}
               >
                 <div className="flex items-start gap-3">
                   {/* Avatar */}
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold flex-shrink-0">
-                    {conv.name[0]}
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold text-sm flex-shrink-0 shadow-md">
+                    {conv.avatar}
                   </div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-semibold text-dark text-sm">{conv.name}</span>
+                      <span className="font-bold text-dark text-sm">{conv.name}</span>
                       <span className="text-xs text-text-secondary">{conv.timestamp}</span>
                     </div>
 
-                    <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded font-medium">
+                    <div className="flex items-center gap-1.5 mb-2 flex-wrap">
+                      <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded-md font-bold">
                         {conv.channel}
                       </span>
-                      <span className={`text-xs px-2 py-0.5 rounded font-medium ${
+                      <span className={`text-xs px-2 py-0.5 rounded-md font-bold ${
                         conv.handledBy === 'ai' ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
                       }`}>
-                        🤖 {conv.aiAgent}
-                      </span>
-                      <span className={`text-xs px-2 py-0.5 rounded font-medium ${
-                        conv.status === 'resolved' ? 'bg-green/20 text-green' :
-                        conv.status === 'open' ? 'bg-blue/20 text-blue' :
-                        'bg-amber/20 text-amber'
-                      }`}>
-                        {conv.status}
+                        {conv.handledBy === 'ai' ? '🤖' : '👤'} {conv.aiAgent}
                       </span>
                     </div>
 
-                    <p className="text-sm text-text-secondary truncate">{conv.lastMessage}</p>
+                    <p className="text-sm text-text-secondary truncate mb-2">{conv.lastMessage}</p>
+
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
+                      conv.lifecycle === 'Customer' ? 'bg-green/20 text-green' :
+                      conv.lifecycle === 'Lead' ? 'bg-blue/20 text-blue' :
+                      'bg-amber/20 text-amber'
+                    }`}>
+                      {conv.lifecycle}
+                    </span>
 
                     {conv.unread > 0 && (
                       <div className="mt-2">
-                        <span className="inline-flex items-center justify-center w-6 h-6 bg-primary text-white text-xs font-bold rounded-full">
+                        <span className="inline-flex items-center justify-center min-w-[24px] h-6 px-2 bg-primary text-white text-xs font-bold rounded-full shadow-md">
                           {conv.unread}
                         </span>
                       </div>
@@ -186,157 +205,234 @@ export default function InboxPage() {
         </div>
 
         {/* Column 2: Chat Thread */}
-        <div className="flex-1 bg-white flex flex-col">
-          {/* Chat Header */}
-          <div className="p-4 border-b border-gray-200 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold">
-                {selectedConversation.name[0]}
-              </div>
-              <div>
-                <h3 className="font-semibold text-dark">{selectedConversation.name}</h3>
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded font-medium">
-                    {selectedConversation.channel}
-                  </span>
-                  <span className={`text-xs px-2 py-0.5 rounded font-medium ${
-                    selectedConversation.handledBy === 'ai' ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
-                  }`}>
-                    {selectedConversation.handledBy === 'ai' ? '🤖 AI' : '👤 Human'} - {selectedConversation.aiAgent}
-                  </span>
+        {selectedConversation ? (
+          <div className="flex-1 bg-white flex flex-col">
+            {/* Chat Header */}
+            <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-gradient-to-r from-white to-light-bg">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold shadow-lg">
+                  {selectedConversation.avatar}
                 </div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
-                <Phone size={20} className="text-text-secondary" />
-              </button>
-              <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
-                <Video size={20} className="text-text-secondary" />
-              </button>
-              <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
-                <MoreVertical size={20} className="text-text-secondary" />
-              </button>
-            </div>
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            {messages.map((msg) => (
-              <div
-                key={msg.id}
-                className={`flex ${msg.sender === 'customer' ? 'justify-start' : 'justify-end'}`}
-              >
-                <div className={`max-w-md ${msg.sender === 'customer' ? 'order-2' : 'order-1'}`}>
-                  <div className={`px-4 py-3 rounded-2xl ${
-                    msg.sender === 'customer'
-                      ? 'bg-light-bg text-dark'
-                      : msg.sender === 'ai'
-                      ? 'bg-primary/10 text-dark border border-primary/20'
-                      : 'bg-primary text-white'
-                  }`}>
-                    {msg.sender === 'ai' && (
-                      <div className="text-xs font-semibold text-primary mb-1">🤖 AI Assistant</div>
-                    )}
-                    <p className="text-sm">{msg.text}</p>
+                <div>
+                  <h3 className="font-bold text-dark text-lg">{selectedConversation.name}</h3>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded-md font-bold">
+                      {selectedConversation.channel}
+                    </span>
+                    <span className={`text-xs px-2 py-0.5 rounded-md font-bold ${
+                      selectedConversation.handledBy === 'ai' ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
+                    }`}>
+                      {selectedConversation.handledBy === 'ai' ? '🤖 AI Mode' : '👤 Human Mode'}
+                    </span>
                   </div>
-                  <span className="text-xs text-text-secondary mt-1 block">{msg.timestamp}</span>
                 </div>
               </div>
-            ))}
-          </div>
 
-          {/* Input Footer */}
-          <div className="p-4 border-t border-gray-200">
-            <div className="flex items-end gap-3">
-              <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
-                <Paperclip size={20} className="text-text-secondary" />
-              </button>
-
-              <div className="flex-1">
-                <textarea
-                  placeholder="Type your message..."
-                  rows={2}
-                  className="w-full px-4 py-2 bg-light-bg border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary/20"
-                />
-              </div>
-
-              <button className="px-6 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center gap-2">
-                <Send size={18} />
-                Send
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Column 3: Context Panel */}
-        <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
-          {/* Tabs */}
-          <div className="p-4 border-b border-gray-200">
-            <div className="flex gap-1">
-              {['profile', 'timeline', 'notes', 'files'].map((tab) => (
+              <div className="flex items-center gap-2">
                 <button
-                  key={tab}
-                  onClick={() => setContextTab(tab as any)}
-                  className={`flex-1 px-3 py-2 rounded-lg text-xs font-semibold capitalize transition-all ${
-                    contextTab === tab
-                      ? 'bg-primary text-white'
-                      : 'text-text-secondary hover:bg-light-bg'
+                  onClick={handleTakeover}
+                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300 shadow-md hover:shadow-lg ${
+                    isAIMode
+                      ? 'bg-purple text-white hover:bg-purple/90'
+                      : 'bg-primary text-white hover:bg-primary/90'
                   }`}
                 >
-                  {tab}
+                  {isAIMode ? (
+                    <div className="flex items-center gap-2">
+                      <UserCheck size={16} />
+                      <span>Take Over</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <Bot size={16} />
+                      <span>Return to AI</span>
+                    </div>
+                  )}
                 </button>
+                <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
+                  <Phone size={20} className="text-text-secondary" />
+                </button>
+                <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
+                  <Video size={20} className="text-text-secondary" />
+                </button>
+                <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
+                  <MoreVertical size={20} className="text-text-secondary" />
+                </button>
+              </div>
+            </div>
+
+            {/* Messages */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-light-bg/30 to-white">
+              {mockMessages.map((msg) => (
+                <div
+                  key={msg.id}
+                  className={`flex ${msg.sender === 'customer' ? 'justify-start' : 'justify-end'} animate-in fade-in slide-in-from-bottom-2 duration-300`}
+                >
+                  <div className={`max-w-md ${msg.sender === 'customer' ? '' : ''}`}>
+                    <div className={`px-4 py-3 rounded-2xl shadow-md transition-all hover:shadow-lg ${
+                      msg.sender === 'customer'
+                        ? 'bg-white text-dark border border-gray-200'
+                        : msg.sender === 'ai'
+                        ? 'bg-gradient-to-br from-primary to-primary/90 text-white'
+                        : 'bg-gradient-to-br from-purple to-purple/90 text-white'
+                    }`}>
+                      {msg.sender === 'ai' && (
+                        <div className="text-xs font-bold text-white/90 mb-1 flex items-center gap-1">
+                          <Bot size={14} />
+                          AI Assistant
+                        </div>
+                      )}
+                      <p className="text-sm leading-relaxed">{msg.text}</p>
+                    </div>
+                    <span className="text-xs text-text-secondary mt-1.5 block px-2">{msg.timestamp}</span>
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
 
-          {/* Content */}
-          <div className="flex-1 overflow-y-auto p-4">
-            {contextTab === 'profile' && (
-              <div className="space-y-4">
-                <div>
-                  <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Name</label>
-                  <p className="text-sm text-dark mt-1">{selectedConversation.name}</p>
+            {/* Input Footer */}
+            <div className="p-4 border-t border-gray-200 bg-white">
+              {!isAIMode && (
+                <div className="mb-3 px-3 py-2 bg-purple/10 border border-purple/30 rounded-lg">
+                  <p className="text-xs font-bold text-purple flex items-center gap-2">
+                    <UserCheck size={14} />
+                    You're in Human Mode - AI is paused for this conversation
+                  </p>
                 </div>
-                <div>
-                  <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Channel</label>
-                  <p className="text-sm text-dark mt-1">{selectedConversation.channel}</p>
-                </div>
-                <div>
-                  <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Status</label>
-                  <p className="text-sm text-dark mt-1 capitalize">{selectedConversation.status}</p>
-                </div>
-                <div>
-                  <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Tags</label>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    <span className="px-2 py-1 bg-accent/20 text-accent text-xs rounded font-medium">VIP</span>
-                    <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded font-medium">Support</span>
-                  </div>
-                </div>
-              </div>
-            )}
+              )}
+              <div className="flex items-end gap-3">
+                <button className="p-2.5 hover:bg-light-bg rounded-lg transition-colors">
+                  <Paperclip size={20} className="text-text-secondary" />
+                </button>
+                <button className="p-2.5 hover:bg-light-bg rounded-lg transition-colors">
+                  <ImageIcon size={20} className="text-text-secondary" />
+                </button>
+                <button className="p-2.5 hover:bg-light-bg rounded-lg transition-colors">
+                  <Smile size={20} className="text-text-secondary" />
+                </button>
 
-            {contextTab === 'timeline' && (
-              <div className="space-y-4">
-                <div className="flex gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-1.5"></div>
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold text-dark">Conversation started</p>
-                    <p className="text-xs text-text-secondary">2 hours ago</p>
-                  </div>
+                <div className="flex-1">
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        handleSend();
+                      }
+                    }}
+                    placeholder="Type your message..."
+                    rows={2}
+                    className="w-full px-4 py-3 bg-light-bg border border-gray-200 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  />
                 </div>
-                <div className="flex gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-1.5"></div>
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold text-dark">Assigned to Rashed</p>
-                    <p className="text-xs text-text-secondary">1 hour ago</p>
-                  </div>
-                </div>
+
+                <button
+                  onClick={handleSend}
+                  className="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-2"
+                >
+                  <Send size={18} />
+                  Send
+                </button>
               </div>
-            )}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="flex-1 bg-gradient-to-br from-light-bg to-white flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full flex items-center justify-center">
+                <Bot size={48} className="text-primary" />
+              </div>
+              <h3 className="text-2xl font-extrabold text-dark mb-2">Select a conversation</h3>
+              <p className="text-text-secondary">Choose a conversation from the list to start chatting</p>
+            </div>
+          </div>
+        )}
+
+        {/* Column 3: Context Panel */}
+        {selectedConversation && (
+          <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
+            {/* Tabs */}
+            <div className="p-4 border-b border-gray-200">
+              <div className="flex gap-1">
+                {['profile', 'timeline', 'notes'].map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setContextTab(tab as any)}
+                    className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold capitalize transition-all ${
+                      contextTab === tab
+                        ? 'bg-primary text-white shadow-md'
+                        : 'text-text-secondary hover:bg-light-bg'
+                    }`}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 overflow-y-auto p-4">
+              {contextTab === 'profile' && (
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Name</label>
+                    <p className="text-sm text-dark mt-1 font-semibold">{selectedConversation.name}</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Channel</label>
+                    <p className="text-sm text-dark mt-1">{selectedConversation.channel}</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">AI Agent</label>
+                    <p className="text-sm text-dark mt-1">{selectedConversation.aiAgent}</p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Lifecycle Stage</label>
+                    <div className="mt-2">
+                      <span className={`inline-block px-3 py-1.5 rounded-lg text-xs font-bold ${
+                        selectedConversation.lifecycle === 'Customer' ? 'bg-green/20 text-green' :
+                        selectedConversation.lifecycle === 'Lead' ? 'bg-blue/20 text-blue' :
+                        'bg-amber/20 text-amber'
+                      }`}>
+                        {selectedConversation.lifecycle}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {contextTab === 'timeline' && (
+                <div className="space-y-4">
+                  <div className="flex gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-1.5"></div>
+                    <div className="flex-1">
+                      <p className="text-sm font-bold text-dark">Conversation started</p>
+                      <p className="text-xs text-text-secondary">2 hours ago</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="w-2 h-2 bg-accent rounded-full mt-1.5"></div>
+                    <div className="flex-1">
+                      <p className="text-sm font-bold text-dark">Assigned to {selectedConversation.aiAgent}</p>
+                      <p className="text-xs text-text-secondary">1 hour ago</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {contextTab === 'notes' && (
+                <div>
+                  <textarea
+                    placeholder="Add notes about this contact..."
+                    rows={10}
+                    className="w-full px-3 py-2 bg-light-bg border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
