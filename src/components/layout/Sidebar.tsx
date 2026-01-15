@@ -77,16 +77,25 @@ const navigation: NavigationStructure = {
 export default function Sidebar() {
   const pathname = usePathname();
 
-  // Helper to flatten all navigation items for rendering (used in Task 1 implementation)
-  const getAllNavItems = (): NavItem[] => {
-    return [
-      ...navigation.topSection,
-      ...navigation.modules.flatMap(m => m.items),
-      ...navigation.bottomSection,
-    ];
-  };
+  const renderNavItem = (item: NavItem) => {
+    const isActive = pathname?.startsWith(item.href);
+    const Icon = item.icon;
 
-  const allItems = getAllNavItems();
+    return (
+      <Link
+        key={item.name}
+        href={item.href}
+        className={`group flex items-center justify-center w-full h-14 rounded-xl transition-all duration-300 relative ${
+          isActive
+            ? 'bg-gradient-to-r from-accent to-primary text-white shadow-xl shadow-accent/30'
+            : 'text-white/60 hover:bg-white/10 hover:text-white hover:shadow-lg'
+        }`}
+        title={item.name}
+      >
+        <Icon size={22} strokeWidth={2.5} className={`${isActive ? 'scale-110' : 'group-hover:scale-110'} transition-transform duration-300`} />
+      </Link>
+    );
+  };
 
   return (
     <div className="fixed left-0 top-0 h-full w-20 bg-gradient-to-b from-[#1a1a2e] to-[#16213e] text-white z-50 flex flex-col shadow-2xl">
@@ -98,26 +107,47 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-3 space-y-2">
-        {allItems.map((item) => {
-          const isActive = pathname?.startsWith(item.href);
-          const Icon = item.icon;
+      <nav className="flex-1 p-3 space-y-2 overflow-y-auto">
+        {/* Top Section */}
+        {navigation.topSection.map(item => renderNavItem(item))}
+
+        {/* Service Modules */}
+        {navigation.modules.map((module) => {
+          const ModuleIcon = module.icon;
+          const hasActiveItem = module.items.some(item => pathname?.startsWith(item.href));
 
           return (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`group flex items-center justify-center w-full h-14 rounded-xl transition-all duration-300 relative ${
-                isActive
-                  ? 'bg-gradient-to-r from-accent to-primary text-white shadow-xl shadow-accent/30'
-                  : 'text-white/60 hover:bg-white/10 hover:text-white hover:shadow-lg'
-              }`}
-            >
-              <Icon size={22} strokeWidth={2.5} className={`${isActive ? 'scale-110' : 'group-hover:scale-110'} transition-transform duration-300`} />
-            </Link>
+            <div key={module.name}>
+              {/* Module Divider */}
+              <div className="h-px bg-white/10 my-2"></div>
+
+              {/* Module Icon (visible on hover) */}
+              <div className="flex items-center justify-center h-10 group relative">
+                <div className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 ${
+                  hasActiveItem
+                    ? `bg-gradient-to-br ${module.color} shadow-lg`
+                    : 'text-white/40 group-hover:text-white/60'
+                }`}>
+                  <ModuleIcon size={16} strokeWidth={2.5} />
+                </div>
+              </div>
+
+              {/* Module Items */}
+              <div className="space-y-2">
+                {module.items.map(item => renderNavItem(item))}
+              </div>
+            </div>
           );
         })}
+
+        {/* Divider before bottom section */}
+        {navigation.bottomSection.length > 0 && <div className="h-px bg-white/10 my-2"></div>}
       </nav>
+
+      {/* Bottom Section */}
+      <div className="p-3 space-y-2 border-t border-white/10">
+        {navigation.bottomSection.map(item => renderNavItem(item))}
+      </div>
 
       {/* User Profile at Bottom */}
       <div className="p-3 border-t border-white/10">
