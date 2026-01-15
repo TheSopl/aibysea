@@ -84,24 +84,21 @@ export default function Header() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-dark-surface/80 backdrop-blur-lg border-b border-accent-surface px-6 py-4"
-      style={{
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
-      }}
+      className="bg-white border-b border-gray-200 px-8 py-5 shadow-sm"
     >
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-teal to-purple rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">AI</span>
+          <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-design flex items-center justify-center shadow-md">
+            <span className="text-white font-extrabold text-base">AI</span>
           </div>
-          <h1 className="text-xl font-bold text-text-primary">AIBYSEA</h1>
+          <h1 className="text-xl font-extrabold text-primary">AIBYSEA</h1>
         </div>
 
         {/* Center: Date & Time */}
         <div className="flex items-center gap-6">
           <div className="text-center">
-            <div className="text-sm text-text-primary font-medium">
+            <div className="text-sm text-dark font-semibold">
               {formatDate(currentTime)}
             </div>
             <div className="text-xs text-text-secondary">
@@ -114,7 +111,7 @@ export default function Header() {
         <div className="flex items-center gap-4">
           {/* Connection Status (animated based on real status from store) */}
           <motion.div
-            className={`flex items-center gap-2 px-3 py-1.5 ${statusConfig.bgColor} rounded-lg border ${statusConfig.borderColor}`}
+            className={`flex items-center gap-2 px-3 py-2 ${statusConfig.bgColor} rounded-design border ${statusConfig.borderColor}`}
             animate={{
               backgroundColor: statusConfig.bgColor,
             }}
@@ -135,7 +132,7 @@ export default function Header() {
               }
               transition={statusConfig.pulse ? { duration: 2, repeat: Infinity } : {}}
             />
-            <span className={`text-xs font-medium ${statusConfig.textColor}`}>
+            <span className={`text-xs font-semibold ${statusConfig.textColor}`}>
               {statusConfig.label}
             </span>
           </motion.div>
@@ -143,7 +140,7 @@ export default function Header() {
           {/* Refresh Button */}
           <button
             onClick={handleRefresh}
-            className="px-4 py-2 bg-accent-surface hover:bg-teal/20 text-text-primary hover:text-teal rounded-lg border border-accent-surface hover:border-teal/30 transition-all duration-200 text-sm font-medium"
+            className="px-4 py-2 bg-primary hover:bg-primary-600 text-white rounded-design transition-all duration-200 text-sm font-semibold shadow-sm hover:shadow-md"
           >
             🔄 Refresh
           </button>
