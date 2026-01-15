@@ -65,10 +65,10 @@ export default function NumericMetrics() {
     : 0;
 
   return (
-    <div className="bg-white border border-gray-200 rounded-design-lg p-8 shadow-card">
-      <h3 className="text-lg font-bold text-dark mb-6">Current Metrics</h3>
+    <div className="bg-white border border-gray-200 rounded-design-lg p-6 md:p-8 shadow-card">
+      <h3 className="text-lg font-bold text-dark mb-4 md:mb-6">Current Metrics</h3>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
         {/* AI State */}
         <div className="flex flex-col gap-2">
           <div className="text-xs text-text-secondary uppercase tracking-wider font-semibold">AI State</div>

@@ -84,9 +84,9 @@ export default function Header() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white border-b border-gray-200 px-8 py-5 shadow-sm"
+      className="bg-white border-b border-gray-200 px-4 md:px-6 lg:px-8 py-4 md:py-5 shadow-sm"
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-4">
         {/* Logo */}
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-design flex items-center justify-center shadow-md">
@@ -96,7 +96,7 @@ export default function Header() {
         </div>
 
         {/* Center: Date & Time */}
-        <div className="flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-6">
           <div className="text-center">
             <div className="text-sm text-dark font-semibold">
               {formatDate(currentTime)}
@@ -108,7 +108,7 @@ export default function Header() {
         </div>
 
         {/* Right: Actions */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 md:gap-4">
           {/* Connection Status (animated based on real status from store) */}
           <motion.div
             className={`flex items-center gap-2 px-3 py-2 ${statusConfig.bgColor} rounded-design border ${statusConfig.borderColor}`}

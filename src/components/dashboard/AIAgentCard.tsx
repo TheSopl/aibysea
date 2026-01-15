@@ -24,10 +24,10 @@ export default function AIAgentCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
       whileHover={{ scale: 1.02, y: -4 }}
-      className="relative bg-white border border-gray-200 rounded-design-lg p-8 transition-all duration-300 shadow-card hover:shadow-card-hover"
+      className="relative bg-white border border-gray-200 rounded-design-lg p-6 md:p-8 transition-all duration-300 shadow-card hover:shadow-card-hover"
     >
       {/* Card content */}
-      <div className="flex items-center gap-6">
+      <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6">
         {/* Avatar */}
         <div className="relative">
           <div className="relative">
@@ -50,9 +50,9 @@ export default function AIAgentCard({
         </div>
 
         {/* Agent info */}
-        <div className="flex-1">
+        <div className="flex-1 text-center sm:text-left">
           <h3 className="text-xl font-extrabold text-dark">{name}</h3>
-          <div className="flex items-center gap-3 mt-2">
+          <div className="flex items-center justify-center sm:justify-start gap-3 mt-2">
             {/* Health badge */}
             <div className="flex items-center gap-1.5 px-3 py-1 bg-accent/20 rounded-design border border-accent/30">
               <span className="text-sm font-bold font-mono text-primary">{healthScore}/100</span>

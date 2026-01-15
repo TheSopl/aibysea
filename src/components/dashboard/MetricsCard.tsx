@@ -56,7 +56,7 @@ export default function MetricsCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ scale: 1.02, y: -4 }}
-      className="relative bg-white border border-gray-200 rounded-design-lg p-6 cursor-pointer group transition-all duration-300 shadow-card hover:shadow-card-hover"
+      className="relative bg-white border border-gray-200 rounded-design-lg p-5 md:p-6 cursor-pointer group transition-all duration-300 shadow-card hover:shadow-card-hover"
     >
       {/* Label */}
       <div className="text-xs uppercase tracking-wider text-text-secondary mb-3 font-semibold">

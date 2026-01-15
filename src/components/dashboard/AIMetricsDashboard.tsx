@@ -92,14 +92,14 @@ export default function AIMetricsDashboard() {
         className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
       >
         {/* Health Score Card */}
-        <div className="bg-white border border-gray-200 rounded-design-lg p-8 shadow-card">
-          <div className="text-sm uppercase tracking-wider text-text-secondary mb-6 font-semibold">
+        <div className="bg-white border border-gray-200 rounded-design-lg p-6 md:p-8 shadow-card">
+          <div className="text-sm uppercase tracking-wider text-text-secondary mb-4 md:mb-6 font-semibold">
             Overall Health
           </div>
           <div className="flex items-center justify-center">
             <HealthScore score={Math.round(healthScore || 94)} maxScore={100} />
           </div>
-          <div className="mt-6 flex justify-center gap-6 text-sm font-medium">
+          <div className="mt-4 md:mt-6 flex justify-center gap-4 md:gap-6 text-sm font-medium">
             <span className="text-green">Quality ↑</span>
             <span className="text-green">Speed ↑</span>
             <span className="text-green">Escalations ↓</span>
