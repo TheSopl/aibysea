@@ -1,73 +1,87 @@
-# AIBYSEA
+# AI BY SEA - Multi-Service AI Platform
 
 ## What This Is
 
-An internal multi-channel inbox for handling customer conversations across messaging platforms, starting with WhatsApp. Agents log into a unified console to view all chats, with AI handling first contact and seamless human takeover. Built for internal company use as a respond.io alternative.
+A comprehensive SaaS platform that sells three premium AI services to businesses:
+1. **Conversational AI** - Multi-channel customer support automation (WhatsApp, Telegram, Facebook, Instagram)
+2. **Voice Agents** - AI that makes and receives phone calls for appointments, support, and sales
+3. **Document Intelligence** - AI-powered document processing and data extraction
+
+Single unified platform where customers can access all three services from one dashboard.
 
 ## Core Value
 
-The unified inbox works reliably — all WhatsApp messages appear in one place and agents can respond without messages getting lost.
+Businesses can access enterprise-grade AI automation across conversational, voice, and document channels—all integrated into one platform, eliminating the need for multiple separate tools.
 
 ## Requirements
 
-### Validated (v1.0)
+### Phase 1: UI/UX Restructuring (Current)
+- [ ] Unified dashboard showing all 3 services
+- [ ] Updated sidebar navigation with service modules
+- [ ] Service-specific color coding (accent for conversational, teal for voice, orange for documents)
+- [ ] Unified analytics and contacts across all services
 
-- ✓ Agent authentication and login — v1.0 (Supabase auth)
-- ✓ WhatsApp Cloud API integration (receive and send messages) — v1.0
-- ✓ Telegram Bot API integration — v1.0 (as alternative channel)
-- ✓ Unified inbox: two-panel layout (chat list + active conversation) — v1.0
-- ✓ Contact management with phone number as primary identifier — v1.0
-- ✓ AI agent per channel that handles full conversation until stuck or customer requests human — v1.0 (via n8n webhooks)
-- ✓ Human takeover: agent clicks to take over, AI auto-pauses — v1.0
-- ✓ AI re-enable: dropdown to manually re-assign AI to conversation — v1.0
-- ✓ Webhook endpoints for n8n integration (initial AI orchestration) — v1.0
-- ✓ Real-time message updates — v1.0 (Supabase WebSockets)
-- ✓ Arabic RTL support foundation — v1.0 (dir attribute, translation-ready)
+### Phase 2: Voice Agents UI
+- [ ] Voice agents list and management
+- [ ] Call logs and transcription viewer
+- [ ] Phone number management
+- [ ] Voice settings and configuration
 
-### Active (v1.1+)
+### Phase 3: Document Intelligence UI
+- [ ] Drag-and-drop document upload
+- [ ] Processing queue visualization
+- [ ] Extracted data viewer and editor
+- [ ] Template builder for custom extractions
 
-- [ ] Message search and filtering
-- [ ] Conversation notes and internal comments (agent-only)
-- [ ] Automated conversation routing by topic/keyword
-- [ ] Conversation templates/canned responses
-- [ ] Agent presence status and availability
-- [ ] Advanced AI customization via n8n UI
-- [ ] End-to-end WhatsApp verification (Meta dashboard setup)
+### Phase 4: Backend Infrastructure
+- [ ] API routes for new services
+- [ ] Mock data for demo purposes
+- [ ] Database schema extensions
 
-### Out of Scope
+### Future Enhancements (v2.0+)
 
-- Analytics and reporting dashboards — not needed for MVP
-- Customer-facing portal — customers don't need to see their chat history
-- Multi-tenant/SaaS capabilities — single company use only
-- Channels beyond WhatsApp — future phases after WhatsApp is solid
-- In-app AI logic builder — n8n handles AI orchestration for MVP
+- Voice agent integration with ElevenLabs/PlayHT
+- Document processing with GPT-4 Vision
+- Real-time voice call handling with Twilio
+- SDR outbound prospecting automation
+- Advanced analytics and reporting
+- Multi-tenant customer support
+- Billing and usage tracking
 
 ## Context
 
 **Background:**
-- Replacing reliance on external tools like respond.io
-- Company needs control over customer communication infrastructure
-- AI-first approach: automate routine conversations, humans handle edge cases
+- AI BY SEA is pivoting from internal tool to SaaS platform
+- Market opportunity: businesses willing to pay $5K-50K/month per service
+- Current conversational AI platform (v1.0) is solid foundation
+- Expanding to voice and document services to capture more revenue
+
+**Business Model:**
+- Sell 3 AI services: Conversational ($2-5K/month), Voice ($3-15K/month), Documents ($5-25K/month)
+- Bundle pricing: $8-30K/month depending on package
+- Target: SMBs and enterprises needing AI automation across multiple channels
 
 **Technical Environment:**
-- WhatsApp Business API already verified and ready
-- n8n available for initial AI orchestration workflows
-- Team familiar with low-code approaches
+- Conversational AI fully functional (WhatsApp, Telegram, n8n integration)
+- Voice: Will integrate ElevenLabs, PlayHT, Twilio, Bland.ai
+- Documents: Will use GPT-4 Vision, custom templates, exports to CRM
+- Shared: Supabase backend, unified dashboard, shared contacts database
 
 **User Workflow:**
-1. Customer sends WhatsApp message
-2. AI agent responds, handles conversation
-3. If AI gets stuck or customer asks for human → human agent sees notification
-4. Human clicks to take over, AI pauses
-5. Human handles conversation, can re-enable AI when done
+1. Business signs up, selects services (chat, voice, documents)
+2. Connect channels/integrations in settings
+3. Create AI agents/workflows for each service
+4. Monitor unified dashboard for all activities
+5. Analytics show ROI across all services
 
 ## Constraints
 
-- **Timeline**: 3-month deadline for internal-use MVP
-- **Language**: UI in English during development, Arabic-first before company rollout
-- **Tech Stack**: Next.js + Supabase (real-time, auth, PostgreSQL)
-- **Hosting**: Vercel + Supabase Cloud (managed, minimal DevOps)
-- **Development**: Claude Code + GSD doing heavy lifting, low-code developer
+- **Timeline**: 4-6 weeks to expand UI and backend for 3 services
+- **Tech Stack**: Next.js + Supabase (existing, no changes)
+- **Hosting**: Vercel + Supabase Cloud (existing, no changes)
+- **Design**: Match existing Purity UI SaaS aesthetic with service-specific color coding
+- **Backend**: Mock data for demo, real integrations in v2.0
+- **Development**: Claude Code + GSD, rapid iteration cycles
 
 ## Key Decisions
 
@@ -90,34 +104,37 @@ The unified inbox works reliably — all WhatsApp messages appear in one place a
 | Server wrapper + client component pattern | Real-time subscriptions only work in client components | ✓ Clean pattern — clear separation, easy to maintain |
 | RTL support: translation-only, no layout changes | Simpler than full layout flipping | ✓ Smart approach — layout stays clean, text direction handles it |
 
-## Current State (v1.0 - Shipped)
+## Current State (v1.0 Complete → v2.0 Expansion)
 
-**Shipped version:** v1.0 MVP (2026-01-13)
+**Shipped v1.0:** Conversational AI platform (2026-01-13)
+
+**Current Focus:** Expanding to multi-service SaaS platform
 
 **Codebase:**
-- ~2,500+ lines of TypeScript/React/SQL
+- ~2,500+ lines of TypeScript/React (v1.0 conversational AI complete)
 - Next.js 16 with App Router, Supabase SSR, real-time subscriptions
-- 7 phases, 14 plans, 45 commits from start to ship
+- Architecture proven, now scaling to add 2 new service modules
 
-**Tech stack:**
-- Frontend: Next.js 16, React 19, Tailwind CSS 4, TypeScript
-- Backend: Supabase (PostgreSQL, Auth, real-time, webhooks)
-- Integrations: WhatsApp Cloud API, Telegram Bot API, n8n
-- Hosting: Vercel + Supabase Cloud
+**What's Complete (v1.0):**
+- ✅ Conversational AI with unified inbox
+- ✅ Multi-channel support (WhatsApp + Telegram)
+- ✅ Real-time message updates
+- ✅ AI/human takeover system
+- ✅ n8n webhook integration
+- ✅ Supabase authentication and database
 
-**What's working:**
-- Unified inbox with real-time message updates
-- AI-first conversation handling via n8n
-- Human takeover with instant UI feedback
-- Multi-channel support (WhatsApp + Telegram)
-- Internal agent authentication and access control
+**What's Next (v2.0):**
+- 🚀 Voice Agents module (this phase)
+- 🚀 Document Intelligence module (this phase)
+- 🚀 Unified dashboard (this phase)
+- 🚀 Service navigation restructure (this phase)
+- 🚀 Backend API routes and mock data (this phase)
 
-**Known limitations / Tech debt for v1.1:**
-- Arabic translation not yet done (foundation in place)
-- No message search/filtering yet
-- No conversation notes feature
-- WhatsApp end-to-end verification pending (Meta dashboard)
-- Single-company setup only (no multi-tenant)
+**Design System (Established):**
+- Purity UI SaaS aesthetic (gradients, animations, smooth transitions)
+- Sidebar navigation with icon-based menu
+- Color system: Blues/purples for primary, accent gradient established
+- Ready to extend with new service colors (teal for voice, orange for documents)
 
 ---
-*Last updated: 2026-01-13 after v1.0 milestone completion*
+*Last updated: 2026-01-16 — Expanded scope to multi-service platform*

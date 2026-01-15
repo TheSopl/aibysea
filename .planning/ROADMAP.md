@@ -1,9 +1,9 @@
-# Roadmap: AIBYSEA
+# Roadmap: AI BY SEA v2.0 Multi-Service SaaS Platform
 
 ## Milestones
 
-- ✅ **[v1.0 MVP](milestones/v1.0-ROADMAP.md)** — Multi-channel inbox with AI & real-time updates (Phases 1-6) — SHIPPED 2026-01-13
-- 🚧 **v1.1 AI Cockpit** — Operator console showcasing AI intelligence, autonomy & co-pilot control (Phases 7-10) (in progress)
+- ✅ **[v1.0 MVP](milestones/v1.0-ROADMAP.md)** — Conversational AI with multi-channel inbox (Phases 1-7) — SHIPPED 2026-01-13
+- 🚧 **v2.0 Multi-Service Platform** — Add Voice Agents + Document Intelligence services (Phases 8-11) (in progress)
 
 ## Domain Expertise
 
@@ -51,79 +51,89 @@ None
 
 </details>
 
-### 🚧 v1.1 AI Cockpit (In Progress)
+### 🚧 v2.0 Multi-Service Platform (In Progress)
 
-**Milestone Goal:** Position AIBYSEA as an AI operator console by showcasing system intelligence, real-time autonomy, human co-pilot capabilities, and clear state transitions that make the CEO immediately understand this is not a messaging UI but an intelligent automation platform.
+**Milestone Goal:** Transform AI BY SEA into a comprehensive SaaS platform offering three premium services (Conversational AI, Voice Agents, Document Intelligence) from a unified dashboard. Establish the architecture and UI structure to serve customers willing to pay $5K-50K/month per service bundle.
 
-#### Phase 7: AI Metrics & State Dashboard
+#### Phase 8: Platform Restructure
 
-**Goal**: Display real-time AI state, conversation context understanding, and decision timeline. Show the system "thinking" in real-time with metrics that prove intelligence (context recall, decision confidence, handling speed).
+**Goal**: Build unified platform navigation and dashboard that showcases all 3 services cohesively with service-specific color coding and metrics.
 
-**Depends on**: Phase 6 complete
+**Depends on**: Phase 7 (v1.0 complete)
 
-**Research**: Unlikely (building on existing architecture)
+**Research**: Unlikely (established design patterns, extending existing UI)
 
-**Plans**: 3 total, 3 complete
-
-Plans:
-- [x] 07-01: Dashboard Foundation - Design system, Rashed avatar, metric cards, smart features
-- [x] 07-02: Real-time State Management - Zustand store, Supabase subscriptions, batching
-- [x] 07-03: Chart Visualization - Recharts components, memoization, responsive layout
-
-#### Phase 8: Real-time HUD & Annotations
-
-**Goal**: Add visual annotations to conversation view showing AI actions in real-time (message processing, confidence scores, next action indicators). Real-time typing indicators, response latency visualization, AI reasoning overlay.
-
-**Depends on**: Phase 7
-
-**Research**: Unlikely (UI enhancement on existing real-time subscriptions)
-
-**Plans**: TBD
+**Plans**: 3 total
 
 Plans:
-- [ ] 08-01: TBD
+- [ ] 08-01: Update sidebar navigation with 3-service module structure (Conversational, Voice, Documents)
+- [ ] 08-02: Redesign dashboard to show health/status of all 3 services with unified metrics
+- [ ] 08-03: Implement service-specific color coding (teal for voice, orange for documents) and design extensions
 
-#### Phase 9: Autonomy Showcase (Telegram)
+#### Phase 9: Voice Agents UI
 
-**Goal**: Fully autonomous Telegram conversation handling visible to observer. Show end-to-end AI handling without human intervention, with real-time notifications and decision transparency.
+**Goal**: Complete UI module for voice agent management, call handling, and phone number configuration.
 
 **Depends on**: Phase 8
 
-**Research**: Unlikely (extending existing Telegram + AI integration)
+**Research**: Unlikely (similar patterns to existing chat agents UI)
 
-**Plans**: TBD
-
-Plans:
-- [ ] 09-01: TBD
-
-#### Phase 10: State Transitions & Polish
-
-**Goal**: Crystal-clear UI feedback for AI → Human → AI state transitions. Instant visual confirmation of takeover/resume actions, error recovery clarity, and final polish for CEO demo readiness.
-
-**Depends on**: Phase 9
-
-**Research**: Unlikely (UI refinement)
-
-**Plans**: TBD
+**Plans**: 3 total
 
 Plans:
-- [ ] 10-01: TBD
+- [ ] 09-01: Create Voice Agents list page with agent cards, status, metrics, and controls
+- [ ] 09-02: Create Call Logs page with call history, transcription viewer, and filtering
+- [ ] 09-03: Create Phone Numbers and Voice Settings pages
+
+#### Phase 10: Document Intelligence UI
+
+**Goal**: Complete UI module for document processing, templates, and AI-powered data extraction.
+
+**Depends on**: Phase 8
+
+**Research**: Unlikely (new feature area, standard UI patterns)
+
+**Plans**: 3 total
+
+Plans:
+- [ ] 10-01: Create Upload & Process page with drag-drop, template selection, progress tracking
+- [ ] 10-02: Create Processing Queue and Extracted Data pages with visualization and editing
+- [ ] 10-03: Create Template Builder for custom extraction rules and export configurations
+
+#### Phase 11: Backend Infrastructure
+
+**Goal**: Create API routes, mock data, and database schema extensions to support Voice Agents and Document Intelligence services.
+
+**Depends on**: Phases 8-10
+
+**Research**: Unlikely (following established API patterns from v1.0)
+
+**Plans**: 2 total
+
+Plans:
+- [ ] 11-01: Create API routes for voice agents (CRUD, call logs, phone numbers) with mock data
+- [ ] 11-02: Create API routes for document processing with mock templates; extend Supabase schema
 
 ## Progress
 
-**v1.0 MVP Execution:**
-Completed all phases: 1 → 2 → 2.1 (inserted) → 3 → 4 → 5 → 6
+**v1.0 MVP Execution:** ✅ Complete (Phases 1-7)
+All phases shipped successfully: 1 → 2 → 2.1 (inserted) → 3 → 4 → 5 → 6 → 7
+
+**v2.0 Multi-Service Platform:** 🚧 In Progress (Phases 8-11)
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
 | 1. Foundation | v1.0 | 3/3 | Complete | 2026-01-10 |
 | 2. WhatsApp Integration | v1.0 | 3/3 | Complete | 2026-01-12 |
-| 2.1 Telegram Integration | v1.0 | 1/1 | Complete | 2026-01-12 |
+| 2.1. Telegram Integration | v1.0 | 1/1 | Complete | 2026-01-12 |
 | 3. Inbox Core | v1.0 | 3/3 | Complete | 2026-01-12 |
 | 4. AI Integration | v1.0 | 1/1 | Complete | 2026-01-12 |
 | 5. Human Takeover | v1.0 | 1/1 | Complete | 2026-01-12 |
 | 6. Real-time & Polish | v1.0 | 2/2 | Complete | 2026-01-13 |
-| 7. AI Metrics & State Dashboard | v1.1 | 3/3 | Complete | 2026-01-14 |
-| 8. Real-time HUD & Annotations | v1.1 | 0/? | Not started | - |
-| 9. Autonomy Showcase | v1.1 | 0/? | Not started | - |
-| 10. State Transitions & Polish | v1.1 | 0/? | Not started | - |
+| 7. AI Metrics & State Dashboard | v1.0 | 3/3 | Complete | 2026-01-14 |
+| 8. Platform Restructure | v2.0 | 0/3 | Not started | - |
+| 9. Voice Agents UI | v2.0 | 0/3 | Not started | - |
+| 10. Document Intelligence UI | v2.0 | 0/3 | Not started | - |
+| 11. Backend Infrastructure | v2.0 | 0/2 | Not started | - |
+
+**Overall Progress**: ░░░░░░░░░░ 19% (14/26 plans in v2.0 roadmap)

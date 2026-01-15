@@ -2,19 +2,19 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-01-10)
+See: .planning/PROJECT.md (updated 2026-01-16)
 
-**Core value:** The unified inbox works reliably — all messages appear in one place and agents can respond without messages getting lost.
-**Current focus:** v1.1 - Position AIBYSEA as an AI operator console showcasing intelligence, autonomy, and co-pilot control for CEO demo.
+**Core value:** Businesses can access enterprise-grade AI automation across conversational, voice, and document channels from one unified platform.
+**Current focus:** v2.0 - Expand from conversational AI into multi-service SaaS with Voice Agents and Document Intelligence.
 
 ## Current Position
 
-Phase: 7 of 10 (AI Metrics & State Dashboard)
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-01-14 — Completed 07-03-PLAN.md
+Phase: 8 of 11 (Platform Restructure)
+Plan: 0 of 3 in current phase
+Status: Ready to plan
+Last activity: 2026-01-16 — Initialized v2.0 roadmap and phases
 
-Progress: ███░░░░░░░ 30% (3 of 10 plans)
+Progress: ░░░░░░░░░░ 54% (14/26 plans, completing v1.0 + starting v2.0)
 
 ## Performance Metrics
 
@@ -61,22 +61,25 @@ Recent decisions affecting current work:
 
 ### Roadmap Evolution
 
-- v1.0 MVP shipped: 2026-01-13 (6 phases, 14 plans) — multi-channel inbox with AI-first handling
-- v1.1 AI Cockpit created: 2026-01-13 (4 phases, phases 7-10) — operator console positioning with intelligence showcase
+- v1.0 MVP shipped: 2026-01-13 (7 phases, 14 plans) — multi-channel conversational AI with unified inbox
+- v1.0 Complete: 2026-01-14 (Phase 7 added) — AI Metrics & State Dashboard for operator visibility
+- v2.0 Direction Change: 2026-01-16 — Pivot from v1.1 AI Cockpit to multi-service SaaS platform
+- v2.0 Roadmap Created: 2026-01-16 (4 phases, 11 plans) — Voice Agents + Document Intelligence services
 
 ### Deferred Issues
 
+- v1.1 AI Cockpit (Real-time HUD, Autonomy Showcase, State Transitions) — paused indefinitely
 - End-to-end WhatsApp verification (Meta dashboard setup pending)
-- Message search and filtering (deferred to post-v1.1)
-- Conversation notes and templates (deferred to post-v1.1)
+- Message search and filtering (deferred to v2.1)
+- Conversation notes and templates (deferred to v2.1)
 
 ### Blockers/Concerns
 
-None blocking Phase 4 development.
+None blocking Phase 8 (Platform Restructure) development.
 
 ## Session Continuity
 
-Last session: 2026-01-14
-Stopped at: Completed 07-03-PLAN.md (Chart Visualization)
+Last session: 2026-01-16 02:29
+Stopped at: v2.0 roadmap initialized, ready to plan Phase 8
 Resume file: None
-Next action: Phase 7 complete, ready for Phase 8 planning
+Next action: `/gsd:plan-phase 8` to begin Platform Restructure planning
