@@ -61,49 +61,49 @@ const quickStatsData = [
   },
 ];
 
-// Activity feed data
+// Activity feed data with service-specific colors
 const activityFeedData = [
   {
     icon: Phone,
     service: 'Voice Agent',
     action: 'handled call from +1-555-0123',
     time: '5m ago',
-    color: 'text-teal-500',
+    color: 'text-service-voice-500',
   },
   {
     icon: MessageSquare,
     service: 'Chat',
     action: 'conversation resolved with John Doe',
     time: '12m ago',
-    color: 'text-blue-500',
+    color: 'text-primary',
   },
   {
     icon: FileText,
     service: 'Document',
     action: 'Invoice processed: INV-2024-001',
     time: '23m ago',
-    color: 'text-amber-500',
+    color: 'text-service-documents-500',
   },
   {
     icon: Phone,
     service: 'Voice Agent',
     action: 'Call transcription completed',
     time: '1h ago',
-    color: 'text-teal-500',
+    color: 'text-service-voice-500',
   },
   {
     icon: MessageSquare,
     service: 'Chat',
     action: 'Customer inquiry escalated to queue',
     time: '1h 15m ago',
-    color: 'text-blue-500',
+    color: 'text-primary',
   },
   {
     icon: FileText,
     service: 'Document',
     action: 'Contract extraction completed',
     time: '2h ago',
-    color: 'text-amber-500',
+    color: 'text-service-documents-500',
   },
 ];
 

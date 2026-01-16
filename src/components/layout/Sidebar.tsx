@@ -125,8 +125,16 @@ export default function Sidebar() {
               <div className="flex items-center justify-center h-10 group relative">
                 <div className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 ${
                   hasActiveItem
-                    ? `bg-gradient-to-br ${module.color} shadow-lg`
-                    : 'text-white/40 group-hover:text-white/60'
+                    ? `bg-gradient-to-br ${module.color} shadow-lg ${
+                        module.name === 'Voice' ? 'shadow-service-voice-glow' :
+                        module.name === 'Documents' ? 'shadow-service-documents-glow' :
+                        'shadow-accent/30'
+                      }`
+                    : `text-white/40 group-hover:text-white/60 group-hover:${
+                        module.name === 'Voice' ? 'shadow-lg shadow-service-voice-500/50' :
+                        module.name === 'Documents' ? 'shadow-lg shadow-service-documents-500/50' :
+                        ''
+                      }`
                 }`}>
                   <ModuleIcon size={16} strokeWidth={2.5} />
                 </div>
