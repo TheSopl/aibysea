@@ -186,7 +186,7 @@ export default function InboxPage() {
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'all'
                     ? 'bg-primary text-white shadow-md'
-                    : 'bg-light-bg dark:bg-slate-700 text-dark dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
+                    : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                 }`}
               >
                 All
@@ -196,7 +196,7 @@ export default function InboxPage() {
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'assigned'
                     ? 'bg-primary text-white shadow-md'
-                    : 'bg-light-bg text-text-secondary hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'
+                    : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                 }`}
               >
                 Assigned
@@ -206,7 +206,7 @@ export default function InboxPage() {
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'unassigned'
                     ? 'bg-primary text-white shadow-md'
-                    : 'bg-light-bg text-text-secondary hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'
+                    : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                 }`}
               >
                 Unassigned
