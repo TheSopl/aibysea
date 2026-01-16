@@ -104,7 +104,7 @@ export default function Sidebar() {
       <div className="p-4 flex items-center justify-center border-b border-white/10">
         <div className="relative w-12 h-12 hover:shadow-accent/50 transition-all duration-300 hover:scale-105">
           <Image
-            src="/logo.png"
+            src="/images/ChatGPT Image Jan 16, 2026, 11_30_10 PM.png"
             alt="AI BY SEA"
             fill
             className="object-contain"
