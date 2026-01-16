@@ -3,7 +3,7 @@
 ## Milestones
 
 - ✅ **[v1.0 MVP](milestones/v1.0-ROADMAP.md)** — Conversational AI with multi-channel inbox (Phases 1-7) — SHIPPED 2026-01-13
-- ✅ **v2.0 Multi-Service Platform** — Add Voice Agents + Document Intelligence services (Phases 8-11) — COMPLETE 2026-01-16
+- ✅ **v2.0 Multi-Service Platform** — Add Voice Agents + Document Intelligence + Dark Mode (Phases 8-12) — COMPLETE 2026-01-16
 
 ## Domain Expertise
 
@@ -51,7 +51,7 @@ None
 
 </details>
 
-### 🚧 v2.0 Multi-Service Platform (In Progress)
+### ✅ v2.0 Multi-Service Platform (Complete)
 
 **Milestone Goal:** Transform AI BY SEA into a comprehensive SaaS platform offering three premium services (Conversational AI, Voice Agents, Document Intelligence) from a unified dashboard. Establish the architecture and UI structure to serve customers willing to pay $5K-50K/month per service bundle.
 
@@ -66,9 +66,11 @@ None
 **Plans**: 3 total
 
 Plans:
-- [ ] 08-01: Update sidebar navigation with 3-service module structure (Conversational, Voice, Documents)
-- [ ] 08-02: Redesign dashboard to show health/status of all 3 services with unified metrics
-- [ ] 08-03: Implement service-specific color coding (teal for voice, orange for documents) and design extensions
+- [x] 08-01: Update sidebar navigation with 3-service module structure (Conversational, Voice, Documents)
+- [x] 08-02: Redesign dashboard to show health/status of all 3 services with unified metrics
+- [x] 08-03: Implement service-specific color coding (teal for voice, orange for documents) and design extensions
+
+**Status**: ✅ 3 of 3 plans complete
 
 #### Phase 9: Voice Agents UI
 
@@ -85,6 +87,8 @@ Plans:
 - [x] 09-02: Create Call Logs page with call history, transcription viewer, and filtering
 - [x] 09-03: Create Phone Numbers and Voice Settings pages
 
+**Status**: ✅ 3 of 3 plans complete
+
 #### Phase 10: Document Intelligence UI
 
 **Goal**: Complete UI module for document processing, templates, and AI-powered data extraction.
@@ -98,9 +102,9 @@ Plans:
 Plans:
 - [x] 10-01: Create Upload & Process page with drag-drop, template selection, progress tracking
 - [x] 10-02: Create Processing Queue and Extracted Data pages with visualization and editing
-- [ ] 10-03: Create Template Builder for custom extraction rules and export configurations
+- [x] 10-03: Create Template Builder for custom extraction rules and export configurations
 
-**Status**: 2 of 3 plans complete (started 2026-01-16)
+**Status**: ✅ 3 of 3 plans complete
 
 #### Phase 11: Backend Infrastructure
 
@@ -130,7 +134,9 @@ Plans:
 
 Plans:
 - [x] 12-01: Fix Tailwind v4 Dark Mode Configuration (add @variant directive, verify theme toggle works)
-- [ ] 12-02: Apply Dark Mode Classes to All Pages (update 15+ pages with dark: variants matching /documents reference)
+- [x] 12-02: Apply Dark Mode Classes to All Pages (update 15+ pages with dark: variants matching /documents reference)
+
+**Status**: ✅ 2 of 2 plans complete (started 2026-01-16, finished 2026-01-16)
 
 **Details:**
 Phase 12 fixes the non-functional theme toggle by adding the missing `@variant dark` directive required by Tailwind v4, then systematically applies dark mode classes to all application pages. The `/documents` page serves as the reference for perfect dark slate blue styling.
@@ -140,7 +146,7 @@ Phase 12 fixes the non-functional theme toggle by adding the missing `@variant d
 **v1.0 MVP Execution:** ✅ Complete (Phases 1-7)
 All phases shipped successfully: 1 → 2 → 2.1 (inserted) → 3 → 4 → 5 → 6 → 7
 
-**v2.0 Multi-Service Platform:** 🚧 In Progress (Phases 8-11)
+**v2.0 Multi-Service Platform:** ✅ Complete (Phases 8-12)
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -156,6 +162,6 @@ All phases shipped successfully: 1 → 2 → 2.1 (inserted) → 3 → 4 → 5 �
 | 9. Voice Agents UI | v2.0 | 3/3 | Complete | 2026-01-16 |
 | 10. Document Intelligence UI | v2.0 | 3/3 | Complete | 2026-01-16 |
 | 11. Backend Infrastructure | v2.0 | 2/2 | Complete | 2026-01-16 |
-| 12. Dark Mode Implementation | v2.0 | 1/2 | In Progress | - |
+| 12. Dark Mode Implementation | v2.0 | 2/2 | Complete | 2026-01-16 |
 
-**Overall Progress**: ██████████████░░ 97% (28/29 plans completed) — Phase 12 in progress
+**Overall Progress**: ████████████████ 100% (29/29 plans completed) — v2.0 COMPLETE
