@@ -391,7 +391,7 @@ export default function TemplatesPage() {
     <>
       <TopBar title="Document Templates" />
 
-      <div className="p-8">
+      <div className="p-8 bg-light-bg dark:bg-slate-900">
         {/* Statistics */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
@@ -404,7 +404,7 @@ export default function TemplatesPage() {
               </div>
               <TrendingUp size={20} className="text-orange-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{stats.total}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.total}</h3>
             <p className="text-sm text-text-secondary font-bold">Total Templates</p>
           </div>
 
@@ -418,7 +418,7 @@ export default function TemplatesPage() {
               </div>
               <TrendingUp size={20} className="text-orange-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{stats.active}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.active}</h3>
             <p className="text-sm text-text-secondary font-bold">Active in Use</p>
           </div>
 
@@ -432,7 +432,7 @@ export default function TemplatesPage() {
               </div>
               <TrendingUp size={20} className="text-orange-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{stats.successRate}%</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.successRate}%</h3>
             <p className="text-sm text-text-secondary font-bold">Success Rate</p>
           </div>
 
@@ -446,7 +446,7 @@ export default function TemplatesPage() {
               </div>
               <TrendingUp size={20} className="text-orange-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{stats.processed}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.processed}</h3>
             <p className="text-sm text-text-secondary font-bold">Documents Processed</p>
           </div>
         </div>
@@ -470,14 +470,14 @@ export default function TemplatesPage() {
               {templates.map(template => (
                 <div
                   key={template.id}
-                  className="bg-white rounded-2xl shadow-lg p-6 border-2 border-transparent hover:border-orange-200/50 transition-all duration-300 cursor-pointer"
+                  className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border-2 border-transparent hover:border-orange-200/50 transition-all duration-300 cursor-pointer"
                   onClick={() => setExpandedTemplate(expandedTemplate === template.id ? null : template.id)}
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-start gap-3 flex-1">
                       <span className="text-3xl">{template.icon}</span>
                       <div className="flex-1">
-                        <h3 className="text-lg font-bold text-dark mb-1">{template.name}</h3>
+                        <h3 className="text-lg font-bold text-dark dark:text-white mb-1">{template.name}</h3>
                         <p className="text-xs text-text-secondary mb-3">{template.description}</p>
                         <div className="flex flex-wrap gap-2">
                           <span className={`px-2 py-1 text-xs font-bold rounded-lg border ${getStatusBadgeStyles(template.status)}`}>
@@ -497,7 +497,7 @@ export default function TemplatesPage() {
                   </div>
 
                   {/* Stats Row */}
-                  <div className="grid grid-cols-3 gap-2 mb-4 pb-4 border-b border-gray-200">
+                  <div className="grid grid-cols-3 gap-2 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">
                     <div>
                       <p className="text-xs text-text-secondary font-semibold">Fields</p>
                       <p className="text-lg font-bold text-dark">{template.fields}</p>
@@ -579,8 +579,8 @@ export default function TemplatesPage() {
 
           {/* Template Builder Form */}
           {showCreateForm && (
-            <div className="bg-white rounded-2xl shadow-2xl p-6 border-2 border-orange-200 max-h-[calc(100vh-200px)] overflow-y-auto">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 border-2 border-orange-200 max-h-[calc(100vh-200px)] overflow-y-auto">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
                 <h2 className="text-xl font-bold text-dark">Create New Template</h2>
                 <button
                   onClick={() => setShowCreateForm(false)}
@@ -606,7 +606,7 @@ export default function TemplatesPage() {
                 </button>
 
                 {expandedSections.basicInfo && (
-                  <div className="p-4 space-y-4 border-t border-gray-200">
+                  <div className="p-4 space-y-4 border-t border-gray-200 dark:border-slate-700">
                     {/* Template Name */}
                     <div>
                       <label className="text-sm font-bold text-dark block mb-2">
@@ -706,12 +706,12 @@ export default function TemplatesPage() {
                 </button>
 
                 {expandedSections.fields && (
-                  <div className="p-4 space-y-4 border-t border-gray-200">
+                  <div className="p-4 space-y-4 border-t border-gray-200 dark:border-slate-700">
                     {/* Fields List */}
                     {formData.fields.map((field, index) => (
                       <div
                         key={field.id}
-                        className="p-4 bg-white rounded-lg border border-gray-200 hover:border-orange-300 transition-colors"
+                        className="p-4 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 hover:border-orange-300 transition-colors"
                       >
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-2">
@@ -785,7 +785,7 @@ export default function TemplatesPage() {
 
                         {/* Type-Specific Options */}
                         {field.type === 'date' && (
-                          <div className="mt-3 pt-3 border-t border-gray-200">
+                          <div className="mt-3 pt-3 border-t border-gray-200 dark:border-slate-700">
                             <label className="text-xs font-bold text-gray-600 block mb-1">Date Format</label>
                             <div className="relative">
                               <select
@@ -803,7 +803,7 @@ export default function TemplatesPage() {
                         )}
 
                         {field.type === 'currency' && (
-                          <div className="mt-3 pt-3 border-t border-gray-200">
+                          <div className="mt-3 pt-3 border-t border-gray-200 dark:border-slate-700">
                             <label className="text-xs font-bold text-gray-600 block mb-1">Currency</label>
                             <div className="relative">
                               <select
@@ -851,8 +851,8 @@ export default function TemplatesPage() {
                 </button>
 
                 {expandedSections.validation && (
-                  <div className="p-4 space-y-4 border-t border-gray-200">
-                    <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200">
+                  <div className="p-4 space-y-4 border-t border-gray-200 dark:border-slate-700">
+                    <div className="flex items-center gap-2 p-3 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700">
                       <input
                         type="checkbox"
                         checked={formData.validation.requireFields}
@@ -866,11 +866,11 @@ export default function TemplatesPage() {
                       />
                       <div>
                         <label className="text-sm font-bold text-dark cursor-pointer">Require All Fields</label>
-                        <p className="text-xs text-text-secondary">Mark missing fields as errors</p>
+                        <p className="text-xs text-text-secondary dark:text-slate-300">Mark missing fields as errors</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200">
+                    <div className="flex items-center gap-2 p-3 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700">
                       <input
                         type="checkbox"
                         checked={formData.validation.trimWhitespace}
@@ -884,11 +884,11 @@ export default function TemplatesPage() {
                       />
                       <div>
                         <label className="text-sm font-bold text-dark cursor-pointer">Trim Whitespace</label>
-                        <p className="text-xs text-text-secondary">Remove leading/trailing spaces</p>
+                        <p className="text-xs text-text-secondary dark:text-slate-300">Remove leading/trailing spaces</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200">
+                    <div className="flex items-center gap-2 p-3 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700">
                       <input
                         type="checkbox"
                         checked={formData.validation.autoCapitalize}
@@ -902,7 +902,7 @@ export default function TemplatesPage() {
                       />
                       <div>
                         <label className="text-sm font-bold text-dark cursor-pointer">Auto-capitalize</label>
-                        <p className="text-xs text-text-secondary">Capitalize first letter of text fields</p>
+                        <p className="text-xs text-text-secondary dark:text-slate-300">Capitalize first letter of text fields</p>
                       </div>
                     </div>
                   </div>
@@ -925,8 +925,8 @@ export default function TemplatesPage() {
                 </button>
 
                 {expandedSections.preview && (
-                  <div className="p-4 space-y-4 border-t border-gray-200">
-                    <div className="p-4 bg-white rounded-lg border border-gray-200">
+                  <div className="p-4 space-y-4 border-t border-gray-200 dark:border-slate-700">
+                    <div className="p-4 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700">
                       <p className="text-xs font-bold text-gray-600 mb-3">PREVIEW LAYOUT</p>
                       <div className="flex gap-2">
                         <button
@@ -966,7 +966,7 @@ export default function TemplatesPage() {
                         <p className="text-xs font-bold text-gray-600 mb-3">SAMPLE EXTRACTION</p>
                         <div className={formData.preview.layout === 'multi' ? 'grid grid-cols-2 gap-3' : 'space-y-3'}>
                           {formData.fields.slice(0, 3).map(field => (
-                            <div key={field.id} className="p-2 bg-white rounded border border-gray-200">
+                            <div key={field.id} className="p-2 bg-white dark:bg-slate-800 rounded border border-gray-200 dark:border-slate-700">
                               <p className="text-xs font-bold text-gray-600">{field.name || 'Field'}</p>
                               <p className="text-sm text-gray-500 mt-1">
                                 {field.type === 'currency' && '$' || field.type === 'number' && '#' || field.type === 'date' && '📅'}
@@ -1003,7 +1003,7 @@ export default function TemplatesPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-2 pt-6 border-t border-gray-200">
+              <div className="flex gap-2 pt-6 border-t border-gray-200 dark:border-slate-700">
                 <button
                   onClick={() => setShowCreateForm(false)}
                   className="flex-1 py-3 px-4 border-2 border-gray-300 rounded-xl text-gray-700 font-bold hover:bg-gray-50 transition-colors"

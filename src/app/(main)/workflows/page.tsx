@@ -70,7 +70,7 @@ export default function WorkflowsPage() {
     <>
       <TopBar title="Workflows" />
 
-      <div className="p-8">
+      <div className="p-8 bg-light-bg dark:bg-slate-900">
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
@@ -84,7 +84,7 @@ export default function WorkflowsPage() {
                 <Workflow size={24} className="text-white" />
               </div>
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{workflows.filter(w => w.status === 'active').length}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{workflows.filter(w => w.status === 'active').length}</h3>
             <p className="text-sm text-text-secondary font-bold">Active Workflows</p>
           </div>
 
@@ -99,7 +99,7 @@ export default function WorkflowsPage() {
                 <CheckCircle size={24} className="text-white" />
               </div>
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {workflows.reduce((sum, w) => sum + w.totalRuns, 0).toLocaleString()}
             </h3>
             <p className="text-sm text-text-secondary font-bold">Total Executions</p>
@@ -116,7 +116,7 @@ export default function WorkflowsPage() {
                 <Zap size={24} className="text-white" />
               </div>
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {Math.round(workflows.reduce((sum, w) => sum + w.successRate, 0) / workflows.length)}%
             </h3>
             <p className="text-sm text-text-secondary font-bold">Avg Success Rate</p>
@@ -133,14 +133,14 @@ export default function WorkflowsPage() {
                 <GitBranch size={24} className="text-white" />
               </div>
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {workflows.reduce((sum, w) => sum + w.actions, 0)}
             </h3>
             <p className="text-sm text-text-secondary font-bold">Total Actions</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-xl font-extrabold text-dark">Your Workflows</h2>
@@ -214,13 +214,13 @@ export default function WorkflowsPage() {
                       <Trash size={18} className="text-red group-hover:scale-110 transition-transform" />
                     </button>
                     <button className="p-2 hover:bg-light-bg rounded-lg transition-colors group">
-                      <MoreVertical size={18} className="text-text-secondary" />
+                      <MoreVertical size={18} className="text-text-secondary dark:text-slate-300" />
                     </button>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                  <div className="flex items-center gap-2 text-xs text-text-secondary">
+                <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-slate-700">
+                  <div className="flex items-center gap-2 text-xs text-text-secondary dark:text-slate-300">
                     <Clock size={14} />
                     <span>Last run: {workflow.lastRun}</span>
                   </div>
@@ -240,7 +240,7 @@ export default function WorkflowsPage() {
               <Zap size={24} className="text-white" />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-extrabold text-dark mb-2">Powered by n8n Integration</h3>
+              <h3 className="text-lg font-extrabold text-dark dark:text-white mb-2">Powered by n8n Integration</h3>
               <p className="text-sm text-text-secondary mb-4">
                 All workflows are synchronized with n8n. Changes made here will automatically update your n8n instance,
                 and vice versa. Enjoy seamless automation across platforms.

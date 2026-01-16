@@ -71,15 +71,15 @@ export default function ContactsPage() {
     <>
       <TopBar title="Contacts" />
 
-      <div className="p-8">
+      <div className="p-8 bg-light-bg dark:bg-slate-900">
         <div
-          className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500"
+          className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500"
           style={{
             animation: 'scaleIn 0.5s ease-out both'
           }}
         >
           {/* Table Header */}
-          <div className="p-6 border-b border-gray-200">
+          <div className="p-6 border-b border-gray-200 dark:border-slate-700">
             <h2 className="text-xl font-extrabold text-dark">Authors Table</h2>
             <p className="text-sm text-text-secondary mt-1">Manage your contacts and conversations</p>
           </div>
@@ -88,7 +88,7 @@ export default function ContactsPage() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-light-bg">
+                <tr className="bg-light-bg dark:bg-slate-700">
                   <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">
                     Name
                   </th>
@@ -128,7 +128,7 @@ export default function ContactsPage() {
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-dark">{contact.name}</p>
-                          <p className="text-xs text-text-secondary">{contact.email}</p>
+                          <p className="text-xs text-text-secondary dark:text-slate-300">{contact.email}</p>
                         </div>
                       </div>
                     </td>
@@ -148,7 +148,7 @@ export default function ContactsPage() {
                         {contact.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-text-secondary dark:text-slate-300">
                       {contact.lastMessage}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -173,7 +173,7 @@ export default function ContactsPage() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
-                          <Edit size={16} className="text-text-secondary" />
+                          <Edit size={16} className="text-text-secondary dark:text-slate-300" />
                         </button>
                         <button className="p-2 hover:bg-red/10 rounded-lg transition-colors">
                           <Trash size={16} className="text-red" />

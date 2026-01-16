@@ -91,7 +91,7 @@ export default function SettingsPage() {
       <div className="flex h-[calc(100vh-4rem)]">
         {/* Secondary Sidebar */}
         <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
-          <div className="p-4 border-b border-gray-200">
+          <div className="p-4 border-b border-gray-200 dark:border-slate-700">
             <h2 className="text-lg font-extrabold text-dark">Settings</h2>
             <p className="text-xs text-text-secondary mt-1">Manage your workspace</p>
           </div>
@@ -119,17 +119,17 @@ export default function SettingsPage() {
 
         {/* Main Content */}
         <div className="flex-1 overflow-y-auto bg-light-bg scroll-smooth">
-          <div className="p-8">
+          <div className="p-8 bg-light-bg dark:bg-slate-900">
             {/* User Settings */}
             {activeTab === 'users' && (
               <div className="space-y-6">
                 <div
-                  className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-500"
+                  className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-500"
                   style={{
                     animation: 'scaleIn 0.5s ease-out both'
                   }}
                 >
-                  <h3 className="text-xl font-extrabold text-dark mb-2">Invite User</h3>
+                  <h3 className="text-xl font-extrabold text-dark dark:text-white mb-2">Invite User</h3>
                   <p className="text-sm text-text-secondary mb-6">Send an invitation to join your workspace</p>
 
                   {showInviteSuccess && (
@@ -177,8 +177,8 @@ export default function SettingsPage() {
                   </button>
                 </div>
 
-                <div className="bg-white rounded-2xl shadow-lg p-6">
-                  <h3 className="text-xl font-extrabold text-dark mb-2">Team Members</h3>
+                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+                  <h3 className="text-xl font-extrabold text-dark dark:text-white mb-2">Team Members</h3>
                   <p className="text-sm text-text-secondary mb-6">Manage your workspace members</p>
 
                   <div className="space-y-3">
@@ -193,7 +193,7 @@ export default function SettingsPage() {
                           </div>
                           <div>
                             <p className="font-bold text-dark">{user.name}</p>
-                            <p className="text-sm text-text-secondary">{user.email}</p>
+                            <p className="text-sm text-text-secondary dark:text-slate-300">{user.email}</p>
                           </div>
                         </div>
 
@@ -226,8 +226,8 @@ export default function SettingsPage() {
             {/* Team Settings */}
             {activeTab === 'team' && (
               <div className="space-y-6">
-                <div className="bg-white rounded-2xl shadow-lg p-6">
-                  <h3 className="text-xl font-extrabold text-dark mb-2">Team Information</h3>
+                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+                  <h3 className="text-xl font-extrabold text-dark dark:text-white mb-2">Team Information</h3>
                   <p className="text-sm text-text-secondary mb-6">Configure your team details</p>
 
                   <div className="space-y-4">
@@ -284,8 +284,8 @@ export default function SettingsPage() {
                   </button>
                 </div>
 
-                <div className="bg-white rounded-2xl shadow-lg p-6 border-2 border-red/20">
-                  <h3 className="text-xl font-extrabold text-dark mb-2 flex items-center gap-2">
+                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border-2 border-red/20">
+                  <h3 className="text-xl font-extrabold text-dark dark:text-white mb-2 flex items-center gap-2">
                     <AlertCircle className="text-red" size={24} />
                     Danger Zone
                   </h3>
@@ -295,7 +295,7 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between p-4 bg-red/5 rounded-xl border border-red/20">
                       <div>
                         <p className="font-bold text-dark">Delete Team</p>
-                        <p className="text-sm text-text-secondary">Permanently delete this team and all data</p>
+                        <p className="text-sm text-text-secondary dark:text-slate-300">Permanently delete this team and all data</p>
                       </div>
                       <button className="px-4 py-2 bg-red text-white rounded-lg font-bold hover:bg-red/90 transition-colors">
                         Delete Team
@@ -309,7 +309,7 @@ export default function SettingsPage() {
             {/* Channels */}
             {activeTab === 'channels' && (
               <div className="space-y-6">
-                <div className="bg-white rounded-2xl shadow-lg p-6">
+                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <h3 className="text-xl font-extrabold text-dark">Connected Channels</h3>
@@ -342,7 +342,7 @@ export default function SettingsPage() {
                             </div>
                             <div>
                               <h4 className="font-extrabold text-dark">{channel.name}</h4>
-                              <p className="text-xs text-text-secondary">{channel.type}</p>
+                              <p className="text-xs text-text-secondary dark:text-slate-300">{channel.type}</p>
                             </div>
                           </div>
 
@@ -353,7 +353,7 @@ export default function SettingsPage() {
 
                         <div className="space-y-2 mb-4">
                           <div className="flex items-center justify-between text-sm">
-                            <span className="text-text-secondary">Status</span>
+                            <span className="text-text-secondary dark:text-slate-300">Status</span>
                             <span className={`font-bold ${
                               channel.status === 'connected' ? 'text-green' : 'text-gray-600'
                             }`}>
@@ -361,7 +361,7 @@ export default function SettingsPage() {
                             </span>
                           </div>
                           <div className="flex items-center justify-between text-sm">
-                            <span className="text-text-secondary">Conversations</span>
+                            <span className="text-text-secondary dark:text-slate-300">Conversations</span>
                             <span className="font-bold text-dark">{channel.conversations}</span>
                           </div>
                         </div>
@@ -392,7 +392,7 @@ export default function SettingsPage() {
             {/* Lifecycle Management */}
             {activeTab === 'lifecycle' && (
               <div className="space-y-6">
-                <div className="bg-white rounded-2xl shadow-lg p-6">
+                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <h3 className="text-xl font-extrabold text-dark">Lifecycle Stages</h3>
@@ -416,17 +416,17 @@ export default function SettingsPage() {
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center gap-3 mb-2">
-                              <h4 className="font-extrabold text-dark text-lg">{lifecycle.name}</h4>
+                              <h4 className="font-extrabold text-dark dark:text-white text-lg">{lifecycle.name}</h4>
                               <span className={`px-3 py-1 text-xs font-bold rounded-lg border-2 ${getLifecycleColor(lifecycle.color)}`}>
                                 {lifecycle.color}
                               </span>
                             </div>
-                            <p className="text-sm text-text-secondary">{lifecycle.description}</p>
+                            <p className="text-sm text-text-secondary dark:text-slate-300">{lifecycle.description}</p>
                           </div>
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <button className="p-2 hover:bg-white rounded-lg transition-colors">
+                          <button className="p-2 hover:bg-white dark:bg-slate-800 rounded-lg transition-colors">
                             <Edit size={18} className="text-text-secondary hover:text-primary" />
                           </button>
                           <button className="p-2 hover:bg-red/10 rounded-lg transition-colors">
@@ -439,7 +439,7 @@ export default function SettingsPage() {
                 </div>
 
                 <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border-2 border-primary/20">
-                  <h4 className="font-extrabold text-dark mb-2 flex items-center gap-2">
+                  <h4 className="font-extrabold text-dark dark:text-white mb-2 flex items-center gap-2">
                     <Activity size={20} className="text-primary" />
                     Lifecycle Automation
                   </h4>

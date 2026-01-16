@@ -65,7 +65,7 @@ export default function AgentsPage() {
     <>
       <TopBar title="AI Agents" />
 
-      <div className="p-8">
+      <div className="p-8 bg-light-bg dark:bg-slate-900">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
@@ -80,7 +80,7 @@ export default function AgentsPage() {
               </div>
               <TrendingUp size={20} className="text-primary" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{agents.filter(a => a.status === 'active').length}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{agents.filter(a => a.status === 'active').length}</h3>
             <p className="text-sm text-text-secondary font-bold">Active Agents</p>
           </div>
 
@@ -96,7 +96,7 @@ export default function AgentsPage() {
               </div>
               <Activity size={20} className="text-green" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {agents.reduce((sum, a) => sum + a.totalConversations, 0).toLocaleString()}
             </h3>
             <p className="text-sm text-text-secondary font-bold">Total Conversations</p>
@@ -114,7 +114,7 @@ export default function AgentsPage() {
               </div>
               <Zap size={20} className="text-blue" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {(agents.reduce((sum, a) => sum + a.avgResponseTime, 0) / agents.length).toFixed(1)}s
             </h3>
             <p className="text-sm text-text-secondary font-bold">Avg Response Time</p>
@@ -132,7 +132,7 @@ export default function AgentsPage() {
               </div>
               <BarChart3 size={20} className="text-purple" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {Math.round(agents.reduce((sum, a) => sum + a.successRate, 0) / agents.length)}%
             </h3>
             <p className="text-sm text-text-secondary font-bold">Avg Success Rate</p>
@@ -142,7 +142,7 @@ export default function AgentsPage() {
         <div className="flex gap-6">
           {/* Agents List */}
           <div className="flex-1">
-            <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-6">
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-xl font-extrabold text-dark">Your AI Agents</h2>
@@ -184,7 +184,7 @@ export default function AgentsPage() {
                               agent.status === 'active' ? 'bg-green animate-pulse' : 'bg-gray-400'
                             }`}></div>
                           </div>
-                          <p className="text-sm text-text-secondary">{agent.model}</p>
+                          <p className="text-sm text-text-secondary dark:text-slate-300">{agent.model}</p>
                         </div>
                       </div>
 
@@ -235,14 +235,14 @@ export default function AgentsPage() {
 
           {/* Agent Details Panel */}
           <div className="w-96">
-            <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-8">
-              <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 sticky top-8">
+              <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-slate-700">
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg">
                   <Zap size={32} className="text-white" />
                 </div>
                 <div>
                   <h3 className="text-xl font-extrabold text-dark">{selectedAgent.name}</h3>
-                  <p className="text-sm text-text-secondary">{selectedAgent.model}</p>
+                  <p className="text-sm text-text-secondary dark:text-slate-300">{selectedAgent.model}</p>
                 </div>
               </div>
 
