@@ -150,73 +150,73 @@ export default function ExtractedDataPage() {
       <div className="p-8">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FileText size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500" />
+              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{stats.totalExtracted}</h3>
-            <p className="text-sm text-text-secondary font-bold">Total Extracted</p>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.totalExtracted}</h3>
+            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Total Extracted</p>
           </div>
 
-          <div className="bg-gradient-to-br from-green-400/10 to-green-600/10 rounded-2xl p-6 border-2 border-green-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-green-400/10 to-green-600/10 dark:from-green-500/20 dark:to-green-700/20 rounded-2xl p-6 border-2 border-green-400/20 dark:border-green-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <Activity size={20} className="text-green-500" />
+              <Activity size={20} className="text-green-500 dark:text-green-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{stats.verified}</h3>
-            <p className="text-sm text-text-secondary font-bold">Verified</p>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.verified}</h3>
+            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Verified</p>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-400/10 to-amber-600/10 rounded-2xl p-6 border-2 border-amber-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-amber-400/10 to-amber-600/10 dark:from-amber-500/20 dark:to-amber-700/20 rounded-2xl p-6 border-2 border-amber-400/20 dark:border-amber-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
               </div>
-              <BarChart3 size={20} className="text-amber-500" />
+              <BarChart3 size={20} className="text-amber-500 dark:text-amber-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{stats.pendingReview}</h3>
-            <p className="text-sm text-text-secondary font-bold">Pending Review</p>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.pendingReview}</h3>
+            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Pending Review</p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-400/10 to-purple-600/10 rounded-2xl p-6 border-2 border-purple-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-purple-400/10 to-purple-600/10 dark:from-purple-500/20 dark:to-purple-700/20 rounded-2xl p-6 border-2 border-purple-400/20 dark:border-purple-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                 <BarChart3 size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-purple-500" />
+              <TrendingUp size={20} className="text-purple-500 dark:text-purple-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{stats.avgConfidence}%</h3>
-            <p className="text-sm text-text-secondary font-bold">Avg Confidence</p>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.avgConfidence}%</h3>
+            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Avg Confidence</p>
           </div>
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Search */}
             <div className="md:col-span-2 relative">
-              <Search className="absolute left-4 top-3.5 text-text-secondary" size={20} />
+              <Search className="absolute left-4 top-3.5 text-text-secondary dark:text-slate-400" size={20} />
               <input
                 type="text"
                 placeholder="Search by document name or job ID..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all duration-300"
+                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 dark:border-slate-700 rounded-xl focus:border-blue-500 focus:outline-none transition-all duration-300"
               />
             </div>
 
             {/* Filter */}
             <div className="flex items-center gap-2">
-              <Filter size={20} className="text-text-secondary" />
+              <Filter size={20} className="text-text-secondary dark:text-slate-400" />
               <select
                 value={filterTemplate}
                 onChange={(e) => setFilterTemplate(e.target.value)}
-                className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all duration-300 text-dark font-semibold"
+                className="flex-1 px-4 py-3 border-2 border-gray-200 dark:border-slate-700 rounded-xl focus:border-blue-500 focus:outline-none transition-all duration-300 text-dark dark:text-white font-semibold"
               >
                 <option value="all">All Templates</option>
                 {templates.map(template => (
@@ -232,7 +232,7 @@ export default function ExtractedDataPage() {
           {filteredData.map((data, index) => (
             <div
               key={data.id}
-              className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer"
+              className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedData(data)}
               style={{
                 animation: `fadeIn 0.5s ease-out ${index * 0.1}s both`
@@ -246,13 +246,13 @@ export default function ExtractedDataPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2 flex-wrap">
-                      <h3 className="text-lg font-extrabold text-dark truncate">{data.documentName}</h3>
+                      <h3 className="text-lg font-extrabold text-dark dark:text-white truncate">{data.documentName}</h3>
                       <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border-2 ${getStatusBadge(data.status)} whitespace-nowrap`}>
                         {data.status === 'verified' ? 'Verified' : 'Pending Review'}
                       </span>
                     </div>
-                    <p className="text-sm text-text-secondary">
-                      Template: <span className="font-semibold">{data.template}</span> • Job ID: <span className="font-semibold text-blue-600">{data.jobId}</span> • Extracted: <span className="font-semibold">{data.extractedAt}</span>
+                    <p className="text-sm text-text-secondary dark:text-slate-300">
+                      Template: <span className="font-semibold">{data.template}</span> • Job ID: <span className="font-semibold text-blue-600 dark:text-blue-400">{data.jobId}</span> • Extracted: <span className="font-semibold">{data.extractedAt}</span>
                     </p>
                   </div>
                 </div>
@@ -271,30 +271,30 @@ export default function ExtractedDataPage() {
                         e.stopPropagation();
                         setSelectedData(data);
                       }}
-                      className="p-3 hover:bg-light-bg rounded-lg transition-all duration-300"
+                      className="p-3 hover:bg-light-bg dark:bg-slate-700 rounded-lg transition-all duration-300"
                     >
-                      <Eye size={20} className="text-blue-600" />
+                      <Eye size={20} className="text-blue-600 dark:text-blue-400" />
                     </button>
-                    <button className="p-3 hover:bg-light-bg rounded-lg transition-all duration-300">
-                      <Download size={20} className="text-text-secondary hover:text-blue-600" />
+                    <button className="p-3 hover:bg-light-bg dark:bg-slate-700 rounded-lg transition-all duration-300">
+                      <Download size={20} className="text-text-secondary hover:text-blue-600 dark:text-blue-400" />
                     </button>
                   </div>
                 </div>
               </div>
 
               {/* Fields Preview */}
-              <div className="mt-4 pt-4 border-t border-gray-200">
+              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-slate-700">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {Object.entries(data.fields).slice(0, 3).map(([key, field]) => (
-                    <div key={key} className="bg-light-bg rounded-lg p-3">
+                    <div key={key} className="bg-light-bg dark:bg-slate-700 rounded-lg p-3">
                       <p className="text-xs text-text-secondary mb-1 font-semibold">{key.replace(/_/g, ' ').toUpperCase()}</p>
-                      <p className="text-sm font-semibold text-dark truncate">{field.value}</p>
+                      <p className="text-sm font-semibold text-dark dark:text-white truncate">{field.value}</p>
                       <p className={`text-xs mt-1 ${getConfidenceColor(field.confidence)}`}>Confidence: {field.confidence}%</p>
                     </div>
                   ))}
                   {Object.entries(data.fields).length > 3 && (
-                    <div className="bg-light-bg rounded-lg p-3 flex items-center justify-center">
-                      <p className="text-sm font-semibold text-text-secondary">+{Object.entries(data.fields).length - 3} more</p>
+                    <div className="bg-light-bg dark:bg-slate-700 rounded-lg p-3 flex items-center justify-center">
+                      <p className="text-sm font-semibold text-text-secondary dark:text-slate-300">+{Object.entries(data.fields).length - 3} more</p>
                     </div>
                   )}
                 </div>
@@ -305,19 +305,19 @@ export default function ExtractedDataPage() {
 
         {/* Detail Modal / Sidebar */}
         {selectedData && (
-          <div className="fixed right-0 top-0 h-full w-full max-w-2xl bg-white shadow-2xl z-50 overflow-y-auto rounded-l-3xl">
+          <div className="fixed right-0 top-0 h-full w-full max-w-2xl bg-white dark:bg-slate-800 shadow-2xl z-50 overflow-y-auto rounded-l-3xl">
             <div className="p-8">
               {/* Header */}
               <div className="flex items-start justify-between mb-6">
                 <div>
                   <h2 className="text-2xl font-extrabold text-dark mb-2">{selectedData.documentName}</h2>
-                  <p className="text-sm text-text-secondary">
+                  <p className="text-sm text-text-secondary dark:text-slate-300">
                     {selectedData.template} Template • Job ID: {selectedData.jobId}
                   </p>
                 </div>
                 <button
                   onClick={() => setSelectedData(null)}
-                  className="p-2 hover:bg-light-bg rounded-lg transition-all duration-300"
+                  className="p-2 hover:bg-light-bg dark:bg-slate-700 rounded-lg transition-all duration-300"
                 >
                   <X size={24} className="text-dark" />
                 </button>
@@ -328,7 +328,7 @@ export default function ExtractedDataPage() {
                 <div className="grid grid-cols-3 gap-4">
                   <div>
                     <p className="text-xs text-text-secondary mb-1">Status</p>
-                    <p className="font-bold text-dark">{selectedData.status === 'verified' ? '✓ Verified' : 'Pending Review'}</p>
+                    <p className="font-bold text-dark dark:text-white">{selectedData.status === 'verified' ? '✓ Verified' : 'Pending Review'}</p>
                   </div>
                   <div>
                     <p className="text-xs text-text-secondary mb-1">Confidence</p>
@@ -336,7 +336,7 @@ export default function ExtractedDataPage() {
                   </div>
                   <div>
                     <p className="text-xs text-text-secondary mb-1">Extracted</p>
-                    <p className="font-bold text-dark">{selectedData.extractedAt}</p>
+                    <p className="font-bold text-dark dark:text-white">{selectedData.extractedAt}</p>
                   </div>
                 </div>
               </div>
@@ -345,7 +345,7 @@ export default function ExtractedDataPage() {
               <h3 className="text-lg font-extrabold text-dark mb-4">Extracted Fields</h3>
               <div className="space-y-4 mb-8">
                 {Object.entries(selectedData.fields).map(([key, field]) => (
-                  <div key={key} className="bg-light-bg rounded-xl p-4 hover:shadow-md transition-all duration-300">
+                  <div key={key} className="bg-light-bg dark:bg-slate-700 rounded-xl p-4 hover:shadow-md transition-all duration-300">
                     <div className="flex items-start justify-between mb-2">
                       <label className="text-sm font-bold text-dark uppercase tracking-wide">{key.replace(/_/g, ' ')}</label>
                       <span className={`text-xs font-bold px-2 py-1 rounded ${getConfidenceColor(field.confidence)} bg-white border`}>
@@ -357,9 +357,9 @@ export default function ExtractedDataPage() {
                         type="text"
                         value={field.value}
                         readOnly
-                        className="flex-1 px-3 py-2 border-2 border-gray-200 rounded-lg bg-white text-dark font-semibold focus:border-blue-500 focus:outline-none"
+                        className="flex-1 px-3 py-2 border-2 border-gray-200 dark:border-slate-700 rounded-lg bg-white text-dark dark:text-white font-semibold focus:border-blue-500 focus:outline-none"
                       />
-                      <button className="p-2 hover:bg-blue-100 rounded-lg transition-all duration-300 text-blue-600">
+                      <button className="p-2 hover:bg-blue-100 rounded-lg transition-all duration-300 text-blue-600 dark:text-blue-400">
                         <Copy size={18} />
                       </button>
                     </div>

@@ -154,57 +154,57 @@ export default function ProcessingPage() {
       <div className="p-8">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Activity size={24} className="text-white" />
               </div>
-              <Zap size={20} className="text-blue-500" />
+              <Zap size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{stats.processing}</h3>
-            <p className="text-sm text-text-secondary font-bold">Currently Processing</p>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.processing}</h3>
+            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Currently Processing</p>
           </div>
 
-          <div className="bg-gradient-to-br from-green-400/10 to-green-600/10 rounded-2xl p-6 border-2 border-green-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-green-400/10 to-green-600/10 dark:from-green-500/20 dark:to-green-700/20 rounded-2xl p-6 border-2 border-green-400/20 dark:border-green-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-green-500" />
+              <TrendingUp size={20} className="text-green-500 dark:text-green-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{stats.completed}</h3>
-            <p className="text-sm text-text-secondary font-bold">Completed Today</p>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.completed}</h3>
+            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Completed Today</p>
           </div>
 
-          <div className="bg-gradient-to-br from-red-400/10 to-red-600/10 rounded-2xl p-6 border-2 border-red-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-red-400/10 to-red-600/10 dark:from-red-500/20 dark:to-red-700/20 rounded-2xl p-6 border-2 border-red-400/20 dark:border-red-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
               </div>
-              <ArrowUpRight size={20} className="text-red-500" />
+              <ArrowUpRight size={20} className="text-red-500 dark:text-red-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{stats.failed}</h3>
-            <p className="text-sm text-text-secondary font-bold">Failed</p>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.failed}</h3>
+            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Failed</p>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Clock size={24} className="text-white" />
               </div>
-              <BarChart3 size={20} className="text-blue-500" />
+              <BarChart3 size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-2xl font-extrabold text-dark mb-1">{stats.avgTime}</h3>
-            <p className="text-sm text-text-secondary font-bold">Avg Processing</p>
+            <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1">{stats.avgTime}</h3>
+            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Avg Processing</p>
           </div>
         </div>
 
         {/* Filter Section */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Filter size={20} className="text-blue-600" />
-              <h3 className="text-lg font-bold text-dark">Filter Jobs</h3>
+              <Filter size={20} className="text-blue-600 dark:text-blue-400" />
+              <h3 className="text-lg font-bold text-dark dark:text-white">Filter Jobs</h3>
             </div>
             <div className="flex gap-3">
               {(['all', 'processing', 'completed', 'failed'] as const).map(status => (
@@ -214,7 +214,7 @@ export default function ProcessingPage() {
                   className={`px-6 py-2 rounded-xl font-semibold transition-all duration-300 text-sm ${
                     selectedStatus === status
                       ? 'bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-lg'
-                      : 'bg-light-bg text-text-secondary hover:bg-gray-200'
+                      : 'bg-light-bg dark:bg-slate-700 text-text-secondary dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                   }`}
                 >
                   {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -229,7 +229,7 @@ export default function ProcessingPage() {
           {filteredJobs.map((job, index) => (
             <div
               key={job.id}
-              className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300"
+              className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300"
               style={{
                 animation: `fadeIn 0.5s ease-out ${index * 0.1}s both`
               }}
@@ -248,22 +248,22 @@ export default function ProcessingPage() {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-extrabold text-dark">{job.documentName}</h3>
+                      <h3 className="text-xl font-extrabold text-dark dark:text-white">{job.documentName}</h3>
                       <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border-2 ${getStatusBadge(job.status)}`}>
                         {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
                       </span>
                     </div>
-                    <p className="text-sm text-text-secondary">
+                    <p className="text-sm text-text-secondary dark:text-slate-300">
                       Template: <span className="font-semibold">{job.template}</span> • Size: <span className="font-semibold">{job.fileSize}</span> • Uploaded: <span className="font-semibold">{job.uploadTime}</span>
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button className="p-3 hover:bg-light-bg rounded-lg transition-all duration-300">
-                    <Download size={20} className="text-text-secondary hover:text-blue-600" />
+                  <button className="p-3 hover:bg-light-bg dark:bg-slate-700 rounded-lg transition-all duration-300">
+                    <Download size={20} className="text-text-secondary dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400" />
                   </button>
-                  <button className="p-3 hover:bg-light-bg rounded-lg transition-all duration-300">
-                    <MoreVertical size={20} className="text-text-secondary hover:text-blue-600" />
+                  <button className="p-3 hover:bg-light-bg dark:bg-slate-700 rounded-lg transition-all duration-300">
+                    <MoreVertical size={20} className="text-text-secondary dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400" />
                   </button>
                 </div>
               </div>
@@ -273,8 +273,8 @@ export default function ProcessingPage() {
                 {/* Left Column - Progress */}
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <label className="text-sm font-bold text-text-secondary">Overall Progress</label>
-                    <span className="text-lg font-extrabold text-dark">{job.progress}%</span>
+                    <label className="text-sm font-bold text-text-secondary dark:text-slate-300">Overall Progress</label>
+                    <span className="text-lg font-extrabold text-dark dark:text-white">{job.progress}%</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inset mb-4">
                     <div
@@ -308,7 +308,7 @@ export default function ProcessingPage() {
                     <>
                       <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Time Elapsed</p>
-                        <p className="text-2xl font-extrabold text-blue-600">{job.timeElapsed}</p>
+                        <p className="text-2xl font-extrabold text-blue-600 dark:text-blue-400">{job.timeElapsed}</p>
                       </div>
                       <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Est. Time Remaining</p>
@@ -344,7 +344,7 @@ export default function ProcessingPage() {
                     <Zap size={18} />
                     Pause Processing
                   </button>
-                  <button className="px-6 py-3 bg-light-bg text-dark rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
+                  <button className="px-6 py-3 bg-light-bg dark:bg-slate-700 text-dark dark:text-white rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
                     Cancel
                   </button>
                 </div>
@@ -355,7 +355,7 @@ export default function ProcessingPage() {
                     <Play size={18} />
                     Retry Processing
                   </button>
-                  <button className="px-6 py-3 bg-light-bg text-dark rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
+                  <button className="px-6 py-3 bg-light-bg dark:bg-slate-700 text-dark dark:text-white rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
                     Delete
                   </button>
                 </div>
@@ -366,7 +366,7 @@ export default function ProcessingPage() {
                     <Download size={18} />
                     View Results
                   </button>
-                  <button className="px-6 py-3 bg-light-bg text-dark rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
+                  <button className="px-6 py-3 bg-light-bg dark:bg-slate-700 text-dark dark:text-white rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
                     Export
                   </button>
                 </div>

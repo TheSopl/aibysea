@@ -203,16 +203,16 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Service name */}
-                <p className="text-xs uppercase tracking-wider text-text-secondary font-bold mb-2">
+                <p className="text-xs uppercase tracking-wider text-text-secondary dark:text-slate-300 font-bold mb-2">
                   {card.name}
                 </p>
 
                 {/* Main metric value */}
-                <p className="text-4xl font-extrabold text-dark mb-1">{card.value}</p>
-                <p className="text-xs text-text-secondary mb-4">{card.label}</p>
+                <p className="text-4xl font-extrabold text-dark dark:text-white mb-1">{card.value}</p>
+                <p className="text-xs text-text-secondary dark:text-slate-400 mb-4">{card.label}</p>
 
                 {/* Subtitle */}
-                <p className="text-sm text-text-secondary mb-6">{card.subtitle}</p>
+                <p className="text-sm text-text-secondary dark:text-slate-300 mb-6">{card.subtitle}</p>
 
                 {/* Action button */}
                 <button className={`w-full py-2 px-4 bg-gradient-to-r ${card.gradient} text-white rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity duration-300`}>
@@ -228,25 +228,25 @@ export default function DashboardPage() {
           {quickStatsData.map((stat, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
               style={{
                 animation: `fadeIn 0.4s ease-out ${0.3 + index * 0.05}s both`
               }}
             >
-              <p className="text-xs uppercase tracking-wider text-text-secondary font-bold mb-3">
+              <p className="text-xs uppercase tracking-wider text-text-secondary dark:text-slate-300 font-bold mb-3">
                 {stat.label}
               </p>
-              <p className="text-3xl font-extrabold text-dark">{stat.value}</p>
+              <p className="text-3xl font-extrabold text-dark dark:text-white">{stat.value}</p>
             </div>
           ))}
         </div>
 
         {/* Activity Feed */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <Activity className="w-5 h-5 text-primary" />
-              <h3 className="text-xl font-extrabold text-dark">Recent Activity</h3>
+              <h3 className="text-xl font-extrabold text-dark dark:text-white dark:text-white">Recent Activity</h3>
             </div>
           </div>
           <div className="space-y-3 max-h-64 overflow-y-auto">
@@ -255,7 +255,7 @@ export default function DashboardPage() {
               return (
                 <div
                   key={index}
-                  className="flex items-center gap-4 p-3 hover:bg-light-bg rounded-lg transition-all duration-200 cursor-pointer"
+                  className="flex items-center gap-4 p-3 hover:bg-light-bg dark:bg-slate-700 rounded-lg transition-all duration-200 cursor-pointer"
                   style={{
                     animation: `fadeIn 0.3s ease-out ${0.6 + index * 0.05}s both`
                   }}
@@ -264,8 +264,8 @@ export default function DashboardPage() {
                     <ActivityIcon className="w-5 h-5" strokeWidth={2} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-dark">
-                      {item.service} <span className="font-normal text-text-secondary">{item.action}</span>
+                    <p className="text-sm font-semibold text-dark dark:text-white dark:text-white">
+                      {item.service} <span className="font-normal text-text-secondary dark:text-slate-300">{item.action}</span>
                     </p>
                   </div>
                   <p className="text-xs text-text-secondary whitespace-nowrap flex-shrink-0">{item.time}</p>
@@ -279,13 +279,13 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Conversations Chart */}
           <div
-            className="lg:col-span-2 bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
             style={{
               animation: 'slideInFromLeft 0.6s ease-out 0.4s both'
             }}
           >
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-extrabold text-dark">AI Agent Performance - This Week</h3>
+              <h3 className="text-xl font-extrabold text-dark dark:text-white dark:text-white">AI Agent Performance - This Week</h3>
               <button className="text-sm text-primary font-semibold hover:underline transition-all duration-300 hover:scale-110">View Details</button>
             </div>
             <ResponsiveContainer width="100%" height={300}>
@@ -320,20 +320,20 @@ export default function DashboardPage() {
 
           {/* Active AI Agents */}
           <div
-            className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+            className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
             style={{
               animation: 'slideInFromRight 0.6s ease-out 0.4s both'
             }}
           >
             <div className="flex items-center gap-2 mb-6">
               <Zap className="w-5 h-5 text-primary animate-pulse" />
-              <h3 className="text-lg font-extrabold text-dark">Active Agents</h3>
+              <h3 className="text-lg font-extrabold text-dark dark:text-white dark:text-white">Active Agents</h3>
             </div>
             <div className="space-y-4">
               {queueData.map((item, index) => (
                 <div
                   key={index}
-                  className="p-4 bg-light-bg rounded-xl hover:bg-gray-100 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-md"
+                  className="p-4 bg-light-bg dark:bg-slate-700 rounded-xl hover:bg-gray-100 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-md"
                   style={{
                     animation: `fadeIn 0.4s ease-out ${0.6 + index * 0.1}s both`
                   }}
@@ -343,7 +343,7 @@ export default function DashboardPage() {
                       {item.name[0]}
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-semibold text-dark">{item.name}</p>
+                      <p className="text-sm font-semibold text-dark dark:text-white dark:text-white">{item.name}</p>
                       <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded font-medium">
                         {item.channel}
                       </span>
@@ -363,12 +363,12 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Top Channels */}
           <div
-            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
             style={{
               animation: 'slideInFromLeft 0.6s ease-out 0.8s both'
             }}
           >
-            <h3 className="text-xl font-extrabold text-dark mb-6">Top Channels</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-6">Top Channels</h3>
             <div className="space-y-4">
               {topChannels.map((channel, index) => (
                 <div
@@ -379,8 +379,8 @@ export default function DashboardPage() {
                   }}
                 >
                   <div className={`w-3 h-3 ${channel.color} rounded-full`}></div>
-                  <span className="flex-1 text-sm font-semibold text-dark">{channel.name}</span>
-                  <span className="text-lg font-extrabold text-dark">{channel.count}</span>
+                  <span className="flex-1 text-sm font-semibold text-dark dark:text-white dark:text-white">{channel.name}</span>
+                  <span className="text-lg font-extrabold text-dark dark:text-white dark:text-white">{channel.count}</span>
                 </div>
               ))}
             </div>
@@ -388,12 +388,12 @@ export default function DashboardPage() {
 
           {/* Top Lifecycles */}
           <div
-            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
             style={{
               animation: 'slideInFromRight 0.6s ease-out 0.8s both'
             }}
           >
-            <h3 className="text-xl font-extrabold text-dark mb-6">Lifecycle Distribution</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-6">Lifecycle Distribution</h3>
             <div className="space-y-4">
               {topLifecycles.map((lifecycle, index) => (
                 <div
@@ -404,8 +404,8 @@ export default function DashboardPage() {
                   }}
                 >
                   <div className={`w-3 h-3 ${lifecycle.color} rounded-full shadow-sm`}></div>
-                  <span className="flex-1 text-sm font-semibold text-dark">{lifecycle.name}</span>
-                  <span className="text-lg font-extrabold text-dark">{lifecycle.count}</span>
+                  <span className="flex-1 text-sm font-semibold text-dark dark:text-white dark:text-white">{lifecycle.name}</span>
+                  <span className="text-lg font-extrabold text-dark dark:text-white dark:text-white">{lifecycle.count}</span>
                 </div>
               ))}
             </div>
