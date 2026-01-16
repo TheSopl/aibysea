@@ -176,16 +176,16 @@ export default function InboxPage() {
 
       <div className="flex h-[calc(100vh-4rem)]">
         {/* Column 1: Conversation List */}
-        <div className="w-80 bg-white border-r border-gray-200 flex flex-col">
+        <div className="w-80 bg-white border-r border-slate-700 flex flex-col">
           {/* Filter Tabs */}
-          <div className="p-4 border-b border-gray-200">
+          <div className="p-4 border-b border-slate-700">
             <div className="flex gap-2 mb-4">
               <button
                 onClick={() => setActiveTab('all')}
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'all'
                     ? 'bg-primary text-white shadow-md'
-                    : 'bg-light-bg text-text-secondary hover:bg-gray-200'
+                    : 'bg-slate-700 text-slate-300 hover:bg-gray-200'
                 }`}
               >
                 All
@@ -195,7 +195,7 @@ export default function InboxPage() {
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'assigned'
                     ? 'bg-primary text-white shadow-md'
-                    : 'bg-light-bg text-text-secondary hover:bg-gray-200'
+                    : 'bg-slate-700 text-slate-300 hover:bg-gray-200'
                 }`}
               >
                 Assigned
@@ -205,7 +205,7 @@ export default function InboxPage() {
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'unassigned'
                     ? 'bg-primary text-white shadow-md'
-                    : 'bg-light-bg text-text-secondary hover:bg-gray-200'
+                    : 'bg-slate-700 text-slate-300 hover:bg-gray-200'
                 }`}
               >
                 Unassigned
@@ -214,11 +214,11 @@ export default function InboxPage() {
 
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" size={16} />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-300" size={16} />
               <input
                 type="text"
                 placeholder="Search conversations..."
-                className="w-full pl-10 pr-4 py-2.5 bg-light-bg border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-700 border border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
               />
             </div>
           </div>
@@ -229,7 +229,7 @@ export default function InboxPage() {
               <div
                 key={conv.id}
                 onClick={() => setSelectedConversation(conv)}
-                className={`p-4 border-b border-gray-100 cursor-pointer transition-all duration-300 hover:bg-light-bg hover:scale-[1.01] ${
+                className={`p-4 border-b border-gray-100 cursor-pointer transition-all duration-300 hover:bg-slate-700 hover:scale-[1.01] ${
                   selectedConversation?.id === conv.id ? 'bg-primary/5 border-l-4 border-l-primary shadow-lg' : ''
                 }`}
                 style={{
@@ -244,8 +244,8 @@ export default function InboxPage() {
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-bold text-dark text-sm">{conv.name}</span>
-                      <span className="text-xs text-text-secondary">{conv.timestamp}</span>
+                      <span className="font-bold text-white text-sm">{conv.name}</span>
+                      <span className="text-xs text-slate-300">{conv.timestamp}</span>
                     </div>
 
                     <div className="flex items-center gap-1.5 mb-2 flex-wrap">
@@ -259,7 +259,7 @@ export default function InboxPage() {
                       </span>
                     </div>
 
-                    <p className="text-sm text-text-secondary truncate mb-2">{conv.lastMessage}</p>
+                    <p className="text-sm text-slate-300 truncate mb-2">{conv.lastMessage}</p>
 
                     <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
                       conv.lifecycle === 'Customer' ? 'bg-green/20 text-green' :
@@ -287,13 +287,13 @@ export default function InboxPage() {
         {selectedConversation ? (
           <div className="flex-1 bg-white flex flex-col">
             {/* Chat Header */}
-            <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-gradient-to-r from-white to-light-bg">
+            <div className="p-4 border-b border-slate-700 flex items-center justify-between bg-gradient-to-r from-white to-light-bg">
               <div className="flex items-center gap-3">
                 <div className="w-11 h-11 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold shadow-lg">
                   {selectedConversation.avatar}
                 </div>
                 <div>
-                  <h3 className="font-bold text-dark text-lg">{selectedConversation.name}</h3>
+                  <h3 className="font-bold text-white text-lg">{selectedConversation.name}</h3>
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded-md font-bold">
                       {selectedConversation.channel}
@@ -328,14 +328,14 @@ export default function InboxPage() {
                     </div>
                   )}
                 </button>
-                <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
-                  <Phone size={20} className="text-text-secondary" />
+                <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
+                  <Phone size={20} className="text-slate-300" />
                 </button>
-                <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
-                  <Video size={20} className="text-text-secondary" />
+                <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
+                  <Video size={20} className="text-slate-300" />
                 </button>
-                <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
-                  <MoreVertical size={20} className="text-text-secondary" />
+                <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
+                  <MoreVertical size={20} className="text-slate-300" />
                 </button>
               </div>
             </div>
@@ -353,7 +353,7 @@ export default function InboxPage() {
                   <div className={`max-w-md ${msg.sender === 'customer' ? '' : ''}`}>
                     <div className={`px-4 py-3 rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl hover:scale-[1.02] ${
                       msg.sender === 'customer'
-                        ? 'bg-white text-dark border border-gray-200'
+                        ? 'bg-white text-white border border-slate-700'
                         : msg.sender === 'ai'
                         ? 'bg-gradient-to-br from-primary to-primary/90 text-white'
                         : 'bg-gradient-to-br from-purple to-purple/90 text-white'
@@ -366,7 +366,7 @@ export default function InboxPage() {
                       )}
                       <p className="text-sm leading-relaxed">{msg.text}</p>
                     </div>
-                    <span className="text-xs text-text-secondary mt-1.5 block px-2">{msg.timestamp}</span>
+                    <span className="text-xs text-slate-300 mt-1.5 block px-2">{msg.timestamp}</span>
                   </div>
                 </div>
               ))}
@@ -374,7 +374,7 @@ export default function InboxPage() {
             </div>
 
             {/* Input Footer */}
-            <div className="p-4 border-t border-gray-200 bg-white">
+            <div className="p-4 border-t border-slate-700 bg-white">
               {!isAIMode && (
                 <div className="mb-3 px-3 py-2 bg-purple/10 border border-purple/30 rounded-lg">
                   <p className="text-xs font-bold text-purple flex items-center gap-2">
@@ -384,14 +384,14 @@ export default function InboxPage() {
                 </div>
               )}
               <div className="flex items-end gap-3">
-                <button className="p-2.5 hover:bg-light-bg rounded-lg transition-colors">
-                  <Paperclip size={20} className="text-text-secondary" />
+                <button className="p-2.5 hover:bg-slate-700 rounded-lg transition-colors">
+                  <Paperclip size={20} className="text-slate-300" />
                 </button>
-                <button className="p-2.5 hover:bg-light-bg rounded-lg transition-colors">
-                  <ImageIcon size={20} className="text-text-secondary" />
+                <button className="p-2.5 hover:bg-slate-700 rounded-lg transition-colors">
+                  <ImageIcon size={20} className="text-slate-300" />
                 </button>
-                <button className="p-2.5 hover:bg-light-bg rounded-lg transition-colors">
-                  <Smile size={20} className="text-text-secondary" />
+                <button className="p-2.5 hover:bg-slate-700 rounded-lg transition-colors">
+                  <Smile size={20} className="text-slate-300" />
                 </button>
 
                 <div className="flex-1">
@@ -406,7 +406,7 @@ export default function InboxPage() {
                     }}
                     placeholder="Type your message..."
                     rows={2}
-                    className="w-full px-4 py-3 bg-light-bg border border-gray-200 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-700 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                   />
                 </div>
 
@@ -426,17 +426,17 @@ export default function InboxPage() {
               <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full flex items-center justify-center">
                 <Bot size={48} className="text-primary" />
               </div>
-              <h3 className="text-2xl font-extrabold text-dark mb-2">Select a conversation</h3>
-              <p className="text-text-secondary">Choose a conversation from the list to start chatting</p>
+              <h3 className="text-2xl font-extrabold text-white mb-2">Select a conversation</h3>
+              <p className="text-slate-300">Choose a conversation from the list to start chatting</p>
             </div>
           </div>
         )}
 
         {/* Column 3: Context Panel */}
         {selectedConversation && (
-          <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
+          <div className="w-80 bg-white border-l border-slate-700 flex flex-col">
             {/* Tabs */}
-            <div className="p-4 border-b border-gray-200">
+            <div className="p-4 border-b border-slate-700">
               <div className="grid grid-cols-2 gap-1">
                 {[
                   { id: 'profile', label: 'Profile' },
@@ -450,7 +450,7 @@ export default function InboxPage() {
                     className={`px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                       contextTab === tab.id
                         ? 'bg-primary text-white shadow-md'
-                        : 'text-text-secondary hover:bg-light-bg'
+                        : 'text-slate-300 hover:bg-slate-700'
                     }`}
                   >
                     {tab.label}
@@ -464,19 +464,19 @@ export default function InboxPage() {
               {contextTab === 'profile' && (
                 <div className="space-y-4">
                   <div>
-                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Name</label>
-                    <p className="text-sm text-dark mt-1 font-semibold">{selectedConversation.name}</p>
+                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Name</label>
+                    <p className="text-sm text-white mt-1 font-semibold">{selectedConversation.name}</p>
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Channel</label>
-                    <p className="text-sm text-dark mt-1">{selectedConversation.channel}</p>
+                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Channel</label>
+                    <p className="text-sm text-white mt-1">{selectedConversation.channel}</p>
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">AI Agent</label>
-                    <p className="text-sm text-dark mt-1">{selectedConversation.aiAgent}</p>
+                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">AI Agent</label>
+                    <p className="text-sm text-white mt-1">{selectedConversation.aiAgent}</p>
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Lifecycle Stage</label>
+                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Lifecycle Stage</label>
                     <div className="mt-2">
                       <span className={`inline-block px-3 py-1.5 rounded-lg text-xs font-bold ${
                         selectedConversation.lifecycle === 'Customer' ? 'bg-green/20 text-green' :
@@ -495,15 +495,15 @@ export default function InboxPage() {
                   <div className="flex gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-1.5"></div>
                     <div className="flex-1">
-                      <p className="text-sm font-bold text-dark">Conversation started</p>
-                      <p className="text-xs text-text-secondary">2 hours ago</p>
+                      <p className="text-sm font-bold text-white">Conversation started</p>
+                      <p className="text-xs text-slate-300">2 hours ago</p>
                     </div>
                   </div>
                   <div className="flex gap-3">
                     <div className="w-2 h-2 bg-accent rounded-full mt-1.5"></div>
                     <div className="flex-1">
-                      <p className="text-sm font-bold text-dark">Assigned to {selectedConversation.aiAgent}</p>
-                      <p className="text-xs text-text-secondary">1 hour ago</p>
+                      <p className="text-sm font-bold text-white">Assigned to {selectedConversation.aiAgent}</p>
+                      <p className="text-xs text-slate-300">1 hour ago</p>
                     </div>
                   </div>
                 </div>
@@ -514,7 +514,7 @@ export default function InboxPage() {
                   <textarea
                     placeholder="Add notes about this contact..."
                     rows={10}
-                    className="w-full px-3 py-2 bg-light-bg border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm"
+                    className="w-full px-3 py-2 bg-slate-700 border border-slate-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm"
                   />
                 </div>
               )}
@@ -527,35 +527,35 @@ export default function InboxPage() {
                         <Zap size={24} className="text-white" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-extrabold text-dark text-base">Rashed AI</h3>
-                        <p className="text-xs text-text-secondary">Primary Agent</p>
+                        <h3 className="font-extrabold text-white text-base">Rashed AI</h3>
+                        <p className="text-xs text-slate-300">Primary Agent</p>
                       </div>
                       <div className="w-3 h-3 bg-green rounded-full shadow-lg animate-pulse"></div>
                     </div>
 
                     <div className="space-y-3">
                       <div>
-                        <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Status</label>
-                        <p className="text-sm text-dark mt-1 font-semibold">Active & Learning</p>
+                        <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Status</label>
+                        <p className="text-sm text-white mt-1 font-semibold">Active & Learning</p>
                       </div>
                       <div>
-                        <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Model</label>
-                        <p className="text-sm text-dark mt-1">GPT-4 Turbo</p>
+                        <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Model</label>
+                        <p className="text-sm text-white mt-1">GPT-4 Turbo</p>
                       </div>
                       <div>
-                        <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Specialization</label>
-                        <p className="text-sm text-dark mt-1">Customer Support & Sales</p>
+                        <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Specialization</label>
+                        <p className="text-sm text-white mt-1">Customer Support & Sales</p>
                       </div>
                       <div>
-                        <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Response Time</label>
-                        <p className="text-sm text-dark mt-1">~2 seconds avg</p>
+                        <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Response Time</label>
+                        <p className="text-sm text-white mt-1">~2 seconds avg</p>
                       </div>
                       <div>
-                        <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Success Rate</label>
+                        <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Success Rate</label>
                         <div className="mt-2">
                           <div className="flex items-center justify-between mb-1">
-                            <span className="text-xs font-bold text-dark">94%</span>
-                            <span className="text-xs text-text-secondary">Resolved</span>
+                            <span className="text-xs font-bold text-white">94%</span>
+                            <span className="text-xs text-slate-300">Resolved</span>
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-2">
                             <div className="bg-gradient-to-r from-primary to-accent h-2 rounded-full" style={{ width: '94%' }}></div>
@@ -571,24 +571,24 @@ export default function InboxPage() {
                         <Bot size={24} className="text-white" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-extrabold text-dark text-base">Ahmed AI</h3>
-                        <p className="text-xs text-text-secondary">Backup Agent</p>
+                        <h3 className="font-extrabold text-white text-base">Ahmed AI</h3>
+                        <p className="text-xs text-slate-300">Backup Agent</p>
                       </div>
                       <div className="w-3 h-3 bg-gray-400 rounded-full shadow-lg"></div>
                     </div>
 
                     <div className="space-y-3">
                       <div>
-                        <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Status</label>
-                        <p className="text-sm text-dark mt-1 font-semibold">Standby</p>
+                        <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Status</label>
+                        <p className="text-sm text-white mt-1 font-semibold">Standby</p>
                       </div>
                       <div>
-                        <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Model</label>
-                        <p className="text-sm text-dark mt-1">GPT-4</p>
+                        <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Model</label>
+                        <p className="text-sm text-white mt-1">GPT-4</p>
                       </div>
                       <div>
-                        <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Specialization</label>
-                        <p className="text-sm text-dark mt-1">Technical Support</p>
+                        <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Specialization</label>
+                        <p className="text-sm text-white mt-1">Technical Support</p>
                       </div>
                     </div>
                   </div>

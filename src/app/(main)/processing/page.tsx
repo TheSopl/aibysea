@@ -151,7 +151,7 @@ export default function ProcessingPage() {
     <>
       <TopBar title="Processing Queue" />
 
-      <div className="p-8">
+      <div className="p-8 bg-white dark:bg-slate-900">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">

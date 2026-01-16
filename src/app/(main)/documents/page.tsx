@@ -164,7 +164,7 @@ export default function DocumentsPage() {
     <>
       <TopBar title="Upload & Process Documents" />
 
-      <div className="p-8">
+      <div className="p-8 bg-white dark:bg-slate-900">
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div

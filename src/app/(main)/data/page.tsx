@@ -147,7 +147,7 @@ export default function ExtractedDataPage() {
     <>
       <TopBar title="Extracted Data" />
 
-      <div className="p-8">
+      <div className="p-8 bg-white dark:bg-slate-900">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
@@ -306,7 +306,7 @@ export default function ExtractedDataPage() {
         {/* Detail Modal / Sidebar */}
         {selectedData && (
           <div className="fixed right-0 top-0 h-full w-full max-w-2xl bg-white dark:bg-slate-800 shadow-2xl z-50 overflow-y-auto rounded-l-3xl">
-            <div className="p-8">
+            <div className="p-8 bg-white dark:bg-slate-900">
               {/* Header */}
               <div className="flex items-start justify-between mb-6">
                 <div>
