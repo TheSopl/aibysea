@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
@@ -10,12 +10,25 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Redirect to dashboard
+    setIsLoading(true);
+    // Redirect to dashboard immediately
     router.push('/dashboard');
   };
+
+  // Also allow clicking anywhere or pressing Enter
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        router.push('/dashboard');
+      }
+    };
+    window.addEventListener('keypress', handleKeyPress);
+    return () => window.removeEventListener('keypress', handleKeyPress);
+  }, [router]);
 
   return (
     <div className="min-h-screen flex">
@@ -56,9 +69,19 @@ export default function LoginPage() {
             </div>
 
             <button type="submit" className="w-full bg-gradient-to-r from-[#1a1a2e] to-[#16213e] text-white font-bold py-3 rounded-xl hover:shadow-xl transition-all">
-              Sign in
+              {isLoading ? 'Signing in...' : 'Sign in'}
             </button>
           </form>
+
+          {/* Skip login for demo */}
+          <div className="mt-6 text-center">
+            <button
+              onClick={() => router.push('/dashboard')}
+              className="text-primary font-semibold hover:underline"
+            >
+              Skip to Dashboard →
+            </button>
+          </div>
         </div>
       </div>
 
