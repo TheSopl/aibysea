@@ -113,8 +113,10 @@ Plans:
 **Plans**: 2 total
 
 Plans:
-- [ ] 11-01: Create API routes for voice agents (CRUD, call logs, phone numbers) with mock data
+- [x] 11-01: Create API routes for voice agents (CRUD, call logs, phone numbers) with mock data
 - [ ] 11-02: Create API routes for document processing with mock templates; extend Supabase schema
+
+**Status**: 1 of 2 plans complete (started 2026-01-16)
 
 ## Progress
 
@@ -135,7 +137,7 @@ All phases shipped successfully: 1 → 2 → 2.1 (inserted) → 3 → 4 → 5 �
 | 7. AI Metrics & State Dashboard | v1.0 | 3/3 | Complete | 2026-01-14 |
 | 8. Platform Restructure | v2.0 | 3/3 | Complete | 2026-01-16 |
 | 9. Voice Agents UI | v2.0 | 3/3 | Complete | 2026-01-16 |
-| 10. Document Intelligence UI | v2.0 | 2/3 | In progress | - |
-| 11. Backend Infrastructure | v2.0 | 0/2 | Not started | - |
+| 10. Document Intelligence UI | v2.0 | 3/3 | Complete | 2026-01-16 |
+| 11. Backend Infrastructure | v2.0 | 1/2 | In progress | - |
 
-**Overall Progress**: █████████████░░ 88% (24/26 plans completed)
+**Overall Progress**: █████████████░░ 96% (26/27 plans completed)
