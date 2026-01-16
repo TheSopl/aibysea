@@ -108,7 +108,6 @@ export default function Sidebar() {
             alt="AI BY SEA"
             fill
             className="object-contain"
-            style={{ mixBlendMode: 'screen' }}
           />
         </div>
       </div>
