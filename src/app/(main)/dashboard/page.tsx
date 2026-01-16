@@ -246,7 +246,7 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <Activity className="w-5 h-5 text-primary" />
-              <h3 className="text-xl font-extrabold text-dark dark:text-white dark:text-white">Recent Activity</h3>
+              <h3 className="text-xl font-extrabold text-dark dark:text-white">Recent Activity</h3>
             </div>
           </div>
           <div className="space-y-3 max-h-64 overflow-y-auto">
@@ -255,7 +255,7 @@ export default function DashboardPage() {
               return (
                 <div
                   key={index}
-                  className="flex items-center gap-4 p-3 hover:bg-light-bg dark:bg-slate-700 rounded-lg transition-all duration-200 cursor-pointer"
+                  className="flex items-center gap-4 p-3 hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-all duration-200 cursor-pointer"
                   style={{
                     animation: `fadeIn 0.3s ease-out ${0.6 + index * 0.05}s both`
                   }}
@@ -264,11 +264,11 @@ export default function DashboardPage() {
                     <ActivityIcon className="w-5 h-5" strokeWidth={2} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-dark dark:text-white dark:text-white">
+                    <p className="text-sm font-semibold text-dark dark:text-white">
                       {item.service} <span className="font-normal text-text-secondary dark:text-slate-300">{item.action}</span>
                     </p>
                   </div>
-                  <p className="text-xs text-text-secondary whitespace-nowrap flex-shrink-0">{item.time}</p>
+                  <p className="text-xs text-text-secondary dark:text-slate-400 whitespace-nowrap flex-shrink-0">{item.time}</p>
                 </div>
               );
             })}
@@ -285,8 +285,8 @@ export default function DashboardPage() {
             }}
           >
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-extrabold text-dark dark:text-white dark:text-white">AI Agent Performance - This Week</h3>
-              <button className="text-sm text-primary font-semibold hover:underline transition-all duration-300 hover:scale-110">View Details</button>
+              <h3 className="text-xl font-extrabold text-dark dark:text-white">AI Agent Performance - This Week</h3>
+              <button className="text-sm text-primary dark:text-blue-400 font-semibold hover:underline transition-all duration-300 hover:scale-110">View Details</button>
             </div>
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={conversationsData}>
@@ -296,9 +296,9 @@ export default function DashboardPage() {
                     <stop offset="100%" stopColor="#003EF3" stopOpacity={0.1} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                <XAxis dataKey="date" stroke="#6B7280" style={{ fontSize: '12px' }} />
-                <YAxis stroke="#6B7280" style={{ fontSize: '12px' }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" className="dark:stroke-slate-700" />
+                <XAxis dataKey="date" stroke="#6B7280" className="dark:stroke-slate-400" style={{ fontSize: '12px' }} />
+                <YAxis stroke="#6B7280" className="dark:stroke-slate-400" style={{ fontSize: '12px' }} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: '#FFFFFF',
@@ -306,6 +306,7 @@ export default function DashboardPage() {
                     borderRadius: '8px',
                     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                   }}
+                  wrapperClassName="dark:bg-slate-800 dark:border-slate-700"
                 />
                 <Area
                   type="monotone"
@@ -327,13 +328,13 @@ export default function DashboardPage() {
           >
             <div className="flex items-center gap-2 mb-6">
               <Zap className="w-5 h-5 text-primary animate-pulse" />
-              <h3 className="text-lg font-extrabold text-dark dark:text-white dark:text-white">Active Agents</h3>
+              <h3 className="text-lg font-extrabold text-dark dark:text-white">Active Agents</h3>
             </div>
             <div className="space-y-4">
               {queueData.map((item, index) => (
                 <div
                   key={index}
-                  className="p-4 bg-light-bg dark:bg-slate-700 rounded-xl hover:bg-light-bg dark:hover:bg-slate-700 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-md"
+                  className="p-4 bg-light-bg dark:bg-slate-700 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-md"
                   style={{
                     animation: `fadeIn 0.4s ease-out ${0.6 + index * 0.1}s both`
                   }}
@@ -343,8 +344,8 @@ export default function DashboardPage() {
                       {item.name[0]}
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-semibold text-dark dark:text-white dark:text-white">{item.name}</p>
-                      <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded font-medium">
+                      <p className="text-sm font-semibold text-dark dark:text-white">{item.name}</p>
+                      <span className="text-xs px-2 py-0.5 bg-accent/20 dark:bg-accent/30 text-accent dark:text-accent rounded font-medium">
                         {item.channel}
                       </span>
                     </div>
@@ -373,14 +374,14 @@ export default function DashboardPage() {
               {topChannels.map((channel, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-light-bg dark:hover:bg-slate-700 p-3 rounded-lg cursor-pointer"
+                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-gray-50 dark:hover:bg-slate-700 p-3 rounded-lg cursor-pointer"
                   style={{
                     animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
                   }}
                 >
                   <div className={`w-3 h-3 ${channel.color} rounded-full`}></div>
-                  <span className="flex-1 text-sm font-semibold text-dark dark:text-white dark:text-white">{channel.name}</span>
-                  <span className="text-lg font-extrabold text-dark dark:text-white dark:text-white">{channel.count}</span>
+                  <span className="flex-1 text-sm font-semibold text-dark dark:text-white">{channel.name}</span>
+                  <span className="text-lg font-extrabold text-dark dark:text-white">{channel.count}</span>
                 </div>
               ))}
             </div>
@@ -398,7 +399,7 @@ export default function DashboardPage() {
               {topLifecycles.map((lifecycle, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-light-bg dark:hover:bg-slate-700 p-3 rounded-lg cursor-pointer"
+                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-gray-50 dark:hover:bg-slate-700 p-3 rounded-lg cursor-pointer"
                   style={{
                     animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
                   }}
