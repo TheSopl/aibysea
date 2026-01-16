@@ -1,5 +1,13 @@
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="200" fill="#3b5998"/>
-  <text x="100" y="90" font-family="Arial, sans-serif" font-size="48" font-weight="700" fill="white" text-anchor="middle">A</text>
-  <text x="100" y="130" font-family="Arial, sans-serif" font-size="28" font-weight="400" fill="white" text-anchor="middle">bysea</text>
+  <!-- Circle/dot -->
+  <circle cx="80" cy="50" r="18" fill="#3B5998"/>
+
+  <!-- Left diagonal stroke -->
+  <path d="M 65 75 L 100 170 L 130 170 L 95 75 Z" fill="#3B5998"/>
+
+  <!-- Right diagonal forming A -->
+  <path d="M 105 75 L 140 170 L 170 170 L 135 75 Z" fill="#3B5998"/>
+
+  <!-- Inner cutout for A -->
+  <path d="M 115 110 L 125 140 L 115 140 Z" fill="white"/>
 </svg>

@@ -104,8 +104,8 @@ export default function Sidebar() {
       <div className="p-4 flex items-center justify-center border-b border-white/10">
         <div className="relative w-12 h-12 hover:shadow-accent/50 transition-all duration-300 hover:scale-105">
           <Image
-            src="/logo.png"
-            alt="AIBY SEA"
+            src="/logo.svg"
+            alt="AI BY SEA"
             fill
             className="object-contain"
           />
