@@ -118,6 +118,23 @@ Plans:
 
 **Status**: ✅ 2 of 2 plans complete (started 2026-01-16, finished 2026-01-16)
 
+#### Phase 12: Dark Mode Implementation
+
+**Goal**: Implement fully functional dark mode toggle with consistent styling across all pages - white text on dark slate background for dark mode, black text on light background for light mode.
+
+**Depends on**: Phase 11
+
+**Research**: ✅ Complete (12-RESEARCH.md) - Tailwind v4 dark mode patterns documented
+
+**Plans**: 2 total
+
+Plans:
+- [x] 12-01: Fix Tailwind v4 Dark Mode Configuration (add @variant directive, verify theme toggle works)
+- [ ] 12-02: Apply Dark Mode Classes to All Pages (update 15+ pages with dark: variants matching /documents reference)
+
+**Details:**
+Phase 12 fixes the non-functional theme toggle by adding the missing `@variant dark` directive required by Tailwind v4, then systematically applies dark mode classes to all application pages. The `/documents` page serves as the reference for perfect dark slate blue styling.
+
 ## Progress
 
 **v1.0 MVP Execution:** ✅ Complete (Phases 1-7)
@@ -139,5 +156,6 @@ All phases shipped successfully: 1 → 2 → 2.1 (inserted) → 3 → 4 → 5 �
 | 9. Voice Agents UI | v2.0 | 3/3 | Complete | 2026-01-16 |
 | 10. Document Intelligence UI | v2.0 | 3/3 | Complete | 2026-01-16 |
 | 11. Backend Infrastructure | v2.0 | 2/2 | Complete | 2026-01-16 |
+| 12. Dark Mode Implementation | v2.0 | 1/2 | In Progress | - |
 
-**Overall Progress**: ██████████████░░ 100% (27/27 plans completed) — 🎉 v2.0 Multi-Service Platform Complete
+**Overall Progress**: ██████████████░░ 97% (28/29 plans completed) — Phase 12 in progress
