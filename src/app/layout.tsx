@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   description: "Conversational AI, Voice Agents, and Document Intelligence in one platform",
   icons: {
-    icon: '/logo.png',
+    icon: '/favicon.svg',
   },
 };
 

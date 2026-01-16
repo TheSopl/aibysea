@@ -108,6 +108,7 @@ export default function Sidebar() {
             alt="AIBY SEA"
             fill
             className="object-cover"
+            style={{ transform: 'rotate(90deg)' }}
           />
         </div>
       </div>
