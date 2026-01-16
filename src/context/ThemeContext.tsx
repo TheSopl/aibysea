@@ -15,39 +15,32 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
+  // On mount, check localStorage and apply theme immediately
   useEffect(() => {
     setMounted(true);
-    // Get theme from localStorage or default to light
     const stored = localStorage.getItem('theme') as Theme | null;
     if (stored) {
       setTheme(stored);
-      if (stored === 'dark') {
-        document.documentElement.classList.add('dark');
-      }
+      applyTheme(stored);
     }
   }, []);
 
-  const toggleTheme = () => {
-    console.log('🎨 Toggle theme called, current theme:', theme);
-    setTheme(prev => {
-      const newTheme = prev === 'light' ? 'dark' : 'light';
-      console.log('🎨 Switching to:', newTheme);
-      localStorage.setItem('theme', newTheme);
-
-      if (newTheme === 'dark') {
-        document.documentElement.classList.add('dark');
-        console.log('🎨 Added dark class to html');
-      } else {
-        document.documentElement.classList.remove('dark');
-        console.log('🎨 Removed dark class from html');
-      }
-
-      console.log('🎨 HTML classes:', document.documentElement.className);
-      return newTheme;
-    });
+  // Apply theme to DOM
+  const applyTheme = (newTheme: Theme) => {
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
 
-  // Don't wait for mount to provide context
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    applyTheme(newTheme);
+  };
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
@@ -58,7 +51,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 export function useTheme() {
   const context = useContext(ThemeContext);
   if (context === undefined) {
-    // Return default values if not in provider (for SSR/prerendering)
     return { theme: 'light' as const, toggleTheme: () => {} };
   }
   return context;

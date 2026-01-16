@@ -177,7 +177,7 @@ export default function DashboardPage() {
     <>
       <TopBar title="Dashboard" />
 
-      <div className="p-8 space-y-8">
+      <div className="p-8 bg-white dark:bg-slate-900 space-y-8">
         {/* Service Health Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {serviceCards.map((card, index) => {
