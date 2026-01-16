@@ -81,7 +81,7 @@ Plans:
 **Plans**: 3 total
 
 Plans:
-- [ ] 09-01: Create Voice Agents list page with agent cards, status, metrics, and controls
+- [x] 09-01: Create Voice Agents list page with agent cards, status, metrics, and controls
 - [ ] 09-02: Create Call Logs page with call history, transcription viewer, and filtering
 - [ ] 09-03: Create Phone Numbers and Voice Settings pages
 
@@ -131,9 +131,9 @@ All phases shipped successfully: 1 → 2 → 2.1 (inserted) → 3 → 4 → 5 �
 | 5. Human Takeover | v1.0 | 1/1 | Complete | 2026-01-12 |
 | 6. Real-time & Polish | v1.0 | 2/2 | Complete | 2026-01-13 |
 | 7. AI Metrics & State Dashboard | v1.0 | 3/3 | Complete | 2026-01-14 |
-| 8. Platform Restructure | v2.0 | 0/3 | Not started | - |
-| 9. Voice Agents UI | v2.0 | 0/3 | Not started | - |
+| 8. Platform Restructure | v2.0 | 3/3 | Complete | 2026-01-16 |
+| 9. Voice Agents UI | v2.0 | 1/3 | In Progress | - |
 | 10. Document Intelligence UI | v2.0 | 0/3 | Not started | - |
 | 11. Backend Infrastructure | v2.0 | 0/2 | Not started | - |
 
-**Overall Progress**: ░░░░░░░░░░ 19% (14/26 plans in v2.0 roadmap)
+**Overall Progress**: ░░░░░░░░░░░░░░░ 27% (20/26 plans in v2.0 roadmap)
