@@ -29,11 +29,6 @@ export default function TopBar({ title }: TopBarProps) {
 
       {/* Right Actions */}
       <div className="flex items-center gap-4">
-        {/* Dark mode test - remove after verification */}
-        <div className="bg-white dark:bg-slate-800 text-black dark:text-white px-3 py-1 rounded border border-gray-200 dark:border-slate-600 text-sm">
-          Theme: {theme}
-        </div>
-
         {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
