@@ -78,12 +78,6 @@ export default function ContactsPage() {
             animation: 'scaleIn 0.5s ease-out both'
           }}
         >
-          {/* Table Header */}
-          <div className="p-6 border-b border-gray-200 dark:border-slate-700">
-            <h2 className="text-xl font-extrabold text-dark">Authors Table</h2>
-            <p className="text-sm text-text-secondary mt-1">Manage your contacts and conversations</p>
-          </div>
-
           {/* Table */}
           <div className="overflow-x-auto">
             <table className="w-full">

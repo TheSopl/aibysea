@@ -16,8 +16,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AIBYSEA - AI Metrics Dashboard",
-  description: "Real-time AI agent intelligence and performance monitoring",
+  title: "AI BY SEA - Multi-Service AI Platform",
+  description: "Conversational AI, Voice Agents, and Document Intelligence in one platform",
+  icons: {
+    icon: '/logo.svg',
+  },
 };
 
 export default function RootLayout({

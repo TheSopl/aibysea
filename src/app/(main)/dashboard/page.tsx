@@ -160,16 +160,16 @@ const queueData = [
 ];
 
 const topChannels = [
-  { name: 'WhatsApp', count: 1250, color: 'bg-green' },
-  { name: 'Telegram', count: 890, color: 'bg-primary' },
-  { name: 'Facebook', count: 560, color: 'bg-accent' },
+  { name: 'WhatsApp', count: 1250, color: 'bg-green', icon: '💬' },
+  { name: 'Telegram', count: 890, color: 'bg-primary', icon: '✈️' },
+  { name: 'Facebook', count: 560, color: 'bg-accent', icon: '👥' },
 ];
 
 const topLifecycles = [
-  { name: 'Customer', count: 450, color: 'bg-green' },
-  { name: 'Lead', count: 380, color: 'bg-blue' },
-  { name: 'Qualified Lead', count: 210, color: 'bg-primary' },
-  { name: 'Prospect', count: 180, color: 'bg-amber' },
+  { name: 'Customer', count: 450, color: 'bg-green', icon: '🎯' },
+  { name: 'Lead', count: 380, color: 'bg-blue', icon: '📈' },
+  { name: 'Qualified Lead', count: 210, color: 'bg-primary', icon: '⭐' },
+  { name: 'Prospect', count: 180, color: 'bg-amber', icon: '🔍' },
 ];
 
 export default function DashboardPage() {
@@ -190,13 +190,8 @@ export default function DashboardPage() {
                   animation: `scaleIn 0.5s ease-out ${index * 0.1}s both`
                 }}
               >
-                {/* Header with status badge and icon */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                      ✅ {card.status}
-                    </span>
-                  </div>
+                {/* Header with icon */}
+                <div className="flex items-start justify-end mb-4">
                   <div className={`bg-gradient-to-br ${card.gradient} rounded-lg p-3 shadow-md`}>
                     <Icon className="w-6 h-6 text-white" strokeWidth={2} />
                   </div>
@@ -379,7 +374,7 @@ export default function DashboardPage() {
                     animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
                   }}
                 >
-                  <div className={`w-3 h-3 ${channel.color} rounded-full`}></div>
+                  <div className="text-2xl">{channel.icon}</div>
                   <span className="flex-1 text-sm font-semibold text-dark dark:text-white">{channel.name}</span>
                   <span className="text-lg font-extrabold text-dark dark:text-white">{channel.count}</span>
                 </div>
@@ -404,9 +399,9 @@ export default function DashboardPage() {
                     animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
                   }}
                 >
-                  <div className={`w-3 h-3 ${lifecycle.color} rounded-full shadow-sm`}></div>
-                  <span className="flex-1 text-sm font-semibold text-dark dark:text-white dark:text-white">{lifecycle.name}</span>
-                  <span className="text-lg font-extrabold text-dark dark:text-white dark:text-white">{lifecycle.count}</span>
+                  <div className="text-2xl">{lifecycle.icon}</div>
+                  <span className="flex-1 text-sm font-semibold text-dark dark:text-white">{lifecycle.name}</span>
+                  <span className="text-lg font-extrabold text-dark dark:text-white">{lifecycle.count}</span>
                 </div>
               ))}
             </div>

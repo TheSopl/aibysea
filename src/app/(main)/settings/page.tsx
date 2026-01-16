@@ -105,11 +105,11 @@ export default function SettingsPage() {
                   onClick={() => setActiveTab(item.id)}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                     activeTab === item.id
-                      ? 'bg-gradient-to-r from-accent to-primary text-white shadow-lg'
+                      ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg border-2 border-primary/30'
                       : 'text-text-secondary dark:text-slate-300 hover:bg-light-bg dark:hover:bg-slate-700 hover:text-dark dark:hover:text-white'
                   }`}
                 >
-                  <Icon size={20} strokeWidth={2} />
+                  <Icon size={20} strokeWidth={2.5} />
                   <span className="font-bold text-sm">{item.label}</span>
                 </button>
               );

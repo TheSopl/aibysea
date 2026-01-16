@@ -1,6 +1,7 @@
 'use client';
 
 import TopBar from '@/components/layout/TopBar';
+import Image from 'next/image';
 import { useState } from 'react';
 import {
   Zap,
@@ -22,7 +23,7 @@ import {
 const agents = [
   {
     id: 1,
-    name: 'Rashed AI',
+    name: 'Rashed',
     model: 'GPT-4 Turbo',
     status: 'active',
     specialization: 'Customer Support & Sales',
@@ -31,30 +32,7 @@ const agents = [
     successRate: 94,
     activeConversations: 23,
     description: 'Primary agent handling customer support and sales inquiries with high accuracy.',
-  },
-  {
-    id: 2,
-    name: 'Ahmed AI',
-    model: 'GPT-4',
-    status: 'standby',
-    specialization: 'Technical Support',
-    totalConversations: 856,
-    avgResponseTime: 3.2,
-    successRate: 89,
-    activeConversations: 0,
-    description: 'Specialized in handling technical queries and troubleshooting.',
-  },
-  {
-    id: 3,
-    name: 'Sales Pro AI',
-    model: 'Claude 3.5 Sonnet',
-    status: 'active',
-    specialization: 'Sales & Lead Qualification',
-    totalConversations: 543,
-    avgResponseTime: 1.8,
-    successRate: 96,
-    activeConversations: 15,
-    description: 'Advanced sales agent focused on lead qualification and conversion.',
+    photo: '/rashed.jpeg',
   },
 ];
 
@@ -80,8 +58,8 @@ export default function AgentsPage() {
               </div>
               <TrendingUp size={20} className="text-primary dark:text-primary" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{agents.filter(a => a.status === 'active').length}</h3>
-            <p className="text-sm text-text-secondary dark:text-slate-400 font-bold">Active Agents</p>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">1</h3>
+            <p className="text-sm text-text-secondary dark:text-slate-400 font-bold">Active Agent</p>
           </div>
 
           <div
@@ -170,12 +148,13 @@ export default function AgentsPage() {
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-4">
-                        <div className={`w-14 h-14 rounded-xl flex items-center justify-center shadow-lg ${
-                          agent.status === 'active'
-                            ? 'bg-gradient-to-br from-primary to-accent'
-                            : 'bg-gray-400'
-                        }`}>
-                          <Zap size={28} className="text-white" />
+                        <div className="relative w-14 h-14 rounded-xl overflow-hidden shadow-lg">
+                          <Image
+                            src={agent.photo}
+                            alt={agent.name}
+                            fill
+                            className="object-cover"
+                          />
                         </div>
                         <div>
                           <div className="flex items-center gap-3 mb-1">
