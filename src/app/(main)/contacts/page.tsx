@@ -6,39 +6,63 @@ import { MoreVertical, Mail, Phone, Edit, Trash } from 'lucide-react';
 const contacts = [
   {
     id: 1,
-    name: 'Sarah Johnson',
+    name: 'Alex Rivera',
+    email: 'alex.rivera@techcorp.com',
     channel: 'WhatsApp',
     status: 'active',
     lastMessage: '2m ago',
-    tags: ['VIP', 'Support'],
+    lifecycle: 'Customer',
     assignee: 'Rashed',
   },
   {
     id: 2,
-    name: 'Mike Chen',
+    name: 'Maya Patel',
+    email: 'maya.patel@innovate.io',
     channel: 'Telegram',
     status: 'active',
     lastMessage: '5m ago',
-    tags: ['Sales'],
+    lifecycle: 'Lead',
     assignee: 'Ahmed',
   },
   {
     id: 3,
-    name: 'Emma Wilson',
+    name: 'James Kim',
+    email: 'j.kim@enterprise.co',
     channel: 'WhatsApp',
     status: 'inactive',
     lastMessage: '2h ago',
-    tags: ['Support', 'Priority'],
+    lifecycle: 'Prospect',
     assignee: 'Rashed',
   },
   {
     id: 4,
-    name: 'John Doe',
+    name: 'Sofia Andersson',
+    email: 'sofia@nordicsolutions.se',
     channel: 'Facebook',
     status: 'active',
     lastMessage: '10m ago',
-    tags: ['Billing'],
+    lifecycle: 'Qualified Lead',
     assignee: 'Sarah',
+  },
+  {
+    id: 5,
+    name: 'Omar Hassan',
+    email: 'omar.h@globalventures.ae',
+    channel: 'Instagram',
+    status: 'active',
+    lastMessage: '1h ago',
+    lifecycle: 'Customer',
+    assignee: 'Ahmed',
+  },
+  {
+    id: 6,
+    name: 'Elena Rodriguez',
+    email: 'elena@startuplab.mx',
+    channel: 'WhatsApp',
+    status: 'active',
+    lastMessage: '25m ago',
+    lifecycle: 'Lead',
+    assignee: 'Rashed',
   },
 ];
 
@@ -48,7 +72,12 @@ export default function ContactsPage() {
       <TopBar title="Contacts" />
 
       <div className="p-8">
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div
+          className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500"
+          style={{
+            animation: 'scaleIn 0.5s ease-out both'
+          }}
+        >
           {/* Table Header */}
           <div className="p-6 border-b border-gray-200">
             <h2 className="text-xl font-extrabold text-dark">Authors Table</h2>
@@ -73,7 +102,7 @@ export default function ContactsPage() {
                     Last Message
                   </th>
                   <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">
-                    Tags
+                    Lifecycle
                   </th>
                   <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">
                     Assignee
@@ -84,8 +113,14 @@ export default function ContactsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {contacts.map((contact) => (
-                  <tr key={contact.id} className="hover:bg-light-bg transition-colors">
+                {contacts.map((contact, index) => (
+                  <tr
+                    key={contact.id}
+                    className="hover:bg-light-bg transition-all duration-300 hover:scale-[1.01] hover:shadow-md"
+                    style={{
+                      animation: `fadeIn 0.4s ease-out ${index * 0.05}s both`
+                    }}
+                  >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold">
@@ -93,7 +128,7 @@ export default function ContactsPage() {
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-dark">{contact.name}</p>
-                          <p className="text-xs text-text-secondary">contact@email.com</p>
+                          <p className="text-xs text-text-secondary">{contact.email}</p>
                         </div>
                       </div>
                     </td>
@@ -117,16 +152,15 @@ export default function ContactsPage() {
                       {contact.lastMessage}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex gap-2">
-                        {contact.tags.map((tag, index) => (
-                          <span
-                            key={index}
-                            className="px-2 py-1 bg-primary/20 text-primary text-xs font-semibold rounded"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                      <span className={`inline-flex px-3 py-1.5 text-xs font-bold rounded-lg shadow-sm ${
+                        contact.lifecycle === 'Customer' ? 'bg-green/20 text-green border border-green/30' :
+                        contact.lifecycle === 'Lead' ? 'bg-blue/20 text-blue border border-blue/30' :
+                        contact.lifecycle === 'Qualified Lead' ? 'bg-primary/20 text-primary border border-primary/30' :
+                        contact.lifecycle === 'Prospect' ? 'bg-amber/20 text-amber border border-amber/30' :
+                        'bg-gray-200 text-gray-700 border border-gray-300'
+                      }`}>
+                        {contact.lifecycle}
+                      </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
