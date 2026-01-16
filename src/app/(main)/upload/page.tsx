@@ -153,7 +153,7 @@ export default function UploadPage() {
   const getProgressBarColor = (status: string) => {
     if (status === 'completed') return 'bg-gradient-to-r from-green-400 to-green-600';
     if (status === 'failed') return 'bg-gradient-to-r from-red-400 to-red-600';
-    return 'bg-gradient-to-r from-orange-400 to-red-500';
+    return 'bg-gradient-to-r from-blue-400 to-blue-600';
   };
 
   const processingDocs = uploads.filter(u => u.status === 'processing');
@@ -168,32 +168,32 @@ export default function UploadPage() {
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0s both'
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Upload size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500" />
+              <TrendingUp size={20} className="text-blue-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-dark mb-1">{statistics.totalProcessed}</h3>
             <p className="text-sm text-text-secondary font-bold">Documents Processed</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.1s both'
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Clock size={24} className="text-white" />
               </div>
-              <Activity size={20} className="text-orange-500" />
+              <Activity size={20} className="text-blue-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-dark mb-1">
               {statistics.avgProcessingTime}m
@@ -202,16 +202,16 @@ export default function UploadPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.2s both'
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <BarChart3 size={20} className="text-orange-500" />
+              <BarChart3 size={20} className="text-blue-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-dark mb-1">
               {statistics.successRate}%
@@ -220,16 +220,16 @@ export default function UploadPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.3s both'
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500" />
+              <TrendingUp size={20} className="text-blue-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-dark mb-1">{failedDocs}</h3>
             <p className="text-sm text-text-secondary font-bold">Failed Uploads</p>
@@ -241,8 +241,8 @@ export default function UploadPage() {
           <div
             className={`lg:col-span-2 rounded-2xl p-8 border-2 border-dashed transition-all duration-300 ${
               dragActive
-                ? 'border-orange-500 bg-orange-50/50 shadow-lg'
-                : 'border-orange-300 bg-orange-50/30 hover:border-orange-400 hover:bg-orange-50/50'
+                ? 'border-blue-500 bg-blue-50/50 shadow-lg'
+                : 'border-blue-300 bg-blue-50/30 hover:border-orange-400 hover:bg-blue-50/50'
             }`}
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
@@ -250,7 +250,7 @@ export default function UploadPage() {
             onDrop={handleDrop}
           >
             <div className="flex flex-col items-center justify-center py-12">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center mb-4 shadow-lg">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mb-4 shadow-lg">
                 <Upload size={40} className="text-white" />
               </div>
               <h3 className="text-xl font-extrabold text-dark mb-2 text-center">
@@ -278,14 +278,14 @@ export default function UploadPage() {
                   onClick={() => setSelectedTemplate(template)}
                   className={`w-full text-left p-4 rounded-xl transition-all duration-300 border-2 ${
                     selectedTemplate.id === template.id
-                      ? 'bg-gradient-to-r from-orange-400/10 to-orange-600/10 border-orange-400 shadow-lg'
-                      : 'bg-light-bg border-transparent hover:border-orange-300'
+                      ? 'bg-gradient-to-r from-blue-400/10 to-blue-600/10 border-orange-400 shadow-lg'
+                      : 'bg-light-bg border-transparent hover:border-blue-300'
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <FileText
                       size={18}
-                      className={selectedTemplate.id === template.id ? 'text-orange-500' : 'text-text-secondary'}
+                      className={selectedTemplate.id === template.id ? 'text-blue-500' : 'text-text-secondary'}
                     />
                     <div>
                       <h4 className="font-bold text-dark text-sm">{template.name}</h4>
@@ -310,14 +310,14 @@ export default function UploadPage() {
                 return (
                   <div
                     key={doc.id}
-                    className="p-5 border-2 border-orange-200 rounded-xl hover:shadow-lg transition-all bg-gradient-to-r from-orange-50 to-transparent"
+                    className="p-5 border-2 border-blue-200 rounded-xl hover:shadow-lg transition-all bg-gradient-to-r from-orange-50 to-transparent"
                     style={{
                       animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
                     }}
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3 flex-1">
-                        <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center shadow-lg">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
                           <FileText size={20} className="text-white" />
                         </div>
                         <div className="flex-1">
@@ -334,11 +334,11 @@ export default function UploadPage() {
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs font-bold text-text-secondary">Progress</span>
-                          <span className="text-xs font-bold text-orange-600">{doc.progress}%</span>
+                          <span className="text-xs font-bold text-blue-600">{doc.progress}%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inset">
                           <div
-                            className="bg-gradient-to-r from-orange-400 to-red-500 h-3 rounded-full transition-all duration-500 shadow-lg shadow-orange-500/50"
+                            className="bg-gradient-to-r from-orange-400 to-red-500 h-3 rounded-full transition-all duration-500 shadow-lg shadow-blue-500/50"
                             style={{ width: `${doc.progress}%` }}
                           ></div>
                         </div>
@@ -369,7 +369,7 @@ export default function UploadPage() {
                     ? 'bg-green-50/30 border-green-200'
                     : upload.status === 'failed'
                       ? 'bg-red-50/30 border-red-200'
-                      : 'bg-orange-50/30 border-orange-200'
+                      : 'bg-blue-50/30 border-blue-200'
                 }`}
                 style={{
                   animation: `fadeIn 0.5s ease-out ${0.6 + index * 0.1}s both`
@@ -383,7 +383,7 @@ export default function UploadPage() {
                         ? 'bg-gradient-to-br from-green-400 to-green-600'
                         : upload.status === 'failed'
                           ? 'bg-gradient-to-br from-red-400 to-red-600'
-                          : 'bg-gradient-to-br from-orange-400 to-orange-600'
+                          : 'bg-gradient-to-br from-blue-400 to-blue-600'
                     }`}>
                       <FileText size={20} className="text-white" />
                     </div>
@@ -421,11 +421,11 @@ export default function UploadPage() {
                   <div className="mb-4">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-bold text-text-secondary">Processing Status</span>
-                      <span className="text-xs font-bold text-orange-600">{upload.progress}%</span>
+                      <span className="text-xs font-bold text-blue-600">{upload.progress}%</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden shadow-inset">
                       <div
-                        className={`${getProgressBarColor(upload.status)} h-2.5 rounded-full transition-all duration-500 shadow-md shadow-orange-500/30`}
+                        className={`${getProgressBarColor(upload.status)} h-2.5 rounded-full transition-all duration-500 shadow-md shadow-blue-500/30`}
                         style={{ width: `${upload.progress}%` }}
                       ></div>
                     </div>
@@ -449,8 +449,8 @@ export default function UploadPage() {
                 {/* Action Buttons */}
                 <div className="flex items-center gap-2">
                   <button className="flex-1 p-2 hover:bg-white/50 rounded-lg transition-colors group flex items-center justify-center gap-2">
-                    <Eye size={16} className="text-text-secondary group-hover:text-orange-500" />
-                    <span className="text-xs font-bold text-text-secondary group-hover:text-orange-500">View</span>
+                    <Eye size={16} className="text-text-secondary group-hover:text-blue-500" />
+                    <span className="text-xs font-bold text-text-secondary group-hover:text-blue-500">View</span>
                   </button>
                   <button
                     onClick={() => deleteUpload(upload.id)}

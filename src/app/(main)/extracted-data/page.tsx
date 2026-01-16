@@ -239,56 +239,56 @@ export default function ExtractedDataPage() {
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FileText size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500" />
+              <TrendingUp size={20} className="text-blue-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-dark mb-1">{totalExtractions}</h3>
             <p className="text-sm text-text-secondary font-bold">Total Extractions</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.1s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <BarChart3 size={24} className="text-white" />
               </div>
-              <Zap size={20} className="text-orange-500" />
+              <Zap size={20} className="text-blue-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-dark mb-1">{avgConfidence}%</h3>
             <p className="text-sm text-text-secondary font-bold">Accuracy Score</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.2s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <Activity size={20} className="text-orange-500" />
+              <Activity size={20} className="text-blue-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-dark mb-1">{highQuality}</h3>
             <p className="text-sm text-text-secondary font-bold">High Quality ({Math.round((highQuality / totalExtractions) * 100)}%)</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.3s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500" />
+              <TrendingUp size={20} className="text-blue-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-dark mb-1">{pendingReview}</h3>
             <p className="text-sm text-text-secondary font-bold">Pending Review</p>
@@ -344,11 +344,11 @@ export default function ExtractedDataPage() {
                       {/* Main Row */}
                       <tr
                         onClick={() => setExpandedId(expandedId === item.id ? null : item.id)}
-                        className="hover:bg-orange-50/30 cursor-pointer transition-all duration-300 border-l-4 border-l-transparent hover:border-l-orange-400"
+                        className="hover:bg-blue-50/30 cursor-pointer transition-all duration-300 border-l-4 border-l-transparent hover:border-l-orange-400"
                       >
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg">
+                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg">
                               <FileText size={18} className="text-white" />
                             </div>
                             <div>
@@ -409,7 +409,7 @@ export default function ExtractedDataPage() {
 
                       {/* Expanded Detail Row */}
                       {expandedId === item.id && (
-                        <tr className="bg-orange-50/30 border-l-4 border-l-orange-400">
+                        <tr className="bg-blue-50/30 border-l-4 border-l-orange-400">
                           <td colSpan={6} className="px-6 py-6">
                             <div className="space-y-4">
                               {/* Edit Mode Toggle */}
@@ -419,7 +419,7 @@ export default function ExtractedDataPage() {
                                   <div className="flex items-center gap-2">
                                     <button
                                       onClick={() => saveEdits(item.id)}
-                                      className="px-4 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg font-bold text-xs hover:shadow-lg transition-all flex items-center gap-2"
+                                      className="px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg font-bold text-xs hover:shadow-lg transition-all flex items-center gap-2"
                                     >
                                       <Save size={14} />
                                       Save Changes
@@ -464,7 +464,7 @@ export default function ExtractedDataPage() {
                                             [`${item.id}-${field.name}`]: e.target.value
                                           })
                                         }
-                                        className="w-full px-3 py-2 bg-orange-50 border-2 border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm font-semibold text-dark"
+                                        className="w-full px-3 py-2 bg-orange-50 border-2 border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm font-semibold text-dark"
                                       />
                                     ) : (
                                       <p className="text-sm font-semibold text-dark mb-2">{field.value}</p>
@@ -498,7 +498,7 @@ export default function ExtractedDataPage() {
                               {/* Action Buttons */}
                               {editingId !== item.id && (
                                 <div className="flex items-center gap-2 pt-4 border-t border-gray-200">
-                                  <button className="px-4 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg font-bold text-xs hover:shadow-lg transition-all flex items-center gap-2">
+                                  <button className="px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg font-bold text-xs hover:shadow-lg transition-all flex items-center gap-2">
                                     <CheckCircle size={14} />
                                     Approve
                                   </button>

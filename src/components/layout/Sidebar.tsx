@@ -107,7 +107,7 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-3 space-y-2 overflow-y-auto">
+      <nav className="flex-1 p-3 space-y-2 overflow-hidden">
         {/* Top Section */}
         {navigation.topSection.map(item => renderNavItem(item))}
 

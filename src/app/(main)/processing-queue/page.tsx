@@ -260,56 +260,56 @@ export default function ProcessingQueuePage() {
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Activity size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500" />
+              <TrendingUp size={20} className="text-blue-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-dark mb-1">{activeJobs}</h3>
             <p className="text-sm text-text-secondary font-bold">Active Jobs</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.1s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <BarChart3 size={20} className="text-orange-500" />
+              <BarChart3 size={20} className="text-blue-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-dark mb-1">{completedToday}</h3>
             <p className="text-sm text-text-secondary font-bold">Completed Today</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.2s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500" />
+              <TrendingUp size={20} className="text-blue-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-dark mb-1">{failedJobs}</h3>
             <p className="text-sm text-text-secondary font-bold">Failed Jobs</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.3s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Clock size={24} className="text-white" />
               </div>
-              <Zap size={20} className="text-orange-500" />
+              <Zap size={20} className="text-blue-500" />
             </div>
             <h3 className="text-2xl font-extrabold text-dark mb-1">{avgProcessingTime}</h3>
             <p className="text-sm text-text-secondary font-bold">Avg Processing Time</p>
@@ -356,13 +356,13 @@ export default function ProcessingQueuePage() {
               onClick={() => setSelectedTab(tab.id)}
               className={`pb-4 px-4 font-bold text-sm relative transition-all ${
                 selectedTab === tab.id
-                  ? 'text-orange-500'
+                  ? 'text-blue-500'
                   : 'text-text-secondary hover:text-dark'
               }`}
             >
               {tab.label} ({tab.count})
               {selectedTab === tab.id && (
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 to-orange-600"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
               )}
             </button>
           ))}
@@ -376,7 +376,7 @@ export default function ProcessingQueuePage() {
                 <div
                   key={job.id}
                   onClick={() => setSelectedJob(job)}
-                  className={`p-6 cursor-pointer transition-all duration-300 hover:bg-orange-50/30 border-l-4 ${
+                  className={`p-6 cursor-pointer transition-all duration-300 hover:bg-blue-50/30 border-l-4 ${
                     job.status === 'processing'
                       ? 'border-l-orange-400 hover:shadow-md'
                       : job.status === 'completed'
@@ -427,7 +427,7 @@ export default function ProcessingQueuePage() {
                                 idx < job.currentStage
                                   ? 'bg-green-500 text-white'
                                   : idx === job.currentStage
-                                  ? 'bg-gradient-to-br from-orange-400 to-orange-600 text-white animate-pulse'
+                                  ? 'bg-gradient-to-br from-blue-400 to-blue-600 text-white animate-pulse'
                                   : 'bg-gray-200 text-gray-600'
                               }`}>
                                 {idx < job.currentStage ? (
@@ -454,7 +454,7 @@ export default function ProcessingQueuePage() {
                           <div className="col-span-full">
                             <div className="flex items-center justify-between mb-1">
                               <span className="text-xs font-bold text-text-secondary">Progress</span>
-                              <span className="text-xs font-bold text-orange-600">{job.progress}%</span>
+                              <span className="text-xs font-bold text-blue-600">{job.progress}%</span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
                               <div
@@ -496,7 +496,7 @@ export default function ProcessingQueuePage() {
                       )}
                       {job.status === 'failed' && (
                         <button className="p-2 hover:bg-light-bg rounded-lg transition-colors" title="Retry">
-                          <Play size={18} className="text-orange-500" />
+                          <Play size={18} className="text-blue-500" />
                         </button>
                       )}
                       {job.status === 'completed' && (
