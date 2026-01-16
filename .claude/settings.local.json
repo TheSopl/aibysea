@@ -24,7 +24,8 @@
       "Bash(npm install:*)",
       "Bash(ls:*)",
       "WebFetch(domain:www.figma.com)",
-      "Skill(gsd:create-roadmap)"
+      "Skill(gsd:create-roadmap)",
+      "Skill(gsd:plan-phase)"
     ]
   }
 }
