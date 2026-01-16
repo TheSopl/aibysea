@@ -9,8 +9,26 @@ const voiceAgents = ['Sales Voice Agent', 'Support Voice Agent', 'Enterprise Voi
 const languages = ['English', 'Spanish', 'French', 'Arabic', 'German', 'Mandarin'];
 const queueBehaviors = ['Round-robin', 'Random', 'Skill-based', 'Load-balanced'];
 
+type VoiceSettings = {
+  greetingMessage: string;
+  greetingEnabled: boolean;
+  language: string;
+  voicemailEnabled: boolean;
+  voicemailGreeting: string;
+  maxVoicemailDuration: number;
+  saveTranscription: boolean;
+  defaultAgent: string;
+  queueBehavior: string;
+  maxConcurrentCalls: number;
+  callTimeout: number;
+  recordingEnabled: boolean;
+  dtmfEnabled: boolean;
+  callTransferRules: string;
+  webhookUrl: string;
+};
+
 export default function VoiceSettingsPage() {
-  const [settings, setSettings] = useState({
+  const [settings, setSettings] = useState<VoiceSettings>({
     greetingMessage: 'Thank you for calling AI BY SEA. How can we assist you today?',
     greetingEnabled: true,
     language: 'English',
@@ -30,14 +48,14 @@ export default function VoiceSettingsPage() {
 
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
 
-  const handleToggle = (field: string) => {
+  const handleToggle = (field: keyof VoiceSettings) => {
     setSettings(prev => ({
       ...prev,
       [field]: !prev[field]
     }));
   };
 
-  const handleInputChange = (field: string, value: string | number) => {
+  const handleInputChange = (field: keyof VoiceSettings, value: string | number) => {
     setSettings(prev => ({
       ...prev,
       [field]: value
