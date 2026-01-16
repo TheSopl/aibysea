@@ -101,13 +101,14 @@ export default function Sidebar() {
   return (
     <div className="fixed left-0 top-0 h-full w-20 bg-gradient-to-b from-[#1a1a2e] to-[#16213e] text-white z-50 flex flex-col shadow-2xl">
       {/* Logo */}
-      <div className="p-4 flex items-center justify-center border-b border-white/10">
-        <div className="relative w-14 h-14 hover:shadow-accent/50 transition-all duration-300 hover:scale-105">
+      <div className="flex items-center justify-center border-b border-white/10 h-20">
+        <div className="relative w-16 h-16">
           <Image
             src="/images/ChatGPT Image Jan 16, 2026, 11_30_10 PM.png"
             alt="AI BY SEA"
             fill
             className="object-contain"
+            priority
           />
         </div>
       </div>
