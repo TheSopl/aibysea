@@ -178,7 +178,7 @@ export default function InboxPage() {
         {/* Column 1: Conversation List */}
         <div className="w-80 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col">
           {/* Filter Tabs */}
-          <div className="p-4 border-b border-gray-200 dark:border-slate-700">
+          <div className="p-4 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
             <div className="flex gap-2 mb-4">
               <button
                 onClick={() => setActiveTab('all')}

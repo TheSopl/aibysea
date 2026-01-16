@@ -90,10 +90,10 @@ export default function SettingsPage() {
 
       <div className="flex h-[calc(100vh-4rem)]">
         {/* Secondary Sidebar */}
-        <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+        <div className="w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col">
           <div className="p-4 border-b border-gray-200 dark:border-slate-700">
-            <h2 className="text-lg font-extrabold text-dark">Settings</h2>
-            <p className="text-xs text-text-secondary mt-1">Manage your workspace</p>
+            <h2 className="text-lg font-extrabold text-dark dark:text-white">Settings</h2>
+            <p className="text-xs text-text-secondary dark:text-slate-400 mt-1">Manage your workspace</p>
           </div>
 
           <nav className="flex-1 p-3 space-y-1">
@@ -106,7 +106,7 @@ export default function SettingsPage() {
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                     activeTab === item.id
                       ? 'bg-gradient-to-r from-accent to-primary text-white shadow-lg'
-                      : 'text-text-secondary hover:bg-light-bg hover:text-dark'
+                      : 'text-text-secondary dark:text-slate-300 hover:bg-light-bg dark:hover:bg-slate-700 hover:text-dark dark:hover:text-white'
                   }`}
                 >
                   <Icon size={20} strokeWidth={2} />
@@ -185,14 +185,14 @@ export default function SettingsPage() {
                     {mockUsers.map((user) => (
                       <div
                         key={user.id}
-                        className="flex items-center justify-between p-4 bg-light-bg rounded-xl hover:shadow-md transition-all"
+                        className="flex items-center justify-between p-4 bg-light-bg dark:bg-slate-700 rounded-xl hover:shadow-md transition-all"
                       >
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold shadow-lg">
                             {user.name[0]}
                           </div>
                           <div>
-                            <p className="font-bold text-dark">{user.name}</p>
+                            <p className="font-bold text-dark dark:text-white">{user.name}</p>
                             <p className="text-sm text-text-secondary dark:text-slate-300">{user.email}</p>
                           </div>
                         </div>
@@ -232,32 +232,32 @@ export default function SettingsPage() {
 
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">
+                      <label className="block text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider mb-2">
                         Team Name
                       </label>
                       <input
                         type="text"
                         defaultValue="AI BY SEA"
-                        className="w-full px-4 py-3 bg-light-bg border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="w-full px-4 py-3 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">
+                      <label className="block text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider mb-2">
                         Company Website
                       </label>
                       <input
                         type="url"
                         defaultValue="https://aibysea.com"
-                        className="w-full px-4 py-3 bg-light-bg border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="w-full px-4 py-3 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">
+                      <label className="block text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider mb-2">
                         Default Language
                       </label>
-                      <select className="w-full px-4 py-3 bg-light-bg border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+                      <select className="w-full px-4 py-3 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
                         <option>English</option>
                         <option>Arabic</option>
                         <option>Spanish</option>
@@ -266,10 +266,10 @@ export default function SettingsPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">
+                      <label className="block text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider mb-2">
                         Timezone
                       </label>
-                      <select className="w-full px-4 py-3 bg-light-bg border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+                      <select className="w-full px-4 py-3 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl text-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
                         <option>UTC+3 (Dubai)</option>
                         <option>UTC+0 (GMT)</option>
                         <option>UTC-5 (EST)</option>
@@ -312,8 +312,8 @@ export default function SettingsPage() {
                 <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
-                      <h3 className="text-xl font-extrabold text-dark">Connected Channels</h3>
-                      <p className="text-sm text-text-secondary mt-1">Manage your communication channels</p>
+                      <h3 className="text-xl font-extrabold text-dark dark:text-white">Connected Channels</h3>
+                      <p className="text-sm text-text-secondary dark:text-slate-400 mt-1">Manage your communication channels</p>
                     </div>
                     <button className="px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2">
                       <Plus size={18} />
@@ -327,8 +327,8 @@ export default function SettingsPage() {
                         key={channel.id}
                         className={`p-6 rounded-xl border-2 transition-all hover:shadow-lg ${
                           channel.status === 'connected'
-                            ? 'bg-gradient-to-br from-green/5 to-primary/5 border-green/20'
-                            : 'bg-gray-50 border-gray-200'
+                            ? 'bg-gradient-to-br from-green/5 to-primary/5 border-green/20 dark:from-green/10 dark:to-primary/10'
+                            : 'bg-gray-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600'
                         }`}
                       >
                         <div className="flex items-start justify-between mb-4">
@@ -336,12 +336,12 @@ export default function SettingsPage() {
                             <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-lg ${
                               channel.status === 'connected'
                                 ? 'bg-gradient-to-br from-accent to-primary'
-                                : 'bg-gray-400'
+                                : 'bg-gray-400 dark:bg-slate-600'
                             }`}>
                               <Radio size={24} className="text-white" />
                             </div>
                             <div>
-                              <h4 className="font-extrabold text-dark">{channel.name}</h4>
+                              <h4 className="font-extrabold text-dark dark:text-white">{channel.name}</h4>
                               <p className="text-xs text-text-secondary dark:text-slate-300">{channel.type}</p>
                             </div>
                           </div>
@@ -355,24 +355,24 @@ export default function SettingsPage() {
                           <div className="flex items-center justify-between text-sm">
                             <span className="text-text-secondary dark:text-slate-300">Status</span>
                             <span className={`font-bold ${
-                              channel.status === 'connected' ? 'text-green' : 'text-gray-600'
+                              channel.status === 'connected' ? 'text-green' : 'text-gray-600 dark:text-slate-400'
                             }`}>
                               {channel.status === 'connected' ? 'Connected' : 'Disconnected'}
                             </span>
                           </div>
                           <div className="flex items-center justify-between text-sm">
                             <span className="text-text-secondary dark:text-slate-300">Conversations</span>
-                            <span className="font-bold text-dark">{channel.conversations}</span>
+                            <span className="font-bold text-dark dark:text-white">{channel.conversations}</span>
                           </div>
                         </div>
 
                         <div className="flex gap-2">
                           {channel.status === 'connected' ? (
                             <>
-                              <button className="flex-1 px-3 py-2 bg-light-bg hover:bg-gray-200 text-dark rounded-lg font-bold text-sm transition-colors">
+                              <button className="flex-1 px-3 py-2 bg-light-bg dark:bg-slate-600 hover:bg-gray-200 dark:hover:bg-slate-500 text-dark dark:text-white rounded-lg font-bold text-sm transition-colors">
                                 Configure
                               </button>
-                              <button className="flex-1 px-3 py-2 bg-red/10 hover:bg-red/20 text-red rounded-lg font-bold text-sm transition-colors">
+                              <button className="flex-1 px-3 py-2 bg-red/10 dark:bg-red/20 hover:bg-red/20 dark:hover:bg-red/30 text-red rounded-lg font-bold text-sm transition-colors">
                                 Disconnect
                               </button>
                             </>
@@ -395,8 +395,8 @@ export default function SettingsPage() {
                 <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
-                      <h3 className="text-xl font-extrabold text-dark">Lifecycle Stages</h3>
-                      <p className="text-sm text-text-secondary mt-1">Define and manage customer lifecycle stages</p>
+                      <h3 className="text-xl font-extrabold text-dark dark:text-white">Lifecycle Stages</h3>
+                      <p className="text-sm text-text-secondary dark:text-slate-400 mt-1">Define and manage customer lifecycle stages</p>
                     </div>
                     <button className="px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2">
                       <Plus size={18} />
@@ -408,10 +408,10 @@ export default function SettingsPage() {
                     {lifecycles.map((lifecycle, index) => (
                       <div
                         key={lifecycle.id}
-                        className="flex items-center justify-between p-5 bg-light-bg rounded-xl hover:shadow-md transition-all border-2 border-transparent hover:border-primary/20"
+                        className="flex items-center justify-between p-5 bg-light-bg dark:bg-slate-700 rounded-xl hover:shadow-md transition-all border-2 border-transparent hover:border-primary/20"
                       >
                         <div className="flex items-center gap-4 flex-1">
-                          <div className="text-2xl font-extrabold text-text-secondary w-8">
+                          <div className="text-2xl font-extrabold text-text-secondary dark:text-slate-400 w-8">
                             {index + 1}
                           </div>
                           <div className="flex-1">
@@ -426,8 +426,8 @@ export default function SettingsPage() {
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <button className="p-2 hover:bg-white dark:bg-slate-800 rounded-lg transition-colors">
-                            <Edit size={18} className="text-text-secondary hover:text-primary" />
+                          <button className="p-2 hover:bg-white dark:hover:bg-slate-600 rounded-lg transition-colors">
+                            <Edit size={18} className="text-text-secondary dark:text-slate-400 hover:text-primary" />
                           </button>
                           <button className="p-2 hover:bg-red/10 rounded-lg transition-colors">
                             <Trash size={18} className="text-red" />
