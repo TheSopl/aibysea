@@ -185,7 +185,7 @@ export default function DashboardPage() {
             return (
               <div
                 key={index}
-                className={`bg-white rounded-2xl p-6 border-l-4 ${card.borderColor} shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1`}
+                className={`bg-white dark:bg-slate-800 rounded-2xl p-6 border-l-4 ${card.borderColor} shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1`}
                 style={{
                   animation: `scaleIn 0.5s ease-out ${index * 0.1}s both`
                 }}
@@ -333,7 +333,7 @@ export default function DashboardPage() {
               {queueData.map((item, index) => (
                 <div
                   key={index}
-                  className="p-4 bg-light-bg dark:bg-slate-700 rounded-xl hover:bg-gray-100 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-md"
+                  className="p-4 bg-light-bg dark:bg-slate-700 rounded-xl hover:bg-light-bg dark:hover:bg-slate-700 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-md"
                   style={{
                     animation: `fadeIn 0.4s ease-out ${0.6 + index * 0.1}s both`
                   }}
@@ -373,7 +373,7 @@ export default function DashboardPage() {
               {topChannels.map((channel, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-light-bg p-3 rounded-lg cursor-pointer"
+                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-light-bg dark:hover:bg-slate-700 p-3 rounded-lg cursor-pointer"
                   style={{
                     animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
                   }}
@@ -398,7 +398,7 @@ export default function DashboardPage() {
               {topLifecycles.map((lifecycle, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-light-bg p-3 rounded-lg cursor-pointer"
+                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-light-bg dark:hover:bg-slate-700 p-3 rounded-lg cursor-pointer"
                   style={{
                     animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
                   }}

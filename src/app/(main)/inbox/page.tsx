@@ -176,16 +176,16 @@ export default function InboxPage() {
 
       <div className="flex h-[calc(100vh-4rem)]">
         {/* Column 1: Conversation List */}
-        <div className="w-80 bg-white border-r border-slate-700 flex flex-col">
+        <div className="w-80 bg-white dark:bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col">
           {/* Filter Tabs */}
-          <div className="p-4 border-b border-slate-700">
+          <div className="p-4 border-b border-gray-200 dark:border-slate-700">
             <div className="flex gap-2 mb-4">
               <button
                 onClick={() => setActiveTab('all')}
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'all'
                     ? 'bg-primary text-white shadow-md'
-                    : 'bg-slate-700 text-slate-300 hover:bg-gray-200'
+                    : 'bg-light-bg text-text-secondary hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'
                 }`}
               >
                 All
@@ -195,7 +195,7 @@ export default function InboxPage() {
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'assigned'
                     ? 'bg-primary text-white shadow-md'
-                    : 'bg-slate-700 text-slate-300 hover:bg-gray-200'
+                    : 'bg-light-bg text-text-secondary hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'
                 }`}
               >
                 Assigned
@@ -205,7 +205,7 @@ export default function InboxPage() {
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'unassigned'
                     ? 'bg-primary text-white shadow-md'
-                    : 'bg-slate-700 text-slate-300 hover:bg-gray-200'
+                    : 'bg-light-bg text-text-secondary hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'
                 }`}
               >
                 Unassigned
@@ -214,11 +214,11 @@ export default function InboxPage() {
 
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-300" size={16} />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary dark:text-slate-300" size={16} />
               <input
                 type="text"
                 placeholder="Search conversations..."
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-700 border border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                className="w-full pl-10 pr-4 py-2.5 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
               />
             </div>
           </div>
@@ -229,7 +229,7 @@ export default function InboxPage() {
               <div
                 key={conv.id}
                 onClick={() => setSelectedConversation(conv)}
-                className={`p-4 border-b border-gray-100 cursor-pointer transition-all duration-300 hover:bg-slate-700 hover:scale-[1.01] ${
+                className={`p-4 border-b border-gray-200 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:scale-[1.01] ${
                   selectedConversation?.id === conv.id ? 'bg-primary/5 border-l-4 border-l-primary shadow-lg' : ''
                 }`}
                 style={{
@@ -238,14 +238,14 @@ export default function InboxPage() {
               >
                 <div className="flex items-start gap-3">
                   {/* Avatar */}
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold text-sm flex-shrink-0 shadow-md">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-dark dark:text-white font-bold text-sm flex-shrink-0 shadow-md">
                     {conv.avatar}
                   </div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-bold text-white text-sm">{conv.name}</span>
-                      <span className="text-xs text-slate-300">{conv.timestamp}</span>
+                      <span className="font-bold text-dark dark:text-white text-sm">{conv.name}</span>
+                      <span className="text-xs text-text-secondary dark:text-slate-300">{conv.timestamp}</span>
                     </div>
 
                     <div className="flex items-center gap-1.5 mb-2 flex-wrap">
@@ -287,9 +287,9 @@ export default function InboxPage() {
         {selectedConversation ? (
           <div className="flex-1 bg-white flex flex-col">
             {/* Chat Header */}
-            <div className="p-4 border-b border-slate-700 flex items-center justify-between bg-gradient-to-r from-white to-light-bg">
+            <div className="p-4 border-b border-gray-200 dark:border-slate-700 flex items-center justify-between bg-gradient-to-r from-white to-light-bg">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold shadow-lg">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-dark dark:text-white font-bold shadow-lg">
                   {selectedConversation.avatar}
                 </div>
                 <div>
@@ -328,14 +328,14 @@ export default function InboxPage() {
                     </div>
                   )}
                 </button>
-                <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
-                  <Phone size={20} className="text-slate-300" />
+                <button className="p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                  <Phone size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
-                <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
-                  <Video size={20} className="text-slate-300" />
+                <button className="p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                  <Video size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
-                <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
-                  <MoreVertical size={20} className="text-slate-300" />
+                <button className="p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                  <MoreVertical size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
               </div>
             </div>
@@ -384,14 +384,14 @@ export default function InboxPage() {
                 </div>
               )}
               <div className="flex items-end gap-3">
-                <button className="p-2.5 hover:bg-slate-700 rounded-lg transition-colors">
-                  <Paperclip size={20} className="text-slate-300" />
+                <button className="p-2.5 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                  <Paperclip size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
-                <button className="p-2.5 hover:bg-slate-700 rounded-lg transition-colors">
-                  <ImageIcon size={20} className="text-slate-300" />
+                <button className="p-2.5 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                  <ImageIcon size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
-                <button className="p-2.5 hover:bg-slate-700 rounded-lg transition-colors">
-                  <Smile size={20} className="text-slate-300" />
+                <button className="p-2.5 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                  <Smile size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
 
                 <div className="flex-1">
@@ -406,7 +406,7 @@ export default function InboxPage() {
                     }}
                     placeholder="Type your message..."
                     rows={2}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-700 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    className="w-full px-4 py-3 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                   />
                 </div>
 
@@ -427,7 +427,7 @@ export default function InboxPage() {
                 <Bot size={48} className="text-primary" />
               </div>
               <h3 className="text-2xl font-extrabold text-white mb-2">Select a conversation</h3>
-              <p className="text-slate-300">Choose a conversation from the list to start chatting</p>
+              <p className="text-text-secondary dark:text-slate-300">Choose a conversation from the list to start chatting</p>
             </div>
           </div>
         )}
@@ -436,7 +436,7 @@ export default function InboxPage() {
         {selectedConversation && (
           <div className="w-80 bg-white border-l border-slate-700 flex flex-col">
             {/* Tabs */}
-            <div className="p-4 border-b border-slate-700">
+            <div className="p-4 border-b border-gray-200 dark:border-slate-700">
               <div className="grid grid-cols-2 gap-1">
                 {[
                   { id: 'profile', label: 'Profile' },
@@ -450,7 +450,7 @@ export default function InboxPage() {
                     className={`px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                       contextTab === tab.id
                         ? 'bg-primary text-white shadow-md'
-                        : 'text-slate-300 hover:bg-slate-700'
+                        : 'text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-700'
                     }`}
                   >
                     {tab.label}
@@ -496,14 +496,14 @@ export default function InboxPage() {
                     <div className="w-2 h-2 bg-primary rounded-full mt-1.5"></div>
                     <div className="flex-1">
                       <p className="text-sm font-bold text-white">Conversation started</p>
-                      <p className="text-xs text-slate-300">2 hours ago</p>
+                      <p className="text-xs text-text-secondary dark:text-slate-300">2 hours ago</p>
                     </div>
                   </div>
                   <div className="flex gap-3">
                     <div className="w-2 h-2 bg-accent rounded-full mt-1.5"></div>
                     <div className="flex-1">
                       <p className="text-sm font-bold text-white">Assigned to {selectedConversation.aiAgent}</p>
-                      <p className="text-xs text-slate-300">1 hour ago</p>
+                      <p className="text-xs text-text-secondary dark:text-slate-300">1 hour ago</p>
                     </div>
                   </div>
                 </div>
@@ -514,7 +514,7 @@ export default function InboxPage() {
                   <textarea
                     placeholder="Add notes about this contact..."
                     rows={10}
-                    className="w-full px-3 py-2 bg-slate-700 border border-slate-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm"
+                    className="w-full px-3 py-2 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm"
                   />
                 </div>
               )}
@@ -528,7 +528,7 @@ export default function InboxPage() {
                       </div>
                       <div className="flex-1">
                         <h3 className="font-extrabold text-white text-base">Rashed AI</h3>
-                        <p className="text-xs text-slate-300">Primary Agent</p>
+                        <p className="text-xs text-text-secondary dark:text-slate-300">Primary Agent</p>
                       </div>
                       <div className="w-3 h-3 bg-green rounded-full shadow-lg animate-pulse"></div>
                     </div>
@@ -555,7 +555,7 @@ export default function InboxPage() {
                         <div className="mt-2">
                           <div className="flex items-center justify-between mb-1">
                             <span className="text-xs font-bold text-white">94%</span>
-                            <span className="text-xs text-slate-300">Resolved</span>
+                            <span className="text-xs text-text-secondary dark:text-slate-300">Resolved</span>
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-2">
                             <div className="bg-gradient-to-r from-primary to-accent h-2 rounded-full" style={{ width: '94%' }}></div>
@@ -572,7 +572,7 @@ export default function InboxPage() {
                       </div>
                       <div className="flex-1">
                         <h3 className="font-extrabold text-white text-base">Ahmed AI</h3>
-                        <p className="text-xs text-slate-300">Backup Agent</p>
+                        <p className="text-xs text-text-secondary dark:text-slate-300">Backup Agent</p>
                       </div>
                       <div className="w-3 h-3 bg-gray-400 rounded-full shadow-lg"></div>
                     </div>
