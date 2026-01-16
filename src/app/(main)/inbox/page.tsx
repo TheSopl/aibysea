@@ -185,8 +185,8 @@ export default function InboxPage() {
                 onClick={() => setActiveTab('all')}
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'all'
-                    ? 'bg-primary text-white shadow-md'
-                    : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
+                    ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg border border-primary'
+                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600'
                 }`}
               >
                 All
@@ -195,8 +195,8 @@ export default function InboxPage() {
                 onClick={() => setActiveTab('assigned')}
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'assigned'
-                    ? 'bg-primary text-white shadow-md'
-                    : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
+                    ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg border border-primary'
+                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600'
                 }`}
               >
                 Assigned
@@ -205,8 +205,8 @@ export default function InboxPage() {
                 onClick={() => setActiveTab('unassigned')}
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'unassigned'
-                    ? 'bg-primary text-white shadow-md'
-                    : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
+                    ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg border border-primary'
+                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600'
                 }`}
               >
                 Unassigned
