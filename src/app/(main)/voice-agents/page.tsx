@@ -71,7 +71,7 @@ export default function VoiceAgentsPage() {
     <>
       <TopBar title="Voice Agents" />
 
-      <div className="p-8">
+      <div className="p-8 bg-light-bg dark:bg-slate-900">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
@@ -86,7 +86,7 @@ export default function VoiceAgentsPage() {
               </div>
               <TrendingUp size={20} className="text-teal-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{activeAgentsCount}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{activeAgentsCount}</h3>
             <p className="text-sm text-text-secondary font-bold">Active Voice Agents</p>
           </div>
 
@@ -102,7 +102,7 @@ export default function VoiceAgentsPage() {
               </div>
               <Activity size={20} className="text-teal-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {totalCallsHandled.toLocaleString()}
             </h3>
             <p className="text-sm text-text-secondary font-bold">Total Calls Handled</p>
@@ -120,7 +120,7 @@ export default function VoiceAgentsPage() {
               </div>
               <TrendingUp size={20} className="text-teal-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {avgCallDuration}m
             </h3>
             <p className="text-sm text-text-secondary font-bold">Avg Call Duration</p>
@@ -138,7 +138,7 @@ export default function VoiceAgentsPage() {
               </div>
               <BarChart3 size={20} className="text-teal-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {avgSuccessRate}%
             </h3>
             <p className="text-sm text-text-secondary font-bold">Call Success Rate</p>
@@ -148,7 +148,7 @@ export default function VoiceAgentsPage() {
         <div className="flex gap-6">
           {/* Agents List */}
           <div className="flex-1">
-            <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-6">
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-xl font-extrabold text-dark">Your Voice Agents</h2>
@@ -190,7 +190,7 @@ export default function VoiceAgentsPage() {
                               agent.status === 'active' ? 'bg-green animate-pulse' : 'bg-gray-400'
                             }`}></div>
                           </div>
-                          <p className="text-sm text-text-secondary">{agent.model}</p>
+                          <p className="text-sm text-text-secondary dark:text-slate-300">{agent.model}</p>
                         </div>
                       </div>
 
@@ -247,14 +247,14 @@ export default function VoiceAgentsPage() {
 
           {/* Agent Details Panel */}
           <div className="w-96">
-            <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-8">
-              <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 sticky top-8">
+              <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-slate-700">
                 <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
                   <Phone size={32} className="text-white" />
                 </div>
                 <div>
                   <h3 className="text-xl font-extrabold text-dark">{selectedAgent.name}</h3>
-                  <p className="text-sm text-text-secondary">{selectedAgent.model}</p>
+                  <p className="text-sm text-text-secondary dark:text-slate-300">{selectedAgent.model}</p>
                 </div>
               </div>
 

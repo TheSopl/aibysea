@@ -128,7 +128,7 @@ export default function PhoneNumbersPage() {
     <>
       <TopBar title="Phone Numbers" />
 
-      <div className="p-8">
+      <div className="p-8 bg-light-bg dark:bg-slate-900">
         {/* Summary Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
@@ -143,7 +143,7 @@ export default function PhoneNumbersPage() {
               </div>
               <TrendingUp size={20} className="text-teal-600" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{activeCount}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{activeCount}</h3>
             <p className="text-sm text-text-secondary font-bold">Active Numbers</p>
           </div>
 
@@ -159,7 +159,7 @@ export default function PhoneNumbersPage() {
               </div>
               <TrendingUp size={20} className="text-teal-600" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">${totalCost.toFixed(2)}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">${totalCost.toFixed(2)}</h3>
             <p className="text-sm text-text-secondary font-bold">Total Monthly Cost</p>
           </div>
 
@@ -175,7 +175,7 @@ export default function PhoneNumbersPage() {
               </div>
               <TrendingUp size={20} className="text-teal-600" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{pendingCount}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{pendingCount}</h3>
             <p className="text-sm text-text-secondary font-bold">Pending Numbers</p>
           </div>
 
@@ -191,7 +191,7 @@ export default function PhoneNumbersPage() {
               </div>
               <TrendingUp size={20} className="text-teal-600" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{testCount}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{testCount}</h3>
             <p className="text-sm text-text-secondary font-bold">Test Numbers</p>
           </div>
         </div>
@@ -217,7 +217,7 @@ export default function PhoneNumbersPage() {
             return (
               <div
                 key={phone.id}
-                className={`bg-white rounded-2xl shadow-lg p-6 border-2 hover:shadow-xl transition-all duration-300 border-transparent hover:border-teal-200 ${
+                className={`bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border-2 hover:shadow-xl transition-all duration-300 border-transparent hover:border-teal-200 ${
                   isPaused ? 'opacity-75' : ''
                 }`}
                 style={{
@@ -231,7 +231,7 @@ export default function PhoneNumbersPage() {
                       <span className="text-2xl">{phone.flag}</span>
                       <div>
                         <h3 className="text-lg font-extrabold text-dark">{phone.number}</h3>
-                        <p className="text-sm text-text-secondary">{phone.country}</p>
+                        <p className="text-sm text-text-secondary dark:text-slate-300">{phone.country}</p>
                       </div>
                     </div>
                   </div>
@@ -255,21 +255,21 @@ export default function PhoneNumbersPage() {
                 </div>
 
                 {/* Details */}
-                <div className="space-y-3 mb-4 pb-4 border-b border-gray-200">
+                <div className="space-y-3 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-text-secondary">Assigned Agent</span>
+                    <span className="text-sm text-text-secondary dark:text-slate-300">Assigned Agent</span>
                     <span className="text-sm font-semibold text-dark">{phone.assignedAgent}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-text-secondary">Monthly Cost</span>
+                    <span className="text-sm text-text-secondary dark:text-slate-300">Monthly Cost</span>
                     <span className="text-sm font-semibold text-dark">${phone.monthlyCost.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-text-secondary">Incoming Calls</span>
+                    <span className="text-sm text-text-secondary dark:text-slate-300">Incoming Calls</span>
                     <span className="text-sm font-semibold text-dark">{phone.incomingCalls.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-text-secondary">Conversions</span>
+                    <span className="text-sm text-text-secondary dark:text-slate-300">Conversions</span>
                     <span className="text-sm font-semibold text-teal-600">{phone.conversions}</span>
                   </div>
                 </div>

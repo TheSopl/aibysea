@@ -353,7 +353,7 @@ export default function CallLogsPage() {
                         ) : (
                           <Phone size={16} className="text-teal-600 rotate-180" />
                         )}
-                        <span className="font-bold text-dark text-sm">{call.callerName}</span>
+                        <span className="font-bold text-dark dark:text-white text-sm">{call.callerName}</span>
                         <span className="text-xs text-gray-500">{call.callerId}</span>
                       </div>
                       <span className={`text-xs px-2 py-1 rounded-full border font-bold ${getStatusColor(call.status)}`}>
@@ -389,7 +389,7 @@ export default function CallLogsPage() {
             <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-white to-teal-50">
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h3 className="font-bold text-dark text-lg">{selectedCall.callerName}</h3>
+                  <h3 className="font-bold text-dark dark:text-white text-lg">{selectedCall.callerName}</h3>
                   <p className="text-sm text-gray-600">{selectedCall.callerId}</p>
                 </div>
                 <button className="p-2 hover:bg-gray-200 rounded-lg transition-colors">
@@ -422,8 +422,8 @@ export default function CallLogsPage() {
             {/* Detail Content */}
             <div className="flex-1 overflow-y-auto">
               {/* Transcription */}
-              <div className="p-4 border-b border-gray-200">
-                <h4 className="font-bold text-dark text-sm mb-3">Transcription</h4>
+              <div className="p-4 border-b border-gray-200 dark:border-slate-700">
+                <h4 className="font-bold text-dark dark:text-white text-sm mb-3">Transcription</h4>
                 <div className="space-y-3 max-h-64 overflow-y-auto">
                   {selectedCall.transcription.map((line, idx) => (
                     <div key={idx} className={`p-3 rounded-lg text-sm ${
@@ -441,8 +441,8 @@ export default function CallLogsPage() {
               </div>
 
               {/* Timeline */}
-              <div className="p-4 border-b border-gray-200">
-                <h4 className="font-bold text-dark text-sm mb-3">Call Timeline</h4>
+              <div className="p-4 border-b border-gray-200 dark:border-slate-700">
+                <h4 className="font-bold text-dark dark:text-white text-sm mb-3">Call Timeline</h4>
                 <div className="space-y-3 relative pl-6">
                   <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-teal-300"></div>
                   {selectedCall.events.map((event, idx) => (
@@ -458,8 +458,8 @@ export default function CallLogsPage() {
               </div>
 
               {/* Sentiment & Keywords */}
-              <div className="p-4 border-b border-gray-200">
-                <h4 className="font-bold text-dark text-sm mb-3">Call Analysis</h4>
+              <div className="p-4 border-b border-gray-200 dark:border-slate-700">
+                <h4 className="font-bold text-dark dark:text-white text-sm mb-3">Call Analysis</h4>
 
                 <div className="mb-4">
                   <label className="text-xs font-bold text-gray-600 uppercase tracking-wider">Sentiment</label>
@@ -484,7 +484,7 @@ export default function CallLogsPage() {
               </div>
 
               {/* Notes Section */}
-              <div className="p-4 border-b border-gray-200">
+              <div className="p-4 border-b border-gray-200 dark:border-slate-700">
                 <label className="text-xs font-bold text-gray-600 uppercase tracking-wider block mb-2">Notes</label>
                 <textarea
                   placeholder="Add notes about this call..."
@@ -516,7 +516,7 @@ export default function CallLogsPage() {
               <div className="w-24 h-24 mx-auto mb-6 bg-teal-100 rounded-full flex items-center justify-center">
                 <Phone size={48} className="text-teal-600" />
               </div>
-              <h3 className="text-2xl font-extrabold text-dark mb-2">Select a call</h3>
+              <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-2">Select a call</h3>
               <p className="text-gray-600">Choose a call from the list to view details</p>
             </div>
           </div>

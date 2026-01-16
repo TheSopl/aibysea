@@ -76,8 +76,8 @@ export default function VoiceSettingsPage() {
 
       <div className="p-8 max-w-4xl">
         {/* Greeting Settings */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
-          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
             <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-lg">1</span>
             </div>
@@ -89,7 +89,7 @@ export default function VoiceSettingsPage() {
             <div className="flex items-start justify-between">
               <div>
                 <label className="text-sm font-bold text-dark block mb-1">Enable Greeting</label>
-                <p className="text-xs text-text-secondary">Play greeting message when call is answered</p>
+                <p className="text-xs text-text-secondary dark:text-slate-300">Play greeting message when call is answered</p>
               </div>
               <button
                 onClick={() => handleToggle('greetingEnabled')}
@@ -141,8 +141,8 @@ export default function VoiceSettingsPage() {
         </div>
 
         {/* Voicemail Settings */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
-          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
             <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-lg">2</span>
             </div>
@@ -154,7 +154,7 @@ export default function VoiceSettingsPage() {
             <div className="flex items-start justify-between">
               <div>
                 <label className="text-sm font-bold text-dark block mb-1">Enable Voicemail</label>
-                <p className="text-xs text-text-secondary">Allow callers to leave voicemail messages</p>
+                <p className="text-xs text-text-secondary dark:text-slate-300">Allow callers to leave voicemail messages</p>
               </div>
               <button
                 onClick={() => handleToggle('voicemailEnabled')}
@@ -206,7 +206,7 @@ export default function VoiceSettingsPage() {
             <div className="flex items-start justify-between">
               <div>
                 <label className="text-sm font-bold text-dark block mb-1">Save Transcription</label>
-                <p className="text-xs text-text-secondary">Automatically transcribe voicemail messages</p>
+                <p className="text-xs text-text-secondary dark:text-slate-300">Automatically transcribe voicemail messages</p>
               </div>
               <button
                 onClick={() => handleToggle('saveTranscription')}
@@ -227,8 +227,8 @@ export default function VoiceSettingsPage() {
         </div>
 
         {/* Call Routing Settings */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
-          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
             <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-lg">3</span>
             </div>
@@ -309,8 +309,8 @@ export default function VoiceSettingsPage() {
         </div>
 
         {/* Advanced Settings */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
-          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
             <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-lg">4</span>
             </div>
@@ -322,7 +322,7 @@ export default function VoiceSettingsPage() {
             <div className="flex items-start justify-between">
               <div>
                 <label className="text-sm font-bold text-dark block mb-1">Enable Recording</label>
-                <p className="text-xs text-text-secondary">Record all incoming and outgoing calls</p>
+                <p className="text-xs text-text-secondary dark:text-slate-300">Record all incoming and outgoing calls</p>
               </div>
               <button
                 onClick={() => handleToggle('recordingEnabled')}
@@ -344,7 +344,7 @@ export default function VoiceSettingsPage() {
             <div className="flex items-start justify-between">
               <div>
                 <label className="text-sm font-bold text-dark block mb-1">Enable DTMF Tones</label>
-                <p className="text-xs text-text-secondary">Allow touch-tone input during calls</p>
+                <p className="text-xs text-text-secondary dark:text-slate-300">Allow touch-tone input during calls</p>
               </div>
               <button
                 onClick={() => handleToggle('dtmfEnabled')}
@@ -406,7 +406,7 @@ export default function VoiceSettingsPage() {
             {saveStatus === 'saving' && 'Saving...'}
             {saveStatus === 'saved' && 'Saved!'}
           </button>
-          <p className="text-sm text-text-secondary">
+          <p className="text-sm text-text-secondary dark:text-slate-300">
             {saveStatus === 'saved' && 'Settings saved successfully'}
           </p>
         </div>
