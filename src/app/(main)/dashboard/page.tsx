@@ -1,8 +1,111 @@
 'use client';
 
 import TopBar from '@/components/layout/TopBar';
-import { MessageSquare, Users, CheckCircle, TrendingUp, Calendar, Zap } from 'lucide-react';
+import { MessageSquare, Users, CheckCircle, TrendingUp, Calendar, Zap, Phone, FileText, Activity } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+
+// Service health cards data
+const serviceCards = [
+  {
+    name: 'Conversational AI',
+    status: 'Active',
+    value: '847',
+    label: 'conversations today',
+    subtitle: 'Multi-channel (WhatsApp, Telegram, Facebook)',
+    icon: MessageSquare,
+    gradient: 'from-blue-500 to-purple-500',
+    borderColor: 'border-blue-500',
+    buttonText: 'View Inbox',
+  },
+  {
+    name: 'Voice Agents',
+    status: 'Active',
+    value: '234',
+    label: 'calls today',
+    subtitle: 'Phone answering & outbound',
+    icon: Phone,
+    gradient: 'from-teal-500 to-cyan-500',
+    borderColor: 'border-teal-500',
+    buttonText: 'Manage Voice',
+  },
+  {
+    name: 'Document Intelligence',
+    status: 'Active',
+    value: '89',
+    label: 'documents processed today',
+    subtitle: 'Invoice, contract, and data extraction',
+    icon: FileText,
+    gradient: 'from-amber-500 to-red-500',
+    borderColor: 'border-amber-500',
+    buttonText: 'Process Documents',
+  },
+];
+
+// Quick stats data
+const quickStatsData = [
+  {
+    label: 'Total AI Interactions',
+    value: '12,847',
+  },
+  {
+    label: 'Active Services',
+    value: '3 of 3',
+  },
+  {
+    label: 'Cost Savings This Month',
+    value: '$23,400',
+  },
+  {
+    label: 'Automation Rate',
+    value: '87%',
+  },
+];
+
+// Activity feed data
+const activityFeedData = [
+  {
+    icon: Phone,
+    service: 'Voice Agent',
+    action: 'handled call from +1-555-0123',
+    time: '5m ago',
+    color: 'text-teal-500',
+  },
+  {
+    icon: MessageSquare,
+    service: 'Chat',
+    action: 'conversation resolved with John Doe',
+    time: '12m ago',
+    color: 'text-blue-500',
+  },
+  {
+    icon: FileText,
+    service: 'Document',
+    action: 'Invoice processed: INV-2024-001',
+    time: '23m ago',
+    color: 'text-amber-500',
+  },
+  {
+    icon: Phone,
+    service: 'Voice Agent',
+    action: 'Call transcription completed',
+    time: '1h ago',
+    color: 'text-teal-500',
+  },
+  {
+    icon: MessageSquare,
+    service: 'Chat',
+    action: 'Customer inquiry escalated to queue',
+    time: '1h 15m ago',
+    color: 'text-blue-500',
+  },
+  {
+    icon: FileText,
+    service: 'Document',
+    action: 'Contract extraction completed',
+    time: '2h ago',
+    color: 'text-amber-500',
+  },
+];
 
 // Mock data
 const statsData = [
@@ -51,9 +154,9 @@ const conversationsData = [
 ];
 
 const queueData = [
-  { name: 'Rashed AI', channel: 'WhatsApp', status: 'Handling 8 chats', color: 'from-accent to-primary' },
-  { name: 'Ahmed AI', channel: 'Telegram', status: 'Handling 5 chats', color: 'from-primary to-accent' },
-  { name: 'Sarah AI', channel: 'Facebook', status: 'Handling 3 chats', color: 'from-green to-accent' },
+  { name: 'Rashed AI', channel: 'WhatsApp', status: 'Handling 12 chats', color: 'from-accent to-primary' },
+  { name: 'Ahmed AI', channel: 'Telegram', status: 'Handling 8 chats', color: 'from-primary to-accent' },
+  { name: 'Sales Pro AI', channel: 'Multi-Channel', status: 'Handling 6 chats', color: 'from-green to-emerald-500' },
 ];
 
 const topChannels = [
@@ -62,10 +165,11 @@ const topChannels = [
   { name: 'Facebook', count: 560, color: 'bg-accent' },
 ];
 
-const topTags = [
-  { name: 'Support', count: 450, color: 'bg-primary' },
-  { name: 'Sales', count: 380, color: 'bg-accent' },
-  { name: 'Billing', count: 210, color: 'bg-amber' },
+const topLifecycles = [
+  { name: 'Customer', count: 450, color: 'bg-green' },
+  { name: 'Lead', count: 380, color: 'bg-blue' },
+  { name: 'Qualified Lead', count: 210, color: 'bg-primary' },
+  { name: 'Prospect', count: 180, color: 'bg-amber' },
 ];
 
 export default function DashboardPage() {
@@ -74,37 +178,115 @@ export default function DashboardPage() {
       <TopBar title="Dashboard" />
 
       <div className="p-8 space-y-8">
-        {/* Top Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {statsData.map((stat, index) => {
-            const Icon = stat.icon;
+        {/* Service Health Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {serviceCards.map((card, index) => {
+            const Icon = card.icon;
             return (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1"
+                className={`bg-white rounded-2xl p-6 border-l-4 ${card.borderColor} shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1`}
+                style={{
+                  animation: `scaleIn 0.5s ease-out ${index * 0.1}s both`
+                }}
               >
+                {/* Header with status badge and icon */}
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`${stat.bgColor} rounded-xl p-4 shadow-md`}>
-                    <Icon className="w-6 h-6 text-white" strokeWidth={2.5} />
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      ✅ {card.status}
+                    </span>
                   </div>
-                  <span className="text-sm font-bold text-green">{stat.change}</span>
+                  <div className={`bg-gradient-to-br ${card.gradient} rounded-lg p-3 shadow-md`}>
+                    <Icon className="w-6 h-6 text-white" strokeWidth={2} />
+                  </div>
                 </div>
+
+                {/* Service name */}
                 <p className="text-xs uppercase tracking-wider text-text-secondary font-bold mb-2">
-                  {stat.label}
+                  {card.name}
                 </p>
-                <p className="text-3xl font-extrabold text-dark">{stat.value}</p>
+
+                {/* Main metric value */}
+                <p className="text-4xl font-extrabold text-dark mb-1">{card.value}</p>
+                <p className="text-xs text-text-secondary mb-4">{card.label}</p>
+
+                {/* Subtitle */}
+                <p className="text-sm text-text-secondary mb-6">{card.subtitle}</p>
+
+                {/* Action button */}
+                <button className={`w-full py-2 px-4 bg-gradient-to-r ${card.gradient} text-white rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity duration-300`}>
+                  {card.buttonText}
+                </button>
               </div>
             );
           })}
         </div>
 
+        {/* Quick Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {quickStatsData.map((stat, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              style={{
+                animation: `fadeIn 0.4s ease-out ${0.3 + index * 0.05}s both`
+              }}
+            >
+              <p className="text-xs uppercase tracking-wider text-text-secondary font-bold mb-3">
+                {stat.label}
+              </p>
+              <p className="text-3xl font-extrabold text-dark">{stat.value}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Activity Feed */}
+        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-2">
+              <Activity className="w-5 h-5 text-primary" />
+              <h3 className="text-xl font-extrabold text-dark">Recent Activity</h3>
+            </div>
+          </div>
+          <div className="space-y-3 max-h-64 overflow-y-auto">
+            {activityFeedData.map((item, index) => {
+              const ActivityIcon = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 p-3 hover:bg-light-bg rounded-lg transition-all duration-200 cursor-pointer"
+                  style={{
+                    animation: `fadeIn 0.3s ease-out ${0.6 + index * 0.05}s both`
+                  }}
+                >
+                  <div className={`${item.color} flex-shrink-0`}>
+                    <ActivityIcon className="w-5 h-5" strokeWidth={2} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-dark">
+                      {item.service} <span className="font-normal text-text-secondary">{item.action}</span>
+                    </p>
+                  </div>
+                  <p className="text-xs text-text-secondary whitespace-nowrap flex-shrink-0">{item.time}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Main Chart + Queue */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Conversations Chart */}
-          <div className="lg:col-span-2 bg-white rounded-2xl p-8 shadow-lg">
+          <div
+            className="lg:col-span-2 bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            style={{
+              animation: 'slideInFromLeft 0.6s ease-out 0.4s both'
+            }}
+          >
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-extrabold text-dark">AI Agent Performance - This Week</h3>
-              <button className="text-sm text-primary font-semibold hover:underline">View Details</button>
+              <button className="text-sm text-primary font-semibold hover:underline transition-all duration-300 hover:scale-110">View Details</button>
             </div>
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={conversationsData}>
@@ -137,14 +319,25 @@ export default function DashboardPage() {
           </div>
 
           {/* Active AI Agents */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
+          <div
+            className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+            style={{
+              animation: 'slideInFromRight 0.6s ease-out 0.4s both'
+            }}
+          >
             <div className="flex items-center gap-2 mb-6">
-              <Zap className="w-5 h-5 text-primary" />
+              <Zap className="w-5 h-5 text-primary animate-pulse" />
               <h3 className="text-lg font-extrabold text-dark">Active Agents</h3>
             </div>
             <div className="space-y-4">
               {queueData.map((item, index) => (
-                <div key={index} className="p-4 bg-light-bg rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
+                <div
+                  key={index}
+                  className="p-4 bg-light-bg rounded-xl hover:bg-gray-100 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-md"
+                  style={{
+                    animation: `fadeIn 0.4s ease-out ${0.6 + index * 0.1}s both`
+                  }}
+                >
                   <div className="flex items-center gap-3 mb-2">
                     <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-white font-bold text-sm shadow-md`}>
                       {item.name[0]}
@@ -169,11 +362,22 @@ export default function DashboardPage() {
         {/* Bottom Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Top Channels */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
+          <div
+            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            style={{
+              animation: 'slideInFromLeft 0.6s ease-out 0.8s both'
+            }}
+          >
             <h3 className="text-xl font-extrabold text-dark mb-6">Top Channels</h3>
             <div className="space-y-4">
               {topChannels.map((channel, index) => (
-                <div key={index} className="flex items-center gap-4">
+                <div
+                  key={index}
+                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-light-bg p-3 rounded-lg cursor-pointer"
+                  style={{
+                    animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
+                  }}
+                >
                   <div className={`w-3 h-3 ${channel.color} rounded-full`}></div>
                   <span className="flex-1 text-sm font-semibold text-dark">{channel.name}</span>
                   <span className="text-lg font-extrabold text-dark">{channel.count}</span>
@@ -182,15 +386,26 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Top Tags */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
-            <h3 className="text-xl font-extrabold text-dark mb-6">Top Tags</h3>
+          {/* Top Lifecycles */}
+          <div
+            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            style={{
+              animation: 'slideInFromRight 0.6s ease-out 0.8s both'
+            }}
+          >
+            <h3 className="text-xl font-extrabold text-dark mb-6">Lifecycle Distribution</h3>
             <div className="space-y-4">
-              {topTags.map((tag, index) => (
-                <div key={index} className="flex items-center gap-4">
-                  <div className={`w-3 h-3 ${tag.color} rounded-full`}></div>
-                  <span className="flex-1 text-sm font-semibold text-dark">{tag.name}</span>
-                  <span className="text-lg font-extrabold text-dark">{tag.count}</span>
+              {topLifecycles.map((lifecycle, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-light-bg p-3 rounded-lg cursor-pointer"
+                  style={{
+                    animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
+                  }}
+                >
+                  <div className={`w-3 h-3 ${lifecycle.color} rounded-full shadow-sm`}></div>
+                  <span className="flex-1 text-sm font-semibold text-dark">{lifecycle.name}</span>
+                  <span className="text-lg font-extrabold text-dark">{lifecycle.count}</span>
                 </div>
               ))}
             </div>
