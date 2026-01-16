@@ -9,6 +9,12 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Redirect to dashboard
+    window.location.href = '/dashboard';
+  };
+
   return (
     <div className="min-h-screen flex">
       {/* Left Panel */}
@@ -28,7 +34,7 @@ export default function LoginPage() {
             <p className="text-text-secondary">Sign in to manage your AI agents and customer conversations.</p>
           </div>
 
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleLogin}>
             <div>
               <label className="block text-sm font-semibold text-dark mb-2">Email</label>
               <input
@@ -47,7 +53,7 @@ export default function LoginPage() {
               />
             </div>
 
-            <button className="w-full bg-gradient-to-r from-[#1a1a2e] to-[#16213e] text-white font-bold py-3 rounded-xl hover:shadow-xl transition-all">
+            <button type="submit" className="w-full bg-gradient-to-r from-[#1a1a2e] to-[#16213e] text-white font-bold py-3 rounded-xl hover:shadow-xl transition-all">
               Sign in
             </button>
           </form>
