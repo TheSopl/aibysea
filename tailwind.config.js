@@ -10,6 +10,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Service-specific colors
+        'service-voice': {
+          50: '#F0FDF4',
+          500: '#10B981',
+          600: '#059669',
+        },
+        'service-documents': {
+          50: '#FEF3C7',
+          500: '#F59E0B',
+          600: '#D97706',
+        },
         // Brand Color System - AI By Sea
         primary: {
           DEFAULT: '#003EF3', // Primary Blue
@@ -76,6 +87,8 @@ module.exports = {
         'purple-glow': '0 0 24px rgba(168, 85, 247, 0.3)',
         'red-glow': '0 0 24px rgba(239, 68, 68, 0.3)',
         'primary-glow': '0 0 24px rgba(0, 62, 243, 0.3)',
+        'service-voice-glow': '0 0 24px rgba(16, 185, 129, 0.4), 0 0 12px rgba(16, 185, 129, 0.2)',
+        'service-documents-glow': '0 0 24px rgba(245, 158, 11, 0.4), 0 0 12px rgba(245, 158, 11, 0.2)',
       },
       borderRadius: {
         'design': '8px',
@@ -84,6 +97,10 @@ module.exports = {
       },
       backdropBlur: {
         'design': '8px',
+      },
+      backgroundImage: {
+        'gradient-voice': 'linear-gradient(to right, #10B981, #06B6D4)',
+        'gradient-documents': 'linear-gradient(to right, #F59E0B, #EF4444)',
       },
     },
   },
