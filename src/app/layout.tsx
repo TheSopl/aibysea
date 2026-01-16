@@ -16,10 +16,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI BY SEA - Multi-Service AI Platform",
+  title: {
+    template: "AIBY SEA - %s",
+    default: "AIBY SEA",
+  },
   description: "Conversational AI, Voice Agents, and Document Intelligence in one platform",
   icons: {
-    icon: '/logo.svg',
+    icon: '/logo.png',
   },
 };
 

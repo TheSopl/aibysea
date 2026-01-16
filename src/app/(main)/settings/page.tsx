@@ -105,11 +105,11 @@ export default function SettingsPage() {
                   onClick={() => setActiveTab(item.id)}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                     activeTab === item.id
-                      ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg border-2 border-primary/30'
+                      ? 'bg-gradient-to-r from-primary to-accent text-white shadow-xl scale-105 border-l-4 border-white'
                       : 'text-text-secondary dark:text-slate-300 hover:bg-light-bg dark:hover:bg-slate-700 hover:text-dark dark:hover:text-white'
                   }`}
                 >
-                  <Icon size={20} strokeWidth={2.5} />
+                  <Icon size={20} strokeWidth={activeTab === item.id ? 3 : 2.5} />
                   <span className="font-bold text-sm">{item.label}</span>
                 </button>
               );
@@ -446,7 +446,7 @@ export default function SettingsPage() {
                   <p className="text-sm text-text-secondary mb-4">
                     Automatically move contacts between lifecycle stages based on their behavior and interactions
                   </p>
-                  <button className="px-4 py-2 bg-primary text-white rounded-lg font-bold hover:bg-primary/90 transition-colors">
+                  <button className="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-xl transition-all duration-300 hover:scale-105 shadow-lg">
                     Configure Automation
                   </button>
                 </div>

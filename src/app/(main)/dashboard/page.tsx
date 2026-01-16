@@ -1,8 +1,10 @@
 'use client';
 
 import TopBar from '@/components/layout/TopBar';
+import Image from 'next/image';
 import { MessageSquare, Users, CheckCircle, TrendingUp, Calendar, Zap, Phone, FileText, Activity } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { useEffect } from 'react';
 
 // Service health cards data
 const serviceCards = [
@@ -154,15 +156,14 @@ const conversationsData = [
 ];
 
 const queueData = [
-  { name: 'Rashed AI', channel: 'WhatsApp', status: 'Handling 12 chats', color: 'from-accent to-primary' },
-  { name: 'Ahmed AI', channel: 'Telegram', status: 'Handling 8 chats', color: 'from-primary to-accent' },
-  { name: 'Sales Pro AI', channel: 'Multi-Channel', status: 'Handling 6 chats', color: 'from-green to-emerald-500' },
+  { name: 'Rashed', channel: 'WhatsApp', status: 'Handling 12 chats', color: 'from-accent to-primary', photo: '/rashed.jpeg' },
 ];
 
 const topChannels = [
-  { name: 'WhatsApp', count: 1250, color: 'bg-green', icon: '💬' },
-  { name: 'Telegram', count: 890, color: 'bg-primary', icon: '✈️' },
-  { name: 'Facebook', count: 560, color: 'bg-accent', icon: '👥' },
+  { name: 'WhatsApp', count: 1250, logo: '/whatsapp.svg' },
+  { name: 'Telegram', count: 890, logo: '/telegram.svg' },
+  { name: 'Facebook', count: 560, logo: '/facebook.svg' },
+  { name: 'TikTok', count: 420, logo: '/tiktok.svg' },
 ];
 
 const topLifecycles = [
@@ -335,8 +336,13 @@ export default function DashboardPage() {
                   }}
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-white font-bold text-sm shadow-md`}>
-                      {item.name[0]}
+                    <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-md">
+                      <Image
+                        src={item.photo}
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-semibold text-dark dark:text-white">{item.name}</p>
@@ -374,7 +380,14 @@ export default function DashboardPage() {
                     animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
                   }}
                 >
-                  <div className="text-2xl">{channel.icon}</div>
+                  <div className="relative w-8 h-8 flex-shrink-0">
+                    <Image
+                      src={channel.logo}
+                      alt={channel.name}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                   <span className="flex-1 text-sm font-semibold text-dark dark:text-white">{channel.name}</span>
                   <span className="text-lg font-extrabold text-dark dark:text-white">{channel.count}</span>
                 </div>

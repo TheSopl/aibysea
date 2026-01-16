@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="32" height="32">
+  <linearGradient id="telegram-gradient" x1="9.858" x2="38.142" y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#33bef0"/>
+    <stop offset="1" stop-color="#0a85d9"/>
+  </linearGradient>
+  <path fill="url(#telegram-gradient)" d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z"/>
+  <path fill="#FFF" d="M10.7,23.2l26.4-10.2c1.2-0.4,2.3,0.3,1.9,2.1l0,0l-4.5,21.2c-0.3,1.5-1.2,1.9-2.4,1.2l-6.6-4.9l-3.2,3.1c-0.4,0.4-0.7,0.7-1.4,0.7l0.5-7.2l12.8-11.6c0.6-0.5-0.1-0.8-0.9-0.3L15.8,26.2l-6.5-2C7.7,23.8,7.7,22.9,10.7,23.2z"/>
+</svg>

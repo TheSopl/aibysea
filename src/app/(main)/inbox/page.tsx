@@ -1,6 +1,7 @@
 'use client';
 
 import TopBar from '@/components/layout/TopBar';
+import Image from 'next/image';
 import React, { useState } from 'react';
 import { Search, MoreVertical, Paperclip, Send, Phone, Video, UserCheck, Bot, Smile, Image as ImageIcon, Zap } from 'lucide-react';
 
@@ -16,7 +17,7 @@ const conversations = [
     lifecycle: 'Customer',
     unread: 0,
     timestamp: '2m ago',
-    aiAgent: 'Rashed AI',
+    aiAgent: 'Rashed',
     handledBy: 'ai',
   },
   {
@@ -29,7 +30,7 @@ const conversations = [
     lifecycle: 'Lead',
     unread: 3,
     timestamp: '5m ago',
-    aiAgent: 'Ahmed AI',
+    aiAgent: 'Rashed',
     handledBy: 'ai',
   },
   {
@@ -42,7 +43,7 @@ const conversations = [
     lifecycle: 'Prospect',
     unread: 1,
     timestamp: '12m ago',
-    aiAgent: 'Rashed AI',
+    aiAgent: 'Rashed',
     handledBy: 'human',
   },
   {
@@ -55,7 +56,7 @@ const conversations = [
     lifecycle: 'Qualified Lead',
     unread: 2,
     timestamp: '18m ago',
-    aiAgent: 'Sales Pro AI',
+    aiAgent: 'Rashed',
     handledBy: 'ai',
   },
   {
@@ -68,7 +69,7 @@ const conversations = [
     lifecycle: 'Customer',
     unread: 0,
     timestamp: '1h ago',
-    aiAgent: 'Rashed AI',
+    aiAgent: 'Rashed',
     handledBy: 'ai',
   },
 ];
@@ -185,7 +186,7 @@ export default function InboxPage() {
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'all'
                     ? 'bg-primary text-white shadow-md'
-                    : 'bg-light-bg text-text-secondary hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'
+                    : 'bg-light-bg dark:bg-slate-700 text-dark dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                 }`}
               >
                 All
@@ -523,11 +524,16 @@ export default function InboxPage() {
                 <div className="space-y-4">
                   <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-4 border-2 border-primary/20">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg">
-                        <Zap size={24} className="text-white" />
+                      <div className="relative w-12 h-12 rounded-xl overflow-hidden shadow-lg">
+                        <Image
+                          src="/rashed.jpeg"
+                          alt="Rashed"
+                          fill
+                          className="object-cover"
+                        />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-extrabold text-dark dark:text-white text-base">Rashed AI</h3>
+                        <h3 className="font-extrabold text-dark dark:text-white text-base">Rashed</h3>
                         <p className="text-xs text-text-secondary dark:text-slate-400">Primary Agent</p>
                       </div>
                       <div className="w-3 h-3 bg-green rounded-full shadow-lg animate-pulse"></div>
@@ -561,34 +567,6 @@ export default function InboxPage() {
                             <div className="bg-gradient-to-r from-primary to-accent h-2 rounded-full" style={{ width: '94%' }}></div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-purple/10 to-blue/10 rounded-xl p-4 border-2 border-purple/20">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-purple to-blue rounded-xl flex items-center justify-center shadow-lg">
-                        <Bot size={24} className="text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-extrabold text-dark dark:text-white text-base">Ahmed AI</h3>
-                        <p className="text-xs text-text-secondary dark:text-slate-400">Backup Agent</p>
-                      </div>
-                      <div className="w-3 h-3 bg-gray-400 rounded-full shadow-lg"></div>
-                    </div>
-
-                    <div className="space-y-3">
-                      <div>
-                        <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Status</label>
-                        <p className="text-sm text-dark dark:text-white mt-1 font-semibold">Standby</p>
-                      </div>
-                      <div>
-                        <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Model</label>
-                        <p className="text-sm text-dark dark:text-white mt-1">GPT-4</p>
-                      </div>
-                      <div>
-                        <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Specialization</label>
-                        <p className="text-sm text-dark dark:text-white mt-1">Technical Support</p>
                       </div>
                     </div>
                   </div>
