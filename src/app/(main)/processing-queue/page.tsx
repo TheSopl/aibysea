@@ -256,7 +256,7 @@ export default function ProcessingQueuePage() {
     <>
       <TopBar title="Processing Queue" />
 
-      <div className="p-8">
+      <div className="p-8 bg-light-bg dark:bg-slate-900">
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
@@ -267,9 +267,9 @@ export default function ProcessingQueuePage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Activity size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500" />
+              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{activeJobs}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{activeJobs}</h3>
             <p className="text-sm text-text-secondary font-bold">Active Jobs</p>
           </div>
 
@@ -281,9 +281,9 @@ export default function ProcessingQueuePage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <BarChart3 size={20} className="text-blue-500" />
+              <BarChart3 size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{completedToday}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{completedToday}</h3>
             <p className="text-sm text-text-secondary font-bold">Completed Today</p>
           </div>
 
@@ -295,9 +295,9 @@ export default function ProcessingQueuePage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500" />
+              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{failedJobs}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{failedJobs}</h3>
             <p className="text-sm text-text-secondary font-bold">Failed Jobs</p>
           </div>
 
@@ -309,15 +309,15 @@ export default function ProcessingQueuePage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Clock size={24} className="text-white" />
               </div>
-              <Zap size={20} className="text-blue-500" />
+              <Zap size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-2xl font-extrabold text-dark mb-1">{avgProcessingTime}</h3>
+            <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1">{avgProcessingTime}</h3>
             <p className="text-sm text-text-secondary font-bold">Avg Processing Time</p>
           </div>
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8">
           <div className="flex items-center gap-4 flex-wrap">
             {/* Search */}
             <div className="flex-1 min-w-64">
@@ -343,13 +343,13 @@ export default function ProcessingQueuePage() {
 
             {/* Filter Icon */}
             <button className="p-2.5 hover:bg-light-bg rounded-lg transition-colors">
-              <Filter size={20} className="text-text-secondary" />
+              <Filter size={20} className="text-text-secondary dark:text-slate-300" />
             </button>
           </div>
         </div>
 
         {/* Tab Navigation */}
-        <div className="mb-8 flex items-center gap-2 border-b border-gray-200 bg-white rounded-t-2xl px-6 pt-6">
+        <div className="mb-8 flex items-center gap-2 border-b border-gray-200 bg-white dark:bg-slate-800 rounded-t-2xl px-6 pt-6">
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -369,7 +369,7 @@ export default function ProcessingQueuePage() {
         </div>
 
         {/* Job Cards */}
-        <div className="bg-white rounded-b-2xl shadow-lg overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 rounded-b-2xl shadow-lg overflow-hidden">
           <div className="divide-y divide-gray-100">
             {sortedJobs.length > 0 ? (
               sortedJobs.map((job, index) => (
@@ -399,7 +399,7 @@ export default function ProcessingQueuePage() {
                     <div className="flex-1">
                       <div className="flex items-start justify-between mb-2">
                         <div>
-                          <h3 className="font-bold text-dark text-lg">{job.documentName}</h3>
+                          <h3 className="font-bold text-dark dark:text-white text-lg">{job.documentName}</h3>
                           <div className="flex items-center gap-3 text-xs text-text-secondary mt-1">
                             <span>{job.uploadTime}</span>
                             <span>•</span>
@@ -453,7 +453,7 @@ export default function ProcessingQueuePage() {
                         {job.status !== 'queued' && (
                           <div className="col-span-full">
                             <div className="flex items-center justify-between mb-1">
-                              <span className="text-xs font-bold text-text-secondary">Progress</span>
+                              <span className="text-xs font-bold text-text-secondary dark:text-slate-300">Progress</span>
                               <span className="text-xs font-bold text-blue-600">{job.progress}%</span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
@@ -496,16 +496,16 @@ export default function ProcessingQueuePage() {
                       )}
                       {job.status === 'failed' && (
                         <button className="p-2 hover:bg-light-bg rounded-lg transition-colors" title="Retry">
-                          <Play size={18} className="text-blue-500" />
+                          <Play size={18} className="text-blue-500 dark:text-blue-400" />
                         </button>
                       )}
                       {job.status === 'completed' && (
                         <button className="p-2 hover:bg-light-bg rounded-lg transition-colors" title="Export">
-                          <Download size={18} className="text-text-secondary" />
+                          <Download size={18} className="text-text-secondary dark:text-slate-300" />
                         </button>
                       )}
                       <button className="p-2 hover:bg-light-bg rounded-lg transition-colors">
-                        <MoreVertical size={18} className="text-text-secondary" />
+                        <MoreVertical size={18} className="text-text-secondary dark:text-slate-300" />
                       </button>
                     </div>
                   </div>
@@ -514,8 +514,8 @@ export default function ProcessingQueuePage() {
             ) : (
               <div className="p-12 text-center">
                 <Activity size={48} className="mx-auto text-text-secondary mb-4 opacity-30" />
-                <h3 className="text-lg font-bold text-dark mb-2">No jobs found</h3>
-                <p className="text-sm text-text-secondary">Try adjusting your filters or search query</p>
+                <h3 className="text-lg font-bold text-dark dark:text-white mb-2">No jobs found</h3>
+                <p className="text-sm text-text-secondary dark:text-slate-300">Try adjusting your filters or search query</p>
               </div>
             )}
           </div>

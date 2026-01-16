@@ -235,7 +235,7 @@ export default function ExtractedDataPage() {
     <>
       <TopBar title="Extracted Data" />
 
-      <div className="p-8">
+      <div className="p-8 bg-light-bg dark:bg-slate-900">
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
@@ -246,9 +246,9 @@ export default function ExtractedDataPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FileText size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500" />
+              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{totalExtractions}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{totalExtractions}</h3>
             <p className="text-sm text-text-secondary font-bold">Total Extractions</p>
           </div>
 
@@ -260,9 +260,9 @@ export default function ExtractedDataPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <BarChart3 size={24} className="text-white" />
               </div>
-              <Zap size={20} className="text-blue-500" />
+              <Zap size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{avgConfidence}%</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{avgConfidence}%</h3>
             <p className="text-sm text-text-secondary font-bold">Accuracy Score</p>
           </div>
 
@@ -274,9 +274,9 @@ export default function ExtractedDataPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <Activity size={20} className="text-blue-500" />
+              <Activity size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{highQuality}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{highQuality}</h3>
             <p className="text-sm text-text-secondary font-bold">High Quality ({Math.round((highQuality / totalExtractions) * 100)}%)</p>
           </div>
 
@@ -288,15 +288,15 @@ export default function ExtractedDataPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500" />
+              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark mb-1">{pendingReview}</h3>
+            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{pendingReview}</h3>
             <p className="text-sm text-text-secondary font-bold">Pending Review</p>
           </div>
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8">
           <div className="flex items-center gap-4 flex-wrap">
             {/* Search */}
             <div className="flex-1 min-w-64">
@@ -324,10 +324,10 @@ export default function ExtractedDataPage() {
         </div>
 
         {/* Data Table */}
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
+              <thead className="bg-gray-50 border-b border-gray-200 dark:border-slate-700">
                 <tr>
                   <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">Document</th>
                   <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">Template</th>
@@ -352,7 +352,7 @@ export default function ExtractedDataPage() {
                               <FileText size={18} className="text-white" />
                             </div>
                             <div>
-                              <p className="font-bold text-dark text-sm">{item.documentName}</p>
+                              <p className="font-bold text-dark dark:text-white text-sm">{item.documentName}</p>
                             </div>
                           </div>
                         </td>
@@ -360,7 +360,7 @@ export default function ExtractedDataPage() {
                           <span className="text-sm font-semibold text-dark">{item.template}</span>
                         </td>
                         <td className="px-6 py-4">
-                          <span className="text-sm text-text-secondary">{item.extractionDate}</span>
+                          <span className="text-sm text-text-secondary dark:text-slate-300">{item.extractionDate}</span>
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">
@@ -389,10 +389,10 @@ export default function ExtractedDataPage() {
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">
                             <button className="p-1.5 hover:bg-light-bg rounded-lg transition-colors" title="View Details">
-                              <Eye size={16} className="text-text-secondary" />
+                              <Eye size={16} className="text-text-secondary dark:text-slate-300" />
                             </button>
                             <button className="p-1.5 hover:bg-light-bg rounded-lg transition-colors" title="Download">
-                              <Download size={16} className="text-text-secondary" />
+                              <Download size={16} className="text-text-secondary dark:text-slate-300" />
                             </button>
                             <button className="p-1.5 hover:bg-light-bg rounded-lg transition-colors">
                               <ChevronDown
@@ -414,7 +414,7 @@ export default function ExtractedDataPage() {
                             <div className="space-y-4">
                               {/* Edit Mode Toggle */}
                               <div className="flex items-center justify-between mb-4">
-                                <h4 className="font-bold text-dark text-sm uppercase tracking-wider">Extracted Fields</h4>
+                                <h4 className="font-bold text-dark dark:text-white text-sm uppercase tracking-wider">Extracted Fields</h4>
                                 {editingId === item.id ? (
                                   <div className="flex items-center gap-2">
                                     <button
@@ -435,7 +435,7 @@ export default function ExtractedDataPage() {
                                 ) : (
                                   <button
                                     onClick={() => startEditing(item.id, item.fields)}
-                                    className="px-4 py-2 bg-light-bg text-dark rounded-lg font-bold text-xs hover:bg-orange-50 transition-all flex items-center gap-2 border border-gray-200"
+                                    className="px-4 py-2 bg-light-bg text-dark rounded-lg font-bold text-xs hover:bg-orange-50 transition-all flex items-center gap-2 border border-gray-200 dark:border-slate-700"
                                   >
                                     <Edit2 size={14} />
                                     Edit Fields
@@ -446,7 +446,7 @@ export default function ExtractedDataPage() {
                               {/* Fields Grid */}
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {item.fields.map((field, idx) => (
-                                  <div key={idx} className="p-4 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-all">
+                                  <div key={idx} className="p-4 bg-white dark:bg-slate-800 rounded-xl border border-gray-200 hover:shadow-md transition-all">
                                     <div className="flex items-start justify-between mb-2">
                                       <label className="text-xs font-bold text-text-secondary uppercase tracking-wider block">{field.name}</label>
                                       <span className={`text-xs font-bold px-2 py-0.5 rounded-full border-2 ${getConfidenceColor(field.confidence)}`}>
@@ -467,7 +467,7 @@ export default function ExtractedDataPage() {
                                         className="w-full px-3 py-2 bg-orange-50 border-2 border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm font-semibold text-dark"
                                       />
                                     ) : (
-                                      <p className="text-sm font-semibold text-dark mb-2">{field.value}</p>
+                                      <p className="text-sm font-semibold text-dark dark:text-white mb-2">{field.value}</p>
                                     )}
 
                                     {/* Confidence Bar */}
@@ -497,20 +497,20 @@ export default function ExtractedDataPage() {
 
                               {/* Action Buttons */}
                               {editingId !== item.id && (
-                                <div className="flex items-center gap-2 pt-4 border-t border-gray-200">
+                                <div className="flex items-center gap-2 pt-4 border-t border-gray-200 dark:border-slate-700">
                                   <button className="px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg font-bold text-xs hover:shadow-lg transition-all flex items-center gap-2">
                                     <CheckCircle size={14} />
                                     Approve
                                   </button>
-                                  <button className="px-4 py-2 bg-light-bg text-dark rounded-lg font-bold text-xs hover:bg-gray-100 transition-all flex items-center gap-2 border border-gray-200">
+                                  <button className="px-4 py-2 bg-light-bg text-dark rounded-lg font-bold text-xs hover:bg-gray-100 transition-all flex items-center gap-2 border border-gray-200 dark:border-slate-700">
                                     <AlertCircle size={14} />
                                     Reject & Reprocess
                                   </button>
-                                  <button className="px-4 py-2 bg-light-bg text-dark rounded-lg font-bold text-xs hover:bg-gray-100 transition-all flex items-center gap-2 border border-gray-200">
+                                  <button className="px-4 py-2 bg-light-bg text-dark rounded-lg font-bold text-xs hover:bg-gray-100 transition-all flex items-center gap-2 border border-gray-200 dark:border-slate-700">
                                     <Download size={14} />
                                     Export as CSV
                                   </button>
-                                  <button className="px-4 py-2 bg-light-bg text-dark rounded-lg font-bold text-xs hover:bg-gray-100 transition-all flex items-center gap-2 border border-gray-200">
+                                  <button className="px-4 py-2 bg-light-bg text-dark rounded-lg font-bold text-xs hover:bg-gray-100 transition-all flex items-center gap-2 border border-gray-200 dark:border-slate-700">
                                     <Eye size={14} />
                                     View Original
                                   </button>
@@ -526,8 +526,8 @@ export default function ExtractedDataPage() {
                   <tr>
                     <td colSpan={6} className="px-6 py-12 text-center">
                       <FileText size={48} className="mx-auto text-text-secondary mb-4 opacity-30" />
-                      <h3 className="text-lg font-bold text-dark mb-2">No extracted data found</h3>
-                      <p className="text-sm text-text-secondary">Try adjusting your search or filters</p>
+                      <h3 className="text-lg font-bold text-dark dark:text-white mb-2">No extracted data found</h3>
+                      <p className="text-sm text-text-secondary dark:text-slate-300">Try adjusting your search or filters</p>
                     </td>
                   </tr>
                 )}
