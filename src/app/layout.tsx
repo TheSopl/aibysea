@@ -21,13 +21,6 @@ export const metadata: Metadata = {
     default: "AI BY SEA",
   },
   description: "Conversational AI, Voice Agents, and Document Intelligence in one platform",
-  icons: {
-    icon: [
-      { url: '/images/ChatGPT Image Jan 16, 2026, 11_30_10 PM.png', sizes: '192x192', type: 'image/png' },
-    ],
-    shortcut: '/images/ChatGPT Image Jan 16, 2026, 11_30_10 PM.png',
-    apple: '/images/ChatGPT Image Jan 16, 2026, 11_30_10 PM.png',
-  },
 };
 
 export default function RootLayout({
