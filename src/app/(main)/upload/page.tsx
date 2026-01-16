@@ -303,36 +303,50 @@ export default function UploadPage() {
           <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
             <h2 className="text-xl font-extrabold text-dark mb-6">Currently Processing</h2>
             <div className="space-y-4">
-              {processingDocs.map(doc => (
-                <div key={doc.id} className="p-4 border border-orange-200 rounded-xl hover:shadow-lg transition-all">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center gap-3 flex-1">
-                      <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center">
-                        <FileText size={18} className="text-white" />
+              {processingDocs.map((doc, index) => {
+                const statusTexts = ['Analyzing...', 'Extracting...', 'Finalizing...'];
+                const statusText = statusTexts[index % statusTexts.length];
+
+                return (
+                  <div
+                    key={doc.id}
+                    className="p-5 border-2 border-orange-200 rounded-xl hover:shadow-lg transition-all bg-gradient-to-r from-orange-50 to-transparent"
+                    style={{
+                      animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    }}
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3 flex-1">
+                        <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center shadow-lg">
+                          <FileText size={20} className="text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-bold text-dark">{doc.fileName}</h4>
+                          <p className="text-xs text-text-secondary mt-0.5">{doc.template} • {doc.fileSize}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-bold text-dark">{doc.fileName}</h4>
-                        <p className="text-xs text-text-secondary mt-0.5">{doc.template} • {doc.fileSize}</p>
+                      <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold border-2 ${getStatusColor(doc.status)} animate-pulse`}>
+                        <div className="w-2 h-2 rounded-full bg-current animate-pulse"></div>
+                        {statusText}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs font-bold text-text-secondary">Progress</span>
+                          <span className="text-xs font-bold text-orange-600">{doc.progress}%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inset">
+                          <div
+                            className="bg-gradient-to-r from-orange-400 to-red-500 h-3 rounded-full transition-all duration-500 shadow-lg shadow-orange-500/50"
+                            style={{ width: `${doc.progress}%` }}
+                          ></div>
+                        </div>
                       </div>
                     </div>
-                    <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold border-2 ${getStatusColor(doc.status)} animate-pulse`}>
-                      {getStatusIcon(doc.status)}
-                      Processing
-                    </span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="flex-1">
-                      <div className="w-full bg-gray-200 rounded-full h-2.5">
-                        <div
-                          className={`${getProgressBarColor(doc.status)} h-2.5 rounded-full transition-all duration-500`}
-                          style={{ width: `${doc.progress}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                    <span className="text-sm font-bold text-dark min-w-12 text-right">{doc.progress}%</span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
@@ -402,16 +416,33 @@ export default function UploadPage() {
                   )}
                 </div>
 
-                {/* Progress Bar - only for processing */}
+                {/* Progress Bar and Status - enhanced */}
                 {upload.status === 'processing' && (
                   <div className="mb-4">
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-text-secondary">Processing Status</span>
+                      <span className="text-xs font-bold text-orange-600">{upload.progress}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden shadow-inset">
                       <div
-                        className={`${getProgressBarColor(upload.status)} h-2 rounded-full transition-all duration-500`}
+                        className={`${getProgressBarColor(upload.status)} h-2.5 rounded-full transition-all duration-500 shadow-md shadow-orange-500/30`}
                         style={{ width: `${upload.progress}%` }}
                       ></div>
                     </div>
-                    <p className="text-xs text-text-secondary mt-2 text-center">{upload.progress}% Complete</p>
+                    <p className="text-xs text-text-secondary mt-2 text-center">{['Analyzing', 'Extracting', 'Finalizing'][Math.floor(Math.random() * 3)]}...</p>
+                  </div>
+                )}
+                {upload.status === 'completed' && (
+                  <div className="mb-4 p-3 bg-green-50 rounded-lg">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-green-700">Extraction Complete</span>
+                      <span className="text-xs font-bold text-green-600">{upload.extractedFields} fields extracted</span>
+                    </div>
+                  </div>
+                )}
+                {upload.status === 'failed' && (
+                  <div className="mb-4 p-3 bg-red-50 rounded-lg">
+                    <span className="text-xs font-bold text-red-700">Extraction Failed - Retry or contact support</span>
                   </div>
                 )}
 
