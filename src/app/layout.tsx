@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   description: "Conversational AI, Voice Agents, and Document Intelligence in one platform",
   icons: {
-    icon: '/images/ChatGPT Image Jan 16, 2026, 11_30_10 PM.png',
+    icon: '/favicon.ico',
   },
 };
 
