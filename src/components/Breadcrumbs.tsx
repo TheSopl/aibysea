@@ -41,7 +41,7 @@ export function Breadcrumbs() {
 
   return (
     <div className="flex items-center gap-2 px-6 py-3 text-sm font-semibold">
-      <Link href="/dashboard" className="flex items-center gap-2 text-text-secondary hover:text-primary dark:hover:text-blue-400 transition-colors">
+      <Link href="/dashboard" className="flex items-center gap-2 text-text-secondary dark:text-slate-300 hover:text-primary dark:hover:text-blue-400 transition-colors">
         <Home size={18} />
         <span className="hidden sm:inline">Home</span>
       </Link>
@@ -52,7 +52,7 @@ export function Breadcrumbs() {
           {index === breadcrumbs.length - 1 ? (
             <span className="text-dark dark:text-white">{crumb.label}</span>
           ) : (
-            <Link href={crumb.href} className="text-text-secondary hover:text-primary dark:hover:text-blue-400 transition-colors">
+            <Link href={crumb.href} className="text-text-secondary dark:text-slate-300 hover:text-primary dark:hover:text-blue-400 transition-colors">
               {crumb.label}
             </Link>
           )}
