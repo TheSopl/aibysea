@@ -1,9 +1,10 @@
-# Roadmap: AI BY SEA v2.0 Multi-Service SaaS Platform
+# Roadmap: AI BY SEA
 
 ## Milestones
 
 - ✅ **[v1.0 MVP](milestones/v1.0-ROADMAP.md)** — Conversational AI with multi-channel inbox (Phases 1-7) — SHIPPED 2026-01-13
-- ✅ **v2.0 Multi-Service Platform** — Add Voice Agents + Document Intelligence + Dark Mode (Phases 8-12) — COMPLETE 2026-01-16
+- ✅ **v2.0 Multi-Service Platform** — Voice Agents UI + Document Intelligence UI + Dark Mode (Phases 8-12) — COMPLETE 2026-01-16
+- 🚧 **v3.0 Backend & Integrations** — Real backend connections, external service integrations (Phases 13-18) — IN PROGRESS
 
 ## Domain Expertise
 
@@ -12,7 +13,7 @@ None
 ## Phases
 
 <details>
-<summary>✅ v1.0 MVP (Phases 1-6) — SHIPPED 2026-01-13</summary>
+<summary>✅ v1.0 MVP (Phases 1-7) — SHIPPED 2026-01-13</summary>
 
 **Phase Numbering:**
 - Integer phases (1, 2, 3): Planned milestone work
@@ -25,128 +26,116 @@ None
 - [x] **Phase 4: AI Integration** - n8n webhook endpoints, AI agent handling, conversation state tracking (1/1 plan)
 - [x] **Phase 5: Human Takeover** - Agent takeover mechanism, AI pause/resume, notifications (1/1 plan)
 - [x] **Phase 6: Real-time & Polish** - Live message updates, Supabase real-time, Arabic RTL support (2/2 plans)
+- [x] **Phase 7: AI Metrics & State Dashboard** - Operator visibility into AI performance (3/3 plans)
 
 **See [v1.0 Archive](milestones/v1.0-ROADMAP.md) for full phase details and decisions.**
 
 </details>
-
-## Phases
 
 <details>
-<summary>✅ v1.0 MVP (Phases 1-6) — SHIPPED 2026-01-13</summary>
+<summary>✅ v2.0 Multi-Service Platform (Phases 8-12) — COMPLETE 2026-01-16</summary>
 
-**Phase Numbering:**
-- Integer phases (1, 2, 3): Planned milestone work
-- Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
+- [x] **Phase 8: Platform Restructure** - Unified navigation, 3-service module structure (3/3 plans)
+- [x] **Phase 9: Voice Agents UI** - Agent cards, call logs, phone numbers pages (3/3 plans)
+- [x] **Phase 10: Document Intelligence UI** - Upload, processing queue, template builder (3/3 plans)
+- [x] **Phase 11: Backend Infrastructure** - API routes with mock data for Voice & Documents (2/2 plans)
+- [x] **Phase 12: Dark Mode Implementation** - Full theme toggle across all pages (2/2 plans)
 
-- [x] **Phase 1: Foundation** - Next.js + Supabase setup, agent authentication, database schema (3/3 plans)
-- [x] **Phase 2: WhatsApp Integration** - Cloud API webhooks, message receiving and sending (3/3 plans)
-- [x] **Phase 2.1: Telegram Integration** - INSERTED - Telegram bot webhook and messaging (1/1 plan)
-- [x] **Phase 3: Inbox Core** - Two-panel layout, chat list, conversation view, contact management (3/3 plans)
-- [x] **Phase 4: AI Integration** - n8n webhook endpoints, AI agent handling, conversation state tracking (1/1 plan)
-- [x] **Phase 5: Human Takeover** - Agent takeover mechanism, AI pause/resume, notifications (1/1 plan)
-- [x] **Phase 6: Real-time & Polish** - Live message updates, Supabase real-time, Arabic RTL support (2/2 plans)
-
-**See [v1.0 Archive](milestones/v1.0-ROADMAP.md) for full phase details and decisions.**
+**Archived to:** `.planning/archive/v2.0-multi-service/`
 
 </details>
 
-### ✅ v2.0 Multi-Service Platform (Complete)
+### 🚧 v3.0 Backend & Integrations (In Progress)
 
-**Milestone Goal:** Transform AI BY SEA into a comprehensive SaaS platform offering three premium services (Conversational AI, Voice Agents, Document Intelligence) from a unified dashboard. Establish the architecture and UI structure to serve customers willing to pay $5K-50K/month per service bundle.
+**Milestone Goal:** Transform the UI-complete platform into a fully functional system with real data flow, external service integrations for voice and document processing, and production-ready backend infrastructure.
 
-#### Phase 8: Platform Restructure
+#### Phase 13: Conversational Core
 
-**Goal**: Build unified platform navigation and dashboard that showcases all 3 services cohesively with service-specific color coding and metrics.
+**Goal**: Make the inbox fully functional — real message flow from Telegram/WhatsApp webhooks through database to UI, with ability to send replies back through channels.
 
-**Depends on**: Phase 7 (v1.0 complete)
+**Depends on**: v2.0 complete
 
-**Research**: Unlikely (established design patterns, extending existing UI)
+**Research**: Unlikely (WhatsApp/Telegram already integrated in v1.0, extending existing patterns)
 
-**Plans**: 3 total
-
-Plans:
-- [x] 08-01: Update sidebar navigation with 3-service module structure (Conversational, Voice, Documents)
-- [x] 08-02: Redesign dashboard to show health/status of all 3 services with unified metrics
-- [x] 08-03: Implement service-specific color coding (teal for voice, orange for documents) and design extensions
-
-**Status**: ✅ 3 of 3 plans complete
-
-#### Phase 9: Voice Agents UI
-
-**Goal**: Complete UI module for voice agent management, call handling, and phone number configuration.
-
-**Depends on**: Phase 8
-
-**Research**: Unlikely (similar patterns to existing chat agents UI)
-
-**Plans**: 3 total
+**Plans**: TBD
 
 Plans:
-- [x] 09-01: Create Voice Agents list page with agent cards, status, metrics, and controls
-- [x] 09-02: Create Call Logs page with call history, transcription viewer, and filtering
-- [x] 09-03: Create Phone Numbers and Voice Settings pages
+- [ ] 13-01: TBD (run /gsd:plan-phase 13 to break down)
 
-**Status**: ✅ 3 of 3 plans complete
+#### Phase 14: AI Agent Management
 
-#### Phase 10: Document Intelligence UI
+**Goal**: Full CRUD for AI agents stored in database, configuration UI for personality/triggers/behaviors, and connecting agents to handle conversations.
 
-**Goal**: Complete UI module for document processing, templates, and AI-powered data extraction.
+**Depends on**: Phase 13
 
-**Depends on**: Phase 8
+**Research**: Unlikely (internal patterns, Supabase CRUD)
 
-**Research**: Unlikely (new feature area, standard UI patterns)
-
-**Plans**: 3 total
+**Plans**: TBD
 
 Plans:
-- [x] 10-01: Create Upload & Process page with drag-drop, template selection, progress tracking
-- [x] 10-02: Create Processing Queue and Extracted Data pages with visualization and editing
-- [x] 10-03: Create Template Builder for custom extraction rules and export configurations
+- [ ] 14-01: TBD
 
-**Status**: ✅ 3 of 3 plans complete
+#### Phase 15: Dashboard Metrics
 
-#### Phase 11: Backend Infrastructure
+**Goal**: Replace mock dashboard data with real database queries — conversation counts, response times, AI confidence scores, health score calculations.
 
-**Goal**: Create API routes, mock data, and database schema extensions to support Voice Agents and Document Intelligence services.
+**Depends on**: Phase 14
 
-**Depends on**: Phases 8-10
+**Research**: Unlikely (Supabase aggregate queries, internal patterns)
 
-**Research**: Unlikely (following established API patterns from v1.0)
-
-**Plans**: 2 total
+**Plans**: TBD
 
 Plans:
-- [x] 11-01: Create API routes for voice agents (CRUD, call logs, phone numbers) with mock data
-- [x] 11-02: Create API routes for document processing with mock templates; extend Supabase schema
+- [ ] 15-01: TBD
 
-**Status**: ✅ 2 of 2 plans complete (started 2026-01-16, finished 2026-01-16)
+#### Phase 16: Voice Provider Integration
 
-#### Phase 12: Dark Mode Implementation
+**Goal**: Integrate real voice provider (Twilio/Vonage), phone number provisioning, inbound/outbound call handling, call recording and transcription.
 
-**Goal**: Implement fully functional dark mode toggle with consistent styling across all pages - white text on dark slate background for dark mode, black text on light background for light mode.
+**Depends on**: Phase 13
 
-**Depends on**: Phase 11
+**Research**: Likely (external API integration, webhook patterns, telephony concepts)
 
-**Research**: ✅ Complete (12-RESEARCH.md) - Tailwind v4 dark mode patterns documented
+**Research topics**: Twilio Voice API vs alternatives, phone number provisioning, call webhooks, recording/transcription options
 
-**Plans**: 2 total
+**Plans**: TBD
 
 Plans:
-- [x] 12-01: Fix Tailwind v4 Dark Mode Configuration (add @variant directive, verify theme toggle works)
-- [x] 12-02: Apply Dark Mode Classes to All Pages (update 15+ pages with dark: variants matching /documents reference)
+- [ ] 16-01: TBD
 
-**Status**: ✅ 2 of 2 plans complete (started 2026-01-16, finished 2026-01-16)
+#### Phase 17: Document Processing
 
-**Details:**
-Phase 12 fixes the non-functional theme toggle by adding the missing `@variant dark` directive required by Tailwind v4, then systematically applies dark mode classes to all application pages. The `/documents` page serves as the reference for perfect dark slate blue styling.
+**Goal**: Integrate OCR/extraction provider (AWS Textract/Google Vision), implement template-based extraction logic, real processing queue with job status tracking.
+
+**Depends on**: Phase 13
+
+**Research**: Likely (external API integration, OCR accuracy patterns, extraction strategies)
+
+**Research topics**: AWS Textract vs Google Vision vs alternatives, template matching strategies, confidence scoring
+
+**Plans**: TBD
+
+Plans:
+- [ ] 17-01: TBD
+
+#### Phase 18: End-to-End Testing & Polish
+
+**Goal**: Integration tests across all services, error handling improvements, logging, and production deployment readiness.
+
+**Depends on**: Phases 15, 16, 17
+
+**Research**: Unlikely (testing patterns, deployment config)
+
+**Plans**: TBD
+
+Plans:
+- [ ] 18-01: TBD
 
 ## Progress
 
 **v1.0 MVP Execution:** ✅ Complete (Phases 1-7)
-All phases shipped successfully: 1 → 2 → 2.1 (inserted) → 3 → 4 → 5 → 6 → 7
-
 **v2.0 Multi-Service Platform:** ✅ Complete (Phases 8-12)
+**v3.0 Backend & Integrations:** 🚧 In Progress (Phases 13-18)
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -163,5 +152,11 @@ All phases shipped successfully: 1 → 2 → 2.1 (inserted) → 3 → 4 → 5 �
 | 10. Document Intelligence UI | v2.0 | 3/3 | Complete | 2026-01-16 |
 | 11. Backend Infrastructure | v2.0 | 2/2 | Complete | 2026-01-16 |
 | 12. Dark Mode Implementation | v2.0 | 2/2 | Complete | 2026-01-16 |
+| 13. Conversational Core | v3.0 | 0/? | Not started | - |
+| 14. AI Agent Management | v3.0 | 0/? | Not started | - |
+| 15. Dashboard Metrics | v3.0 | 0/? | Not started | - |
+| 16. Voice Provider Integration | v3.0 | 0/? | Not started | - |
+| 17. Document Processing | v3.0 | 0/? | Not started | - |
+| 18. E2E Testing & Polish | v3.0 | 0/? | Not started | - |
 
-**Overall Progress**: ████████████████ 100% (29/29 plans completed) — v2.0 COMPLETE
+**Overall Progress**: v3.0 — 0/6 phases complete
