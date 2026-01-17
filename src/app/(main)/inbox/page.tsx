@@ -183,9 +183,10 @@ export default function InboxPage() {
             <div className="flex gap-2 mb-4">
               <button
                 onClick={() => setActiveTab('all')}
+                style={activeTab === 'all' ? { color: '#FFFFFF' } : {}}
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'all'
-                    ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg border border-primary'
+                    ? 'bg-gradient-to-r from-primary to-accent shadow-lg border border-primary'
                     : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600'
                 }`}
               >
@@ -193,9 +194,10 @@ export default function InboxPage() {
               </button>
               <button
                 onClick={() => setActiveTab('assigned')}
+                style={activeTab === 'assigned' ? { color: '#FFFFFF' } : {}}
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'assigned'
-                    ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg border border-primary'
+                    ? 'bg-gradient-to-r from-primary to-accent shadow-lg border border-primary'
                     : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600'
                 }`}
               >
@@ -203,9 +205,10 @@ export default function InboxPage() {
               </button>
               <button
                 onClick={() => setActiveTab('unassigned')}
+                style={activeTab === 'unassigned' ? { color: '#FFFFFF' } : {}}
                 className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'unassigned'
-                    ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg border border-primary'
+                    ? 'bg-gradient-to-r from-primary to-accent shadow-lg border border-primary'
                     : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600'
                 }`}
               >
