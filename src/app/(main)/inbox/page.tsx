@@ -463,10 +463,15 @@ export default function InboxPage() {
                   <button
                     key={tab.id}
                     onClick={() => setContextTab(tab.id as any)}
-                    className={`px-3 py-2 rounded-lg text-xs font-bold transition-all ${
+                    style={contextTab === tab.id ? {
+                      background: 'linear-gradient(to right, #003EF3, #4EB6C9)',
+                      color: '#FFFFFF',
+                      borderColor: '#003EF3'
+                    } : {}}
+                    className={`px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-md border ${
                       contextTab === tab.id
-                        ? 'bg-primary text-white shadow-md'
-                        : 'text-text-secondary dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-700'
+                        ? ''
+                        : 'text-text-secondary dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-700 border-transparent'
                     }`}
                   >
                     {tab.label}
@@ -489,7 +494,17 @@ export default function InboxPage() {
                   </div>
                   <div>
                     <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">AI Agent</label>
-                    <p className="text-sm text-dark dark:text-white mt-1">{selectedConversation.aiAgent}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <div className="relative w-6 h-6 rounded-full overflow-hidden shadow-md">
+                        <Image
+                          src="/rashed.jpeg"
+                          alt="Rashed"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <p className="text-sm text-dark dark:text-white font-semibold">{selectedConversation.aiAgent}</p>
+                    </div>
                   </div>
                   <div>
                     <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Lifecycle Stage</label>

@@ -323,7 +323,9 @@ export default function DashboardPage() {
             }}
           >
             <div className="flex items-center gap-2 mb-6">
-              <Zap className="w-5 h-5 text-primary animate-pulse" />
+              <div className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg">
+                <Zap className="w-5 h-5 text-primary dark:text-white animate-pulse" />
+              </div>
               <h3 className="text-lg font-extrabold text-dark dark:text-white">Active Agents</h3>
             </div>
             <div className="space-y-4">

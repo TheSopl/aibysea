@@ -53,10 +53,12 @@ export default function AgentsPage() {
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg">
-                <Bot size={24} className="text-white" strokeWidth={2.5} />
+              <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center shadow-lg">
+                <Bot size={24} className="text-primary dark:text-white" strokeWidth={2.5} />
               </div>
-              <TrendingUp size={20} className="text-primary dark:text-primary" />
+              <div className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg">
+                <TrendingUp size={20} className="text-primary dark:text-white" />
+              </div>
             </div>
             <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">1</h3>
             <p className="text-sm text-text-secondary dark:text-slate-400 font-bold">Active Agent</p>
@@ -69,10 +71,12 @@ export default function AgentsPage() {
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-green to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
-                <MessageSquare size={24} className="text-white" strokeWidth={2.5} />
+              <div className="w-12 h-12 bg-green/10 dark:bg-green/20 rounded-xl flex items-center justify-center shadow-lg">
+                <MessageSquare size={24} className="text-green dark:text-white" strokeWidth={2.5} />
               </div>
-              <Activity size={20} className="text-green dark:text-green" />
+              <div className="p-2 bg-green/10 dark:bg-green/20 rounded-lg">
+                <Activity size={20} className="text-green dark:text-white" />
+              </div>
             </div>
             <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {agents.reduce((sum, a) => sum + a.totalConversations, 0).toLocaleString()}
@@ -87,10 +91,12 @@ export default function AgentsPage() {
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
-                <Clock size={24} className="text-white" strokeWidth={2.5} />
+              <div className="w-12 h-12 bg-blue/10 dark:bg-blue/20 rounded-xl flex items-center justify-center shadow-lg">
+                <Clock size={24} className="text-blue dark:text-white" strokeWidth={2.5} />
               </div>
-              <Zap size={20} className="text-blue dark:text-blue" />
+              <div className="p-2 bg-blue/10 dark:bg-blue/20 rounded-lg">
+                <Zap size={20} className="text-blue dark:text-white" />
+              </div>
             </div>
             <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {(agents.reduce((sum, a) => sum + a.avgResponseTime, 0) / agents.length).toFixed(1)}s
@@ -105,10 +111,12 @@ export default function AgentsPage() {
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
-                <CheckCircle size={24} className="text-white" strokeWidth={2.5} />
+              <div className="w-12 h-12 bg-purple/10 dark:bg-purple/20 rounded-xl flex items-center justify-center shadow-lg">
+                <CheckCircle size={24} className="text-purple dark:text-white" strokeWidth={2.5} />
               </div>
-              <BarChart3 size={20} className="text-purple dark:text-purple" />
+              <div className="p-2 bg-purple/10 dark:bg-purple/20 rounded-lg">
+                <BarChart3 size={20} className="text-purple dark:text-white" />
+              </div>
             </div>
             <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
               {Math.round(agents.reduce((sum, a) => sum + a.successRate, 0) / agents.length)}%
@@ -216,8 +224,13 @@ export default function AgentsPage() {
           <div className="w-96">
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 sticky top-8">
               <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-slate-700">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg">
-                  <Zap size={32} className="text-white" />
+                <div className="relative w-16 h-16 rounded-xl overflow-hidden shadow-lg">
+                  <Image
+                    src={selectedAgent.photo}
+                    alt={selectedAgent.name}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div>
                   <h3 className="text-xl font-extrabold text-dark dark:text-white">{selectedAgent.name}</h3>

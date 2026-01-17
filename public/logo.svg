@@ -1,13 +1,13 @@
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <!-- Circle/dot -->
-  <circle cx="80" cy="50" r="18" fill="#3B5998"/>
+  <!-- Circle/dot at top left -->
+  <circle cx="70" cy="45" r="16" fill="#3B5998"/>
 
-  <!-- Left diagonal stroke -->
-  <path d="M 65 75 L 100 170 L 130 170 L 95 75 Z" fill="#3B5998"/>
+  <!-- Left stroke of the A -->
+  <polygon points="55,70 85,180 115,180 85,70" fill="#3B5998"/>
 
-  <!-- Right diagonal forming A -->
-  <path d="M 105 75 L 140 170 L 170 170 L 135 75 Z" fill="#3B5998"/>
+  <!-- Right stroke of the A -->
+  <polygon points="95,70 125,180 155,180 125,70" fill="#3B5998"/>
 
-  <!-- Inner cutout for A -->
-  <path d="M 115 110 L 125 140 L 115 140 Z" fill="white"/>
+  <!-- Middle cutout to form the A shape -->
+  <polygon points="100,115 105,130 95,130" fill="#F5F5F5" opacity="0"/>
 </svg>
