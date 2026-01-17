@@ -51,16 +51,16 @@ None
 
 #### Phase 13: Conversational Core
 
-**Goal**: Make the inbox fully functional — real message flow from Telegram/WhatsApp webhooks through database to UI, with ability to send replies back through channels.
+**Goal**: Verify the existing v1.0 conversational infrastructure works end-to-end — webhooks, message flow, real-time updates, and takeover toggle.
 
 **Depends on**: v2.0 complete
 
-**Research**: Unlikely (WhatsApp/Telegram already integrated in v1.0, extending existing patterns)
+**Research**: None (verification only)
 
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 13-01: TBD (run /gsd:plan-phase 13 to break down)
+- [ ] 13-01: Verification Plan - Build check, Telegram test, WhatsApp test (optional), real-time test, takeover test
 
 #### Phase 14: AI Agent Management
 
