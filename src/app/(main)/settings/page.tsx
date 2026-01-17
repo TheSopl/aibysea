@@ -103,11 +103,15 @@ export default function SettingsPage() {
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  style={activeTab === item.id ? { color: '#FFFFFF' } : {}}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                  style={activeTab === item.id ? {
+                    background: 'linear-gradient(to right, #003EF3, #4EB6C9)',
+                    color: '#FFFFFF',
+                    borderColor: '#003EF3'
+                  } : {}}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 shadow-xl scale-105 border-2 ${
                     activeTab === item.id
-                      ? 'bg-gradient-to-r from-primary to-accent shadow-xl scale-105 border-2 border-primary'
-                      : 'text-gray-800 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-dark dark:hover:text-white border-2 border-transparent'
+                      ? ''
+                      : 'text-gray-800 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-dark dark:hover:text-white border-transparent scale-100 shadow-none'
                   }`}
                 >
                   <Icon size={20} strokeWidth={activeTab === item.id ? 3 : 2.5} style={activeTab === item.id ? { color: '#FFFFFF' } : {}} />

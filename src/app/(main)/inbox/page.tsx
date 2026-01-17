@@ -183,33 +183,45 @@ export default function InboxPage() {
             <div className="flex gap-2 mb-4">
               <button
                 onClick={() => setActiveTab('all')}
-                style={activeTab === 'all' ? { color: '#FFFFFF' } : {}}
-                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
+                style={activeTab === 'all' ? {
+                  background: 'linear-gradient(to right, #003EF3, #4EB6C9)',
+                  color: '#FFFFFF',
+                  borderColor: '#003EF3'
+                } : {}}
+                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-lg border ${
                   activeTab === 'all'
-                    ? 'bg-gradient-to-r from-primary to-accent shadow-lg border border-primary'
-                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600'
+                    ? ''
+                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border-gray-200 dark:border-slate-600'
                 }`}
               >
                 All
               </button>
               <button
                 onClick={() => setActiveTab('assigned')}
-                style={activeTab === 'assigned' ? { color: '#FFFFFF' } : {}}
-                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
+                style={activeTab === 'assigned' ? {
+                  background: 'linear-gradient(to right, #003EF3, #4EB6C9)',
+                  color: '#FFFFFF',
+                  borderColor: '#003EF3'
+                } : {}}
+                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-lg border ${
                   activeTab === 'assigned'
-                    ? 'bg-gradient-to-r from-primary to-accent shadow-lg border border-primary'
-                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600'
+                    ? ''
+                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border-gray-200 dark:border-slate-600'
                 }`}
               >
                 Assigned
               </button>
               <button
                 onClick={() => setActiveTab('unassigned')}
-                style={activeTab === 'unassigned' ? { color: '#FFFFFF' } : {}}
-                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
+                style={activeTab === 'unassigned' ? {
+                  background: 'linear-gradient(to right, #003EF3, #4EB6C9)',
+                  color: '#FFFFFF',
+                  borderColor: '#003EF3'
+                } : {}}
+                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-lg border ${
                   activeTab === 'unassigned'
-                    ? 'bg-gradient-to-r from-primary to-accent shadow-lg border border-primary'
-                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600'
+                    ? ''
+                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border-gray-200 dark:border-slate-600'
                 }`}
               >
                 Unassigned
