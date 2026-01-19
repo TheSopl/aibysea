@@ -21,6 +21,16 @@ interface Message {
   created_at: string;
 }
 
+interface ConversationRaw {
+  id: string;
+  channel: string;
+  status: string;
+  handler_type: 'ai' | 'human';
+  last_message_at: string | null;
+  contact: Contact | Contact[] | null;
+  messages: { content: string }[];
+}
+
 interface Conversation {
   id: string;
   channel: string;
@@ -29,6 +39,13 @@ interface Conversation {
   last_message_at: string | null;
   contact: Contact | null;
   messages: { content: string }[];
+}
+
+// Helper to normalize contact from Supabase (can be array or object)
+function normalizeContact(contact: Contact | Contact[] | null): Contact | null {
+  if (!contact) return null;
+  if (Array.isArray(contact)) return contact[0] || null;
+  return contact;
 }
 
 // Helper to format time ago
@@ -87,7 +104,13 @@ export default function InboxPage() {
       return;
     }
 
-    setConversations(data as unknown as Conversation[]);
+    // Normalize contacts (Supabase returns array for joins)
+    const normalized = (data as unknown as ConversationRaw[]).map(conv => ({
+      ...conv,
+      contact: normalizeContact(conv.contact),
+    }));
+
+    setConversations(normalized);
     setLoading(false);
   }, [supabase]);
 
@@ -262,9 +285,9 @@ export default function InboxPage() {
     <>
       <TopBar title="Inbox" />
 
-      <div className="flex h-[calc(100vh-4rem)]">
+      <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
         {/* Column 1: Conversation List */}
-        <div className="w-80 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col">
+        <div className="w-80 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col flex-shrink-0">
           {/* Filter Tabs */}
           <div className="p-4 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
             <div className="flex gap-2 mb-4">
@@ -359,7 +382,7 @@ export default function InboxPage() {
 
         {/* Column 2: Chat Thread */}
         {selectedConversation ? (
-          <div className="flex-1 bg-white dark:bg-slate-900 flex flex-col">
+          <div className="flex-1 bg-white dark:bg-slate-900 flex flex-col overflow-hidden">
             {/* Chat Header */}
             <div className="p-4 border-b border-gray-200 dark:border-slate-700 flex items-center justify-between bg-gradient-to-r from-white to-light-bg dark:from-slate-800 dark:to-slate-800">
               <div className="flex items-center gap-3">
@@ -523,7 +546,7 @@ export default function InboxPage() {
 
         {/* Column 3: Context Panel */}
         {selectedConversation && (
-          <div className="w-80 bg-white dark:bg-slate-800 border-l border-gray-200 dark:border-slate-700 flex flex-col">
+          <div className="w-80 bg-white dark:bg-slate-800 border-l border-gray-200 dark:border-slate-700 flex flex-col overflow-hidden flex-shrink-0">
             {/* Tabs */}
             <div className="p-4 border-b border-gray-200 dark:border-slate-700">
               <div className="grid grid-cols-2 gap-1">
