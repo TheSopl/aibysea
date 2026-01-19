@@ -2,173 +2,260 @@
 
 import TopBar from '@/components/layout/TopBar';
 import Image from 'next/image';
-import React, { useState } from 'react';
-import { Search, MoreVertical, Paperclip, Send, Phone, Video, UserCheck, Bot, Smile, Image as ImageIcon, Zap } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Search, MoreVertical, Paperclip, Send, Phone, Video, UserCheck, Bot, Smile, Image as ImageIcon } from 'lucide-react';
+import { createClient } from '@/lib/supabase/client';
 
-// Mock data
-const conversations = [
-  {
-    id: 1,
-    name: 'Alex Rivera',
-    avatar: 'AR',
-    channel: 'WhatsApp',
-    lastMessage: 'Perfect! The integration is working smoothly now.',
-    status: 'resolved',
-    lifecycle: 'Customer',
-    unread: 0,
-    timestamp: '2m ago',
-    aiAgent: 'Rashed',
-    handledBy: 'ai',
-  },
-  {
-    id: 2,
-    name: 'Maya Patel',
-    avatar: 'MP',
-    channel: 'Telegram',
-    lastMessage: 'Can you help me upgrade my subscription plan?',
-    status: 'open',
-    lifecycle: 'Lead',
-    unread: 3,
-    timestamp: '5m ago',
-    aiAgent: 'Rashed',
-    handledBy: 'ai',
-  },
-  {
-    id: 3,
-    name: 'James Kim',
-    avatar: 'JK',
-    channel: 'WhatsApp',
-    lastMessage: 'Looking for enterprise pricing options',
-    status: 'pending',
-    lifecycle: 'Prospect',
-    unread: 1,
-    timestamp: '12m ago',
-    aiAgent: 'Rashed',
-    handledBy: 'human',
-  },
-  {
-    id: 4,
-    name: 'Sofia Andersson',
-    avatar: 'SA',
-    channel: 'Facebook',
-    lastMessage: 'Great demo! When can we schedule implementation?',
-    status: 'open',
-    lifecycle: 'Qualified Lead',
-    unread: 2,
-    timestamp: '18m ago',
-    aiAgent: 'Rashed',
-    handledBy: 'ai',
-  },
-  {
-    id: 5,
-    name: 'Omar Hassan',
-    avatar: 'OH',
-    channel: 'Instagram',
-    lastMessage: 'The AI responses are incredibly accurate!',
-    status: 'resolved',
-    lifecycle: 'Customer',
-    unread: 0,
-    timestamp: '1h ago',
-    aiAgent: 'Rashed',
-    handledBy: 'ai',
-  },
-];
+// Types
+interface Contact {
+  id: string;
+  name: string | null;
+  phone: string;
+}
 
-const mockMessages = [
-  {
-    id: 1,
-    sender: 'customer',
-    text: "Hi! I'm interested in integrating your AI agents with our existing CRM system.",
-    timestamp: '2:15 PM',
-  },
-  {
-    id: 2,
-    sender: 'ai',
-    text: "Hello Alex! Great to hear from you. We have seamless integrations with major CRM platforms. Which CRM are you currently using?",
-    timestamp: '2:15 PM',
-  },
-  {
-    id: 3,
-    sender: 'customer',
-    text: "We're using Salesforce. Do you have native integration or would we need to use APIs?",
-    timestamp: '2:16 PM',
-  },
-  {
-    id: 4,
-    sender: 'ai',
-    text: "Perfect! We offer both a native Salesforce connector and REST API options. The native connector can sync contacts, conversations, and lifecycle stages automatically. Would you like me to send you the integration guide?",
-    timestamp: '2:17 PM',
-  },
-  {
-    id: 5,
-    sender: 'customer',
-    text: "Yes please! Also, what's the typical setup time?",
-    timestamp: '2:18 PM',
-  },
-  {
-    id: 6,
-    sender: 'ai',
-    text: "I've sent the integration guide to your email. Most customers complete the Salesforce integration in 2-3 hours. Our team can also handle the setup for you if needed. The integration is working smoothly now!",
-    timestamp: '2:19 PM',
-  },
-  {
-    id: 7,
-    sender: 'customer',
-    text: "Perfect! The integration is working smoothly now.",
-    timestamp: '2:28 PM',
-  },
-];
+interface Message {
+  id: string;
+  content: string;
+  direction: 'inbound' | 'outbound';
+  sender_type: 'customer' | 'ai' | 'agent';
+  created_at: string;
+}
+
+interface Conversation {
+  id: string;
+  channel: string;
+  status: string;
+  handler_type: 'ai' | 'human';
+  last_message_at: string | null;
+  contact: Contact | null;
+  messages: { content: string }[];
+}
+
+// Helper to format time ago
+function timeAgo(dateString: string | null): string {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  const now = new Date();
+  const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+  if (seconds < 60) return 'Just now';
+  if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+  if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
+  return `${Math.floor(seconds / 86400)}d ago`;
+}
+
+// Helper to get initials
+function getInitials(name: string | null, phone: string): string {
+  if (name) {
+    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  }
+  return phone.slice(-2).toUpperCase();
+}
 
 export default function InboxPage() {
-  const [selectedConversation, setSelectedConversation] = useState<typeof conversations[0] | null>(null);
+  const [conversations, setConversations] = useState<Conversation[]>([]);
+  const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [activeTab, setActiveTab] = useState<'all' | 'assigned' | 'unassigned'>('all');
   const [contextTab, setContextTab] = useState<'profile' | 'timeline' | 'notes' | 'agents'>('profile');
   const [message, setMessage] = useState('');
   const [isAIMode, setIsAIMode] = useState(true);
-  const [messages, setMessages] = useState(mockMessages);
+  const [loading, setLoading] = useState(true);
+  const [sendingMessage, setSendingMessage] = useState(false);
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  };
+  const supabase = createClient();
 
-  React.useEffect(() => {
-    scrollToBottom();
+  // Fetch conversations
+  const fetchConversations = useCallback(async () => {
+    const { data, error } = await supabase
+      .from('conversations')
+      .select(`
+        id,
+        channel,
+        status,
+        handler_type,
+        last_message_at,
+        contact:contacts(id, name, phone),
+        messages(content)
+      `)
+      .order('last_message_at', { ascending: false, nullsFirst: false })
+      .limit(1, { foreignTable: 'messages' });
+
+    if (error) {
+      console.error('Error fetching conversations:', error);
+      return;
+    }
+
+    setConversations(data as unknown as Conversation[]);
+    setLoading(false);
+  }, [supabase]);
+
+  // Fetch messages for selected conversation
+  const fetchMessages = useCallback(async (conversationId: string) => {
+    const { data, error } = await supabase
+      .from('messages')
+      .select('id, content, direction, sender_type, created_at')
+      .eq('conversation_id', conversationId)
+      .order('created_at', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching messages:', error);
+      return;
+    }
+
+    setMessages(data as Message[]);
+  }, [supabase]);
+
+  // Initial fetch
+  useEffect(() => {
+    fetchConversations();
+  }, [fetchConversations]);
+
+  // Fetch messages when conversation selected
+  useEffect(() => {
+    if (selectedConversation) {
+      fetchMessages(selectedConversation.id);
+      setIsAIMode(selectedConversation.handler_type === 'ai');
+    }
+  }, [selectedConversation, fetchMessages]);
+
+  // Real-time subscription for conversations
+  useEffect(() => {
+    const channel = supabase
+      .channel('inbox-conversations')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'conversations' },
+        () => {
+          fetchConversations();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [supabase, fetchConversations]);
+
+  // Real-time subscription for messages
+  useEffect(() => {
+    if (!selectedConversation) return;
+
+    const channel = supabase
+      .channel('inbox-messages')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'messages',
+          filter: `conversation_id=eq.${selectedConversation.id}`
+        },
+        (payload) => {
+          setMessages(prev => [...prev, payload.new as Message]);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [supabase, selectedConversation]);
+
+  // Scroll to bottom when messages change
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [messages]);
 
-  const handleSend = () => {
-    if (!message.trim()) return;
+  // Send message
+  const handleSend = async () => {
+    if (!message.trim() || !selectedConversation || sendingMessage) return;
 
-    const newMessage = {
-      id: messages.length + 1,
-      sender: isAIMode ? 'ai' : 'human',
-      text: message,
-      timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
-    };
-
-    setMessages([...messages, newMessage]);
+    setSendingMessage(true);
+    const content = message;
     setMessage('');
 
-    // TODO: Send to N8N webhook
-    console.log('Message sent:', newMessage);
+    try {
+      // Insert message to database
+      const { error: insertError } = await supabase
+        .from('messages')
+        .insert({
+          conversation_id: selectedConversation.id,
+          direction: 'outbound',
+          content,
+          content_type: 'text',
+          sender_type: 'agent',
+        });
+
+      if (insertError) {
+        console.error('Error sending message:', insertError);
+        setMessage(content); // Restore message on error
+        return;
+      }
+
+      // Update conversation timestamp
+      await supabase
+        .from('conversations')
+        .update({ last_message_at: new Date().toISOString() })
+        .eq('id', selectedConversation.id);
+
+      // Send to Telegram if channel is telegram
+      if (selectedConversation.channel === 'telegram' && selectedConversation.contact?.phone) {
+        const chatId = selectedConversation.contact.phone.replace('telegram:', '');
+        await fetch('/api/telegram/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chatId, message: content }),
+        });
+      }
+    } catch (err) {
+      console.error('Error sending message:', err);
+      setMessage(content);
+    } finally {
+      setSendingMessage(false);
+    }
   };
 
-  const handleTakeover = () => {
-    const newMode = !isAIMode;
-    setIsAIMode(newMode);
+  // Handle takeover toggle
+  const handleTakeover = async () => {
+    if (!selectedConversation) return;
 
-    // TODO: Notify N8N about takeover
-    fetch('/api/n8n/takeover', {
+    const newMode = !isAIMode;
+    const newHandlerType = newMode ? 'ai' : 'human';
+
+    // Update in database
+    const { error } = await supabase
+      .from('conversations')
+      .update({ handler_type: newHandlerType })
+      .eq('id', selectedConversation.id);
+
+    if (error) {
+      console.error('Error updating handler type:', error);
+      return;
+    }
+
+    setIsAIMode(newMode);
+    setSelectedConversation({ ...selectedConversation, handler_type: newHandlerType });
+
+    // Notify n8n about takeover
+    fetch('/api/webhooks/n8n/human-takeover', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        conversationId: selectedConversation?.id,
-        mode: newMode ? 'ai' : 'human',
+        conversation_id: selectedConversation.id,
+        handler_type: newHandlerType,
         timestamp: new Date().toISOString(),
       }),
-    }).catch(err => console.error('Failed to notify N8N:', err));
+    }).catch(err => console.error('Failed to notify n8n:', err));
+  };
 
-    console.log(`${newMode ? 'AI' : 'Human'} takeover activated`);
+  // Format message timestamp
+  const formatMessageTime = (dateString: string) => {
+    return new Date(dateString).toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
   };
 
   return (
@@ -181,51 +268,24 @@ export default function InboxPage() {
           {/* Filter Tabs */}
           <div className="p-4 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
             <div className="flex gap-2 mb-4">
-              <button
-                onClick={() => setActiveTab('all')}
-                style={activeTab === 'all' ? {
-                  background: 'linear-gradient(to right, #003EF3, #4EB6C9)',
-                  color: '#FFFFFF',
-                  borderColor: '#003EF3'
-                } : {}}
-                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-lg border ${
-                  activeTab === 'all'
-                    ? ''
-                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border-gray-200 dark:border-slate-600'
-                }`}
-              >
-                All
-              </button>
-              <button
-                onClick={() => setActiveTab('assigned')}
-                style={activeTab === 'assigned' ? {
-                  background: 'linear-gradient(to right, #003EF3, #4EB6C9)',
-                  color: '#FFFFFF',
-                  borderColor: '#003EF3'
-                } : {}}
-                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-lg border ${
-                  activeTab === 'assigned'
-                    ? ''
-                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border-gray-200 dark:border-slate-600'
-                }`}
-              >
-                Assigned
-              </button>
-              <button
-                onClick={() => setActiveTab('unassigned')}
-                style={activeTab === 'unassigned' ? {
-                  background: 'linear-gradient(to right, #003EF3, #4EB6C9)',
-                  color: '#FFFFFF',
-                  borderColor: '#003EF3'
-                } : {}}
-                className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-lg border ${
-                  activeTab === 'unassigned'
-                    ? ''
-                    : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border-gray-200 dark:border-slate-600'
-                }`}
-              >
-                Unassigned
-              </button>
+              {(['all', 'assigned', 'unassigned'] as const).map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  style={activeTab === tab ? {
+                    background: 'linear-gradient(to right, #003EF3, #4EB6C9)',
+                    color: '#FFFFFF',
+                    borderColor: '#003EF3'
+                  } : {}}
+                  className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-lg border capitalize ${
+                    activeTab === tab
+                      ? ''
+                      : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border-gray-200 dark:border-slate-600'
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
             </div>
 
             {/* Search */}
@@ -241,61 +301,59 @@ export default function InboxPage() {
 
           {/* Conversation List */}
           <div className="flex-1 overflow-y-auto scroll-smooth">
-            {conversations.map((conv, index) => (
-              <div
-                key={conv.id}
-                onClick={() => setSelectedConversation(conv)}
-                className={`p-4 border-b border-gray-200 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:scale-[1.01] ${
-                  selectedConversation?.id === conv.id ? 'bg-primary/5 border-l-4 border-l-primary shadow-lg' : ''
-                }`}
-                style={{
-                  animation: `slideInFromLeft 0.3s ease-out ${index * 0.05}s both`
-                }}
-              >
-                <div className="flex items-start gap-3">
-                  {/* Avatar */}
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-dark dark:text-white font-bold text-sm flex-shrink-0 shadow-md">
-                    {conv.avatar}
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-bold text-dark dark:text-white text-sm">{conv.name}</span>
-                      <span className="text-xs text-text-secondary dark:text-slate-300">{conv.timestamp}</span>
+            {loading ? (
+              <div className="p-4 text-center text-text-secondary">Loading...</div>
+            ) : conversations.length === 0 ? (
+              <div className="p-4 text-center text-text-secondary">
+                No conversations yet. They will appear here when messages arrive.
+              </div>
+            ) : (
+              conversations.map((conv, index) => (
+                <div
+                  key={conv.id}
+                  onClick={() => setSelectedConversation(conv)}
+                  className={`p-4 border-b border-gray-200 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:scale-[1.01] ${
+                    selectedConversation?.id === conv.id ? 'bg-primary/5 border-l-4 border-l-primary shadow-lg' : ''
+                  }`}
+                  style={{
+                    animation: `slideInFromLeft 0.3s ease-out ${index * 0.05}s both`
+                  }}
+                >
+                  <div className="flex items-start gap-3">
+                    {/* Avatar */}
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-dark dark:text-white font-bold text-sm flex-shrink-0 shadow-md">
+                      {getInitials(conv.contact?.name ?? null, conv.contact?.phone ?? '')}
                     </div>
 
-                    <div className="flex items-center gap-1.5 mb-2 flex-wrap">
-                      <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded-md font-bold">
-                        {conv.channel}
-                      </span>
-                      <span className={`text-xs px-2 py-0.5 rounded-md font-bold ${
-                        conv.handledBy === 'ai' ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
-                      }`}>
-                        {conv.handledBy === 'ai' ? '🤖' : '👤'} {conv.aiAgent}
-                      </span>
-                    </div>
-
-                    <p className="text-sm text-text-secondary dark:text-slate-300 truncate mb-2">{conv.lastMessage}</p>
-
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
-                      conv.lifecycle === 'Customer' ? 'bg-green/20 text-green' :
-                      conv.lifecycle === 'Lead' ? 'bg-blue/20 text-blue' :
-                      'bg-amber/20 text-amber'
-                    }`}>
-                      {conv.lifecycle}
-                    </span>
-
-                    {conv.unread > 0 && (
-                      <div className="mt-2">
-                        <span className="inline-flex items-center justify-center min-w-[24px] h-6 px-2 bg-primary text-white text-xs font-bold rounded-full shadow-md">
-                          {conv.unread}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-bold text-dark dark:text-white text-sm">
+                          {conv.contact?.name || conv.contact?.phone || 'Unknown'}
+                        </span>
+                        <span className="text-xs text-text-secondary dark:text-slate-300">
+                          {timeAgo(conv.last_message_at)}
                         </span>
                       </div>
-                    )}
+
+                      <div className="flex items-center gap-1.5 mb-2 flex-wrap">
+                        <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded-md font-bold capitalize">
+                          {conv.channel}
+                        </span>
+                        <span className={`text-xs px-2 py-0.5 rounded-md font-bold ${
+                          conv.handler_type === 'ai' ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
+                        }`}>
+                          {conv.handler_type === 'ai' ? '🤖 AI' : '👤 Human'}
+                        </span>
+                      </div>
+
+                      <p className="text-sm text-text-secondary dark:text-slate-300 truncate">
+                        {conv.messages?.[0]?.content || 'No messages'}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
 
@@ -306,18 +364,20 @@ export default function InboxPage() {
             <div className="p-4 border-b border-gray-200 dark:border-slate-700 flex items-center justify-between bg-gradient-to-r from-white to-light-bg dark:from-slate-800 dark:to-slate-800">
               <div className="flex items-center gap-3">
                 <div className="w-11 h-11 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-dark dark:text-white font-bold shadow-lg">
-                  {selectedConversation.avatar}
+                  {getInitials(selectedConversation.contact?.name ?? null, selectedConversation.contact?.phone ?? '')}
                 </div>
                 <div>
-                  <h3 className="font-bold text-dark dark:text-white text-lg">{selectedConversation.name}</h3>
+                  <h3 className="font-bold text-dark dark:text-white text-lg">
+                    {selectedConversation.contact?.name || selectedConversation.contact?.phone || 'Unknown'}
+                  </h3>
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded-md font-bold">
+                    <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded-md font-bold capitalize">
                       {selectedConversation.channel}
                     </span>
                     <span className={`text-xs px-2 py-0.5 rounded-md font-bold ${
-                      selectedConversation.handledBy === 'ai' ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
+                      isAIMode ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
                     }`}>
-                      {selectedConversation.handledBy === 'ai' ? '🤖 AI Mode' : '👤 Human Mode'}
+                      {isAIMode ? '🤖 AI Mode' : '👤 Human Mode'}
                     </span>
                   </div>
                 </div>
@@ -358,34 +418,46 @@ export default function InboxPage() {
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-light-bg/30 to-white dark:from-slate-900 dark:to-slate-900 scroll-smooth">
-              {messages.map((msg, index) => (
-                <div
-                  key={msg.id}
-                  className={`flex ${msg.sender === 'customer' ? 'justify-start' : 'justify-end'}`}
-                  style={{
-                    animation: `fadeIn 0.4s ease-out ${index * 0.05}s both`
-                  }}
-                >
-                  <div className={`max-w-md ${msg.sender === 'customer' ? '' : ''}`}>
-                    <div className={`px-4 py-3 rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl hover:scale-[1.02] ${
-                      msg.sender === 'customer'
-                        ? 'bg-white dark:bg-slate-800 text-dark dark:text-white border border-gray-200 dark:border-slate-700'
-                        : msg.sender === 'ai'
-                        ? 'bg-gradient-to-br from-primary to-primary/90 text-white'
-                        : 'bg-gradient-to-br from-purple to-purple/90 text-white'
-                    }`}>
-                      {msg.sender === 'ai' && (
-                        <div className="text-xs font-bold text-white/90 mb-1 flex items-center gap-1">
-                          <Bot size={14} />
-                          AI Assistant
-                        </div>
-                      )}
-                      <p className="text-sm leading-relaxed">{msg.text}</p>
+              {messages.length === 0 ? (
+                <div className="text-center text-text-secondary py-8">No messages yet</div>
+              ) : (
+                messages.map((msg, index) => (
+                  <div
+                    key={msg.id}
+                    className={`flex ${msg.direction === 'inbound' ? 'justify-start' : 'justify-end'}`}
+                    style={{
+                      animation: `fadeIn 0.4s ease-out ${index * 0.05}s both`
+                    }}
+                  >
+                    <div className="max-w-md">
+                      <div className={`px-4 py-3 rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl hover:scale-[1.02] ${
+                        msg.direction === 'inbound'
+                          ? 'bg-white dark:bg-slate-800 text-dark dark:text-white border border-gray-200 dark:border-slate-700'
+                          : msg.sender_type === 'ai'
+                          ? 'bg-gradient-to-br from-primary to-primary/90 text-white'
+                          : 'bg-gradient-to-br from-purple to-purple/90 text-white'
+                      }`}>
+                        {msg.direction === 'outbound' && msg.sender_type === 'ai' && (
+                          <div className="text-xs font-bold text-white/90 mb-1 flex items-center gap-1">
+                            <Bot size={14} />
+                            AI Assistant
+                          </div>
+                        )}
+                        {msg.direction === 'outbound' && msg.sender_type === 'agent' && (
+                          <div className="text-xs font-bold text-white/90 mb-1 flex items-center gap-1">
+                            <UserCheck size={14} />
+                            You
+                          </div>
+                        )}
+                        <p className="text-sm leading-relaxed">{msg.content}</p>
+                      </div>
+                      <span className="text-xs text-text-secondary dark:text-slate-400 mt-1.5 block px-2">
+                        {formatMessageTime(msg.created_at)}
+                      </span>
                     </div>
-                    <span className="text-xs text-text-secondary dark:text-slate-400 mt-1.5 block px-2">{msg.timestamp}</span>
                   </div>
-                </div>
-              ))}
+                ))
+              )}
               <div ref={messagesEndRef} />
             </div>
 
@@ -395,7 +467,7 @@ export default function InboxPage() {
                 <div className="mb-3 px-3 py-2 bg-purple/10 border border-purple/30 rounded-lg">
                   <p className="text-xs font-bold text-purple flex items-center gap-2">
                     <UserCheck size={14} />
-                    You're in Human Mode - AI is paused for this conversation
+                    You&apos;re in Human Mode - AI is paused for this conversation
                   </p>
                 </div>
               )}
@@ -428,10 +500,11 @@ export default function InboxPage() {
 
                 <button
                   onClick={handleSend}
-                  className="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-2"
+                  disabled={sendingMessage || !message.trim()}
+                  className="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send size={18} />
-                  Send
+                  {sendingMessage ? 'Sending...' : 'Send'}
                 </button>
               </div>
             </div>
@@ -462,7 +535,7 @@ export default function InboxPage() {
                 ].map((tab) => (
                   <button
                     key={tab.id}
-                    onClick={() => setContextTab(tab.id as any)}
+                    onClick={() => setContextTab(tab.id as typeof contextTab)}
                     style={contextTab === tab.id ? {
                       background: 'linear-gradient(to right, #003EF3, #4EB6C9)',
                       color: '#FFFFFF',
@@ -486,37 +559,29 @@ export default function InboxPage() {
                 <div className="space-y-4">
                   <div>
                     <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Name</label>
-                    <p className="text-sm text-dark dark:text-white mt-1 font-semibold">{selectedConversation.name}</p>
+                    <p className="text-sm text-dark dark:text-white mt-1 font-semibold">
+                      {selectedConversation.contact?.name || 'Unknown'}
+                    </p>
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Phone/ID</label>
+                    <p className="text-sm text-dark dark:text-white mt-1">
+                      {selectedConversation.contact?.phone || 'N/A'}
+                    </p>
                   </div>
                   <div>
                     <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Channel</label>
-                    <p className="text-sm text-dark dark:text-white mt-1">{selectedConversation.channel}</p>
+                    <p className="text-sm text-dark dark:text-white mt-1 capitalize">{selectedConversation.channel}</p>
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">AI Agent</label>
-                    <div className="flex items-center gap-2 mt-1">
-                      <div className="relative w-6 h-6 rounded-full overflow-hidden shadow-md">
-                        <Image
-                          src="/rashed.jpeg"
-                          alt="Rashed"
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <p className="text-sm text-dark dark:text-white font-semibold">{selectedConversation.aiAgent}</p>
-                    </div>
+                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Status</label>
+                    <p className="text-sm text-dark dark:text-white mt-1 capitalize">{selectedConversation.status}</p>
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Lifecycle Stage</label>
-                    <div className="mt-2">
-                      <span className={`inline-block px-3 py-1.5 rounded-lg text-xs font-bold ${
-                        selectedConversation.lifecycle === 'Customer' ? 'bg-green/20 text-green' :
-                        selectedConversation.lifecycle === 'Lead' ? 'bg-blue/20 text-blue' :
-                        'bg-amber/20 text-amber'
-                      }`}>
-                        {selectedConversation.lifecycle}
-                      </span>
-                    </div>
+                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Handler</label>
+                    <p className="text-sm text-dark dark:text-white mt-1">
+                      {selectedConversation.handler_type === 'ai' ? '🤖 AI Agent' : '👤 Human Agent'}
+                    </p>
                   </div>
                 </div>
               )}
@@ -527,14 +592,11 @@ export default function InboxPage() {
                     <div className="w-2 h-2 bg-primary rounded-full mt-1.5"></div>
                     <div className="flex-1">
                       <p className="text-sm font-bold text-dark dark:text-white">Conversation started</p>
-                      <p className="text-xs text-text-secondary dark:text-slate-400">2 hours ago</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-1.5"></div>
-                    <div className="flex-1">
-                      <p className="text-sm font-bold text-dark dark:text-white">Assigned to {selectedConversation.aiAgent}</p>
-                      <p className="text-xs text-text-secondary dark:text-slate-400">1 hour ago</p>
+                      <p className="text-xs text-text-secondary dark:text-slate-400">
+                        {selectedConversation.last_message_at
+                          ? new Date(selectedConversation.last_message_at).toLocaleString()
+                          : 'Unknown'}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -566,13 +628,15 @@ export default function InboxPage() {
                         <h3 className="font-extrabold text-dark dark:text-white text-base">Rashed</h3>
                         <p className="text-xs text-text-secondary dark:text-slate-400">Primary Agent</p>
                       </div>
-                      <div className="w-3 h-3 bg-green rounded-full shadow-lg animate-pulse"></div>
+                      <div className={`w-3 h-3 rounded-full shadow-lg ${isAIMode ? 'bg-green animate-pulse' : 'bg-gray-400'}`}></div>
                     </div>
 
                     <div className="space-y-3">
                       <div>
                         <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Status</label>
-                        <p className="text-sm text-dark dark:text-white mt-1 font-semibold">Active & Learning</p>
+                        <p className="text-sm text-dark dark:text-white mt-1 font-semibold">
+                          {isAIMode ? 'Active & Handling' : 'Paused (Human Mode)'}
+                        </p>
                       </div>
                       <div>
                         <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Model</label>
@@ -581,22 +645,6 @@ export default function InboxPage() {
                       <div>
                         <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Specialization</label>
                         <p className="text-sm text-dark dark:text-white mt-1">Customer Support & Sales</p>
-                      </div>
-                      <div>
-                        <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Response Time</label>
-                        <p className="text-sm text-dark dark:text-white mt-1">~2 seconds avg</p>
-                      </div>
-                      <div>
-                        <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Success Rate</label>
-                        <div className="mt-2">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="text-xs font-bold text-dark dark:text-white">94%</span>
-                            <span className="text-xs text-text-secondary dark:text-slate-400">Resolved</span>
-                          </div>
-                          <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
-                            <div className="bg-gradient-to-r from-primary to-accent h-2 rounded-full" style={{ width: '94%' }}></div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
