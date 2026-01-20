@@ -154,8 +154,8 @@ async function processIncomingMessage(
       console.error('[WhatsApp Processor] Failed to update conversation:', updateError);
     }
 
-    // Step 7: Update contact name if provided and not already set
-    if (contactName && !contact.name) {
+    // Step 7: Update contact name if provided and different
+    if (contactName && contactName !== contact.name) {
       const { error: nameError } = await supabase
         .from('contacts')
         .update({ name: contactName })
@@ -163,6 +163,8 @@ async function processIncomingMessage(
 
       if (nameError) {
         console.error('[WhatsApp Processor] Failed to update contact name:', nameError);
+      } else {
+        console.log('[WhatsApp Processor] Updated contact name:', contactName);
       }
     }
   } catch (error) {

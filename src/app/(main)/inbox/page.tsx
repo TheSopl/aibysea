@@ -27,6 +27,7 @@ interface ConversationRaw {
   status: string;
   handler_type: 'ai' | 'human';
   last_message_at: string | null;
+  unread_count: number;
   contact: Contact | Contact[] | null;
   messages: { content: string }[];
 }
@@ -37,6 +38,7 @@ interface Conversation {
   status: string;
   handler_type: 'ai' | 'human';
   last_message_at: string | null;
+  unread_count: number;
   contact: Contact | null;
   messages: { content: string }[];
 }
@@ -69,6 +71,17 @@ function getInitials(name: string | null, phone: string): string {
   return phone.slice(-2).toUpperCase();
 }
 
+// Helper to format contact display name
+function getContactDisplayName(name: string | null, phone: string | undefined): string {
+  if (name) return name;
+  if (!phone) return 'Unknown';
+  // Strip telegram: prefix for cleaner display
+  if (phone.startsWith('telegram:')) {
+    return `User ${phone.replace('telegram:', '')}`;
+  }
+  return phone;
+}
+
 export default function InboxPage() {
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
@@ -93,11 +106,13 @@ export default function InboxPage() {
         status,
         handler_type,
         last_message_at,
+        unread_count,
         contact:contacts(id, name, phone),
-        messages(content)
+        messages(content, created_at)
       `)
       .order('last_message_at', { ascending: false, nullsFirst: false })
-      .limit(1, { foreignTable: 'messages' });
+      .order('created_at', { ascending: false, referencedTable: 'messages' })
+      .limit(1, { referencedTable: 'messages' });
 
     if (error) {
       console.error('Error fetching conversations:', error);
@@ -107,6 +122,7 @@ export default function InboxPage() {
     // Normalize contacts (Supabase returns array for joins)
     const normalized = (data as unknown as ConversationRaw[]).map(conv => ({
       ...conv,
+      unread_count: conv.unread_count || 0,
       contact: normalizeContact(conv.contact),
     }));
 
@@ -135,38 +151,77 @@ export default function InboxPage() {
     fetchConversations();
   }, [fetchConversations]);
 
+  // Mark conversation as read
+  const markAsRead = useCallback(async (conversationId: string) => {
+    // Update local state immediately to remove badge
+    setConversations(prev => prev.map(conv =>
+      conv.id === conversationId ? { ...conv, unread_count: 0 } : conv
+    ));
+    // Update database
+    await supabase
+      .from('conversations')
+      .update({ unread_count: 0 })
+      .eq('id', conversationId);
+  }, [supabase]);
+
   // Fetch messages when conversation selected
   useEffect(() => {
     if (selectedConversation) {
       fetchMessages(selectedConversation.id);
       setIsAIMode(selectedConversation.handler_type === 'ai');
+      // Mark as read when opening conversation
+      if (selectedConversation.unread_count > 0) {
+        markAsRead(selectedConversation.id);
+      }
     }
-  }, [selectedConversation, fetchMessages]);
+  }, [selectedConversation, fetchMessages, markAsRead]);
 
-  // Real-time subscription for conversations
+  // Fast polling for conversations (3 seconds) - updates list order and timestamps
   useEffect(() => {
+    const interval = setInterval(() => {
+      fetchConversations();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [fetchConversations]);
+
+  // Real-time subscription for conversations and messages (for reordering)
+  useEffect(() => {
+    const channelName = `inbox-list-${Date.now()}`;
     const channel = supabase
-      .channel('inbox-conversations')
+      .channel(channelName)
       .on(
         'postgres_changes',
         { event: '*', schema: 'public', table: 'conversations' },
-        () => {
+        (payload) => {
+          console.log('[Realtime] Conversation change:', payload.eventType);
           fetchConversations();
         }
       )
-      .subscribe();
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'messages' },
+        (payload) => {
+          console.log('[Realtime] New message inserted');
+          // Refetch conversations to update order and unread counts
+          fetchConversations();
+        }
+      )
+      .subscribe((status) => {
+        console.log('[Realtime] Subscription status:', status);
+      });
 
     return () => {
       supabase.removeChannel(channel);
     };
   }, [supabase, fetchConversations]);
 
-  // Real-time subscription for messages
+  // Real-time subscription for messages in selected conversation
   useEffect(() => {
     if (!selectedConversation) return;
 
+    const channelName = `inbox-chat-${selectedConversation.id}`;
     const channel = supabase
-      .channel('inbox-messages')
+      .channel(channelName)
       .on(
         'postgres_changes',
         {
@@ -176,14 +231,49 @@ export default function InboxPage() {
           filter: `conversation_id=eq.${selectedConversation.id}`
         },
         (payload) => {
-          setMessages(prev => [...prev, payload.new as Message]);
+          console.log('[Realtime] New message in chat:', payload.new);
+          const newMsg = payload.new as Message;
+          setMessages(prev => {
+            // Avoid duplicates
+            if (prev.some(m => m.id === newMsg.id)) return prev;
+            return [...prev, newMsg];
+          });
         }
       )
-      .subscribe();
+      .subscribe((status) => {
+        console.log('[Realtime] Chat subscription status:', status);
+      });
 
     return () => {
       supabase.removeChannel(channel);
     };
+  }, [supabase, selectedConversation]);
+
+  // Fast polling for messages (2 second backup if realtime is slow)
+  useEffect(() => {
+    if (!selectedConversation) return;
+
+    const pollMessages = async () => {
+      const { data } = await supabase
+        .from('messages')
+        .select('id, content, direction, sender_type, created_at')
+        .eq('conversation_id', selectedConversation.id)
+        .order('created_at', { ascending: true });
+
+      if (data) {
+        setMessages(prev => {
+          // Only update if there are new messages
+          if (data.length !== prev.length || (data.length > 0 && prev.length > 0 && data[data.length - 1].id !== prev[prev.length - 1].id)) {
+            return data as Message[];
+          }
+          return prev;
+        });
+      }
+    };
+
+    // Poll every 2 seconds for fast updates
+    const interval = setInterval(pollMessages, 2000);
+    return () => clearInterval(interval);
   }, [supabase, selectedConversation]);
 
   // Scroll to bottom when messages change
@@ -282,10 +372,10 @@ export default function InboxPage() {
   };
 
   return (
-    <>
+    <div className="flex flex-col h-full overflow-hidden">
       <TopBar title="Inbox" />
 
-      <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
+      <div className="flex flex-1 overflow-hidden">
         {/* Column 1: Conversation List */}
         <div className="w-80 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col flex-shrink-0">
           {/* Filter Tabs */}
@@ -350,9 +440,16 @@ export default function InboxPage() {
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-bold text-dark dark:text-white text-sm">
-                          {conv.contact?.name || conv.contact?.phone || 'Unknown'}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-dark dark:text-white text-sm">
+                            {getContactDisplayName(conv.contact?.name ?? null, conv.contact?.phone)}
+                          </span>
+                          {conv.unread_count > 0 && selectedConversation?.id !== conv.id && (
+                            <span className="min-w-[20px] h-5 px-1.5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                              {conv.unread_count > 99 ? '99+' : conv.unread_count}
+                            </span>
+                          )}
+                        </div>
                         <span className="text-xs text-text-secondary dark:text-slate-300">
                           {timeAgo(conv.last_message_at)}
                         </span>
@@ -391,7 +488,7 @@ export default function InboxPage() {
                 </div>
                 <div>
                   <h3 className="font-bold text-dark dark:text-white text-lg">
-                    {selectedConversation.contact?.name || selectedConversation.contact?.phone || 'Unknown'}
+                    {getContactDisplayName(selectedConversation.contact?.name ?? null, selectedConversation.contact?.phone)}
                   </h3>
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded-md font-bold capitalize">
@@ -457,17 +554,17 @@ export default function InboxPage() {
                         msg.direction === 'inbound'
                           ? 'bg-white dark:bg-slate-800 text-dark dark:text-white border border-gray-200 dark:border-slate-700'
                           : msg.sender_type === 'ai'
-                          ? 'bg-gradient-to-br from-primary to-primary/90 text-white'
-                          : 'bg-gradient-to-br from-purple to-purple/90 text-white'
+                          ? 'bg-gradient-to-br from-primary to-primary/90 text-dark dark:text-white'
+                          : 'bg-gradient-to-br from-purple to-purple/90 text-dark dark:text-white'
                       }`}>
                         {msg.direction === 'outbound' && msg.sender_type === 'ai' && (
-                          <div className="text-xs font-bold text-white/90 mb-1 flex items-center gap-1">
+                          <div className="text-xs font-bold text-dark/80 dark:text-white/90 mb-1 flex items-center gap-1">
                             <Bot size={14} />
                             AI Assistant
                           </div>
                         )}
                         {msg.direction === 'outbound' && msg.sender_type === 'agent' && (
-                          <div className="text-xs font-bold text-white/90 mb-1 flex items-center gap-1">
+                          <div className="text-xs font-bold text-dark/80 dark:text-white/90 mb-1 flex items-center gap-1">
                             <UserCheck size={14} />
                             You
                           </div>
@@ -583,13 +680,13 @@ export default function InboxPage() {
                   <div>
                     <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Name</label>
                     <p className="text-sm text-dark dark:text-white mt-1 font-semibold">
-                      {selectedConversation.contact?.name || 'Unknown'}
+                      {getContactDisplayName(selectedConversation.contact?.name ?? null, selectedConversation.contact?.phone)}
                     </p>
                   </div>
                   <div>
                     <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Phone/ID</label>
                     <p className="text-sm text-dark dark:text-white mt-1">
-                      {selectedConversation.contact?.phone || 'N/A'}
+                      {selectedConversation.contact?.phone?.replace('telegram:', '') || 'N/A'}
                     </p>
                   </div>
                   <div>
@@ -677,6 +774,6 @@ export default function InboxPage() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

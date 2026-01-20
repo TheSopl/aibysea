@@ -89,11 +89,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     if (conversation.handler_type !== 'ai') {
-      console.warn('[N8nWebhook] AI Response - Conversation not AI-handled:', {
+      console.log('[N8nWebhook] AI Response - Rejected (human takeover active):', {
         conversation_id,
         handler_type: conversation.handler_type,
       });
-      // Still process the message but log the warning
+      // Reject AI messages when human has taken over
+      return NextResponse.json(
+        { error: 'Conversation is in human mode', rejected: true },
+        { status: 200 } // Return 200 to not trigger n8n retries
+      );
     }
 
     // Step 4: Insert message to database

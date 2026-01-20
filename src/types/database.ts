@@ -71,6 +71,7 @@ export interface Database {
           assigned_agent_id: string | null
           last_message_at: string | null
           last_customer_message_at: string | null
+          unread_count: number
           created_at: string
           updated_at: string
         }
@@ -83,6 +84,7 @@ export interface Database {
           assigned_agent_id?: string | null
           last_message_at?: string | null
           last_customer_message_at?: string | null
+          unread_count?: number
           created_at?: string
           updated_at?: string
         }
@@ -95,6 +97,7 @@ export interface Database {
           assigned_agent_id?: string | null
           last_message_at?: string | null
           last_customer_message_at?: string | null
+          unread_count?: number
           created_at?: string
           updated_at?: string
         }

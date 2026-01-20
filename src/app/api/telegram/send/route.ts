@@ -1,14 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 
 export async function POST(request: NextRequest) {
   try {
-    const { chatId, message } = await request.json();
+    const { chatId, message, conversation_id, skip_handler_check } = await request.json();
 
     if (!chatId || !message) {
       return NextResponse.json(
         { error: 'Missing chatId or message' },
         { status: 400 }
       );
+    }
+
+    // Check if conversation is in human mode (skip AI messages)
+    if (conversation_id && !skip_handler_check) {
+      const supabase = createAdminClient();
+      const { data: conversation } = await supabase
+        .from('conversations')
+        .select('handler_type')
+        .eq('id', conversation_id)
+        .single();
+
+      const conv = conversation as { handler_type: string } | null;
+      if (conv?.handler_type === 'human') {
+        console.log('[Telegram Send] Blocked - conversation in human mode:', conversation_id);
+        return NextResponse.json(
+          { error: 'Conversation is in human mode', blocked: true },
+          { status: 200 }
+        );
+      }
     }
 
     const botToken = process.env.TELEGRAM_BOT_TOKEN;

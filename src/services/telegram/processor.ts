@@ -26,9 +26,18 @@ async function processIncomingMessage(message: TelegramMessage): Promise<void> {
   const messageId = message.message_id.toString();
 
   // Build contact name from Telegram user info
-  const contactName = message.from
-    ? [message.from.first_name, message.from.last_name].filter(Boolean).join(' ')
-    : message.chat.first_name || null;
+  // Priority: first_name + last_name > username > chat.first_name
+  let contactName: string | null = null;
+  if (message.from) {
+    const fullName = [message.from.first_name, message.from.last_name].filter(Boolean).join(' ');
+    contactName = fullName || (message.from.username ? `@${message.from.username}` : null);
+  }
+  if (!contactName && message.chat.first_name) {
+    contactName = message.chat.first_name;
+  }
+  if (!contactName && message.chat.username) {
+    contactName = `@${message.chat.username}`;
+  }
 
   console.log('[Telegram Processor] Processing message:', {
     chatId,
@@ -53,7 +62,10 @@ async function processIncomingMessage(message: TelegramMessage): Promise<void> {
     // Step 4: Extract content
     const content = message.text || '[Non-text message]';
 
-    // Step 5: Insert message
+    // Check if AI should process this message
+    const shouldProcessWithAI = conversation.handler_type === 'ai';
+
+    // Step 5: Insert message with handler info for n8n to check
     const { error: insertError } = await supabase.from('messages').insert({
       conversation_id: conversation.id,
       direction: 'inbound',
@@ -66,8 +78,14 @@ async function processIncomingMessage(message: TelegramMessage): Promise<void> {
         telegram_message_id: messageId,
         telegram_user: message.from,
         timestamp: message.date,
+        handler_type: conversation.handler_type, // For n8n to check
+        should_process_ai: shouldProcessWithAI,
       },
     });
+
+    if (!shouldProcessWithAI) {
+      console.log('[Telegram Processor] Message saved but AI disabled (human mode)');
+    }
 
     if (insertError) {
       console.error('[Telegram Processor] Insert error:', insertError);
@@ -83,12 +101,13 @@ async function processIncomingMessage(message: TelegramMessage): Promise<void> {
       .update({ last_message_at: now, last_customer_message_at: now })
       .eq('id', conversation.id);
 
-    // Step 7: Update contact name if needed
-    if (contactName && !contact.name) {
+    // Step 7: Update contact name if we have one and it's different
+    if (contactName && contactName !== contact.name) {
       await supabase
         .from('contacts')
         .update({ name: contactName })
         .eq('id', contact.id);
+      console.log('[Telegram Processor] Updated contact name:', contactName);
     }
   } catch (error) {
     console.error('[Telegram Processor] Error:', error);
@@ -128,10 +147,10 @@ async function findOrCreateContact(
 async function findOrCreateConversation(
   supabase: SupabaseAdmin,
   contactId: string
-): Promise<{ id: string }> {
+): Promise<{ id: string; handler_type: string }> {
   const { data: existing } = await supabase
     .from('conversations')
-    .select('id')
+    .select('id, handler_type')
     .eq('contact_id', contactId)
     .eq('channel', 'telegram')
     .single();
@@ -149,7 +168,7 @@ async function findOrCreateConversation(
       last_message_at: now,
       last_customer_message_at: now,
     })
-    .select('id')
+    .select('id, handler_type')
     .single();
 
   if (error || !newConv) {

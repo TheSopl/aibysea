@@ -49,7 +49,7 @@ None
 
 **Milestone Goal:** Transform the UI-complete platform into a fully functional system with real data flow, external service integrations for voice and document processing, and production-ready backend infrastructure.
 
-#### Phase 13: Conversational Core
+#### Phase 13: Conversational Core ✅
 
 **Goal**: Verify the existing v1.0 conversational infrastructure works end-to-end — webhooks, message flow, real-time updates, and takeover toggle.
 
@@ -60,7 +60,9 @@ None
 **Plans**: 1
 
 Plans:
-- [ ] 13-01: Verification Plan - Build check, Telegram test, WhatsApp test (optional), real-time test, takeover test
+- [x] 13-01: Verification Plan - Build check, Telegram test, WhatsApp test (optional), real-time test, takeover test
+
+**Extended scope:** Connected v2.0 `/inbox` UI to real Supabase data (was using mock data). Added Telegram send endpoint, real-time subscriptions, takeover toggle with DB persistence.
 
 #### Phase 14: AI Agent Management
 
@@ -152,11 +154,11 @@ Plans:
 | 10. Document Intelligence UI | v2.0 | 3/3 | Complete | 2026-01-16 |
 | 11. Backend Infrastructure | v2.0 | 2/2 | Complete | 2026-01-16 |
 | 12. Dark Mode Implementation | v2.0 | 2/2 | Complete | 2026-01-16 |
-| 13. Conversational Core | v3.0 | 0/? | Not started | - |
+| 13. Conversational Core | v3.0 | 1/1 | Complete | 2026-01-19 |
 | 14. AI Agent Management | v3.0 | 0/? | Not started | - |
 | 15. Dashboard Metrics | v3.0 | 0/? | Not started | - |
 | 16. Voice Provider Integration | v3.0 | 0/? | Not started | - |
 | 17. Document Processing | v3.0 | 0/? | Not started | - |
 | 18. E2E Testing & Polish | v3.0 | 0/? | Not started | - |
 
-**Overall Progress**: v3.0 — 0/6 phases complete
+**Overall Progress**: v3.0 — 1/6 phases complete

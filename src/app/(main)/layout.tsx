@@ -10,11 +10,11 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-light-bg dark:bg-slate-900 scroll-smooth transition-colors duration-300">
+    <div className="h-screen bg-light-bg dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
       <Sidebar />
-      <div className="ml-20 min-h-screen flex flex-col scroll-smooth">
+      <div className="ml-20 h-screen flex flex-col overflow-hidden">
         <Breadcrumbs />
-        <div className="flex-1 scroll-smooth">{children}</div>
+        <div className="flex-1 overflow-hidden">{children}</div>
       </div>
     </div>
   );

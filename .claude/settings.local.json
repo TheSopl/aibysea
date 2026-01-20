@@ -1,32 +1,44 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm ls:*)",
-      "Bash(npm run build:*)",
-      "Bash(git add:*)",
-      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat\\(02-01\\): create WhatsApp library foundation\n\nAdd core WhatsApp Cloud API library with:\n- constants.ts: API version, URL helpers, token accessors\n- signature.ts: HMAC-SHA256 webhook verification with timing-safe comparison\n- types.ts: Re-exported webhook types + custom types bridging to DB schema\n- index.ts: Clean barrel export for the library\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git commit:*)",
-      "Bash(npx tsc:*)",
-      "Bash(vercel logs:*)",
-      "Bash(git push:*)",
-      "Bash(timeout 10 npm run dev)",
-      "Bash(vercel:*)",
-      "Bash(cat:*)",
-      "Bash(supabase db push:*)",
-      "Bash(git tag -a v1.0 -m \"$\\(cat <<''EOF''\nv1.0 MVP - Multi-channel Inbox with AI & Real-time Updates\n\nDelivered: Internal-use unified inbox for customer conversations across WhatsApp and Telegram with AI-first handling and human takeover.\n\nKey accomplishments:\n- Next.js 16 + Supabase foundation with authentication\n- WhatsApp Cloud API integration with webhook handling\n- Telegram Bot API as alternative messaging channel\n- Two-panel inbox UI with real-time message updates\n- AI-first conversation handling via n8n webhooks\n- Human takeover with instant visual feedback\n- Real-time subscriptions using Supabase WebSockets\n- Arabic RTL language support foundation\n\nStats:\n- 14 plans across 7 phases\n- ~2,500+ lines of TypeScript/React/SQL\n- 45 commits from start to ship\n- 3 days from initialization to v1.0\n\nSee .planning/MILESTONES.md for full details.\nEOF\n\\)\")",
+      "Bash(*)",
+      "Edit(*)",
+      "Write(*)",
+      "WebFetch(*)",
       "WebSearch",
-      "WebFetch(domain:motion.dev)",
-      "WebFetch(domain:www.sarasoueidan.com)",
-      "Bash(find:*)",
-      "Skill(gsd:execute-plan)",
-      "Bash(git rev-parse:*)",
-      "Bash(grep:*)",
-      "Bash(npm install:*)",
-      "Bash(ls:*)",
-      "WebFetch(domain:www.figma.com)",
-      "Skill(gsd:create-roadmap)",
-      "Skill(gsd:plan-phase)",
-      "Bash(wc:*)"
+      "Bash(claude mcp list:*)",
+      "Bash(npx:*)",
+      "Bash(vercel ls:*)",
+      "Bash(node --version:*)",
+      "Bash(npm --version:*)",
+      "Bash(vercel whoami:*)",
+      "Bash(vercel link:*)",
+      "Bash(vercel env:*)",
+      "Bash(vercel list:*)",
+      "Bash(git check-ignore:*)",
+      "WebFetch(domain:aibysea.vercel.app)",
+      "Bash(curl:*)",
+      "Bash(git add:*)"
     ]
+  },
+  "mcpServers": {
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase",
+        "--url",
+        "https://qzwpemaczxjmtgftckrd.supabase.co",
+        "--service-role-key",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF6d3BlbWFjenhqbXRnZnRja3JkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2ODAyMzAzNSwiZXhwIjoyMDgzNTk5MDM1fQ.mq3MZMMfYPK9k0zavax0VgKuMbYpg0Ij-3nmrJQi2DQ"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-memory"
+      ]
+    }
   }
 }
