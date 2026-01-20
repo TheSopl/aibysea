@@ -20,6 +20,8 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { AIAgent } from '@/types/database';
+import AgentFormModal from '@/components/agents/AgentFormModal';
+import DeleteConfirmModal from '@/components/agents/DeleteConfirmModal';
 
 export default function AgentsPage() {
   const [agents, setAgents] = useState<AIAgent[]>([]);
@@ -27,27 +29,138 @@ export default function AgentsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Modal state
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [editingAgent, setEditingAgent] = useState<AIAgent | null>(null);
+  const [deleteAgent, setDeleteAgent] = useState<AIAgent | null>(null);
+
   // Fetch agents from API
-  useEffect(() => {
-    async function fetchAgents() {
-      try {
-        const response = await fetch('/api/ai-agents');
-        if (!response.ok) {
-          throw new Error('Failed to fetch agents');
-        }
-        const data = await response.json();
-        setAgents(data);
-        if (data.length > 0) {
-          setSelectedAgent(data[0]);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load agents');
-      } finally {
-        setLoading(false);
+  const fetchAgents = async () => {
+    try {
+      const response = await fetch('/api/ai-agents');
+      if (!response.ok) {
+        throw new Error('Failed to fetch agents');
       }
+      const data = await response.json();
+      setAgents(data);
+      // Update selectedAgent if it exists in the new data
+      if (selectedAgent) {
+        const updated = data.find((a: AIAgent) => a.id === selectedAgent.id);
+        setSelectedAgent(updated || data[0] || null);
+      } else if (data.length > 0) {
+        setSelectedAgent(data[0]);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load agents');
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
     fetchAgents();
   }, []);
+
+  // Handle create/edit save
+  const handleSave = (savedAgent: AIAgent) => {
+    if (editingAgent) {
+      // Update existing agent in list
+      setAgents(prev => prev.map(a => a.id === savedAgent.id ? savedAgent : a));
+      if (selectedAgent?.id === savedAgent.id) {
+        setSelectedAgent(savedAgent);
+      }
+    } else {
+      // Add new agent to list
+      setAgents(prev => [savedAgent, ...prev]);
+      setSelectedAgent(savedAgent);
+    }
+    setEditingAgent(null);
+  };
+
+  // Handle delete
+  const handleDelete = async () => {
+    if (!deleteAgent) return;
+
+    try {
+      const response = await fetch(`/api/ai-agents/${deleteAgent.id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete agent');
+      }
+
+      // Remove from list
+      setAgents(prev => prev.filter(a => a.id !== deleteAgent.id));
+
+      // Clear selection if deleted agent was selected
+      if (selectedAgent?.id === deleteAgent.id) {
+        setSelectedAgent(agents.find(a => a.id !== deleteAgent.id) || null);
+      }
+
+      setDeleteAgent(null);
+    } catch (err) {
+      console.error('Delete failed:', err);
+    }
+  };
+
+  // Handle status toggle (optimistic update)
+  const handleStatusToggle = async (agent: AIAgent, e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click
+
+    const newStatus = agent.status === 'active' ? 'inactive' : 'active';
+
+    // Optimistic update
+    const updatedAgent = { ...agent, status: newStatus };
+    setAgents(prev => prev.map(a => a.id === agent.id ? updatedAgent : a));
+    if (selectedAgent?.id === agent.id) {
+      setSelectedAgent(updatedAgent);
+    }
+
+    try {
+      const response = await fetch(`/api/ai-agents/${agent.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update status');
+      }
+
+      const saved = await response.json();
+      setAgents(prev => prev.map(a => a.id === saved.id ? saved : a));
+      if (selectedAgent?.id === saved.id) {
+        setSelectedAgent(saved);
+      }
+    } catch (err) {
+      // Rollback on error
+      setAgents(prev => prev.map(a => a.id === agent.id ? agent : a));
+      if (selectedAgent?.id === agent.id) {
+        setSelectedAgent(agent);
+      }
+      console.error('Status toggle failed:', err);
+    }
+  };
+
+  // Handle edit button click
+  const handleEditClick = (agent: AIAgent, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditingAgent(agent);
+    setIsFormOpen(true);
+  };
+
+  // Handle delete button click
+  const handleDeleteClick = (agent: AIAgent, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setDeleteAgent(agent);
+  };
+
+  // Handle create button click
+  const handleCreateClick = () => {
+    setEditingAgent(null);
+    setIsFormOpen(true);
+  };
 
   return (
     <>
@@ -162,7 +275,10 @@ export default function AgentsPage() {
                       <h2 className="text-xl font-extrabold text-dark dark:text-white">Your AI Agents</h2>
                       <p className="text-sm text-text-secondary dark:text-slate-400 mt-1">Manage and monitor your AI workforce</p>
                     </div>
-                    <button className="px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5">
+                    <button
+                      onClick={handleCreateClick}
+                      className="px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5"
+                    >
                       <Plus size={18} />
                       Create Agent
                     </button>
@@ -178,7 +294,10 @@ export default function AgentsPage() {
                       <p className="text-sm text-text-secondary dark:text-slate-400 mb-6">
                         Create your first AI agent to start automating conversations
                       </p>
-                      <button className="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2 mx-auto">
+                      <button
+                        onClick={handleCreateClick}
+                        className="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2 mx-auto"
+                      >
                         <Plus size={18} />
                         Create Your First Agent
                       </button>
@@ -218,18 +337,34 @@ export default function AgentsPage() {
 
                           <div className="flex items-center gap-2">
                             {agent.status === 'active' ? (
-                              <button className="p-2 hover:bg-amber/10 rounded-lg transition-colors group">
+                              <button
+                                onClick={(e) => handleStatusToggle(agent, e)}
+                                className="p-2 hover:bg-amber/10 rounded-lg transition-colors group"
+                                title="Pause agent"
+                              >
                                 <Pause size={18} className="text-amber group-hover:scale-110 transition-transform" />
                               </button>
                             ) : (
-                              <button className="p-2 hover:bg-green/10 rounded-lg transition-colors group">
+                              <button
+                                onClick={(e) => handleStatusToggle(agent, e)}
+                                className="p-2 hover:bg-green/10 rounded-lg transition-colors group"
+                                title="Activate agent"
+                              >
                                 <Play size={18} className="text-green group-hover:scale-110 transition-transform" />
                               </button>
                             )}
-                            <button className="p-2 hover:bg-light-bg rounded-lg transition-colors group">
+                            <button
+                              onClick={(e) => handleEditClick(agent, e)}
+                              className="p-2 hover:bg-light-bg rounded-lg transition-colors group"
+                              title="Edit agent"
+                            >
                               <Edit size={18} className="text-text-secondary group-hover:text-primary group-hover:scale-110 transition-all" />
                             </button>
-                            <button className="p-2 hover:bg-red/10 rounded-lg transition-colors group">
+                            <button
+                              onClick={(e) => handleDeleteClick(agent, e)}
+                              className="p-2 hover:bg-red/10 rounded-lg transition-colors group"
+                              title="Delete agent"
+                            >
                               <Trash size={18} className="text-red group-hover:scale-110 transition-transform" />
                             </button>
                           </div>
@@ -330,7 +465,13 @@ export default function AgentsPage() {
                     </div>
 
                     <div className="mt-6 pt-6 border-t border-gray-200 dark:border-slate-700 space-y-3">
-                      <button className="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
+                      <button
+                        onClick={() => {
+                          setEditingAgent(selectedAgent);
+                          setIsFormOpen(true);
+                        }}
+                        className="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                      >
                         <SettingsIcon size={18} />
                         Configure Agent
                       </button>
@@ -353,6 +494,24 @@ export default function AgentsPage() {
           </>
         )}
       </div>
+
+      {/* Modals */}
+      <AgentFormModal
+        isOpen={isFormOpen}
+        onClose={() => {
+          setIsFormOpen(false);
+          setEditingAgent(null);
+        }}
+        onSave={handleSave}
+        agent={editingAgent}
+      />
+
+      <DeleteConfirmModal
+        isOpen={!!deleteAgent}
+        onClose={() => setDeleteAgent(null)}
+        onConfirm={handleDelete}
+        agentName={deleteAgent?.name || ''}
+      />
     </>
   );
 }
