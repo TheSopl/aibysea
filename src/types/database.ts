@@ -9,6 +9,44 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      ai_agents: {
+        Row: {
+          id: string
+          name: string
+          model: string
+          system_prompt: string | null
+          greeting_message: string | null
+          triggers: string[]
+          behaviors: Record<string, unknown>
+          status: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          model?: string
+          system_prompt?: string | null
+          greeting_message?: string | null
+          triggers?: string[]
+          behaviors?: Record<string, unknown>
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          model?: string
+          system_prompt?: string | null
+          greeting_message?: string | null
+          triggers?: string[]
+          behaviors?: Record<string, unknown>
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
       agents: {
         Row: {
           id: string
@@ -146,11 +184,13 @@ export interface Database {
 
 // Convenience type aliases
 export type Agent = Database['public']['Tables']['agents']['Row']
+export type AIAgent = Database['public']['Tables']['ai_agents']['Row']
 export type Contact = Database['public']['Tables']['contacts']['Row']
 export type Conversation = Database['public']['Tables']['conversations']['Row']
 export type Message = Database['public']['Tables']['messages']['Row']
 
 export type NewAgent = Database['public']['Tables']['agents']['Insert']
+export type NewAIAgent = Database['public']['Tables']['ai_agents']['Insert']
 export type NewContact = Database['public']['Tables']['contacts']['Insert']
 export type NewConversation = Database['public']['Tables']['conversations']['Insert']
 export type NewMessage = Database['public']['Tables']['messages']['Insert']
