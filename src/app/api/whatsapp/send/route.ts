@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { sendTextMessage, isWithin24HourWindow } from '@/lib/whatsapp/client';
 
+// Supabase admin client type (with any to bypass strict RLS type checking)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SupabaseAdmin = any;
+
 export async function POST(request: NextRequest) {
   try {
     const { to, message, conversation_id, skip_handler_check } = await request.json();
@@ -14,7 +18,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const supabase = createAdminClient();
+    const supabase: SupabaseAdmin = createAdminClient();
 
     // Check if conversation is in human mode (skip AI messages)
     if (conversation_id && !skip_handler_check) {
@@ -58,11 +62,35 @@ export async function POST(request: NextRequest) {
 
     // Send message via WhatsApp Cloud API
     const result = await sendTextMessage(to, message);
+    const whatsappMessageId = result.messages[0]?.id;
 
-    console.log('[WhatsApp Send] Message sent to:', to, 'Message ID:', result.messages[0]?.id);
+    console.log('[WhatsApp Send] Message sent to:', to, 'Message ID:', whatsappMessageId);
+
+    // Store outbound message in database (only if conversation_id provided)
+    if (conversation_id) {
+      const { error: insertError } = await supabase
+        .from('messages')
+        .insert({
+          conversation_id: conversation_id,
+          content: message,
+          direction: 'outbound',
+          content_type: 'text',
+          sender_type: 'agent',
+          whatsapp_message_id: whatsappMessageId,
+          created_at: new Date().toISOString(),
+        });
+
+      if (insertError) {
+        console.error('[WhatsApp Send] Failed to store message:', insertError);
+        // Don't fail the request - message was sent successfully
+      } else {
+        console.log('[WhatsApp Send] Message stored in database');
+      }
+    }
+
     return NextResponse.json({
       success: true,
-      message_id: result.messages[0]?.id
+      message_id: whatsappMessageId
     });
   } catch (error) {
     console.error('[WhatsApp Send] Error:', error);
