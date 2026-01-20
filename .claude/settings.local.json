@@ -18,7 +18,16 @@
       "Bash(git check-ignore:*)",
       "WebFetch(domain:aibysea.vercel.app)",
       "Bash(curl:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Skill(gsd:plan-phase)",
+      "Bash(npx ts-node:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx tsc:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)"
     ]
   },
   "mcpServers": {

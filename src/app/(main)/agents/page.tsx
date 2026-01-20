@@ -2,6 +2,7 @@
 
 import TopBar from '@/components/layout/TopBar';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Zap,
   Bot,
@@ -20,18 +21,16 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { AIAgent } from '@/types/database';
-import AgentFormModal from '@/components/agents/AgentFormModal';
 import DeleteConfirmModal from '@/components/agents/DeleteConfirmModal';
 
 export default function AgentsPage() {
+  const router = useRouter();
   const [agents, setAgents] = useState<AIAgent[]>([]);
   const [selectedAgent, setSelectedAgent] = useState<AIAgent | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Modal state
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  const [editingAgent, setEditingAgent] = useState<AIAgent | null>(null);
+  // Modal state (only for delete confirmation)
   const [deleteAgent, setDeleteAgent] = useState<AIAgent | null>(null);
 
   // Fetch agents from API
@@ -60,22 +59,6 @@ export default function AgentsPage() {
   useEffect(() => {
     fetchAgents();
   }, []);
-
-  // Handle create/edit save
-  const handleSave = (savedAgent: AIAgent) => {
-    if (editingAgent) {
-      // Update existing agent in list
-      setAgents(prev => prev.map(a => a.id === savedAgent.id ? savedAgent : a));
-      if (selectedAgent?.id === savedAgent.id) {
-        setSelectedAgent(savedAgent);
-      }
-    } else {
-      // Add new agent to list
-      setAgents(prev => [savedAgent, ...prev]);
-      setSelectedAgent(savedAgent);
-    }
-    setEditingAgent(null);
-  };
 
   // Handle delete
   const handleDelete = async () => {
@@ -143,11 +126,10 @@ export default function AgentsPage() {
     }
   };
 
-  // Handle edit button click
+  // Handle edit button click - navigate to editor page
   const handleEditClick = (agent: AIAgent, e: React.MouseEvent) => {
     e.stopPropagation();
-    setEditingAgent(agent);
-    setIsFormOpen(true);
+    router.push(`/agents/${agent.id}/edit`);
   };
 
   // Handle delete button click
@@ -156,10 +138,9 @@ export default function AgentsPage() {
     setDeleteAgent(agent);
   };
 
-  // Handle create button click
+  // Handle create button click - navigate to new agent editor
   const handleCreateClick = () => {
-    setEditingAgent(null);
-    setIsFormOpen(true);
+    router.push('/agents/new/edit');
   };
 
   return (
@@ -466,10 +447,7 @@ export default function AgentsPage() {
 
                     <div className="mt-6 pt-6 border-t border-gray-200 dark:border-slate-700 space-y-3">
                       <button
-                        onClick={() => {
-                          setEditingAgent(selectedAgent);
-                          setIsFormOpen(true);
-                        }}
+                        onClick={() => router.push(`/agents/${selectedAgent.id}/edit`)}
                         className="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
                       >
                         <SettingsIcon size={18} />
@@ -495,17 +473,7 @@ export default function AgentsPage() {
         )}
       </div>
 
-      {/* Modals */}
-      <AgentFormModal
-        isOpen={isFormOpen}
-        onClose={() => {
-          setIsFormOpen(false);
-          setEditingAgent(null);
-        }}
-        onSave={handleSave}
-        agent={editingAgent}
-      />
-
+      {/* Delete Confirmation Modal */}
       <DeleteConfirmModal
         isOpen={!!deleteAgent}
         onClose={() => setDeleteAgent(null)}
