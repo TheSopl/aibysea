@@ -724,13 +724,19 @@ export default function InboxPage() {
               {messages.length === 0 ? (
                 <div className="text-center text-text-secondary py-8">No messages yet</div>
               ) : (
-                messages.map((msg, index) => (
+                messages.map((msg, index) => {
+                  // Only animate the last 6 messages for better performance on long conversations
+                  const animateFromIndex = Math.max(0, messages.length - 6);
+                  const shouldAnimate = index >= animateFromIndex;
+                  const animationIndex = index - animateFromIndex;
+
+                  return (
                   <div
                     key={msg.id}
                     className={`flex ${msg.direction === 'inbound' ? 'justify-start' : 'justify-end'}`}
-                    style={{
-                      animation: `fadeIn 0.4s ease-out ${index * 0.05}s both`
-                    }}
+                    style={shouldAnimate ? {
+                      animation: `fadeIn 0.4s ease-out ${animationIndex * 0.05}s both`
+                    } : undefined}
                   >
                     <div className="max-w-md">
                       <div className={`px-4 py-3 rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl hover:scale-[1.02] ${
@@ -759,7 +765,8 @@ export default function InboxPage() {
                       </span>
                     </div>
                   </div>
-                ))
+                  );
+                })
               )}
               <div ref={messagesEndRef} />
             </div>
