@@ -290,21 +290,74 @@ export default function InboxPage() {
     setMessage('');
 
     try {
-      // Insert message to database
-      const { error: insertError } = await supabase
-        .from('messages')
-        .insert({
-          conversation_id: selectedConversation.id,
-          direction: 'outbound',
-          content,
-          content_type: 'text',
-          sender_type: 'agent',
-        });
+      // Route to appropriate channel endpoint
+      const channel = selectedConversation.channel;
+      let sendResult: { success?: boolean; template_required?: boolean; error?: string } = {};
 
-      if (insertError) {
-        console.error('Error sending message:', insertError);
-        setMessage(content); // Restore message on error
-        return;
+      if (channel === 'whatsapp' && selectedConversation.contact?.phone) {
+        // Send via WhatsApp
+        const response = await fetch('/api/whatsapp/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            to: selectedConversation.contact.phone,
+            message: content,
+            conversation_id: selectedConversation.id,
+            skip_handler_check: true, // Human agents always skip handler check
+          }),
+        });
+        sendResult = await response.json();
+
+        // Handle 24-hour window expiry
+        if (sendResult.template_required) {
+          alert('24-hour messaging window expired. Template message required.');
+          setMessage(content); // Restore message
+          setSendingMessage(false);
+          return;
+        }
+
+        if (!sendResult.success && sendResult.error) {
+          console.error('WhatsApp send error:', sendResult.error);
+          setMessage(content);
+          setSendingMessage(false);
+          return;
+        }
+      } else if (channel === 'telegram' && selectedConversation.contact?.phone) {
+        // Send via Telegram
+        const chatId = selectedConversation.contact.phone.replace('telegram:', '');
+        const response = await fetch('/api/telegram/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chatId,
+            message: content,
+            conversation_id: selectedConversation.id,
+            skip_handler_check: true, // Human agents always skip handler check
+          }),
+        });
+        sendResult = await response.json();
+
+        if (!sendResult.success && sendResult.error) {
+          console.error('Telegram send error:', sendResult.error);
+        }
+      }
+
+      // For WhatsApp, the endpoint stores the message in DB
+      // For Telegram and other channels, insert message to database here
+      if (channel !== 'whatsapp') {
+        const { error: insertError } = await supabase
+          .from('messages')
+          .insert({
+            conversation_id: selectedConversation.id,
+            direction: 'outbound',
+            content,
+            content_type: 'text',
+            sender_type: 'agent',
+          });
+
+        if (insertError) {
+          console.error('Error saving message:', insertError);
+        }
       }
 
       // Update conversation timestamp
@@ -313,15 +366,6 @@ export default function InboxPage() {
         .update({ last_message_at: new Date().toISOString() })
         .eq('id', selectedConversation.id);
 
-      // Send to Telegram if channel is telegram
-      if (selectedConversation.channel === 'telegram' && selectedConversation.contact?.phone) {
-        const chatId = selectedConversation.contact.phone.replace('telegram:', '');
-        await fetch('/api/telegram/send', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chatId, message: content }),
-        });
-      }
     } catch (err) {
       console.error('Error sending message:', err);
       setMessage(content);
