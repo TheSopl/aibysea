@@ -1,7 +1,6 @@
 'use client';
 
 import TopBar from '@/components/layout/TopBar';
-import Image from 'next/image';
 import React, { useState, useEffect, useCallback } from 'react';
 import { Search, MoreVertical, Paperclip, Send, Phone, Video, UserCheck, Bot, Smile, Image as ImageIcon } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
@@ -21,14 +20,29 @@ interface Message {
   created_at: string;
 }
 
+interface AIAgentBasic {
+  id: string;
+  name: string;
+  model: string;
+  status: string;
+}
+
+interface AIAgentFull extends AIAgentBasic {
+  system_prompt: string | null;
+  greeting_message: string | null;
+  behaviors: Record<string, unknown>;
+}
+
 interface ConversationRaw {
   id: string;
   channel: string;
   status: string;
   handler_type: 'ai' | 'human';
+  ai_agent_id: string | null;
   last_message_at: string | null;
   unread_count: number;
   contact: Contact | Contact[] | null;
+  ai_agent: AIAgentBasic | AIAgentBasic[] | null;
   messages: { content: string }[];
 }
 
@@ -37,9 +51,11 @@ interface Conversation {
   channel: string;
   status: string;
   handler_type: 'ai' | 'human';
+  ai_agent_id: string | null;
   last_message_at: string | null;
   unread_count: number;
   contact: Contact | null;
+  ai_agent: AIAgentBasic | null;
   messages: { content: string }[];
 }
 
@@ -48,6 +64,13 @@ function normalizeContact(contact: Contact | Contact[] | null): Contact | null {
   if (!contact) return null;
   if (Array.isArray(contact)) return contact[0] || null;
   return contact;
+}
+
+// Helper to normalize AI agent from Supabase (can be array or object)
+function normalizeAIAgent(agent: AIAgentBasic | AIAgentBasic[] | null): AIAgentBasic | null {
+  if (!agent) return null;
+  if (Array.isArray(agent)) return agent[0] || null;
+  return agent;
 }
 
 // Helper to format time ago
@@ -92,6 +115,8 @@ export default function InboxPage() {
   const [isAIMode, setIsAIMode] = useState(true);
   const [loading, setLoading] = useState(true);
   const [sendingMessage, setSendingMessage] = useState(false);
+  const [availableAgents, setAvailableAgents] = useState<AIAgentFull[]>([]);
+  const [updatingAgent, setUpdatingAgent] = useState(false);
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
 
   const supabase = createClient();
@@ -105,9 +130,11 @@ export default function InboxPage() {
         channel,
         status,
         handler_type,
+        ai_agent_id,
         last_message_at,
         unread_count,
         contact:contacts(id, name, phone),
+        ai_agent:ai_agents(id, name, model, status),
         messages(content, created_at)
       `)
       .order('last_message_at', { ascending: false, nullsFirst: false })
@@ -119,11 +146,12 @@ export default function InboxPage() {
       return;
     }
 
-    // Normalize contacts (Supabase returns array for joins)
+    // Normalize contacts and ai_agents (Supabase returns array for joins)
     const normalized = (data as unknown as ConversationRaw[]).map(conv => ({
       ...conv,
       unread_count: conv.unread_count || 0,
       contact: normalizeContact(conv.contact),
+      ai_agent: normalizeAIAgent(conv.ai_agent),
     }));
 
     setConversations(normalized);
@@ -146,10 +174,70 @@ export default function InboxPage() {
     setMessages(data as Message[]);
   }, [supabase]);
 
+  // Fetch available AI agents
+  const fetchAvailableAgents = useCallback(async () => {
+    try {
+      const response = await fetch('/api/ai-agents?status=active');
+      if (response.ok) {
+        const data = await response.json();
+        setAvailableAgents(data);
+      }
+    } catch (err) {
+      console.error('Error fetching AI agents:', err);
+    }
+  }, []);
+
+  // Update conversation's AI agent assignment
+  const handleAgentChange = async (agentId: string | null) => {
+    if (!selectedConversation || updatingAgent) return;
+
+    setUpdatingAgent(true);
+    const previousAgent = selectedConversation.ai_agent;
+    const previousAgentId = selectedConversation.ai_agent_id;
+
+    // Optimistic update
+    const newAgent = agentId ? availableAgents.find(a => a.id === agentId) || null : null;
+    setSelectedConversation({
+      ...selectedConversation,
+      ai_agent_id: agentId,
+      ai_agent: newAgent ? { id: newAgent.id, name: newAgent.name, model: newAgent.model, status: newAgent.status } : null,
+    });
+    setConversations(prev => prev.map(conv =>
+      conv.id === selectedConversation.id
+        ? { ...conv, ai_agent_id: agentId, ai_agent: newAgent ? { id: newAgent.id, name: newAgent.name, model: newAgent.model, status: newAgent.status } : null }
+        : conv
+    ));
+
+    try {
+      const { error } = await supabase
+        .from('conversations')
+        .update({ ai_agent_id: agentId })
+        .eq('id', selectedConversation.id);
+
+      if (error) throw error;
+    } catch (err) {
+      console.error('Error updating AI agent:', err);
+      // Rollback on error
+      setSelectedConversation({
+        ...selectedConversation,
+        ai_agent_id: previousAgentId,
+        ai_agent: previousAgent,
+      });
+      setConversations(prev => prev.map(conv =>
+        conv.id === selectedConversation.id
+          ? { ...conv, ai_agent_id: previousAgentId, ai_agent: previousAgent }
+          : conv
+      ));
+    } finally {
+      setUpdatingAgent(false);
+    }
+  };
+
   // Initial fetch
   useEffect(() => {
     fetchConversations();
-  }, [fetchConversations]);
+    fetchAvailableAgents();
+  }, [fetchConversations, fetchAvailableAgents]);
 
   // Mark conversation as read
   const markAsRead = useCallback(async (conversationId: string) => {
@@ -508,6 +596,15 @@ export default function InboxPage() {
                         }`}>
                           {conv.handler_type === 'ai' ? '🤖 AI' : '👤 Human'}
                         </span>
+                        {conv.ai_agent ? (
+                          <span className="text-xs px-2 py-0.5 bg-green/20 text-green-600 dark:text-green-400 rounded-md font-bold truncate max-w-[100px]" title={conv.ai_agent.name}>
+                            {conv.ai_agent.name}
+                          </span>
+                        ) : conv.handler_type === 'ai' ? (
+                          <span className="text-xs px-2 py-0.5 bg-orange-500/20 text-orange-600 dark:text-orange-400 rounded-md font-bold">
+                            No Agent
+                          </span>
+                        ) : null}
                       </div>
 
                       <p className="text-sm text-text-secondary dark:text-slate-300 truncate">
@@ -778,40 +875,79 @@ export default function InboxPage() {
 
               {contextTab === 'agents' && (
                 <div className="space-y-4">
-                  <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-4 border-2 border-primary/20">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="relative w-12 h-12 rounded-xl overflow-hidden shadow-lg">
-                        <Image
-                          src="/rashed.jpeg"
-                          alt="Rashed"
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-extrabold text-dark dark:text-white text-base">Rashed</h3>
-                        <p className="text-xs text-text-secondary dark:text-slate-400">Primary Agent</p>
-                      </div>
-                      <div className={`w-3 h-3 rounded-full shadow-lg ${isAIMode ? 'bg-green animate-pulse' : 'bg-gray-400'}`}></div>
-                    </div>
-
-                    <div className="space-y-3">
-                      <div>
-                        <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Status</label>
-                        <p className="text-sm text-dark dark:text-white mt-1 font-semibold">
-                          {isAIMode ? 'Active & Handling' : 'Paused (Human Mode)'}
-                        </p>
-                      </div>
-                      <div>
-                        <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Model</label>
-                        <p className="text-sm text-dark dark:text-white mt-1">GPT-4 Turbo</p>
-                      </div>
-                      <div>
-                        <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Specialization</label>
-                        <p className="text-sm text-dark dark:text-white mt-1">Customer Support & Sales</p>
-                      </div>
-                    </div>
+                  {/* Agent Assignment Dropdown */}
+                  <div>
+                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider block mb-2">
+                      Assigned AI Agent
+                    </label>
+                    <select
+                      value={selectedConversation.ai_agent_id || ''}
+                      onChange={(e) => handleAgentChange(e.target.value || null)}
+                      disabled={updatingAgent}
+                      className="w-full px-3 py-2.5 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-sm text-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <option value="">No agent assigned</option>
+                      {availableAgents.map(agent => (
+                        <option key={agent.id} value={agent.id}>
+                          {agent.name} ({agent.model})
+                        </option>
+                      ))}
+                    </select>
+                    {updatingAgent && (
+                      <p className="text-xs text-text-secondary dark:text-slate-400 mt-1">Updating...</p>
+                    )}
                   </div>
+
+                  {/* Current Agent Details */}
+                  {selectedConversation.ai_agent ? (
+                    <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-4 border-2 border-primary/20">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
+                          <Bot size={24} className="text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-extrabold text-dark dark:text-white text-base">{selectedConversation.ai_agent.name}</h3>
+                          <p className="text-xs text-text-secondary dark:text-slate-400">AI Agent</p>
+                        </div>
+                        <div className={`w-3 h-3 rounded-full shadow-lg ${
+                          selectedConversation.ai_agent.status === 'active' && isAIMode ? 'bg-green animate-pulse' : 'bg-gray-400'
+                        }`}></div>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div>
+                          <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Status</label>
+                          <p className="text-sm text-dark dark:text-white mt-1 font-semibold">
+                            {!isAIMode ? 'Paused (Human Mode)' :
+                             selectedConversation.ai_agent.status === 'active' ? 'Active & Handling' : 'Inactive'}
+                          </p>
+                        </div>
+                        <div>
+                          <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Model</label>
+                          <p className="text-sm text-dark dark:text-white mt-1">{selectedConversation.ai_agent.model}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="bg-orange-500/10 rounded-xl p-4 border-2 border-orange-500/20">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center">
+                          <Bot size={24} className="text-orange-500" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-dark dark:text-white text-sm">No Agent Assigned</h3>
+                          <p className="text-xs text-text-secondary dark:text-slate-400">
+                            Select an agent from the dropdown above to assign one to this conversation.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Available agents count */}
+                  <p className="text-xs text-text-secondary dark:text-slate-400 text-center">
+                    {availableAgents.length} active agent{availableAgents.length !== 1 ? 's' : ''} available
+                  </p>
                 </div>
               )}
             </div>
