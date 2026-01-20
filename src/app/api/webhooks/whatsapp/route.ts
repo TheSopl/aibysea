@@ -98,6 +98,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     entryCount: payload.entry?.length ?? 0,
   });
 
+  // Debug: Log full payload to see what we're receiving
+  console.log('[WhatsApp Webhook] Full payload:', JSON.stringify(payload, null, 2));
+
   // Process webhook asynchronously - DO NOT await
   // This ensures we respond within 5 seconds as required by Meta
   processWebhook(payload).catch((error) => {
