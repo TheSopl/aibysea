@@ -93,7 +93,7 @@ Plans:
 - [x] 14-02: Agent UI Integration - Connect /agents page to Supabase, modal forms, CRUD operations
 - [x] 14-03: Agent-Conversation Assignment - ai_agent_id on conversations, inbox UI, n8n context
 
-#### Phase 14.1: UI Enhancements - INSERTED
+#### Phase 14.1: UI Enhancements - INSERTED ✅
 
 **Goal**: Enhance AI Agent editor with Manychat-style full-page form, optimize inbox message animations, add dashboard scrolling.
 
@@ -104,7 +104,7 @@ Plans:
 **Plans**: 1
 
 Plans:
-- [ ] 14.1-01: UI Enhancements - Agent editor redesign, inbox animation optimization, dashboard scrolling
+- [x] 14.1-01: UI Enhancements - Agent editor redesign, inbox animation optimization, dashboard scrolling
 
 #### Phase 15: Dashboard Metrics
 
@@ -186,10 +186,10 @@ Plans:
 | 13. Conversational Core | v3.0 | 1/1 | Complete | 2026-01-19 |
 | 13.1. WhatsApp Integration | v3.0 | 2/2 | Complete | 2026-01-21 |
 | 14. AI Agent Management | v3.0 | 3/3 | Complete | 2026-01-21 |
-| 14.1. UI Enhancements | v3.0 | 0/1 | Not started | - |
+| 14.1. UI Enhancements | v3.0 | 1/1 | Complete | 2026-01-21 |
 | 15. Dashboard Metrics | v3.0 | 0/? | Not started | - |
 | 16. Voice Provider Integration | v3.0 | 0/? | Not started | - |
 | 17. Document Processing | v3.0 | 0/? | Not started | - |
 | 18. E2E Testing & Polish | v3.0 | 0/? | Not started | - |
 
-**Overall Progress**: v3.0 — 3/8 phases complete (including 13.1 and 14.1 inserted)
+**Overall Progress**: v3.0 — 4/8 phases complete (including 13.1 and 14.1 inserted)
