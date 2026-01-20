@@ -107,6 +107,7 @@ export interface Database {
           status: string
           handler_type: string
           assigned_agent_id: string | null
+          ai_agent_id: string | null
           last_message_at: string | null
           last_customer_message_at: string | null
           unread_count: number
@@ -120,6 +121,7 @@ export interface Database {
           status?: string
           handler_type?: string
           assigned_agent_id?: string | null
+          ai_agent_id?: string | null
           last_message_at?: string | null
           last_customer_message_at?: string | null
           unread_count?: number
@@ -133,6 +135,7 @@ export interface Database {
           status?: string
           handler_type?: string
           assigned_agent_id?: string | null
+          ai_agent_id?: string | null
           last_message_at?: string | null
           last_customer_message_at?: string | null
           unread_count?: number
