@@ -175,10 +175,12 @@ const topLifecycles = [
 
 export default function DashboardPage() {
   return (
-    <>
+    <div className="flex flex-col h-full bg-white dark:bg-slate-900">
       <TopBar title="Dashboard" />
 
-      <div className="p-8 bg-white dark:bg-slate-900 space-y-8">
+      {/* Scrollable content area with transparent background */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="p-8 space-y-8">
         {/* Service Health Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {serviceCards.map((card, index) => {
@@ -422,7 +424,8 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
