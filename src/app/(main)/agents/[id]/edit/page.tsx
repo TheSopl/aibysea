@@ -169,11 +169,11 @@ function ActionCard({
             <p className="text-xs text-text-secondary dark:text-slate-400 mt-0.5">{description}</p>
           </div>
         </div>
-        <div className={`w-12 h-6 rounded-full p-1 transition-colors ${
+        <div className={`w-11 h-6 rounded-full flex items-center px-1 transition-colors ${
           enabled ? 'bg-primary' : 'bg-gray-300 dark:bg-slate-600'
         }`}>
-          <div className={`w-4 h-4 rounded-full bg-white transition-transform ${
-            enabled ? 'translate-x-6' : 'translate-x-0'
+          <div className={`w-4 h-4 rounded-full transition-all duration-200 ${
+            enabled ? 'translate-x-5 bg-white' : 'translate-x-0 bg-white'
           }`} />
         </div>
       </div>
@@ -399,9 +399,9 @@ export default function AgentEditPage() {
   }
 
   return (
-    <div className="min-h-screen bg-light-bg dark:bg-slate-900">
+    <div className="h-screen flex flex-col bg-light-bg dark:bg-slate-900">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 px-6 py-4">
+      <div className="flex-shrink-0 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 px-6 py-4">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
             <button
@@ -455,20 +455,22 @@ export default function AgentEditPage() {
         </div>
       </div>
 
-      {/* Error Banner */}
-      {error && (
-        <div className="max-w-7xl mx-auto px-6 mt-4">
-          <div className="bg-red/10 border border-red/20 rounded-xl p-4 flex items-center justify-between">
-            <span className="text-red font-medium">{error}</span>
-            <button onClick={() => setError(null)} className="text-red hover:text-red/80">
-              <X size={18} />
-            </button>
+      {/* Scrollable Content Area */}
+      <div className="flex-1 overflow-y-auto">
+        {/* Error Banner */}
+        {error && (
+          <div className="max-w-7xl mx-auto px-6 mt-4">
+            <div className="bg-red/10 border border-red/20 rounded-xl p-4 flex items-center justify-between">
+              <span className="text-red font-medium">{error}</span>
+              <button onClick={() => setError(null)} className="text-red hover:text-red/80">
+                <X size={18} />
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-6">
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto px-6 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Configuration */}
           <div className="lg:col-span-2 space-y-4">
@@ -708,7 +710,7 @@ export default function AgentEditPage() {
 
           {/* Right Column - Test Chat */}
           <div className="lg:col-span-1">
-            <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 sticky top-24 overflow-hidden">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 overflow-hidden">
               <div className="px-4 py-3 border-b border-gray-200 dark:border-slate-700 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <MessageSquare size={18} className="text-primary" />
@@ -785,6 +787,7 @@ export default function AgentEditPage() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
