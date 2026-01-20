@@ -4,6 +4,16 @@ import type { TelegramUpdate, TelegramMessage } from '@/lib/telegram/types';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type SupabaseAdmin = any;
 
+// AI Agent type for context
+interface AIAgentContext {
+  id: string;
+  name: string;
+  model: string;
+  system_prompt: string | null;
+  greeting_message: string | null;
+  behaviors: Record<string, unknown>;
+}
+
 export async function processTelegramUpdate(update: TelegramUpdate): Promise<void> {
   try {
     // Only process message updates for now
@@ -65,7 +75,10 @@ async function processIncomingMessage(message: TelegramMessage): Promise<void> {
     // Check if AI should process this message
     const shouldProcessWithAI = conversation.handler_type === 'ai';
 
-    // Step 5: Insert message with handler info for n8n to check
+    // Step 5: Fetch AI agent context if assigned
+    const aiAgent = await getConversationAIAgent(supabase, conversation.id);
+
+    // Step 6: Insert message with handler info and AI agent context for n8n
     const { error: insertError } = await supabase.from('messages').insert({
       conversation_id: conversation.id,
       direction: 'inbound',
@@ -80,6 +93,8 @@ async function processIncomingMessage(message: TelegramMessage): Promise<void> {
         timestamp: message.date,
         handler_type: conversation.handler_type, // For n8n to check
         should_process_ai: shouldProcessWithAI,
+        // Include AI agent context for n8n to use for personalized responses
+        ai_agent: aiAgent ? JSON.parse(JSON.stringify(aiAgent)) : null,
       },
     });
 
@@ -112,6 +127,32 @@ async function processIncomingMessage(message: TelegramMessage): Promise<void> {
   } catch (error) {
     console.error('[Telegram Processor] Error:', error);
   }
+}
+
+/**
+ * Fetch the AI agent assigned to a conversation.
+ * Returns the agent context if one is assigned, null otherwise.
+ */
+async function getConversationAIAgent(
+  supabase: SupabaseAdmin,
+  conversationId: string
+): Promise<AIAgentContext | null> {
+  const { data, error } = await supabase
+    .from('conversations')
+    .select(`
+      ai_agent_id,
+      ai_agent:ai_agents(id, name, model, system_prompt, greeting_message, behaviors)
+    `)
+    .eq('id', conversationId)
+    .single();
+
+  if (error || !data?.ai_agent) {
+    return null;
+  }
+
+  // Handle array response from Supabase join
+  const agent = Array.isArray(data.ai_agent) ? data.ai_agent[0] : data.ai_agent;
+  return agent || null;
 }
 
 async function findOrCreateContact(

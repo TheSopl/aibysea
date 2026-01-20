@@ -115,7 +115,10 @@ async function processIncomingMessage(
     // Step 4: Extract message content
     const content = extractMessageContent(message);
 
-    // Step 5: Insert message
+    // Step 5: Fetch AI agent context if assigned
+    const aiAgent = await getConversationAIAgent(supabase, conversation.id);
+
+    // Step 6: Insert message with AI agent context for n8n
     const messageData: MessageInsert = {
       conversation_id: conversation.id,
       direction: 'inbound',
@@ -126,6 +129,8 @@ async function processIncomingMessage(
       metadata: {
         timestamp,
         raw_message: JSON.parse(JSON.stringify(message)),
+        // Include AI agent context for n8n to use for personalized responses
+        ai_agent: aiAgent ? JSON.parse(JSON.stringify(aiAgent)) : null,
       },
     };
     const { error: insertError } = await supabase
@@ -208,6 +213,42 @@ async function findOrCreateContact(
 
   console.log('[WhatsApp Processor] Created new contact:', phone);
   return newContact;
+}
+
+// AI Agent type for context
+interface AIAgentContext {
+  id: string;
+  name: string;
+  model: string;
+  system_prompt: string | null;
+  greeting_message: string | null;
+  behaviors: Record<string, unknown>;
+}
+
+/**
+ * Fetch the AI agent assigned to a conversation.
+ * Returns the agent context if one is assigned, null otherwise.
+ */
+async function getConversationAIAgent(
+  supabase: SupabaseAdmin,
+  conversationId: string
+): Promise<AIAgentContext | null> {
+  const { data, error } = await supabase
+    .from('conversations')
+    .select(`
+      ai_agent_id,
+      ai_agent:ai_agents(id, name, model, system_prompt, greeting_message, behaviors)
+    `)
+    .eq('id', conversationId)
+    .single();
+
+  if (error || !data?.ai_agent) {
+    return null;
+  }
+
+  // Handle array response from Supabase join
+  const agent = Array.isArray(data.ai_agent) ? data.ai_agent[0] : data.ai_agent;
+  return agent || null;
 }
 
 /**

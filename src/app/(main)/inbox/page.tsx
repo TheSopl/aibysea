@@ -123,7 +123,12 @@ export default function InboxPage() {
 
   // Fetch conversations
   const fetchConversations = useCallback(async () => {
-    const { data, error } = await supabase
+    // Try with ai_agent join first, fall back to basic query if column doesn't exist yet
+    let data;
+    let error;
+
+    // First try the full query with ai_agent join
+    const result = await supabase
       .from('conversations')
       .select(`
         id,
@@ -141,8 +146,45 @@ export default function InboxPage() {
       .order('created_at', { ascending: false, referencedTable: 'messages' })
       .limit(1, { referencedTable: 'messages' });
 
+    data = result.data;
+    error = result.error;
+
+    // If error (likely missing ai_agent_id column), fall back to basic query
     if (error) {
-      console.error('Error fetching conversations:', error);
+      console.warn('Falling back to basic query (ai_agent_id column may not exist yet):', error.message);
+      const fallbackResult = await supabase
+        .from('conversations')
+        .select(`
+          id,
+          channel,
+          status,
+          handler_type,
+          last_message_at,
+          unread_count,
+          contact:contacts(id, name, phone),
+          messages(content, created_at)
+        `)
+        .order('last_message_at', { ascending: false, nullsFirst: false })
+        .order('created_at', { ascending: false, referencedTable: 'messages' })
+        .limit(1, { referencedTable: 'messages' });
+
+      if (fallbackResult.error) {
+        console.error('Error fetching conversations:', fallbackResult.error);
+        setLoading(false);
+        return;
+      }
+
+      // Add null ai_agent fields for fallback data
+      const normalizedFallback = (fallbackResult.data as unknown as Omit<ConversationRaw, 'ai_agent_id' | 'ai_agent'>[]).map(conv => ({
+        ...conv,
+        ai_agent_id: null,
+        ai_agent: null,
+        unread_count: conv.unread_count || 0,
+        contact: normalizeContact(conv.contact),
+      }));
+
+      setConversations(normalizedFallback as Conversation[]);
+      setLoading(false);
       return;
     }
 
