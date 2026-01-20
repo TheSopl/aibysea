@@ -90,6 +90,7 @@ Plans:
 
 Plans:
 - [x] 14-01: AI Agents Schema & API - Database migration, TypeScript types, CRUD endpoints
+- [x] 14-02: Agent UI Integration - Connect /agents page to Supabase, modal forms, CRUD operations
 
 #### Phase 15: Dashboard Metrics
 
@@ -170,7 +171,7 @@ Plans:
 | 12. Dark Mode Implementation | v2.0 | 2/2 | Complete | 2026-01-16 |
 | 13. Conversational Core | v3.0 | 1/1 | Complete | 2026-01-19 |
 | 13.1. WhatsApp Integration | v3.0 | 2/2 | Complete | 2026-01-21 |
-| 14. AI Agent Management | v3.0 | 1/3 | In progress | - |
+| 14. AI Agent Management | v3.0 | 2/3 | In progress | - |
 | 15. Dashboard Metrics | v3.0 | 0/? | Not started | - |
 | 16. Voice Provider Integration | v3.0 | 0/? | Not started | - |
 | 17. Document Processing | v3.0 | 0/? | Not started | - |
