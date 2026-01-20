@@ -64,7 +64,7 @@ Plans:
 
 **Extended scope:** Connected v2.0 `/inbox` UI to real Supabase data (was using mock data). Added Telegram send endpoint, real-time subscriptions, takeover toggle with DB persistence.
 
-#### Phase 13.1: WhatsApp Integration - INSERTED
+#### Phase 13.1: WhatsApp Integration - INSERTED ✅
 
 **Goal**: Configure Meta Dashboard webhooks, enable bidirectional WhatsApp messaging from inbox, with 24h window enforcement.
 
@@ -76,7 +76,7 @@ Plans:
 
 Plans:
 - [x] 13.1-01: Meta Dashboard Configuration - Webhook setup, test phone number, WABA subscription
-- [ ] 13.1-02: WhatsApp Send Endpoint - /api/whatsapp/send, inbox integration, database persistence
+- [x] 13.1-02: WhatsApp Send Endpoint - /api/whatsapp/send, inbox integration, database persistence
 
 #### Phase 14: AI Agent Management
 
@@ -169,11 +169,11 @@ Plans:
 | 11. Backend Infrastructure | v2.0 | 2/2 | Complete | 2026-01-16 |
 | 12. Dark Mode Implementation | v2.0 | 2/2 | Complete | 2026-01-16 |
 | 13. Conversational Core | v3.0 | 1/1 | Complete | 2026-01-19 |
-| 13.1. WhatsApp Integration | v3.0 | 1/2 | In progress | - |
+| 13.1. WhatsApp Integration | v3.0 | 2/2 | Complete | 2026-01-21 |
 | 14. AI Agent Management | v3.0 | 0/? | Not started | - |
 | 15. Dashboard Metrics | v3.0 | 0/? | Not started | - |
 | 16. Voice Provider Integration | v3.0 | 0/? | Not started | - |
 | 17. Document Processing | v3.0 | 0/? | Not started | - |
 | 18. E2E Testing & Polish | v3.0 | 0/? | Not started | - |
 
-**Overall Progress**: v3.0 — 1/6 phases complete
+**Overall Progress**: v3.0 — 2/7 phases complete (including 13.1 inserted)
