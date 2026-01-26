@@ -2,6 +2,7 @@
 
 import Sidebar from '@/components/layout/Sidebar';
 import MobileNav from '@/components/layout/MobileNav';
+import BottomNav from '@/components/layout/BottomNav';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export default function MainLayout({
@@ -14,11 +15,14 @@ export default function MainLayout({
       {/* Desktop Sidebar */}
       <Sidebar />
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation (Drawer) */}
       <MobileNav />
 
-      {/* Main Content - adjusted for mobile header and desktop sidebar */}
-      <div className="pt-16 lg:pt-0 lg:ml-20 h-screen flex flex-col overflow-hidden">
+      {/* Mobile Bottom Navigation */}
+      <BottomNav />
+
+      {/* Main Content - adjusted for mobile header/footer and desktop sidebar */}
+      <div className="pt-16 pb-[calc(56px+env(safe-area-inset-bottom,0px))] lg:pt-0 lg:pb-0 lg:ml-20 h-screen flex flex-col overflow-hidden">
         <Breadcrumbs />
         <div className="flex-1 overflow-auto">{children}</div>
       </div>
