@@ -8,6 +8,16 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    // Custom breakpoints (replaces defaults)
+    screens: {
+      'xs': '320px',     // Small phones (iPhone SE)
+      'sm': '375px',     // Standard phones (iPhone 12/13/14)
+      'md': '428px',     // Large phones (iPhone Pro Max)
+      'tablet': '768px', // Tablets (iPad Mini)
+      'lg': '1024px',    // Tablets landscape / Small laptops
+      'xl': '1280px',    // Desktops
+      '2xl': '1536px',   // Large desktops
+    },
     extend: {
       colors: {
         // Service-specific colors
@@ -101,6 +111,34 @@ module.exports = {
       backgroundImage: {
         'gradient-voice': 'linear-gradient(to right, #10B981, #06B6D4)',
         'gradient-documents': 'linear-gradient(to right, #F59E0B, #EF4444)',
+      },
+      // Responsive spacing tokens
+      spacing: {
+        'page': '1rem',        // Base page padding (mobile)
+        'page-sm': '1.25rem',  // 20px
+        'page-md': '1.5rem',   // 24px
+        'page-lg': '2rem',     // 32px
+        'section': '1rem',     // Base section gap
+        'section-md': '1.5rem',
+        'section-lg': '2rem',
+        'card': '1rem',        // Card padding
+        'card-md': '1.5rem',
+        'card-lg': '2rem',
+      },
+      // Responsive typography scale
+      fontSize: {
+        'heading-1': ['1.5rem', { lineHeight: '2rem', fontWeight: '700' }],        // 24px mobile
+        'heading-1-sm': ['1.875rem', { lineHeight: '2.25rem', fontWeight: '700' }], // 30px
+        'heading-1-md': ['2.25rem', { lineHeight: '2.5rem', fontWeight: '700' }],   // 36px
+        'heading-1-lg': ['3rem', { lineHeight: '3.5rem', fontWeight: '700' }],      // 48px
+        'heading-2': ['1.25rem', { lineHeight: '1.75rem', fontWeight: '600' }],     // 20px mobile
+        'heading-2-sm': ['1.5rem', { lineHeight: '2rem', fontWeight: '600' }],
+        'heading-2-md': ['1.875rem', { lineHeight: '2.25rem', fontWeight: '600' }],
+        'heading-3': ['1.125rem', { lineHeight: '1.5rem', fontWeight: '600' }],     // 18px mobile
+        'heading-3-sm': ['1.25rem', { lineHeight: '1.75rem', fontWeight: '600' }],
+        'body-sm': ['0.875rem', { lineHeight: '1.25rem' }],   // 14px
+        'body': ['1rem', { lineHeight: '1.5rem' }],           // 16px
+        'caption': ['0.75rem', { lineHeight: '1rem' }],       // 12px
       },
     },
   },
