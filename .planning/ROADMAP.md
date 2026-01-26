@@ -114,11 +114,12 @@ Plans:
 
 **Research**: Unlikely (internal UI work)
 
-**Plans**: TBD
+**Plans**: 3
 
 Plans:
 - [x] 18-01: Call Logs Responsive
-- [ ] 18-02: TBD
+- [ ] 18-02: Voice Module Responsive (Voice Agents, Phone Numbers, Voice Settings)
+- [ ] 18-03: Document Intelligence Responsive (Upload, Templates)
 
 #### Phase 19: Performance & Polish
 
