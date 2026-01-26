@@ -40,15 +40,15 @@ export function Breadcrumbs() {
   });
 
   return (
-    <div className="flex items-center gap-2 px-6 py-3 text-sm font-semibold">
-      <Link href="/dashboard" className="flex items-center gap-2 text-text-secondary dark:text-slate-300 hover:text-primary dark:hover:text-blue-400 transition-colors">
-        <Home size={18} />
+    <div className="flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 text-xs md:text-sm font-semibold overflow-x-auto">
+      <Link href="/dashboard" className="flex items-center gap-1 md:gap-2 text-text-secondary dark:text-slate-300 hover:text-primary dark:hover:text-blue-400 transition-colors flex-shrink-0">
+        <Home size={16} className="md:w-[18px] md:h-[18px]" />
         <span className="hidden sm:inline">Home</span>
       </Link>
 
       {breadcrumbs.map((crumb, index) => (
-        <div key={crumb.segment} className="flex items-center gap-2">
-          <ChevronRight size={18} className="text-text-secondary dark:text-slate-500" />
+        <div key={crumb.segment} className="flex items-center gap-1 md:gap-2 flex-shrink-0">
+          <ChevronRight size={14} className="md:w-[18px] md:h-[18px] text-text-secondary dark:text-slate-500" />
           {index === breadcrumbs.length - 1 ? (
             <span className="text-dark dark:text-white">{crumb.label}</span>
           ) : (

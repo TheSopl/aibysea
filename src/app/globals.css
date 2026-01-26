@@ -250,3 +250,74 @@ html.dark {
 /* RTL Support - Text direction only, no layout changes */
 /* When dir="rtl" is set, Arabic text displays correctly right-to-left */
 /* Layout structure always stays the same */
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  /* Hide scrollbar on mobile for cleaner look */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  /* Larger touch targets */
+  button, a, input, select, textarea {
+    min-height: 44px;
+  }
+
+  /* Disable hover effects on touch devices */
+  button:hover,
+  a:hover {
+    transform: none;
+  }
+
+  /* Prevent text selection on interactive elements */
+  button, a {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  /* Increase tap targets */
+  button, a, input[type="checkbox"], input[type="radio"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Disable hover transforms on touch */
+  button:hover,
+  a:hover {
+    transform: none;
+  }
+}
+
+/* Safe area support for notched devices */
+.safe-area-inset-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-inset-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-inset-left {
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-area-inset-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Prevent overscroll bounce on iOS */
+html, body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Fix for iOS 100vh issue */
+@supports (-webkit-touch-callout: none) {
+  .h-screen {
+    height: -webkit-fill-available;
+  }
+}

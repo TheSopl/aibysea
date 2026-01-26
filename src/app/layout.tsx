@@ -21,6 +21,20 @@ export const metadata: Metadata = {
     default: "AI BY SEA",
   },
   description: "Conversational AI, Voice Agents, and Document Intelligence in one platform",
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'AI BY SEA',
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({

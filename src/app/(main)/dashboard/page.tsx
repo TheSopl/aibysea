@@ -180,9 +180,9 @@ export default function DashboardPage() {
 
       {/* Scrollable content area with transparent background */}
       <div className="flex-1 overflow-y-auto">
-        <div className="p-8 space-y-8">
+        <div className="p-4 md:p-8 space-y-4 md:space-y-8">
         {/* Service Health Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {serviceCards.map((card, index) => {
             const Icon = card.icon;
             return (
@@ -222,32 +222,32 @@ export default function DashboardPage() {
         </div>
 
         {/* Quick Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {quickStatsData.map((stat, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300"
               style={{
                 animation: `fadeIn 0.4s ease-out ${0.3 + index * 0.05}s both`
               }}
             >
-              <p className="text-xs uppercase tracking-wider text-text-secondary dark:text-slate-300 font-bold mb-3">
+              <p className="text-[10px] md:text-xs uppercase tracking-wider text-text-secondary dark:text-slate-300 font-bold mb-2 md:mb-3">
                 {stat.label}
               </p>
-              <p className="text-3xl font-extrabold text-dark dark:text-white">{stat.value}</p>
+              <p className="text-xl md:text-3xl font-extrabold text-dark dark:text-white">{stat.value}</p>
             </div>
           ))}
         </div>
 
         {/* Activity Feed */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500">
+          <div className="flex items-center justify-between mb-4 md:mb-6">
             <div className="flex items-center gap-2">
-              <Activity className="w-5 h-5 text-primary" />
-              <h3 className="text-xl font-extrabold text-dark dark:text-white">Recent Activity</h3>
+              <Activity className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+              <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white">Recent Activity</h3>
             </div>
           </div>
-          <div className="space-y-3 max-h-64 overflow-y-auto">
+          <div className="space-y-2 md:space-y-3 max-h-48 md:max-h-64 overflow-y-auto">
             {activityFeedData.map((item, index) => {
               const ActivityIcon = item.icon;
               return (
@@ -274,19 +274,19 @@ export default function DashboardPage() {
         </div>
 
         {/* Main Chart + Queue */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Conversations Chart */}
           <div
-            className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500"
             style={{
               animation: 'slideInFromLeft 0.6s ease-out 0.4s both'
             }}
           >
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-extrabold text-dark dark:text-white">AI Agent Performance - This Week</h3>
-              <button className="text-sm text-primary dark:text-blue-400 font-semibold hover:underline transition-all duration-300 hover:scale-110">View Details</button>
+            <div className="flex items-center justify-between mb-4 md:mb-6">
+              <h3 className="text-base md:text-xl font-extrabold text-dark dark:text-white">AI Agent Performance</h3>
+              <button className="text-xs md:text-sm text-primary dark:text-blue-400 font-semibold hover:underline transition-all duration-300">View Details</button>
             </div>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={200} className="md:!h-[300px]">
               <AreaChart data={conversationsData}>
                 <defs>
                   <linearGradient id="conversationsGradient" x1="0" y1="0" x2="0" y2="1">
@@ -366,16 +366,16 @@ export default function DashboardPage() {
         </div>
 
         {/* Bottom Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Top Channels */}
           <div
-            className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500"
             style={{
               animation: 'slideInFromLeft 0.6s ease-out 0.8s both'
             }}
           >
-            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-6">Top Channels</h3>
-            <div className="space-y-4">
+            <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white mb-4 md:mb-6">Top Channels</h3>
+            <div className="space-y-3 md:space-y-4">
               {topChannels.map((channel, index) => (
                 <div
                   key={index}
@@ -401,13 +401,13 @@ export default function DashboardPage() {
 
           {/* Top Lifecycles */}
           <div
-            className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500"
             style={{
               animation: 'slideInFromRight 0.6s ease-out 0.8s both'
             }}
           >
-            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-6">Lifecycle Distribution</h3>
-            <div className="space-y-4">
+            <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white mb-4 md:mb-6">Lifecycle Distribution</h3>
+            <div className="space-y-3 md:space-y-4">
               {topLifecycles.map((lifecycle, index) => (
                 <div
                   key={index}

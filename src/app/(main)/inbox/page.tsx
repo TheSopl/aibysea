@@ -2,7 +2,7 @@
 
 import TopBar from '@/components/layout/TopBar';
 import React, { useState, useEffect, useCallback } from 'react';
-import { Search, MoreVertical, Paperclip, Send, Phone, Video, UserCheck, Bot, Smile, Image as ImageIcon } from 'lucide-react';
+import { Search, MoreVertical, Paperclip, Send, Phone, Video, UserCheck, Bot, Smile, Image as ImageIcon, ArrowLeft, Info, X } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 
 // Types
@@ -117,6 +117,7 @@ export default function InboxPage() {
   const [sendingMessage, setSendingMessage] = useState(false);
   const [availableAgents, setAvailableAgents] = useState<AIAgentFull[]>([]);
   const [updatingAgent, setUpdatingAgent] = useState(false);
+  const [showMobileContext, setShowMobileContext] = useState(false);
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
 
   const supabase = createClient();
@@ -545,13 +546,21 @@ export default function InboxPage() {
     });
   };
 
+  // Handle back button on mobile
+  const handleMobileBack = () => {
+    setSelectedConversation(null);
+    setShowMobileContext(false);
+  };
+
   return (
     <div className="flex flex-col h-full overflow-hidden">
       <TopBar title="Inbox" />
 
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden relative">
         {/* Column 1: Conversation List */}
-        <div className="w-80 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col flex-shrink-0">
+        <div className={`w-full md:w-80 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col flex-shrink-0 ${
+          selectedConversation ? 'hidden md:flex' : 'flex'
+        }`}>
           {/* Filter Tabs */}
           <div className="p-4 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
             <div className="flex gap-2 mb-4">
@@ -662,55 +671,76 @@ export default function InboxPage() {
 
         {/* Column 2: Chat Thread */}
         {selectedConversation ? (
-          <div className="flex-1 bg-white dark:bg-slate-900 flex flex-col overflow-hidden">
+          <div className={`flex-1 bg-white dark:bg-slate-900 flex flex-col overflow-hidden ${
+            showMobileContext ? 'hidden md:flex' : 'flex'
+          }`}>
             {/* Chat Header */}
-            <div className="p-4 border-b border-gray-200 dark:border-slate-700 flex items-center justify-between bg-gradient-to-r from-white to-light-bg dark:from-slate-800 dark:to-slate-800">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-dark dark:text-white font-bold shadow-lg">
+            <div className="p-2 md:p-4 border-b border-gray-200 dark:border-slate-700 flex items-center justify-between bg-gradient-to-r from-white to-light-bg dark:from-slate-800 dark:to-slate-800">
+              <div className="flex items-center gap-2 md:gap-3">
+                {/* Mobile Back Button */}
+                <button
+                  onClick={handleMobileBack}
+                  className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+                >
+                  <ArrowLeft size={20} className="text-dark dark:text-white" />
+                </button>
+
+                <div className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-dark dark:text-white font-bold shadow-lg text-sm md:text-base">
                   {getInitials(selectedConversation.contact?.name ?? null, selectedConversation.contact?.phone ?? '')}
                 </div>
-                <div>
-                  <h3 className="font-bold text-dark dark:text-white text-lg">
+                <div className="min-w-0">
+                  <h3 className="font-bold text-dark dark:text-white text-sm md:text-lg truncate max-w-[120px] md:max-w-none">
                     {getContactDisplayName(selectedConversation.contact?.name ?? null, selectedConversation.contact?.phone)}
                   </h3>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded-md font-bold capitalize">
+                  <div className="flex items-center gap-1 md:gap-2 flex-wrap">
+                    <span className="text-xs px-1.5 md:px-2 py-0.5 bg-accent/20 text-accent rounded-md font-bold capitalize">
                       {selectedConversation.channel}
                     </span>
-                    <span className={`text-xs px-2 py-0.5 rounded-md font-bold ${
+                    <span className={`text-xs px-1.5 md:px-2 py-0.5 rounded-md font-bold ${
                       isAIMode ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
                     }`}>
-                      {isAIMode ? '🤖 AI Mode' : '👤 Human Mode'}
+                      {isAIMode ? '🤖 AI' : '👤 Human'}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 md:gap-2">
+                {/* Takeover button - simplified on mobile */}
                 <button
                   onClick={handleTakeover}
-                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300 shadow-md hover:shadow-lg ${
+                  className={`px-2 md:px-4 py-1.5 md:py-2 rounded-lg font-bold text-xs md:text-sm transition-all duration-300 shadow-md hover:shadow-lg ${
                     isAIMode
                       ? 'bg-purple text-white hover:bg-purple/90'
                       : 'bg-primary text-white hover:bg-primary/90'
                   }`}
                 >
                   {isAIMode ? (
-                    <div className="flex items-center gap-2">
-                      <UserCheck size={16} />
-                      <span>Take Over</span>
+                    <div className="flex items-center gap-1 md:gap-2">
+                      <UserCheck size={14} className="md:w-4 md:h-4" />
+                      <span className="hidden sm:inline">Take Over</span>
                     </div>
                   ) : (
-                    <div className="flex items-center gap-2">
-                      <Bot size={16} />
-                      <span>Return to AI</span>
+                    <div className="flex items-center gap-1 md:gap-2">
+                      <Bot size={14} className="md:w-4 md:h-4" />
+                      <span className="hidden sm:inline">Return to AI</span>
                     </div>
                   )}
                 </button>
-                <button className="p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+
+                {/* Mobile Info Button */}
+                <button
+                  onClick={() => setShowMobileContext(true)}
+                  className="md:hidden p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
+                >
+                  <Info size={20} className="text-text-secondary dark:text-slate-300" />
+                </button>
+
+                {/* Desktop-only buttons */}
+                <button className="hidden md:block p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
                   <Phone size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
-                <button className="p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                <button className="hidden md:block p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
                   <Video size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
                 <button className="p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
@@ -720,7 +750,7 @@ export default function InboxPage() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-light-bg/30 to-white dark:from-slate-900 dark:to-slate-900 scroll-smooth">
+            <div className="flex-1 overflow-y-auto p-3 md:p-6 space-y-3 md:space-y-4 bg-gradient-to-b from-light-bg/30 to-white dark:from-slate-900 dark:to-slate-900 scroll-smooth">
               {messages.length === 0 ? (
                 <div className="text-center text-text-secondary py-8">No messages yet</div>
               ) : (
@@ -772,24 +802,31 @@ export default function InboxPage() {
             </div>
 
             {/* Input Footer */}
-            <div className="p-4 border-t border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+            <div className="p-2 md:p-4 border-t border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
               {!isAIMode && (
-                <div className="mb-3 px-3 py-2 bg-purple/10 border border-purple/30 rounded-lg">
+                <div className="mb-2 md:mb-3 px-2 md:px-3 py-1.5 md:py-2 bg-purple/10 border border-purple/30 rounded-lg">
                   <p className="text-xs font-bold text-purple flex items-center gap-2">
                     <UserCheck size={14} />
-                    You&apos;re in Human Mode - AI is paused for this conversation
+                    <span className="hidden sm:inline">You&apos;re in Human Mode - AI is paused for this conversation</span>
+                    <span className="sm:hidden">Human Mode - AI paused</span>
                   </p>
                 </div>
               )}
-              <div className="flex items-end gap-3">
-                <button className="p-2.5 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+              <div className="flex items-end gap-1 md:gap-3">
+                {/* Attachment buttons - hidden on mobile, shown via menu */}
+                <button className="hidden md:block p-2.5 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
                   <Paperclip size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
-                <button className="p-2.5 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                <button className="hidden md:block p-2.5 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
                   <ImageIcon size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
-                <button className="p-2.5 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                <button className="hidden md:block p-2.5 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
                   <Smile size={20} className="text-text-secondary dark:text-slate-300" />
+                </button>
+
+                {/* Mobile attachment button */}
+                <button className="md:hidden p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                  <Paperclip size={18} className="text-text-secondary dark:text-slate-300" />
                 </button>
 
                 <div className="flex-1">
@@ -803,24 +840,24 @@ export default function InboxPage() {
                       }
                     }}
                     placeholder="Type your message..."
-                    rows={2}
-                    className="w-full px-4 py-3 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl resize-none text-dark dark:text-white placeholder:text-text-secondary dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    rows={1}
+                    className="w-full px-3 md:px-4 py-2 md:py-3 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl resize-none text-dark dark:text-white placeholder:text-text-secondary dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm md:text-base"
                   />
                 </div>
 
                 <button
                   onClick={handleSend}
                   disabled={sendingMessage || !message.trim()}
-                  className="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 md:px-6 py-2 md:py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-1 md:gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm md:text-base"
                 >
-                  <Send size={18} />
-                  {sendingMessage ? 'Sending...' : 'Send'}
+                  <Send size={16} className="md:w-[18px] md:h-[18px]" />
+                  <span className="hidden sm:inline">{sendingMessage ? 'Sending...' : 'Send'}</span>
                 </button>
               </div>
             </div>
           </div>
         ) : (
-          <div className="flex-1 bg-gradient-to-br from-light-bg to-white dark:from-slate-900 dark:to-slate-900 flex items-center justify-center">
+          <div className="hidden md:flex flex-1 bg-gradient-to-br from-light-bg to-white dark:from-slate-900 dark:to-slate-900 items-center justify-center">
             <div className="text-center">
               <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full flex items-center justify-center">
                 <Bot size={48} className="text-primary" />
@@ -831,9 +868,34 @@ export default function InboxPage() {
           </div>
         )}
 
-        {/* Column 3: Context Panel */}
+        {/* Column 3: Context Panel - Slide-in on mobile */}
         {selectedConversation && (
-          <div className="w-80 bg-white dark:bg-slate-800 border-l border-gray-200 dark:border-slate-700 flex flex-col overflow-hidden flex-shrink-0">
+          <>
+            {/* Mobile overlay */}
+            {showMobileContext && (
+              <div
+                className="md:hidden fixed inset-0 bg-black/50 z-40"
+                onClick={() => setShowMobileContext(false)}
+              />
+            )}
+            <div className={`
+              fixed md:relative inset-y-0 right-0 w-full max-w-sm md:w-80
+              bg-white dark:bg-slate-800 border-l border-gray-200 dark:border-slate-700
+              flex flex-col overflow-hidden flex-shrink-0 z-50
+              transform transition-transform duration-300 ease-out
+              ${showMobileContext ? 'translate-x-0' : 'translate-x-full md:translate-x-0'}
+            `}>
+            {/* Mobile Header with Close */}
+            <div className="md:hidden flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-700">
+              <h3 className="font-bold text-dark dark:text-white">Details</h3>
+              <button
+                onClick={() => setShowMobileContext(false)}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+              >
+                <X size={20} className="text-dark dark:text-white" />
+              </button>
+            </div>
+
             {/* Tabs */}
             <div className="p-4 border-b border-gray-200 dark:border-slate-700">
               <div className="grid grid-cols-2 gap-1">
@@ -1001,6 +1063,7 @@ export default function InboxPage() {
               )}
             </div>
           </div>
+          </>
         )}
       </div>
     </div>
