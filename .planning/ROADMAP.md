@@ -103,7 +103,8 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 17-01: TBD
+- [x] 17-01: Inbox Mobile Responsive
+- [ ] 17-02: TBD
 
 #### Phase 18: Secondary Pages - Responsive
 
@@ -159,7 +160,7 @@ Plans:
 | 14.1. UI Enhancements | v3.0 | 1/1 | Complete | 2026-01-21 |
 | 15. Mobile Foundation | v4.0 | 2/2 | Complete | 2026-01-27 |
 | 16. Navigation & Mobile UX | v4.0 | 2/2 | Complete | 2026-01-27 |
-| 17. Core Pages Responsive | v4.0 | 0/? | Not started | - |
+| 17. Core Pages Responsive | v4.0 | 1/? | In progress | - |
 | 18. Secondary Pages Responsive | v4.0 | 0/? | Not started | - |
 | 19. Performance & Polish | v4.0 | 0/? | Not started | - |
 

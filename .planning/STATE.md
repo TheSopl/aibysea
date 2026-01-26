@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-16)
 ## Current Position
 
 Phase: 17 of 19 (Core Pages - Responsive)
-Plan: 0 of ? in current phase
-Status: Ready to plan
-Last activity: 2026-01-27 — Completed 16-02-PLAN.md (Drawer Integration & Layout)
+Plan: 1 of ? in current phase
+Status: In progress
+Last activity: 2026-01-27 — Completed 17-01-PLAN.md (Inbox Mobile Responsive)
 
-Progress: ██████░░░░░░░░░░ 40% (v4.0 Phase 16 complete)
+Progress: ██████░░░░░░░░░░ 42% (v4.0 Phase 17 in progress)
 
 ## Performance Metrics
 
@@ -51,6 +51,8 @@ Progress: ██████░░░░░░░░░░ 40% (v4.0 Phase 16 co
 
 Recent decisions affecting current work:
 
+- **Phase 17-01:** Message bubbles use 85% max-width on mobile with breakpoint cascade (85% → xs → sm → md)
+- **Phase 17-01:** Touch target minimums: min-h-[44px] for buttons, min-h-[72px] for list items
 - **Phase 16-02:** Drawer as "More" overflow with secondary navigation only (primary items in bottom nav)
 - **Phase 16-02:** Swipe-to-close gesture threshold: 100px offset OR 500 velocity
 - **Phase 16-02:** Keyboard detection via visualViewport API (0.8 threshold for keyboard visibility)
@@ -121,6 +123,6 @@ None blocking current development.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed 16-02-PLAN.md (Drawer Integration & Layout) + bonus mobile fixes
+Stopped at: Completed 17-01-PLAN.md (Inbox Mobile Responsive)
 Resume file: None
-Next action: Plan Phase 17 (Core Pages - Responsive)
+Next action: Execute next plan in Phase 17 or plan more work
