@@ -1,23 +1,46 @@
 'use client';
 
 import { useState } from 'react';
-import { Search, Bell, Moon, Sun, X } from 'lucide-react';
+import { Search, Bell, Moon, Sun, X, ArrowLeft } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
+import { useRouter } from 'next/navigation';
 
 interface TopBarProps {
   title: string;
+  showBackButton?: boolean;
+  backHref?: string;
 }
 
-export default function TopBar({ title }: TopBarProps) {
+export default function TopBar({ title, showBackButton = false, backHref }: TopBarProps) {
   const { theme, toggleTheme } = useTheme();
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const router = useRouter();
+
+  const handleBack = () => {
+    if (backHref) {
+      router.push(backHref);
+    } else {
+      router.back();
+    }
+  };
 
   return (
-    <div className="h-14 md:h-16 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 px-3 md:px-6 flex items-center justify-between transition-colors duration-300">
-      {/* Page Title - hidden when mobile search is open */}
-      <h1 className={`text-lg md:text-2xl font-bold text-dark dark:text-white truncate ${showMobileSearch ? 'hidden' : ''}`}>
-        {title}
-      </h1>
+    <div className="sticky top-0 z-30 h-14 md:h-16 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border-b border-gray-200 dark:border-slate-700 px-3 md:px-6 flex items-center justify-between transition-all duration-300">
+      {/* Back Button + Page Title */}
+      <div className={`flex items-center gap-2 ${showMobileSearch ? 'hidden' : ''}`}>
+        {showBackButton && (
+          <button
+            onClick={handleBack}
+            className="lg:hidden p-2 -ml-2 hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-colors"
+            aria-label="Go back"
+          >
+            <ArrowLeft size={20} className="text-dark dark:text-white" />
+          </button>
+        )}
+        <h1 className="text-lg md:text-2xl font-bold text-dark dark:text-white truncate">
+          {title}
+        </h1>
+      </div>
 
       {/* Search Bar - Desktop */}
       <div className="hidden md:block flex-1 max-w-2xl mx-8">
