@@ -92,7 +92,7 @@ Plans:
 - [x] 16-01: Navigation State & Bottom Nav
 - [x] 16-02: Drawer Integration & Layout
 
-#### Phase 17: Core Pages - Responsive Overhaul
+#### Phase 17: Core Pages - Responsive Overhaul ✅
 
 **Goal**: Mobile-responsive layouts for Inbox (conversation list, chat view), Dashboard (cards, metrics), and AI Agents pages.
 
@@ -100,11 +100,11 @@ Plans:
 
 **Research**: Unlikely (internal UI work)
 
-**Plans**: TBD
+**Plans**: 2
 
 Plans:
 - [x] 17-01: Inbox Mobile Responsive
-- [ ] 17-02: TBD
+- [x] 17-02: Dashboard and Agents Responsive
 
 #### Phase 18: Secondary Pages - Responsive
 
@@ -160,8 +160,8 @@ Plans:
 | 14.1. UI Enhancements | v3.0 | 1/1 | Complete | 2026-01-21 |
 | 15. Mobile Foundation | v4.0 | 2/2 | Complete | 2026-01-27 |
 | 16. Navigation & Mobile UX | v4.0 | 2/2 | Complete | 2026-01-27 |
-| 17. Core Pages Responsive | v4.0 | 1/? | In progress | - |
+| 17. Core Pages Responsive | v4.0 | 2/2 | Complete | 2026-01-27 |
 | 18. Secondary Pages Responsive | v4.0 | 0/? | Not started | - |
 | 19. Performance & Polish | v4.0 | 0/? | Not started | - |
 
-**Overall Progress**: v4.0 — 2/5 phases complete
+**Overall Progress**: v4.0 — 3/5 phases complete

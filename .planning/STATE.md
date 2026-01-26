@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-16)
 ## Current Position
 
 Phase: 17 of 19 (Core Pages - Responsive)
-Plan: 1 of ? in current phase
-Status: In progress
-Last activity: 2026-01-27 — Completed 17-01-PLAN.md (Inbox Mobile Responsive)
+Plan: 2 of 2 in current phase
+Status: Complete
+Last activity: 2026-01-27 — Completed 17-02-PLAN.md (Dashboard and Agents Responsive)
 
-Progress: ██████░░░░░░░░░░ 42% (v4.0 Phase 17 in progress)
+Progress: ████████░░░░░░░░ 50% (v4.0 Phase 17 complete)
 
 ## Performance Metrics
 
@@ -44,6 +44,7 @@ Progress: ██████░░░░░░░░░░ 42% (v4.0 Phase 17 in
 | 14.1 | 1 | 18 min | 18 min |
 | 15 | 2 | 25 min | 12.5 min |
 | 16 | 2 | 16 min | 8 min |
+| 17 | 2 | 40 min | 20 min |
 
 ## Accumulated Context
 
@@ -51,6 +52,8 @@ Progress: ██████░░░░░░░░░░ 42% (v4.0 Phase 17 in
 
 Recent decisions affecting current work:
 
+- **Phase 17-02:** Recharts ResponsiveContainer ignores className - must use wrapper div for responsive heights
+- **Phase 17-02:** TopBar supports optional showBackButton prop for mobile navigation (lg:hidden)
 - **Phase 17-01:** Message bubbles use 85% max-width on mobile with breakpoint cascade (85% → xs → sm → md)
 - **Phase 17-01:** Touch target minimums: min-h-[44px] for buttons, min-h-[72px] for list items
 - **Phase 16-02:** Drawer as "More" overflow with secondary navigation only (primary items in bottom nav)
@@ -123,6 +126,6 @@ None blocking current development.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed 17-01-PLAN.md (Inbox Mobile Responsive)
+Stopped at: Completed 17-02-PLAN.md (Dashboard and Agents Responsive)
 Resume file: None
-Next action: Execute next plan in Phase 17 or plan more work
+Next action: Plan Phase 18 (Secondary Pages Responsive) or execute existing plan
