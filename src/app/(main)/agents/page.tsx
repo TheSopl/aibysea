@@ -291,7 +291,7 @@ export default function AgentsPage() {
                       <div
                         key={agent.id}
                         onClick={() => setSelectedAgent(agent)}
-                        className={`p-5 rounded-xl cursor-pointer transition-all duration-500 border-2 hover:scale-[1.02] ${
+                        className={`p-3 tablet:p-5 rounded-xl cursor-pointer transition-all duration-500 border-2 hover:scale-[1.01] tablet:hover:scale-[1.02] ${
                           selectedAgent?.id === agent.id
                             ? 'bg-gradient-to-r from-primary/5 to-accent/5 border-primary/30 shadow-xl'
                             : 'bg-light-bg dark:bg-slate-700 border-transparent hover:border-gray-200 dark:hover:border-slate-600 hover:shadow-lg'
@@ -300,73 +300,74 @@ export default function AgentsPage() {
                           animation: `fadeIn 0.5s ease-out ${0.6 + index * 0.1}s both`
                         }}
                       >
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex items-center gap-4">
-                            <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 rounded-xl flex items-center justify-center shadow-lg">
-                              <Bot size={28} className="text-primary dark:text-white" />
-                            </div>
-                            <div>
-                              <div className="flex items-center gap-3 mb-1">
-                                <h3 className="text-lg font-extrabold text-dark dark:text-white">{agent.name}</h3>
-                                <div className={`w-3 h-3 rounded-full ${
-                                  agent.status === 'active' ? 'bg-green animate-pulse shadow-lg' : 'bg-gray-400 dark:bg-slate-500'
-                                }`}></div>
-                              </div>
-                              <p className="text-sm text-text-secondary dark:text-slate-300">{agent.model}</p>
-                            </div>
-                          </div>
-
-                          <div className="flex items-center gap-2">
-                            {agent.status === 'active' ? (
-                              <button
-                                onClick={(e) => handleStatusToggle(agent, e)}
-                                className="p-2 hover:bg-amber/10 rounded-lg transition-colors group"
-                                title="Pause agent"
-                              >
-                                <Pause size={18} className="text-amber group-hover:scale-110 transition-transform" />
-                              </button>
-                            ) : (
-                              <button
-                                onClick={(e) => handleStatusToggle(agent, e)}
-                                className="p-2 hover:bg-green/10 rounded-lg transition-colors group"
-                                title="Activate agent"
-                              >
-                                <Play size={18} className="text-green group-hover:scale-110 transition-transform" />
-                              </button>
-                            )}
-                            <button
-                              onClick={(e) => handleEditClick(agent, e)}
-                              className="p-2 hover:bg-light-bg rounded-lg transition-colors group"
-                              title="Edit agent"
-                            >
-                              <Edit size={18} className="text-text-secondary group-hover:text-primary group-hover:scale-110 transition-all" />
-                            </button>
-                            <button
-                              onClick={(e) => handleDeleteClick(agent, e)}
-                              className="p-2 hover:bg-red/10 rounded-lg transition-colors group"
-                              title="Delete agent"
-                            >
-                              <Trash size={18} className="text-red group-hover:scale-110 transition-transform" />
-                            </button>
-                          </div>
+                        {/* Card Header */}
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-12 h-12 tablet:w-14 tablet:h-14 bg-gradient-to-br from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+                          <Bot size={24} className="tablet:hidden text-primary dark:text-white" />
+                          <Bot size={28} className="hidden tablet:block text-primary dark:text-white" />
                         </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <h3 className="text-base tablet:text-lg font-extrabold text-dark dark:text-white truncate">{agent.name}</h3>
+                            <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${
+                              agent.status === 'active' ? 'bg-green animate-pulse shadow-lg' : 'bg-gray-400 dark:bg-slate-500'
+                            }`}></div>
+                          </div>
+                          <p className="text-xs tablet:text-sm text-text-secondary dark:text-slate-300">{agent.model}</p>
+                        </div>
+                      </div>
+
+                      {/* Action Buttons Row */}
+                      <div className="flex items-center justify-end gap-1 mb-3 -mt-1">
+                        {agent.status === 'active' ? (
+                          <button
+                            onClick={(e) => handleStatusToggle(agent, e)}
+                            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center hover:bg-amber/10 rounded-lg transition-colors group"
+                            title="Pause agent"
+                          >
+                            <Pause size={18} className="text-amber group-hover:scale-110 transition-transform" />
+                          </button>
+                        ) : (
+                          <button
+                            onClick={(e) => handleStatusToggle(agent, e)}
+                            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center hover:bg-green/10 rounded-lg transition-colors group"
+                            title="Activate agent"
+                          >
+                            <Play size={18} className="text-green group-hover:scale-110 transition-transform" />
+                          </button>
+                        )}
+                        <button
+                          onClick={(e) => handleEditClick(agent, e)}
+                          className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center hover:bg-light-bg dark:hover:bg-slate-600 rounded-lg transition-colors group"
+                          title="Edit agent"
+                        >
+                          <Edit size={18} className="text-text-secondary group-hover:text-primary group-hover:scale-110 transition-all" />
+                        </button>
+                        <button
+                          onClick={(e) => handleDeleteClick(agent, e)}
+                          className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center hover:bg-red/10 rounded-lg transition-colors group"
+                          title="Delete agent"
+                        >
+                          <Trash size={18} className="text-red group-hover:scale-110 transition-transform" />
+                        </button>
+                      </div>
 
                         {agent.system_prompt && (
-                          <p className="text-sm text-text-secondary dark:text-slate-400 mb-4 line-clamp-2">
+                          <p className="text-xs tablet:text-sm text-text-secondary dark:text-slate-400 mb-3 line-clamp-2">
                             {agent.system_prompt}
                           </p>
                         )}
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="flex items-center gap-4 tablet:gap-6">
                           <div>
-                            <p className="text-xs text-text-secondary dark:text-slate-400 font-bold uppercase tracking-wider mb-1">Status</p>
-                            <p className={`text-lg font-extrabold ${agent.status === 'active' ? 'text-green' : 'text-gray-500'}`}>
+                            <p className="text-[10px] tablet:text-xs text-text-secondary dark:text-slate-400 font-bold uppercase tracking-wider mb-0.5">Status</p>
+                            <p className={`text-sm tablet:text-base font-extrabold ${agent.status === 'active' ? 'text-green' : 'text-gray-500'}`}>
                               {agent.status === 'active' ? 'Active' : 'Inactive'}
                             </p>
                           </div>
                           <div>
-                            <p className="text-xs text-text-secondary dark:text-slate-400 font-bold uppercase tracking-wider mb-1">Created</p>
-                            <p className="text-lg font-extrabold text-dark dark:text-white">
+                            <p className="text-[10px] tablet:text-xs text-text-secondary dark:text-slate-400 font-bold uppercase tracking-wider mb-0.5">Created</p>
+                            <p className="text-sm tablet:text-base font-extrabold text-dark dark:text-white">
                               {new Date(agent.created_at).toLocaleDateString()}
                             </p>
                           </div>
