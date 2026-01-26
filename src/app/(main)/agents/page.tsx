@@ -147,7 +147,7 @@ export default function AgentsPage() {
     <>
       <TopBar title="AI Agents" />
 
-      <div className="p-8 bg-light-bg dark:bg-slate-900">
+      <div className="p-4 tablet:p-8 bg-light-bg dark:bg-slate-900 min-h-screen overflow-y-auto">
         {/* Loading State */}
         {loading && (
           <div className="flex items-center justify-center h-64">
@@ -169,7 +169,7 @@ export default function AgentsPage() {
         {!loading && !error && (
           <>
             {/* Stats Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-2 tablet:grid-cols-4 gap-3 tablet:gap-6 mb-6 tablet:mb-8">
               <div
                 className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border-2 border-primary/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
                 style={{
@@ -247,9 +247,9 @@ export default function AgentsPage() {
               </div>
             </div>
 
-            <div className="flex gap-6">
+            <div className="flex flex-col lg:flex-row gap-6">
               {/* Agents List */}
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
@@ -378,7 +378,7 @@ export default function AgentsPage() {
               </div>
 
               {/* Agent Details Panel */}
-              <div className="w-96">
+              <div className="w-full lg:w-96 flex-shrink-0">
                 {selectedAgent ? (
                   <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 sticky top-8">
                     <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-slate-700">

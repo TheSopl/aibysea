@@ -71,15 +71,80 @@ export default function ContactsPage() {
     <>
       <TopBar title="Contacts" />
 
-      <div className="p-8 bg-light-bg dark:bg-slate-900">
+      <div className="p-4 tablet:p-8 bg-light-bg dark:bg-slate-900 min-h-screen overflow-y-auto">
         <div
           className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500"
           style={{
             animation: 'scaleIn 0.5s ease-out both'
           }}
         >
-          {/* Table */}
-          <div className="overflow-x-auto">
+          {/* Mobile Card View */}
+          <div className="tablet:hidden divide-y divide-gray-200 dark:divide-slate-700">
+            {contacts.map((contact, index) => (
+              <div
+                key={contact.id}
+                className="p-4 hover:bg-light-bg dark:hover:bg-slate-700 transition-colors"
+                style={{
+                  animation: `fadeIn 0.4s ease-out ${index * 0.05}s both`
+                }}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0 flex-1">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold flex-shrink-0">
+                      {contact.name[0]}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-semibold text-dark dark:text-white truncate">{contact.name}</p>
+                      <p className="text-xs text-text-secondary dark:text-slate-300 truncate">{contact.email}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1 flex-shrink-0">
+                    <button className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-light-bg dark:hover:bg-slate-600 rounded-lg transition-colors">
+                      <Edit size={16} className="text-text-secondary dark:text-slate-300" />
+                    </button>
+                    <button className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-red/10 rounded-lg transition-colors">
+                      <Trash size={16} className="text-red" />
+                    </button>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  <span className="px-2 py-1 bg-accent/20 text-accent text-xs font-semibold rounded-lg">
+                    {contact.channel}
+                  </span>
+                  <span
+                    className={`px-2 py-1 text-xs font-semibold rounded-lg ${
+                      contact.status === 'active'
+                        ? 'bg-green/20 text-green'
+                        : 'bg-gray-200 text-gray-700'
+                    }`}
+                  >
+                    {contact.status}
+                  </span>
+                  <span className={`px-2 py-1 text-xs font-bold rounded-lg ${
+                    contact.lifecycle === 'Customer' ? 'bg-green/20 text-green' :
+                    contact.lifecycle === 'Lead' ? 'bg-blue/20 text-blue' :
+                    contact.lifecycle === 'Qualified Lead' ? 'bg-primary/20 text-primary' :
+                    contact.lifecycle === 'Prospect' ? 'bg-amber/20 text-amber' :
+                    'bg-gray-200 text-gray-700'
+                  }`}>
+                    {contact.lifecycle}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between mt-2 text-xs text-text-secondary dark:text-slate-400">
+                  <span>{contact.lastMessage}</span>
+                  <div className="flex items-center gap-1">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white text-[10px] font-bold">
+                      {contact.assignee[0]}
+                    </div>
+                    <span>{contact.assignee}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden tablet:block overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="bg-light-bg dark:bg-slate-700">

@@ -20,7 +20,7 @@ export default function MainLayout({
       {/* Main Content - adjusted for mobile header and desktop sidebar */}
       <div className="pt-16 lg:pt-0 lg:ml-20 h-screen flex flex-col overflow-hidden">
         <Breadcrumbs />
-        <div className="flex-1 overflow-hidden">{children}</div>
+        <div className="flex-1 overflow-auto">{children}</div>
       </div>
     </div>
   );
