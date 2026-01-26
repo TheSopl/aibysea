@@ -265,7 +265,7 @@ export default function CallLogsPage() {
           selectedCall && "hidden tablet:flex tablet:flex-col"
         )}>
           {/* Filters */}
-          <div className="p-4 border-b border-gray-200 dark:border-slate-700 space-y-3 bg-white dark:bg-slate-800">
+          <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-slate-700 space-y-3 bg-white dark:bg-slate-800">
             {/* Agent Filter */}
             <div className="flex items-center gap-3">
               <label className="text-xs font-bold text-gray-600 dark:text-slate-400 whitespace-nowrap">Agent:</label>
@@ -287,7 +287,7 @@ export default function CallLogsPage() {
                 <button
                   key={status}
                   onClick={() => setStatusFilter(status)}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${
+                  className={`px-3 py-1.5 min-h-[36px] text-xs font-bold rounded-lg transition-all ${
                     statusFilter === status
                       ? 'bg-teal-500 text-white shadow-md'
                       : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
@@ -305,7 +305,7 @@ export default function CallLogsPage() {
                 <button
                   key={direction}
                   onClick={() => setDirectionFilter(direction)}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${
+                  className={`px-3 py-1.5 min-h-[36px] text-xs font-bold rounded-lg transition-all ${
                     directionFilter === direction
                       ? 'bg-teal-500 text-white shadow-md'
                       : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
@@ -317,21 +317,24 @@ export default function CallLogsPage() {
             </div>
 
             {/* Date Range */}
-            <div className="flex items-center gap-2">
-              <label className="text-xs font-bold text-gray-600 dark:text-slate-400 whitespace-nowrap">Date Range:</label>
-              <input
-                type="date"
-                value={dateFrom}
-                onChange={(e) => setDateFrom(e.target.value)}
-                className="flex-1 px-3 py-2 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-sm text-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
-              />
-              <span className="text-gray-400 dark:text-slate-500">-</span>
-              <input
-                type="date"
-                value={dateTo}
-                onChange={(e) => setDateTo(e.target.value)}
-                className="flex-1 px-3 py-2 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-sm text-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
-              />
+            <div className="space-y-2 sm:space-y-0">
+              <label className="text-xs font-bold text-gray-600 dark:text-slate-400 block sm:hidden mb-1">Date Range:</label>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <label className="text-xs font-bold text-gray-600 dark:text-slate-400 whitespace-nowrap hidden sm:block">Date Range:</label>
+                <input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full sm:flex-1 px-3 py-2 min-h-[44px] bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-sm text-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+                />
+                <span className="text-gray-400 dark:text-slate-500 hidden sm:block">-</span>
+                <input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full sm:flex-1 px-3 py-2 min-h-[44px] bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-sm text-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
             </div>
           </div>
 
@@ -341,7 +344,7 @@ export default function CallLogsPage() {
               <div
                 key={call.id}
                 onClick={() => setSelectedCall(call)}
-                className={`p-4 border-b border-gray-100 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:bg-gray-50 dark:hover:bg-slate-700 ${
+                className={`p-3 sm:p-4 min-h-[72px] border-b border-gray-100 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:bg-gray-50 dark:hover:bg-slate-700 ${
                   selectedCall?.id === call.id ? 'bg-teal-50 dark:bg-slate-700 border-l-4 border-l-teal-500 shadow-md' : ''
                 }`}
                 style={{
