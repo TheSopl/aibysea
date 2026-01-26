@@ -2,7 +2,8 @@
 
 import TopBar from '@/components/layout/TopBar';
 import React, { useState } from 'react';
-import { Phone, PhoneOff, Clock, User, Calendar, MoreVertical, Download, MessageSquare, Play } from 'lucide-react';
+import { Phone, PhoneOff, Clock, User, Calendar, MoreVertical, Download, MessageSquare, Play, ChevronLeft } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 // Mock call logs data
 const callLogs = [
@@ -259,7 +260,10 @@ export default function CallLogsPage() {
 
       <div className="flex h-[calc(100vh-4rem)]">
         {/* Left Panel: Call List */}
-        <div className="flex-1 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col overflow-hidden">
+        <div className={cn(
+          "flex-1 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col overflow-hidden",
+          selectedCall && "hidden tablet:flex tablet:flex-col"
+        )}>
           {/* Filters */}
           <div className="p-4 border-b border-gray-200 dark:border-slate-700 space-y-3 bg-white dark:bg-slate-800">
             {/* Agent Filter */}
@@ -384,13 +388,26 @@ export default function CallLogsPage() {
 
         {/* Right Panel: Call Detail */}
         {selectedCall ? (
-          <div className="w-96 bg-white dark:bg-slate-800 border-l border-gray-200 dark:border-slate-700 flex flex-col sticky right-0 top-0 overflow-hidden shadow-lg">
+          <div className={cn(
+            "fixed inset-0 z-40 bg-white dark:bg-slate-900 flex flex-col",
+            "tablet:relative tablet:w-96 tablet:flex-shrink-0",
+            "tablet:border-l tablet:border-gray-200 dark:tablet:border-slate-700",
+            "tablet:z-auto tablet:inset-auto tablet:shadow-lg"
+          )}>
             {/* Detail Header */}
             <div className="p-4 border-b border-gray-200 dark:border-slate-700 bg-gradient-to-r from-white dark:from-slate-800 to-teal-50 dark:to-slate-700">
               <div className="flex items-start justify-between mb-3">
-                <div>
-                  <h3 className="font-bold text-dark dark:text-white text-lg">{selectedCall.callerName}</h3>
-                  <p className="text-sm text-gray-600 dark:text-slate-400">{selectedCall.callerId}</p>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setSelectedCall(null)}
+                    className="tablet:hidden p-2 -ml-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  >
+                    <ChevronLeft size={24} className="text-gray-600 dark:text-slate-400" />
+                  </button>
+                  <div>
+                    <h3 className="font-bold text-dark dark:text-white text-lg">{selectedCall.callerName}</h3>
+                    <p className="text-sm text-gray-600 dark:text-slate-400">{selectedCall.callerId}</p>
+                  </div>
                 </div>
                 <button className="p-2 hover:bg-gray-200 dark:hover:bg-slate-700 rounded-lg transition-colors">
                   <MoreVertical size={18} className="text-gray-600 dark:text-slate-400" />
@@ -420,7 +437,7 @@ export default function CallLogsPage() {
             </div>
 
             {/* Detail Content */}
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto pb-safe">
               {/* Transcription */}
               <div className="p-4 border-b border-gray-200 dark:border-slate-700">
                 <h4 className="font-bold text-dark dark:text-white text-sm mb-3">Transcription</h4>
@@ -495,7 +512,7 @@ export default function CallLogsPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 space-y-2">
+            <div className="p-4 pb-safe border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 space-y-2 sticky bottom-0">
               <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-teal-500 text-white rounded-lg font-bold text-sm hover:bg-teal-600 transition-all hover:shadow-lg">
                 <Download size={18} />
                 Download Recording
