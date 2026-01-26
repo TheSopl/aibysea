@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
@@ -20,7 +21,31 @@ const navItems = [
 
 export default function BottomNav() {
   const pathname = usePathname();
-  const { openDrawer, bottomNavVisible } = useNavigationStore();
+  const { openDrawer, bottomNavVisible, hideBottomNav, showBottomNav } = useNavigationStore();
+
+  // Keyboard detection using visualViewport API
+  useEffect(() => {
+    const handleViewportResize = () => {
+      if (!window.visualViewport) return;
+
+      // When keyboard opens, visualViewport.height becomes smaller than window.innerHeight
+      // Using 0.8 threshold to account for keyboards which typically take 40%+ of screen
+      const isKeyboardVisible = window.visualViewport.height < window.innerHeight * 0.8;
+
+      if (isKeyboardVisible) {
+        hideBottomNav();
+      } else {
+        showBottomNav();
+      }
+    };
+
+    // Listen for viewport resize events (keyboard show/hide)
+    window.visualViewport?.addEventListener('resize', handleViewportResize);
+
+    return () => {
+      window.visualViewport?.removeEventListener('resize', handleViewportResize);
+    };
+  }, [hideBottomNav, showBottomNav]);
 
   // Hide bottom nav when visibility is false
   if (!bottomNavVisible) {

@@ -11,6 +11,9 @@
   --text-primary: #1a1a1a;
   --text-secondary: #6b7280;
 
+  /* Navigation heights */
+  --nav-height-bottom: 56px;
+
   /* Service-specific color gradients */
   --service-conversational-from: #3B82F6;  /* blue */
   --service-conversational-to: #8B5CF6;    /* purple */
