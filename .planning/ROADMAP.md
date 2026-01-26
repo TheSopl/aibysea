@@ -4,7 +4,8 @@
 
 - ✅ **[v1.0 MVP](milestones/v1.0-ROADMAP.md)** — Conversational AI with multi-channel inbox (Phases 1-7) — SHIPPED 2026-01-13
 - ✅ **v2.0 Multi-Service Platform** — Voice Agents UI + Document Intelligence UI + Dark Mode (Phases 8-12) — COMPLETE 2026-01-16
-- 🚧 **v3.0 Backend & Integrations** — Real backend connections, external service integrations (Phases 13-18) — IN PROGRESS
+- ✅ **v3.0 Backend & Integrations** — Real backend connections, messaging integrations (Phases 13-14.1) — COMPLETE 2026-01-21
+- 🚧 **v4.0 Mobile Compatibility** — Professional responsive design, mobile navigation, performance (Phases 15-19) — IN PROGRESS
 
 ## Domain Expertise
 
@@ -45,128 +46,95 @@ None
 
 </details>
 
-### 🚧 v3.0 Backend & Integrations (In Progress)
+<details>
+<summary>✅ v3.0 Backend & Integrations (Phases 13-14.1) — COMPLETE 2026-01-21</summary>
 
-**Milestone Goal:** Transform the UI-complete platform into a fully functional system with real data flow, external service integrations for voice and document processing, and production-ready backend infrastructure.
+**Milestone Goal:** Connect UI-complete platform to real backend infrastructure with messaging integrations.
 
-#### Phase 13: Conversational Core ✅
+- [x] **Phase 13: Conversational Core** - Verify v1.0 infrastructure, connect inbox to Supabase (1/1 plans)
+- [x] **Phase 13.1: WhatsApp Integration** - INSERTED - Meta webhooks, bidirectional messaging (2/2 plans)
+- [x] **Phase 14: AI Agent Management** - CRUD for AI agents, configuration UI, conversation assignment (3/3 plans)
+- [x] **Phase 14.1: UI Enhancements** - INSERTED - Agent editor redesign, inbox animations, dashboard scrolling (1/1 plans)
 
-**Goal**: Verify the existing v1.0 conversational infrastructure works end-to-end — webhooks, message flow, real-time updates, and takeover toggle.
+**Deferred to v5.0:** Dashboard Metrics, Voice Provider Integration, Document Processing, E2E Testing
 
-**Depends on**: v2.0 complete
+</details>
 
-**Research**: None (verification only)
+### 🚧 v4.0 Mobile Compatibility (In Progress)
 
-**Plans**: 1
+**Milestone Goal:** Transform the platform into a professional, fully responsive application with mobile-first navigation and optimized performance across all devices.
 
-Plans:
-- [x] 13-01: Verification Plan - Build check, Telegram test, WhatsApp test (optional), real-time test, takeover test
+#### Phase 15: Mobile Foundation & Design System
 
-**Extended scope:** Connected v2.0 `/inbox` UI to real Supabase data (was using mock data). Added Telegram send endpoint, real-time subscriptions, takeover toggle with DB persistence.
+**Goal**: Establish responsive breakpoints system, mobile-first CSS patterns, and touch-friendly base styles.
 
-#### Phase 13.1: WhatsApp Integration - INSERTED ✅
+**Depends on**: v3.0 complete
 
-**Goal**: Configure Meta Dashboard webhooks, enable bidirectional WhatsApp messaging from inbox, with 24h window enforcement.
-
-**Depends on**: Phase 13
-
-**Research**: Complete (see 13.1-RESEARCH.md - comprehensive setup guide and troubleshooting)
-
-**Plans**: 2
-
-Plans:
-- [x] 13.1-01: Meta Dashboard Configuration - Webhook setup, test phone number, WABA subscription
-- [x] 13.1-02: WhatsApp Send Endpoint - /api/whatsapp/send, inbox integration, database persistence
-
-#### Phase 14: AI Agent Management ✅
-
-**Goal**: Full CRUD for AI agents stored in database, configuration UI for personality/triggers/behaviors, and connecting agents to handle conversations.
-
-**Depends on**: Phase 13
-
-**Research**: Unlikely (internal patterns, Supabase CRUD)
-
-**Plans**: 3
-
-Plans:
-- [x] 14-01: AI Agents Schema & API - Database migration, TypeScript types, CRUD endpoints
-- [x] 14-02: Agent UI Integration - Connect /agents page to Supabase, modal forms, CRUD operations
-- [x] 14-03: Agent-Conversation Assignment - ai_agent_id on conversations, inbox UI, n8n context
-
-#### Phase 14.1: UI Enhancements - INSERTED ✅
-
-**Goal**: Enhance AI Agent editor with Manychat-style full-page form, optimize inbox message animations, add dashboard scrolling.
-
-**Depends on**: Phase 14
-
-**Research**: None (UI patterns, internal components)
-
-**Plans**: 1
-
-Plans:
-- [x] 14.1-01: UI Enhancements - Agent editor redesign, inbox animation optimization, dashboard scrolling
-
-#### Phase 15: Dashboard Metrics
-
-**Goal**: Replace mock dashboard data with real database queries — conversation counts, response times, AI confidence scores, health score calculations.
-
-**Depends on**: Phase 14
-
-**Research**: Unlikely (Supabase aggregate queries, internal patterns)
+**Research**: Unlikely (internal CSS patterns, Tailwind responsive utilities)
 
 **Plans**: TBD
 
 Plans:
 - [ ] 15-01: TBD
 
-#### Phase 16: Voice Provider Integration
+#### Phase 16: Navigation & Mobile UX
 
-**Goal**: Integrate real voice provider (Twilio/Vonage), phone number provisioning, inbound/outbound call handling, call recording and transcription.
+**Goal**: Implement mobile navigation (hamburger menu, collapsible sidebar), bottom navigation for key actions, and mobile-optimized header components.
 
-**Depends on**: Phase 13
+**Depends on**: Phase 15
 
-**Research**: Likely (external API integration, webhook patterns, telephony concepts)
-
-**Research topics**: Twilio Voice API vs alternatives, phone number provisioning, call webhooks, recording/transcription options
+**Research**: Unlikely (internal patterns, Radix/Tailwind docs)
 
 **Plans**: TBD
 
 Plans:
 - [ ] 16-01: TBD
 
-#### Phase 17: Document Processing
+#### Phase 17: Core Pages - Responsive Overhaul
 
-**Goal**: Integrate OCR/extraction provider (AWS Textract/Google Vision), implement template-based extraction logic, real processing queue with job status tracking.
+**Goal**: Mobile-responsive layouts for Inbox (conversation list, chat view), Dashboard (cards, metrics), and AI Agents pages.
 
-**Depends on**: Phase 13
+**Depends on**: Phase 16
 
-**Research**: Likely (external API integration, OCR accuracy patterns, extraction strategies)
-
-**Research topics**: AWS Textract vs Google Vision vs alternatives, template matching strategies, confidence scoring
+**Research**: Unlikely (internal UI work)
 
 **Plans**: TBD
 
 Plans:
 - [ ] 17-01: TBD
 
-#### Phase 18: End-to-End Testing & Polish
+#### Phase 18: Secondary Pages - Responsive
 
-**Goal**: Integration tests across all services, error handling improvements, logging, and production deployment readiness.
+**Goal**: Mobile-responsive layouts for Voice Agents, Document Intelligence, Settings, and profile pages.
 
-**Depends on**: Phases 15, 16, 17
+**Depends on**: Phase 17
 
-**Research**: Unlikely (testing patterns, deployment config)
+**Research**: Unlikely (internal UI work)
 
 **Plans**: TBD
 
 Plans:
 - [ ] 18-01: TBD
 
+#### Phase 19: Performance & Polish
+
+**Goal**: Bundle optimization, lazy loading, image optimization, loading states, and final professional polish pass.
+
+**Depends on**: Phase 18
+
+**Research**: Unlikely (Next.js optimization patterns)
+
+**Plans**: TBD
+
+Plans:
+- [ ] 19-01: TBD
+
 ## Progress
 
 **v1.0 MVP Execution:** ✅ Complete (Phases 1-7)
 **v2.0 Multi-Service Platform:** ✅ Complete (Phases 8-12)
-**v3.0 Backend & Integrations:** 🚧 In Progress (Phases 13-18)
+**v3.0 Backend & Integrations:** ✅ Complete (Phases 13-14.1)
+**v4.0 Mobile Compatibility:** 🚧 In Progress (Phases 15-19)
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -187,9 +155,10 @@ Plans:
 | 13.1. WhatsApp Integration | v3.0 | 2/2 | Complete | 2026-01-21 |
 | 14. AI Agent Management | v3.0 | 3/3 | Complete | 2026-01-21 |
 | 14.1. UI Enhancements | v3.0 | 1/1 | Complete | 2026-01-21 |
-| 15. Dashboard Metrics | v3.0 | 0/? | Not started | - |
-| 16. Voice Provider Integration | v3.0 | 0/? | Not started | - |
-| 17. Document Processing | v3.0 | 0/? | Not started | - |
-| 18. E2E Testing & Polish | v3.0 | 0/? | Not started | - |
+| 15. Mobile Foundation | v4.0 | 0/? | Not started | - |
+| 16. Navigation & Mobile UX | v4.0 | 0/? | Not started | - |
+| 17. Core Pages Responsive | v4.0 | 0/? | Not started | - |
+| 18. Secondary Pages Responsive | v4.0 | 0/? | Not started | - |
+| 19. Performance & Polish | v4.0 | 0/? | Not started | - |
 
-**Overall Progress**: v3.0 — 4/8 phases complete (including 13.1 and 14.1 inserted)
+**Overall Progress**: v4.0 — 0/5 phases complete
