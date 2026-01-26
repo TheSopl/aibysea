@@ -78,7 +78,7 @@ Plans:
 - [x] 15-01: Responsive Breakpoints & Design Tokens
 - [x] 15-02: Responsive Components & Touch Targets
 
-#### Phase 16: Navigation & Mobile UX
+#### Phase 16: Navigation & Mobile UX (In Progress)
 
 **Goal**: Implement mobile navigation (hamburger menu, collapsible sidebar), bottom navigation for key actions, and mobile-optimized header components.
 
@@ -86,10 +86,11 @@ Plans:
 
 **Research**: Unlikely (internal patterns, Radix/Tailwind docs)
 
-**Plans**: TBD
+**Plans**: 2
 
 Plans:
-- [ ] 16-01: TBD
+- [x] 16-01: Navigation State & Bottom Nav
+- [ ] 16-02: Drawer Integration
 
 #### Phase 17: Core Pages - Responsive Overhaul
 
@@ -157,7 +158,7 @@ Plans:
 | 14. AI Agent Management | v3.0 | 3/3 | Complete | 2026-01-21 |
 | 14.1. UI Enhancements | v3.0 | 1/1 | Complete | 2026-01-21 |
 | 15. Mobile Foundation | v4.0 | 2/2 | Complete | 2026-01-27 |
-| 16. Navigation & Mobile UX | v4.0 | 0/? | Not started | - |
+| 16. Navigation & Mobile UX | v4.0 | 1/2 | In progress | - |
 | 17. Core Pages Responsive | v4.0 | 0/? | Not started | - |
 | 18. Secondary Pages Responsive | v4.0 | 0/? | Not started | - |
 | 19. Performance & Polish | v4.0 | 0/? | Not started | - |

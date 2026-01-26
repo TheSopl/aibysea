@@ -9,19 +9,19 @@ See: .planning/PROJECT.md (updated 2026-01-16)
 
 ## Current Position
 
-Phase: 15 of 19 (Mobile Foundation & Design System) ✅
-Plan: 2 of 2 in current phase — PHASE COMPLETE
-Status: Ready for Phase 16
-Last activity: 2026-01-27 — Completed 15-02-PLAN.md (Responsive Components & Touch Targets)
+Phase: 16 of 19 (Navigation & Mobile UX)
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-01-27 — Completed 16-01-PLAN.md (Navigation State & Bottom Nav)
 
-Progress: ████░░░░░░░░░░░░ 20% (v4.0 Phase 15 complete, 1/5 phases)
+Progress: █████░░░░░░░░░░░ 24% (v4.0 Phase 16 in progress)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 35 (v1.0 + v2.0 + v3.0 + v4.0)
-- Average duration: 8.6 min
-- Total execution time: 5.34 hours
+- Total plans completed: 36 (v1.0 + v2.0 + v3.0 + v4.0)
+- Average duration: 8.5 min
+- Total execution time: 5.47 hours
 
 **By Phase (v1.0 + v2.0):**
 
@@ -43,6 +43,7 @@ Progress: ████░░░░░░░░░░░░ 20% (v4.0 Phase 15 co
 | 14 | 3 | 30 min | 10 min |
 | 14.1 | 1 | 18 min | 18 min |
 | 15 | 2 | 25 min | 12.5 min |
+| 16 | 1 | 8 min | 8 min |
 
 ## Accumulated Context
 
@@ -50,6 +51,9 @@ Progress: ████░░░░░░░░░░░░ 20% (v4.0 Phase 15 co
 
 Recent decisions affecting current work:
 
+- **Phase 16-01:** 4+More pattern for bottom nav (Dashboard, Inbox, Agents, Voice visible, More opens drawer)
+- **Phase 16-01:** 56px bottom nav height + safe-area-inset-bottom for notch phones
+- **Phase 16-01:** Zustand navigation store for drawer/route/scroll state management
 - **Phase 14.1-01:** Full-page editor for AI agents with collapsible sections (Instructions, Actions, Knowledge, Settings)
 - **Phase 14.1-01:** Only animate last 6 messages in inbox for performance on long conversations
 - **Phase 14.1-01:** Dashboard scrolling via inner content container with fixed outer background
@@ -114,6 +118,6 @@ None blocking current development.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed Phase 15 (2 plans)
+Stopped at: Completed 16-01-PLAN.md (Navigation State & Bottom Nav)
 Resume file: None
-Next action: Start Phase 16 (Navigation & Mobile UX)
+Next action: Execute 16-02-PLAN.md (Drawer Integration)
