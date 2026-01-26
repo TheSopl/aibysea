@@ -77,12 +77,12 @@ export function MessageCompose({ conversationId, channel, onMessageSent }: Messa
           placeholder="Type a message..."
           disabled={isPending}
           rows={1}
-          className="flex-1 resize-none border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="flex-1 resize-none border border-gray-300 rounded-lg px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
         <button
           onClick={handleSubmit}
           disabled={!message.trim() || isPending}
-          className="bg-blue-500 text-white rounded-lg px-4 py-2 font-medium hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+          className="bg-blue-500 text-white rounded-lg px-4 py-2 min-h-[44px] min-w-[44px] font-medium hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
         >
           {isPending ? (
             <>

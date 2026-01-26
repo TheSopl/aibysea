@@ -30,7 +30,7 @@ export function Sidebar() {
         <input
           type="text"
           placeholder="Search conversations..."
-          className="w-full px-3 py-2 text-sm border border-accent-surface rounded-lg bg-navy text-text-primary focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
+          className="w-full px-3 py-2 min-h-[44px] text-sm border border-accent-surface rounded-lg bg-navy text-text-primary focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
           disabled
         />
       </div>

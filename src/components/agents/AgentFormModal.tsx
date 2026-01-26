@@ -125,7 +125,7 @@ export default function AgentFormModal({ isOpen, onClose, onSave, agent }: Agent
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
           >
             <X size={20} className="text-text-secondary" />
           </button>

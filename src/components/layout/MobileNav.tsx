@@ -132,7 +132,7 @@ export default function MobileNav() {
         {/* Menu Button */}
         <button
           onClick={() => setIsOpen(true)}
-          className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+          className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors"
           aria-label="Open menu"
         >
           <Menu size={24} />
@@ -181,7 +181,7 @@ export default function MobileNav() {
           </div>
           <button
             onClick={() => setIsOpen(false)}
-            className="p-2 text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
             aria-label="Close menu"
           >
             <X size={24} />

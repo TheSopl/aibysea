@@ -57,7 +57,7 @@ export function TakeoverButton({
       <button
         onClick={() => handleToggle(isAIHandling ? 'human' : 'ai')}
         disabled={isPending}
-        className={`text-xs px-3 py-1 rounded font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+        className={`text-xs px-3 py-1 min-h-[44px] rounded font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center ${
           isAIHandling
             ? 'bg-orange-500 text-white hover:bg-orange-600'
             : 'bg-blue-500 text-white hover:bg-blue-600'
