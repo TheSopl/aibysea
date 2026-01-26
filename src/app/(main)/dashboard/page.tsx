@@ -188,7 +188,7 @@ export default function DashboardPage() {
             return (
               <div
                 key={index}
-                className={`bg-white dark:bg-slate-800 rounded-2xl p-6 border-l-4 ${card.borderColor} shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1`}
+                className={`min-w-0 bg-white dark:bg-slate-800 rounded-2xl p-6 border-l-4 ${card.borderColor} shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1`}
                 style={{
                   animation: `scaleIn 0.5s ease-out ${index * 0.1}s both`
                 }}
