@@ -18,8 +18,10 @@ import {
   Pause,
   Settings as SettingsIcon,
   BarChart3,
-  AlertCircle
+  AlertCircle,
+  ArrowLeft
 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { AIAgent } from '@/types/database';
 import DeleteConfirmModal from '@/components/agents/DeleteConfirmModal';
 
@@ -249,7 +251,10 @@ export default function AgentsPage() {
 
             <div className="flex flex-col lg:flex-row gap-6">
               {/* Agents List */}
-              <div className="flex-1 min-w-0">
+              <div className={cn(
+                "flex-1 min-w-0",
+                selectedAgent && "hidden lg:block"
+              )}>
                 <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
@@ -378,10 +383,21 @@ export default function AgentsPage() {
               </div>
 
               {/* Agent Details Panel */}
-              <div className="w-full lg:w-96 flex-shrink-0">
+              <div className={cn(
+                "w-full lg:w-96 flex-shrink-0",
+                selectedAgent && "fixed inset-0 z-40 bg-white dark:bg-slate-900 overflow-y-scroll overscroll-contain pt-safe pb-safe lg:relative lg:inset-auto lg:z-auto lg:bg-transparent lg:dark:bg-transparent lg:overflow-visible lg:pt-0 lg:pb-0"
+              )}>
                 {selectedAgent ? (
-                  <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 sticky top-8">
+                  <div className="bg-white dark:bg-slate-800 lg:rounded-2xl shadow-lg p-6 lg:sticky lg:top-8">
                     <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-slate-700">
+                      {/* Mobile back button */}
+                      <button
+                        onClick={() => setSelectedAgent(null)}
+                        className="p-2 -ml-2 hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-colors lg:hidden"
+                        aria-label="Back to agents list"
+                      >
+                        <ArrowLeft size={24} className="text-dark dark:text-white" />
+                      </button>
                       <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 rounded-xl flex items-center justify-center shadow-lg">
                         <Bot size={32} className="text-primary dark:text-white" />
                       </div>
