@@ -9,19 +9,19 @@ See: .planning/PROJECT.md (updated 2026-01-16)
 
 ## Current Position
 
-Phase: 16 of 19 (Navigation & Mobile UX)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-01-27 — Completed 16-01-PLAN.md (Navigation State & Bottom Nav)
+Phase: 17 of 19 (Core Pages - Responsive)
+Plan: 0 of ? in current phase
+Status: Ready to plan
+Last activity: 2026-01-27 — Completed 16-02-PLAN.md (Drawer Integration & Layout)
 
-Progress: █████░░░░░░░░░░░ 24% (v4.0 Phase 16 in progress)
+Progress: ██████░░░░░░░░░░ 40% (v4.0 Phase 16 complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 36 (v1.0 + v2.0 + v3.0 + v4.0)
+- Total plans completed: 37 (v1.0 + v2.0 + v3.0 + v4.0)
 - Average duration: 8.5 min
-- Total execution time: 5.47 hours
+- Total execution time: 5.6 hours
 
 **By Phase (v1.0 + v2.0):**
 
@@ -43,7 +43,7 @@ Progress: █████░░░░░░░░░░░ 24% (v4.0 Phase 16 in
 | 14 | 3 | 30 min | 10 min |
 | 14.1 | 1 | 18 min | 18 min |
 | 15 | 2 | 25 min | 12.5 min |
-| 16 | 1 | 8 min | 8 min |
+| 16 | 2 | 16 min | 8 min |
 
 ## Accumulated Context
 
@@ -51,6 +51,9 @@ Progress: █████░░░░░░░░░░░ 24% (v4.0 Phase 16 in
 
 Recent decisions affecting current work:
 
+- **Phase 16-02:** Drawer as "More" overflow with secondary navigation only (primary items in bottom nav)
+- **Phase 16-02:** Swipe-to-close gesture threshold: 100px offset OR 500 velocity
+- **Phase 16-02:** Keyboard detection via visualViewport API (0.8 threshold for keyboard visibility)
 - **Phase 16-01:** 4+More pattern for bottom nav (Dashboard, Inbox, Agents, Voice visible, More opens drawer)
 - **Phase 16-01:** 56px bottom nav height + safe-area-inset-bottom for notch phones
 - **Phase 16-01:** Zustand navigation store for drawer/route/scroll state management
@@ -118,6 +121,6 @@ None blocking current development.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed 16-01-PLAN.md (Navigation State & Bottom Nav)
+Stopped at: Completed 16-02-PLAN.md (Drawer Integration & Layout) + bonus mobile fixes
 Resume file: None
-Next action: Execute 16-02-PLAN.md (Drawer Integration)
+Next action: Plan Phase 17 (Core Pages - Responsive)
