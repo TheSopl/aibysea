@@ -9,19 +9,19 @@ See: .planning/PROJECT.md (updated 2026-01-16)
 
 ## Current Position
 
-Phase: 17 of 19 (Core Pages - Responsive)
-Plan: 2 of 2 in current phase
-Status: Complete
-Last activity: 2026-01-27 — Completed 17-02-PLAN.md (Dashboard and Agents Responsive)
+Phase: 18 of 19 (Secondary Pages - Responsive)
+Plan: 1 of ? in current phase
+Status: In progress
+Last activity: 2026-01-27 — Completed 18-01-PLAN.md (Call Logs Responsive)
 
-Progress: ████████░░░░░░░░ 50% (v4.0 Phase 17 complete)
+Progress: █████████░░░░░░░ 55% (v4.0 Phase 18 started)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 37 (v1.0 + v2.0 + v3.0 + v4.0)
+- Total plans completed: 38 (v1.0 + v2.0 + v3.0 + v4.0)
 - Average duration: 8.5 min
-- Total execution time: 5.6 hours
+- Total execution time: 5.8 hours
 
 **By Phase (v1.0 + v2.0):**
 
@@ -45,6 +45,7 @@ Progress: ████████░░░░░░░░ 50% (v4.0 Phase 17 co
 | 15 | 2 | 25 min | 12.5 min |
 | 16 | 2 | 16 min | 8 min |
 | 17 | 2 | 40 min | 20 min |
+| 18 | 1 | 12 min | 12 min |
 
 ## Accumulated Context
 
@@ -52,6 +53,7 @@ Progress: ████████░░░░░░░░ 50% (v4.0 Phase 17 co
 
 Recent decisions affecting current work:
 
+- **Phase 18-01:** Master-detail toggle pattern: list hidden with `selectedItem && "hidden tablet:flex"`, detail uses `fixed inset-0` on mobile
 - **Phase 17-02:** Recharts ResponsiveContainer ignores className - must use wrapper div for responsive heights
 - **Phase 17-02:** TopBar supports optional showBackButton prop for mobile navigation (lg:hidden)
 - **Phase 17-01:** Message bubbles use 85% max-width on mobile with breakpoint cascade (85% → xs → sm → md)
@@ -126,6 +128,6 @@ None blocking current development.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed 17-02-PLAN.md (Dashboard and Agents Responsive)
+Stopped at: Completed 18-01-PLAN.md (Call Logs Responsive)
 Resume file: None
-Next action: Plan Phase 18 (Secondary Pages Responsive) or execute existing plan
+Next action: Fix Dashboard card sizing (ISS-002), then continue Phase 18

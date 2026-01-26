@@ -106,7 +106,7 @@ Plans:
 - [x] 17-01: Inbox Mobile Responsive
 - [x] 17-02: Dashboard and Agents Responsive
 
-#### Phase 18: Secondary Pages - Responsive
+#### Phase 18: Secondary Pages - Responsive (In Progress)
 
 **Goal**: Mobile-responsive layouts for Voice Agents, Document Intelligence, Settings, and profile pages.
 
@@ -117,7 +117,8 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 18-01: TBD
+- [x] 18-01: Call Logs Responsive
+- [ ] 18-02: TBD
 
 #### Phase 19: Performance & Polish
 
@@ -161,7 +162,7 @@ Plans:
 | 15. Mobile Foundation | v4.0 | 2/2 | Complete | 2026-01-27 |
 | 16. Navigation & Mobile UX | v4.0 | 2/2 | Complete | 2026-01-27 |
 | 17. Core Pages Responsive | v4.0 | 2/2 | Complete | 2026-01-27 |
-| 18. Secondary Pages Responsive | v4.0 | 0/? | Not started | - |
+| 18. Secondary Pages Responsive | v4.0 | 1/? | In progress | - |
 | 19. Performance & Polish | v4.0 | 0/? | Not started | - |
 
 **Overall Progress**: v4.0 — 3/5 phases complete
