@@ -286,8 +286,9 @@ export default function DashboardPage() {
               <h3 className="text-base md:text-xl font-extrabold text-dark dark:text-white">AI Agent Performance</h3>
               <button className="text-xs md:text-sm text-primary dark:text-blue-400 font-semibold hover:underline transition-all duration-300">View Details</button>
             </div>
-            <ResponsiveContainer width="100%" height={200} className="md:!h-[300px]">
-              <AreaChart data={conversationsData}>
+            <div className="h-[180px] tablet:h-[240px] lg:h-[300px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={conversationsData}>
                 <defs>
                   <linearGradient id="conversationsGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#4EB6C9" stopOpacity={0.4} />
@@ -313,8 +314,9 @@ export default function DashboardPage() {
                   strokeWidth={3}
                   fill="url(#conversationsGradient)"
                 />
-              </AreaChart>
-            </ResponsiveContainer>
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
           </div>
 
           {/* Active AI Agents */}
