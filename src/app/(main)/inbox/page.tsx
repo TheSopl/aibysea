@@ -768,7 +768,7 @@ export default function InboxPage() {
                       animation: `fadeIn 0.4s ease-out ${animationIndex * 0.05}s both`
                     } : undefined}
                   >
-                    <div className="max-w-md">
+                    <div className="max-w-[85%] sm:max-w-xs tablet:max-w-sm lg:max-w-md">
                       <div className={`px-4 py-3 rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl hover:scale-[1.02] ${
                         msg.direction === 'inbound'
                           ? 'bg-white dark:bg-slate-800 text-dark dark:text-white border border-gray-200 dark:border-slate-700'
@@ -788,7 +788,7 @@ export default function InboxPage() {
                             You
                           </div>
                         )}
-                        <p className="text-sm leading-relaxed">{msg.content}</p>
+                        <p className="text-sm leading-relaxed break-words">{msg.content}</p>
                       </div>
                       <span className="text-xs text-text-secondary dark:text-slate-400 mt-1.5 block px-2">
                         {formatMessageTime(msg.created_at)}
