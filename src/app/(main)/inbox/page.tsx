@@ -573,7 +573,7 @@ export default function InboxPage() {
                     color: '#FFFFFF',
                     borderColor: '#003EF3'
                   } : {}}
-                  className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-lg border capitalize ${
+                  className={`flex-1 px-3 py-2 min-h-[44px] rounded-lg text-xs font-bold transition-all shadow-lg border capitalize ${
                     activeTab === tab
                       ? ''
                       : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border-gray-200 dark:border-slate-600'
@@ -608,7 +608,7 @@ export default function InboxPage() {
                 <div
                   key={conv.id}
                   onClick={() => setSelectedConversation(conv)}
-                  className={`p-4 border-b border-gray-200 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:scale-[1.01] ${
+                  className={`p-4 min-h-[72px] border-b border-gray-200 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:scale-[1.01] ${
                     selectedConversation?.id === conv.id ? 'bg-primary/5 border-l-4 border-l-primary shadow-lg' : ''
                   }`}
                   style={{
