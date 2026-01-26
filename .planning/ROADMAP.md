@@ -75,7 +75,7 @@ None
 **Plans**: TBD
 
 Plans:
-- [ ] 15-01: TBD
+- [x] 15-01: Responsive Breakpoints & Design Tokens
 
 #### Phase 16: Navigation & Mobile UX
 
@@ -155,7 +155,7 @@ Plans:
 | 13.1. WhatsApp Integration | v3.0 | 2/2 | Complete | 2026-01-21 |
 | 14. AI Agent Management | v3.0 | 3/3 | Complete | 2026-01-21 |
 | 14.1. UI Enhancements | v3.0 | 1/1 | Complete | 2026-01-21 |
-| 15. Mobile Foundation | v4.0 | 0/? | Not started | - |
+| 15. Mobile Foundation | v4.0 | 1/? | In progress | - |
 | 16. Navigation & Mobile UX | v4.0 | 0/? | Not started | - |
 | 17. Core Pages Responsive | v4.0 | 0/? | Not started | - |
 | 18. Secondary Pages Responsive | v4.0 | 0/? | Not started | - |
