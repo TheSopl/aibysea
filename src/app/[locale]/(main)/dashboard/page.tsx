@@ -4,7 +4,7 @@ import TopBar from '@/components/layout/TopBar';
 import Image from 'next/image';
 import { MessageSquare, Users, CheckCircle, TrendingUp, Calendar, Zap, Phone, FileText, Activity } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
-import { useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
 // Service health cards data
 const serviceCards = [
@@ -156,7 +156,7 @@ const conversationsData = [
 ];
 
 const queueData = [
-  { name: 'Rashed', channel: 'WhatsApp', status: 'Handling 12 chats', color: 'from-accent to-primary', photo: '/rashed.jpeg' },
+  { name: 'Rashed', channel: 'WhatsApp', chatCount: 12, color: 'from-accent to-primary', photo: '/rashed.jpeg' },
 ];
 
 const topChannels = [
@@ -174,21 +174,97 @@ const topLifecycles = [
 ];
 
 export default function DashboardPage() {
+  const t = useTranslations('Dashboard');
+
+  // Translated service cards
+  const translatedServiceCards = [
+    {
+      name: t('conversationalAI'),
+      status: t('active'),
+      value: '847',
+      label: t('conversationsToday'),
+      subtitle: t('multiChannelSubtitle'),
+      icon: MessageSquare,
+      gradient: 'from-blue-600 to-blue-400',
+      borderColor: 'border-blue-500',
+      buttonText: t('viewInbox'),
+    },
+    {
+      name: t('voiceAgents'),
+      status: t('active'),
+      value: '234',
+      label: t('callsToday'),
+      subtitle: t('phoneAnsweringSubtitle'),
+      icon: Phone,
+      gradient: 'from-blue-600 to-blue-400',
+      borderColor: 'border-blue-500',
+      buttonText: t('manageVoice'),
+    },
+    {
+      name: t('documentIntelligence'),
+      status: t('active'),
+      value: '89',
+      label: t('documentsProcessedToday'),
+      subtitle: t('invoiceContractSubtitle'),
+      icon: FileText,
+      gradient: 'from-blue-600 to-blue-400',
+      borderColor: 'border-blue-500',
+      buttonText: t('processDocuments'),
+    },
+  ];
+
+  // Translated quick stats
+  const translatedQuickStats = [
+    { label: t('totalAIInteractions'), value: '12,847' },
+    { label: t('activeServices'), value: '3 of 3' },
+    { label: t('costSavingsThisMonth'), value: '$23,400' },
+    { label: t('automationRate'), value: '87%' },
+  ];
+
+  // Translated activity feed
+  const translatedActivityFeed = [
+    { icon: Phone, service: t('voiceAgent'), action: t('handledCallFrom') + ' +1-555-0123', time: '5m ago', color: 'text-service-voice-500' },
+    { icon: MessageSquare, service: t('chat'), action: t('conversationResolvedWith') + ' John Doe', time: '12m ago', color: 'text-primary' },
+    { icon: FileText, service: t('document'), action: t('invoiceProcessed') + ': INV-2024-001', time: '23m ago', color: 'text-service-documents-500' },
+    { icon: Phone, service: t('voiceAgent'), action: t('callTranscriptionCompleted'), time: '1h ago', color: 'text-service-voice-500' },
+    { icon: MessageSquare, service: t('chat'), action: t('customerInquiryEscalated'), time: '1h 15m ago', color: 'text-primary' },
+    { icon: FileText, service: t('document'), action: t('contractExtractionCompleted'), time: '2h ago', color: 'text-service-documents-500' },
+  ];
+
+  // Translated lifecycles
+  const translatedLifecycles = [
+    { name: t('customer'), count: 450, color: 'bg-green', icon: '🎯' },
+    { name: t('lead'), count: 380, color: 'bg-blue', icon: '📈' },
+    { name: t('qualifiedLead'), count: 210, color: 'bg-primary', icon: '⭐' },
+    { name: t('prospect'), count: 180, color: 'bg-amber', icon: '🔍' },
+  ];
+
+  // Translated chart data with day abbreviations
+  const translatedConversationsData = [
+    { date: t('mon'), conversations: 120 },
+    { date: t('tue'), conversations: 180 },
+    { date: t('wed'), conversations: 150 },
+    { date: t('thu'), conversations: 220 },
+    { date: t('fri'), conversations: 190 },
+    { date: t('sat'), conversations: 160 },
+    { date: t('sun'), conversations: 140 },
+  ];
+
   return (
     <div className="flex flex-col h-full bg-white dark:bg-slate-900">
-      <TopBar title="Dashboard" />
+      <TopBar title={t('title')} />
 
       {/* Scrollable content area with transparent background */}
       <div className="flex-1 overflow-y-auto">
         <div className="p-4 md:p-8 space-y-4 md:space-y-8">
         {/* Service Health Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {serviceCards.map((card, index) => {
+          {translatedServiceCards.map((card, index) => {
             const Icon = card.icon;
             return (
               <div
                 key={index}
-                className={`min-w-0 bg-white dark:bg-slate-800 rounded-2xl p-6 border-l-4 ${card.borderColor} shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1`}
+                className={`min-w-0 bg-white dark:bg-slate-800 rounded-2xl p-6 border-s-4 ${card.borderColor} shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1`}
                 style={{
                   animation: `scaleIn 0.5s ease-out ${index * 0.1}s both`
                 }}
@@ -223,7 +299,7 @@ export default function DashboardPage() {
 
         {/* Quick Stats Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          {quickStatsData.map((stat, index) => (
+          {translatedQuickStats.map((stat, index) => (
             <div
               key={index}
               className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300"
@@ -244,11 +320,11 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between mb-4 md:mb-6">
             <div className="flex items-center gap-2">
               <Activity className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-              <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white">Recent Activity</h3>
+              <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white">{t('recentActivity')}</h3>
             </div>
           </div>
           <div className="space-y-2 md:space-y-3 max-h-48 md:max-h-64 overflow-y-auto">
-            {activityFeedData.map((item, index) => {
+            {translatedActivityFeed.map((item, index) => {
               const ActivityIcon = item.icon;
               return (
                 <div
@@ -283,12 +359,12 @@ export default function DashboardPage() {
             }}
           >
             <div className="flex items-center justify-between mb-4 md:mb-6">
-              <h3 className="text-base md:text-xl font-extrabold text-dark dark:text-white">AI Agent Performance</h3>
-              <button className="text-xs md:text-sm text-primary dark:text-blue-400 font-semibold hover:underline transition-all duration-300">View Details</button>
+              <h3 className="text-base md:text-xl font-extrabold text-dark dark:text-white">{t('aiAgentPerformance')}</h3>
+              <button className="text-xs md:text-sm text-primary dark:text-blue-400 font-semibold hover:underline transition-all duration-300">{t('viewDetails')}</button>
             </div>
             <div className="h-[180px] tablet:h-[240px] lg:h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={conversationsData}>
+                <AreaChart data={translatedConversationsData}>
                 <defs>
                   <linearGradient id="conversationsGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#4EB6C9" stopOpacity={0.4} />
@@ -330,7 +406,7 @@ export default function DashboardPage() {
               <div className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg">
                 <Zap className="w-5 h-5 text-primary dark:text-white animate-pulse" />
               </div>
-              <h3 className="text-lg font-extrabold text-dark dark:text-white">Active Agents</h3>
+              <h3 className="text-lg font-extrabold text-dark dark:text-white">{t('activeAgents')}</h3>
             </div>
             <div className="space-y-4">
               {queueData.map((item, index) => (
@@ -359,7 +435,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green rounded-full animate-pulse"></div>
-                    <p className="text-xs text-green font-semibold">{item.status}</p>
+                    <p className="text-xs text-green font-semibold">{t('handlingChats', { count: item.chatCount })}</p>
                   </div>
                 </div>
               ))}
@@ -376,7 +452,7 @@ export default function DashboardPage() {
               animation: 'slideInFromLeft 0.6s ease-out 0.8s both'
             }}
           >
-            <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white mb-4 md:mb-6">Top Channels</h3>
+            <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white mb-4 md:mb-6">{t('topChannels')}</h3>
             <div className="space-y-3 md:space-y-4">
               {topChannels.map((channel, index) => (
                 <div
@@ -408,9 +484,9 @@ export default function DashboardPage() {
               animation: 'slideInFromRight 0.6s ease-out 0.8s both'
             }}
           >
-            <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white mb-4 md:mb-6">Lifecycle Distribution</h3>
+            <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white mb-4 md:mb-6">{t('lifecycleDistribution')}</h3>
             <div className="space-y-3 md:space-y-4">
-              {topLifecycles.map((lifecycle, index) => (
+              {translatedLifecycles.map((lifecycle, index) => (
                 <div
                   key={index}
                   className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-gray-50 dark:hover:bg-slate-700 p-3 rounded-lg cursor-pointer"
