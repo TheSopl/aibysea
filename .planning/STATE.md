@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-16)
 ## Current Position
 
 Phase: 18.1 of 19 (Internationalization)
-Plan: 1 of ? in current phase
+Plan: 2 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-27 — Completed 18.1-01-PLAN.md (i18n Infrastructure)
+Last activity: 2026-01-27 — Completed 18.1-02-PLAN.md (Translation Files & Navigation)
 
-Progress: ██████████░░░░░░ 62% (v4.0 Phase 18.1 - 1/? plans complete)
+Progress: ██████████░░░░░░ 64% (v4.0 Phase 18.1 - 2/4 plans complete)
 
 ## Performance Metrics
 
@@ -54,6 +54,9 @@ Progress: ██████████░░░░░░ 62% (v4.0 Phase 18.1 
 
 Recent decisions affecting current work:
 
+- **Phase 18.1-02:** LanguageToggle uses iPhone-style segmented control (EN|TR|AR) rather than dropdown
+- **Phase 18.1-02:** Navigation config uses nameKey pattern for translations (resolved at render time)
+- **Phase 18.1-02:** Desktop-only language toggle - mobile gets settings option in future
 - **Phase 18.1-01:** Use next-intl with localePrefix: 'as-needed' for clean default locale URLs
 - **Phase 18.1-01:** Integrate i18n middleware with proxy.ts (Next.js 16 renamed middleware.ts)
 - **Phase 18.1-01:** IBM Plex Sans Arabic font for Arabic glyphs with RTL direction support
@@ -136,6 +139,6 @@ None blocking current development.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed 18.1-01-PLAN.md (i18n Infrastructure)
+Stopped at: Completed 18.1-02-PLAN.md (Translation Files & Navigation)
 Resume file: None
-Next action: Execute 18.1-02-PLAN.md (Translation Files & Navigation)
+Next action: Execute 18.1-03-PLAN.md (RTL CSS & Core Pages)
