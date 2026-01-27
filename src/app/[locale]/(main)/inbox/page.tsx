@@ -447,6 +447,7 @@ export default function InboxPage() {
           }),
         });
         sendResult = await response.json();
+        console.log('[Inbox] WhatsApp send result:', sendResult, 'Status:', response.status);
 
         // Handle 24-hour window expiry
         if (sendResult.template_required) {
@@ -456,12 +457,15 @@ export default function InboxPage() {
           return;
         }
 
-        if (!sendResult.success && sendResult.error) {
-          console.error('WhatsApp send error:', sendResult.error);
+        if (!sendResult.success) {
+          console.error('WhatsApp send failed:', sendResult);
+          alert(`Failed to send message: ${sendResult.error || 'Unknown error'}`);
           setMessage(content);
           setSendingMessage(false);
           return;
         }
+
+        console.log('[Inbox] Message sent successfully');
       } else if (channel === 'telegram' && selectedConversation.contact?.phone) {
         // Send via Telegram
         const chatId = selectedConversation.contact.phone.replace('telegram:', '');
