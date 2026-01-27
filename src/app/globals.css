@@ -304,12 +304,12 @@ html.dark {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-.safe-area-inset-left {
-  padding-left: env(safe-area-inset-left);
+.safe-area-inset-start {
+  padding-inline-start: env(safe-area-inset-left);
 }
 
-.safe-area-inset-right {
-  padding-right: env(safe-area-inset-right);
+.safe-area-inset-end {
+  padding-inline-end: env(safe-area-inset-right);
 }
 
 /* Prevent overscroll bounce on iOS */
@@ -379,8 +379,7 @@ html, body {
 
 /* Responsive utility classes */
 .page-padding-x {
-  padding-left: var(--spacing-page-x);
-  padding-right: var(--spacing-page-x);
+  padding-inline: var(--spacing-page-x);
 }
 
 .page-padding-y {
@@ -446,10 +445,8 @@ html, body {
 .container-responsive {
   width: 100%;
   max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--spacing-page-x);
-  padding-right: var(--spacing-page-x);
+  margin-inline: auto;
+  padding-inline: var(--spacing-page-x);
 }
 
 @media (min-width: 1280px) {

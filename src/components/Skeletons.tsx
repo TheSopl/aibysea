@@ -34,7 +34,7 @@ export function TableRowSkeleton() {
         <div className="h-4 w-32 rounded bg-gray-200 dark:bg-slate-700" />
         <div className="h-3 w-48 rounded bg-gray-200 dark:bg-slate-700" />
       </div>
-      <div className="space-x-2 flex">
+      <div className="flex gap-2">
         <div className="w-10 h-10 rounded bg-gray-200 dark:bg-slate-700" />
         <div className="w-10 h-10 rounded bg-gray-200 dark:bg-slate-700" />
       </div>
