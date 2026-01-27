@@ -190,10 +190,16 @@ async function findOrCreateContact(
     .from('contacts')
     .select('id, name')
     .eq('phone', phone)
-    .single();
+    .maybeSingle();
 
-  if (existingContact && !selectError) {
+  // If contact exists, return it
+  if (existingContact) {
     return existingContact;
+  }
+
+  // Only log non-PGRST116 errors (PGRST116 = no rows, expected)
+  if (selectError && selectError.code !== 'PGRST116') {
+    console.error('[WhatsApp Processor] Error checking for contact:', selectError);
   }
 
   // Create new contact
@@ -208,6 +214,19 @@ async function findOrCreateContact(
     .single();
 
   if (insertError || !newContact) {
+    // If insert failed due to duplicate (race condition), try to fetch again
+    if (insertError?.code === '23505') { // Postgres unique violation
+      const { data: retryContact } = await supabase
+        .from('contacts')
+        .select('id, name')
+        .eq('phone', phone)
+        .maybeSingle();
+
+      if (retryContact) {
+        console.log('[WhatsApp Processor] Contact existed (race condition), using existing:', phone);
+        return retryContact;
+      }
+    }
     throw new Error(`Failed to create contact: ${insertError?.message}`);
   }
 
