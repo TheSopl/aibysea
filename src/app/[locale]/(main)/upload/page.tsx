@@ -164,82 +164,82 @@ export default function UploadPage() {
     <>
       <TopBar title="Upload & Process" />
 
-      <div className="p-8 bg-light-bg dark:bg-slate-900">
+      <div className="p-4 sm:p-6 lg:p-8 bg-light-bg dark:bg-slate-900">
         {/* Statistics Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-4 sm:p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0s both'
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Upload size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
+              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400 hidden sm:block" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{statistics.totalProcessed}</h3>
-            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Documents Processed</p>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{statistics.totalProcessed}</h3>
+            <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 font-bold">Documents Processed</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-4 sm:p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.1s both'
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Clock size={24} className="text-white" />
               </div>
-              <Activity size={20} className="text-blue-500 dark:text-blue-400" />
+              <Activity size={20} className="text-blue-500 dark:text-blue-400 hidden sm:block" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">
               {statistics.avgProcessingTime}m
             </h3>
-            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Avg Processing Time</p>
+            <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 font-bold">Avg Processing Time</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-4 sm:p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.2s both'
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <BarChart3 size={20} className="text-blue-500 dark:text-blue-400" />
+              <BarChart3 size={20} className="text-blue-500 dark:text-blue-400 hidden sm:block" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">
               {statistics.successRate}%
             </h3>
-            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Success Rate</p>
+            <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 font-bold">Success Rate</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-4 sm:p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.3s both'
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
+              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400 hidden sm:block" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{failedDocs}</h3>
-            <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Failed Uploads</p>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{failedDocs}</h3>
+            <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 font-bold">Failed Uploads</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {/* Upload Zone */}
           <div
-            className={`lg:col-span-2 rounded-2xl p-8 border-2 border-dashed transition-all duration-300 ${
+            className={`lg:col-span-2 rounded-2xl p-4 sm:p-6 lg:p-8 border-2 border-dashed transition-all duration-300 ${
               dragActive
                 ? 'border-blue-500 bg-blue-50/50 dark:bg-slate-700 shadow-lg'
                 : 'border-blue-300 dark:border-slate-600 bg-blue-50/30 dark:bg-slate-700/50 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-slate-700'
@@ -249,17 +249,18 @@ export default function UploadPage() {
             onDragOver={handleDrag}
             onDrop={handleDrop}
           >
-            <div className="flex flex-col items-center justify-center py-12">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mb-4 shadow-lg">
-                <Upload size={40} className="text-white" />
+            <div className="flex flex-col items-center justify-center py-8 sm:py-12">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mb-4 shadow-lg">
+                <Upload size={32} className="text-white sm:hidden" />
+                <Upload size={40} className="text-white hidden sm:block" />
               </div>
-              <h3 className="text-xl font-extrabold text-dark dark:text-white mb-2 text-center">
+              <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white mb-2 text-center">
                 Drag documents here or click to browse
               </h3>
-              <p className="text-sm text-text-secondary dark:text-slate-300 mb-6 text-center">
+              <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 mb-4 sm:mb-6 text-center px-2">
                 Supported formats: PDF, DOC, DOCX, JPG, PNG
               </p>
-              <button className="px-6 py-3 bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5">
+              <button className="w-full sm:w-auto px-6 py-3 min-h-[44px] bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-0.5">
                 <Plus size={18} />
                 Choose File
               </button>
@@ -267,8 +268,8 @@ export default function UploadPage() {
           </div>
 
           {/* Template Selector */}
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
-            <label className="block text-sm font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider mb-3">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4 sm:p-6">
+            <label className="block text-xs sm:text-sm font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider mb-3">
               Select Extraction Template
             </label>
             <div className="space-y-2">
@@ -276,7 +277,7 @@ export default function UploadPage() {
                 <button
                   key={template.id}
                   onClick={() => setSelectedTemplate(template)}
-                  className={`w-full text-left p-4 rounded-xl transition-all duration-300 border-2 ${
+                  className={`w-full text-left p-3 sm:p-4 min-h-[56px] rounded-xl transition-all duration-300 border-2 ${
                     selectedTemplate.id === template.id
                       ? 'bg-gradient-to-r from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 border-blue-400 dark:border-blue-500 shadow-lg'
                       : 'bg-light-bg dark:bg-slate-700 border-transparent hover:border-blue-300 dark:hover:border-slate-600'
@@ -300,7 +301,7 @@ export default function UploadPage() {
 
         {/* Processing Documents Section */}
         {processingDocs.length > 0 && (
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
             <h2 className="text-xl font-extrabold text-dark dark:text-white mb-6">Currently Processing</h2>
             <div className="space-y-4">
               {processingDocs.map((doc, index) => {
@@ -352,19 +353,19 @@ export default function UploadPage() {
         )}
 
         {/* Recent Uploads */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-6">
             <div>
-              <h2 className="text-xl font-extrabold text-dark dark:text-white">Recent Uploads</h2>
-              <p className="text-sm text-text-secondary dark:text-slate-300 mt-1">Manage and monitor your document uploads</p>
+              <h2 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Recent Uploads</h2>
+              <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 mt-1">Manage and monitor your document uploads</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {uploads.map((upload, index) => (
               <div
                 key={upload.id}
-                className={`rounded-xl border-2 p-5 transition-all duration-300 hover:shadow-lg ${
+                className={`rounded-xl border-2 p-4 sm:p-5 transition-all duration-300 hover:shadow-lg overflow-hidden ${
                   upload.status === 'completed'
                     ? 'bg-green-50/30 dark:bg-slate-700/50 border-green-200 dark:border-slate-600'
                     : upload.status === 'failed'
@@ -376,23 +377,24 @@ export default function UploadPage() {
                 }}
               >
                 {/* Header */}
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-3 flex-1">
-                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-0 mb-3">
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
                       upload.status === 'completed'
                         ? 'bg-gradient-to-br from-green-400 to-green-600'
                         : upload.status === 'failed'
                           ? 'bg-gradient-to-br from-red-400 to-red-600'
                           : 'bg-gradient-to-br from-blue-400 to-blue-600'
                     }`}>
-                      <FileText size={20} className="text-white" />
+                      <FileText size={18} className="text-white sm:hidden" />
+                      <FileText size={20} className="text-white hidden sm:block" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-bold text-dark dark:text-white text-sm truncate">{upload.fileName}</h3>
                       <p className="text-xs text-text-secondary dark:text-slate-400 mt-0.5">{upload.uploadDate}</p>
                     </div>
                   </div>
-                  <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold border-2 whitespace-nowrap ${getStatusColor(upload.status)}`}>
+                  <span className={`self-start inline-flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg text-xs font-bold border-2 whitespace-nowrap flex-shrink-0 ${getStatusColor(upload.status)}`}>
                     {getStatusIcon(upload.status)}
                     {upload.status.charAt(0).toUpperCase() + upload.status.slice(1)}
                   </span>
@@ -448,13 +450,13 @@ export default function UploadPage() {
 
                 {/* Action Buttons */}
                 <div className="flex items-center gap-2">
-                  <button className="flex-1 p-2 hover:bg-white/50 dark:hover:bg-slate-600 rounded-lg transition-colors group flex items-center justify-center gap-2">
+                  <button className="flex-1 p-2 min-h-[44px] hover:bg-white/50 dark:hover:bg-slate-600 rounded-lg transition-colors group flex items-center justify-center gap-2">
                     <Eye size={16} className="text-text-secondary dark:text-slate-400 group-hover:text-blue-500 dark:group-hover:text-blue-400" />
                     <span className="text-xs font-bold text-text-secondary dark:text-slate-400 group-hover:text-blue-500 dark:group-hover:text-blue-400">View</span>
                   </button>
                   <button
                     onClick={() => deleteUpload(upload.id)}
-                    className="flex-1 p-2 hover:bg-red-50 rounded-lg transition-colors group flex items-center justify-center gap-2"
+                    className="flex-1 p-2 min-h-[44px] hover:bg-red-50 rounded-lg transition-colors group flex items-center justify-center gap-2"
                   >
                     <Trash2 size={16} className="text-red group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-bold text-red">Delete</span>

@@ -391,74 +391,74 @@ export default function TemplatesPage() {
     <>
       <TopBar title="Document Templates" />
 
-      <div className="p-8 bg-light-bg dark:bg-slate-900">
+      <div className="p-4 sm:p-6 lg:p-8 bg-light-bg dark:bg-slate-900">
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FileText size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500" />
+              <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.total}</h3>
-            <p className="text-sm text-text-secondary font-bold">Total Templates</p>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.total}</h3>
+            <p className="text-xs sm:text-sm text-text-secondary font-bold">Total Templates</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.1s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500" />
+              <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.active}</h3>
-            <p className="text-sm text-text-secondary font-bold">Active in Use</p>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.active}</h3>
+            <p className="text-xs sm:text-sm text-text-secondary font-bold">Active in Use</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.2s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
                 <TrendingUp size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500" />
+              <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.successRate}%</h3>
-            <p className="text-sm text-text-secondary font-bold">Success Rate</p>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.successRate}%</h3>
+            <p className="text-xs sm:text-sm text-text-secondary font-bold">Success Rate</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.3s both' }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FileText size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500" />
+              <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.processed}</h3>
-            <p className="text-sm text-text-secondary font-bold">Documents Processed</p>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.processed}</h3>
+            <p className="text-xs sm:text-sm text-text-secondary font-bold">Documents Processed</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {/* Template List */}
           <div className="lg:col-span-2">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-extrabold text-dark">Templates</h2>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-dark dark:text-white">Templates</h2>
               <button
                 onClick={() => setShowCreateForm(!showCreateForm)}
-                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-xl font-bold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 min-h-[44px] bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-xl font-bold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
               >
                 <Plus size={20} />
                 Create New Template
@@ -470,7 +470,7 @@ export default function TemplatesPage() {
               {templates.map(template => (
                 <div
                   key={template.id}
-                  className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border-2 border-transparent hover:border-orange-200/50 transition-all duration-300 cursor-pointer"
+                  className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4 sm:p-6 border-2 border-transparent hover:border-orange-200/50 transition-all duration-300 cursor-pointer"
                   onClick={() => setExpandedTemplate(expandedTemplate === template.id ? null : template.id)}
                 >
                   <div className="flex items-start justify-between mb-4">
@@ -514,10 +514,10 @@ export default function TemplatesPage() {
 
                   {/* Action Buttons */}
                   <div className="flex flex-wrap gap-2">
-                    <button className="flex-1 px-3 py-2 text-xs font-bold text-orange-600 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors flex items-center justify-center gap-1">
+                    <button className="flex-1 px-3 py-2 min-h-[44px] text-xs font-bold text-orange-600 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors flex items-center justify-center gap-1">
                       <Eye size={16} /> Use
                     </button>
-                    <button className="flex-1 px-3 py-2 text-xs font-bold text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-1">
+                    <button className="flex-1 px-3 py-2 min-h-[44px] text-xs font-bold text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-1">
                       <Edit size={16} /> Edit
                     </button>
                     <button
@@ -525,7 +525,7 @@ export default function TemplatesPage() {
                         e.stopPropagation();
                         duplicateTemplate(template);
                       }}
-                      className="flex-1 px-3 py-2 text-xs font-bold text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-1"
+                      className="flex-1 px-3 py-2 min-h-[44px] text-xs font-bold text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-1"
                     >
                       <Copy size={16} /> Duplicate
                     </button>
@@ -535,7 +535,7 @@ export default function TemplatesPage() {
                           e.stopPropagation();
                           deleteTemplate(template.id);
                         }}
-                        className="flex-1 px-3 py-2 text-xs font-bold text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors flex items-center justify-center gap-1"
+                        className="flex-1 px-3 py-2 min-h-[44px] text-xs font-bold text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors flex items-center justify-center gap-1"
                       >
                         <Trash2 size={16} /> Delete
                       </button>
@@ -579,22 +579,22 @@ export default function TemplatesPage() {
 
           {/* Template Builder Form */}
           {showCreateForm && (
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 border-2 border-orange-200 max-h-[calc(100vh-200px)] overflow-y-auto">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
-                <h2 className="text-xl font-bold text-dark">Create New Template</h2>
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-4 sm:p-6 border-2 border-orange-200 max-h-[calc(100vh-160px)] sm:max-h-[calc(100vh-200px)] overflow-y-auto">
+              <div className="flex items-center justify-between mb-4 sm:mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
+                <h2 className="text-lg sm:text-xl font-bold text-dark dark:text-white">Create New Template</h2>
                 <button
                   onClick={() => setShowCreateForm(false)}
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                  className="p-2 min-h-[44px] min-w-[44px] text-gray-400 hover:text-gray-600 transition-colors flex items-center justify-center"
                 >
                   <X size={24} />
                 </button>
               </div>
 
               {/* Basic Info Section */}
-              <div className="mb-6 border rounded-xl overflow-hidden bg-gray-50/50">
+              <div className="mb-4 sm:mb-6 border rounded-xl overflow-hidden bg-gray-50/50">
                 <button
                   onClick={() => toggleSection('basicInfo')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-gray-100 transition-colors"
+                  className="w-full flex items-center justify-between p-3 sm:p-4 min-h-[56px] hover:bg-gray-100 transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 bg-gradient-to-br from-orange-400 to-orange-600 rounded flex items-center justify-center text-white text-xs font-bold">
@@ -688,10 +688,10 @@ export default function TemplatesPage() {
               </div>
 
               {/* Fields Definition Section */}
-              <div className="mb-6 border rounded-xl overflow-hidden bg-gray-50/50">
+              <div className="mb-4 sm:mb-6 border rounded-xl overflow-hidden bg-gray-50/50">
                 <button
                   onClick={() => toggleSection('fields')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-gray-100 transition-colors"
+                  className="w-full flex items-center justify-between p-3 sm:p-4 min-h-[56px] hover:bg-gray-100 transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 bg-gradient-to-br from-orange-400 to-orange-600 rounded flex items-center justify-center text-white text-xs font-bold">
@@ -720,7 +720,7 @@ export default function TemplatesPage() {
                           </div>
                           <button
                             onClick={() => handleRemoveField(field.id)}
-                            className="text-red-500 hover:text-red-700 transition-colors"
+                            className="p-2 min-h-[44px] min-w-[44px] text-red-500 hover:text-red-700 transition-colors flex items-center justify-center"
                           >
                             <Trash2 size={16} />
                           </button>
@@ -826,7 +826,7 @@ export default function TemplatesPage() {
                     {/* Add Field Button */}
                     <button
                       onClick={handleAddField}
-                      className="w-full py-3 border-2 border-dashed border-orange-300 rounded-lg text-orange-600 font-bold hover:bg-orange-50 transition-colors flex items-center justify-center gap-2"
+                      className="w-full py-3 min-h-[44px] border-2 border-dashed border-orange-300 rounded-lg text-orange-600 font-bold hover:bg-orange-50 transition-colors flex items-center justify-center gap-2"
                     >
                       <Plus size={20} />
                       Add Field
@@ -836,10 +836,10 @@ export default function TemplatesPage() {
               </div>
 
               {/* Validation Section */}
-              <div className="mb-6 border rounded-xl overflow-hidden bg-gray-50/50">
+              <div className="mb-4 sm:mb-6 border rounded-xl overflow-hidden bg-gray-50/50">
                 <button
                   onClick={() => toggleSection('validation')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-gray-100 transition-colors"
+                  className="w-full flex items-center justify-between p-3 sm:p-4 min-h-[56px] hover:bg-gray-100 transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 bg-gradient-to-br from-orange-400 to-orange-600 rounded flex items-center justify-center text-white text-xs font-bold">
@@ -910,10 +910,10 @@ export default function TemplatesPage() {
               </div>
 
               {/* Preview Section */}
-              <div className="mb-6 border rounded-xl overflow-hidden bg-gray-50/50">
+              <div className="mb-4 sm:mb-6 border rounded-xl overflow-hidden bg-gray-50/50">
                 <button
                   onClick={() => toggleSection('preview')}
-                  className="w-full flex items-center justify-between p-4 hover:bg-gray-100 transition-colors"
+                  className="w-full flex items-center justify-between p-3 sm:p-4 min-h-[56px] hover:bg-gray-100 transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 bg-gradient-to-br from-orange-400 to-orange-600 rounded flex items-center justify-center text-white text-xs font-bold">
@@ -1003,17 +1003,17 @@ export default function TemplatesPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-2 pt-6 border-t border-gray-200 dark:border-slate-700">
+              <div className="flex flex-col sm:flex-row gap-2 pt-4 sm:pt-6 border-t border-gray-200 dark:border-slate-700">
                 <button
                   onClick={() => setShowCreateForm(false)}
-                  className="flex-1 py-3 px-4 border-2 border-gray-300 rounded-xl text-gray-700 font-bold hover:bg-gray-50 transition-colors"
+                  className="w-full sm:flex-1 py-3 px-4 min-h-[44px] border-2 border-gray-300 rounded-xl text-gray-700 font-bold hover:bg-gray-50 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleCreateTemplate}
                   disabled={!formData.basicInfo.name}
-                  className="flex-1 py-3 px-4 bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-xl font-bold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full sm:flex-1 py-3 px-4 min-h-[44px] bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-xl font-bold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Save Template
                 </button>

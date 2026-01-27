@@ -361,8 +361,8 @@ export default function SettingsPage() {
                             : 'bg-gray-50 dark:bg-slate-700 border-gray-200 dark:border-slate-600'
                         }`}
                       >
-                        <div className="flex items-start justify-between mb-3 sm:mb-4">
-                          <div className="flex items-center gap-2 sm:gap-3">
+                        <div className="flex items-start justify-between gap-3 mb-3 sm:mb-4">
+                          <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
                             <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 ${
                               channel.status === 'connected'
                                 ? 'bg-gradient-to-br from-accent to-primary'
@@ -370,13 +370,13 @@ export default function SettingsPage() {
                             }`}>
                               <Radio className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                             </div>
-                            <div className="min-w-0">
-                              <h4 className="font-extrabold text-dark dark:text-white text-sm sm:text-base truncate">{channel.name}</h4>
+                            <div className="flex-1 min-w-0 overflow-hidden">
+                              <h4 className="font-bold text-dark dark:text-white text-sm sm:text-base truncate">{channel.name}</h4>
                               <p className="text-[10px] sm:text-xs text-text-secondary dark:text-slate-300">{channel.type}</p>
                             </div>
                           </div>
 
-                          <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full flex-shrink-0 ${
+                          <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full flex-shrink-0 mt-1 ${
                             channel.status === 'connected' ? 'bg-green animate-pulse' : 'bg-gray-400'
                           }`}></div>
                         </div>

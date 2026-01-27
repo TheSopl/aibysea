@@ -558,7 +558,7 @@ export default function InboxPage() {
 
       <div className="flex flex-1 overflow-hidden relative">
         {/* Column 1: Conversation List */}
-        <div className={`w-full md:w-80 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col flex-shrink-0 ${
+        <div className={`w-full md:w-72 lg:w-80 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col flex-shrink-0 ${
           selectedConversation ? 'hidden md:flex' : 'flex'
         }`}>
           {/* Filter Tabs */}
@@ -596,7 +596,7 @@ export default function InboxPage() {
           </div>
 
           {/* Conversation List */}
-          <div className="flex-1 overflow-y-auto scroll-smooth">
+          <div className="flex-1 overflow-y-auto">
             {loading ? (
               <div className="p-4 text-center text-text-secondary">Loading...</div>
             ) : conversations.length === 0 ? (
@@ -604,16 +604,13 @@ export default function InboxPage() {
                 No conversations yet. They will appear here when messages arrive.
               </div>
             ) : (
-              conversations.map((conv, index) => (
+              conversations.map((conv) => (
                 <div
                   key={conv.id}
                   onClick={() => setSelectedConversation(conv)}
-                  className={`p-4 min-h-[72px] border-b border-gray-200 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:bg-gray-50 dark:hover:bg-slate-700 hover:scale-[1.01] ${
+                  className={`p-4 min-h-[72px] border-b border-gray-200 dark:border-slate-700 cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-slate-700 active:bg-gray-100 dark:active:bg-slate-600 ${
                     selectedConversation?.id === conv.id ? 'bg-primary/5 border-l-4 border-l-primary shadow-lg' : ''
                   }`}
-                  style={{
-                    animation: `slideInFromLeft 0.3s ease-out ${index * 0.05}s both`
-                  }}
                 >
                   <div className="flex items-start gap-3">
                     {/* Avatar */}
@@ -728,19 +725,19 @@ export default function InboxPage() {
                   )}
                 </button>
 
-                {/* Mobile Info Button */}
+                {/* Mobile/Tablet Info Button */}
                 <button
                   onClick={() => setShowMobileContext(true)}
-                  className="md:hidden p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
+                  className="lg:hidden p-2 min-h-[44px] min-w-[44px] hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors flex items-center justify-center"
                 >
                   <Info size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
 
                 {/* Desktop-only buttons */}
-                <button className="hidden md:block p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                <button className="hidden lg:block p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
                   <Phone size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
-                <button className="hidden md:block p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                <button className="hidden lg:block p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
                   <Video size={20} className="text-text-secondary dark:text-slate-300" />
                 </button>
                 <button className="p-2 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
@@ -871,26 +868,26 @@ export default function InboxPage() {
         {/* Column 3: Context Panel - Slide-in on mobile */}
         {selectedConversation && (
           <>
-            {/* Mobile overlay */}
+            {/* Mobile/Tablet overlay */}
             {showMobileContext && (
               <div
-                className="md:hidden fixed inset-0 bg-black/50 z-40"
+                className="lg:hidden fixed inset-0 bg-black/50 z-40"
                 onClick={() => setShowMobileContext(false)}
               />
             )}
             <div className={`
-              fixed md:relative inset-y-0 right-0 w-full max-w-sm md:w-80
+              fixed lg:relative inset-y-0 right-0 w-full max-w-sm lg:w-80
               bg-white dark:bg-slate-800 border-l border-gray-200 dark:border-slate-700
               flex flex-col overflow-hidden flex-shrink-0 z-50
               transform transition-transform duration-300 ease-out
-              ${showMobileContext ? 'translate-x-0' : 'translate-x-full md:translate-x-0'}
+              ${showMobileContext ? 'translate-x-0 pointer-events-auto' : 'translate-x-full pointer-events-none lg:translate-x-0 lg:pointer-events-auto'}
             `}>
-            {/* Mobile Header with Close */}
-            <div className="md:hidden flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-700">
+            {/* Mobile/Tablet Header with Close */}
+            <div className="lg:hidden flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-700">
               <h3 className="font-bold text-dark dark:text-white">Details</h3>
               <button
                 onClick={() => setShowMobileContext(false)}
-                className="p-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+                className="p-2 min-h-[44px] min-w-[44px] hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors flex items-center justify-center"
               >
                 <X size={20} className="text-dark dark:text-white" />
               </button>
