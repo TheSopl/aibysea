@@ -329,12 +329,12 @@ export default function ExtractedDataPage() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200 dark:border-slate-700">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">Document</th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">Template</th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">Date</th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">Confidence</th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">Actions</th>
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">Document</th>
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">Template</th>
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">Date</th>
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">Confidence</th>
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -344,7 +344,7 @@ export default function ExtractedDataPage() {
                       {/* Main Row */}
                       <tr
                         onClick={() => setExpandedId(expandedId === item.id ? null : item.id)}
-                        className="hover:bg-blue-50/30 cursor-pointer transition-all duration-300 border-l-4 border-l-transparent hover:border-l-orange-400"
+                        className="hover:bg-blue-50/30 cursor-pointer transition-all duration-300 border-s-4 border-s-transparent hover:border-s-orange-400"
                       >
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
@@ -409,7 +409,7 @@ export default function ExtractedDataPage() {
 
                       {/* Expanded Detail Row */}
                       {expandedId === item.id && (
-                        <tr className="bg-blue-50/30 border-l-4 border-l-orange-400">
+                        <tr className="bg-blue-50/30 border-s-4 border-s-orange-400">
                           <td colSpan={6} className="px-6 py-6">
                             <div className="space-y-4">
                               {/* Edit Mode Toggle */}

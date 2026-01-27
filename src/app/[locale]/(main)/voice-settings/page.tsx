@@ -133,7 +133,7 @@ export default function VoiceSettingsPage() {
                     <option key={lang} value={lang}>{lang}</option>
                   ))}
                 </select>
-                <ChevronDown size={18} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                <ChevronDown size={18} className="absolute end-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
               </div>
               <p className="text-xs text-text-secondary mt-2">Select greeting language for text-to-speech</p>
             </div>
@@ -249,7 +249,7 @@ export default function VoiceSettingsPage() {
                     <option key={agent} value={agent}>{agent}</option>
                   ))}
                 </select>
-                <ChevronDown size={18} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                <ChevronDown size={18} className="absolute end-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
               </div>
               <p className="text-xs text-text-secondary mt-2">Agent to receive calls when others are unavailable</p>
             </div>
@@ -267,7 +267,7 @@ export default function VoiceSettingsPage() {
                     <option key={behavior} value={behavior}>{behavior}</option>
                   ))}
                 </select>
-                <ChevronDown size={18} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                <ChevronDown size={18} className="absolute end-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
               </div>
               <p className="text-xs text-text-secondary mt-2">How calls are distributed to available agents</p>
             </div>
@@ -406,7 +406,7 @@ export default function VoiceSettingsPage() {
             {saveStatus === 'saving' && 'Saving...'}
             {saveStatus === 'saved' && 'Saved!'}
           </button>
-          <p className="text-sm text-text-secondary dark:text-slate-300 text-center sm:text-left">
+          <p className="text-sm text-text-secondary dark:text-slate-300 text-center sm:text-start">
             {saveStatus === 'saved' && 'Settings saved successfully'}
           </p>
         </div>

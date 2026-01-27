@@ -646,7 +646,7 @@ export default function TemplatesPage() {
                           <option value="Contract">Contract</option>
                           <option value="Form">Form</option>
                         </select>
-                        <ChevronDown size={18} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                        <ChevronDown size={18} className="absolute end-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                       </div>
                     </div>
 
@@ -753,7 +753,7 @@ export default function TemplatesPage() {
                                 <option value="boolean">Boolean</option>
                                 <option value="select">Select</option>
                               </select>
-                              <ChevronDown size={14} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                              <ChevronDown size={14} className="absolute end-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                             </div>
                           </div>
                         </div>
@@ -797,7 +797,7 @@ export default function TemplatesPage() {
                                 <option value="DD/MM/YYYY">DD/MM/YYYY</option>
                                 <option value="YYYY-MM-DD">YYYY-MM-DD</option>
                               </select>
-                              <ChevronDown size={14} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                              <ChevronDown size={14} className="absolute end-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                             </div>
                           </div>
                         )}
@@ -816,7 +816,7 @@ export default function TemplatesPage() {
                                 <option value="GBP">GBP</option>
                                 <option value="AED">AED</option>
                               </select>
-                              <ChevronDown size={14} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                              <ChevronDown size={14} className="absolute end-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                             </div>
                           </div>
                         )}

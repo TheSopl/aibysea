@@ -3,6 +3,7 @@
 import TopBar from '@/components/layout/TopBar';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import {
   Zap,
   Bot,
@@ -24,6 +25,7 @@ import { AIAgent } from '@/types/database';
 import DeleteConfirmModal from '@/components/agents/DeleteConfirmModal';
 
 export default function AgentsPage() {
+  const t = useTranslations('Agents');
   const router = useRouter();
   const [agents, setAgents] = useState<AIAgent[]>([]);
   const [selectedAgent, setSelectedAgent] = useState<AIAgent | null>(null);
@@ -145,7 +147,7 @@ export default function AgentsPage() {
 
   return (
     <>
-      <TopBar title="AI Agents" showBackButton backHref="/dashboard" />
+      <TopBar title={t('title')} showBackButton backHref="/dashboard" />
 
       <div className="p-4 tablet:p-8 bg-light-bg dark:bg-slate-900 min-h-screen overflow-y-auto">
         {/* Loading State */}
@@ -261,7 +263,7 @@ export default function AgentsPage() {
                       className="px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5"
                     >
                       <Plus size={18} />
-                      Create Agent
+                      {t('createAgent')}
                     </button>
                   </div>
 
@@ -360,9 +362,9 @@ export default function AgentsPage() {
 
                         <div className="flex items-center gap-4 tablet:gap-6">
                           <div>
-                            <p className="text-[10px] tablet:text-xs text-text-secondary dark:text-slate-400 font-bold uppercase tracking-wider mb-0.5">Status</p>
+                            <p className="text-[10px] tablet:text-xs text-text-secondary dark:text-slate-400 font-bold uppercase tracking-wider mb-0.5">{t('status')}</p>
                             <p className={`text-sm tablet:text-base font-extrabold ${agent.status === 'active' ? 'text-green' : 'text-gray-500'}`}>
-                              {agent.status === 'active' ? 'Active' : 'Inactive'}
+                              {agent.status === 'active' ? t('active') : t('inactive')}
                             </p>
                           </div>
                           <div>
@@ -394,7 +396,7 @@ export default function AgentsPage() {
 
                     <div className="space-y-4">
                       <div>
-                        <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Status</label>
+                        <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">{t('status')}</label>
                         <div className="mt-2">
                           <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold border-2 ${
                             selectedAgent.status === 'active'
@@ -411,7 +413,7 @@ export default function AgentsPage() {
 
                       {selectedAgent.system_prompt && (
                         <div>
-                          <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">System Prompt</label>
+                          <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">{t('systemPrompt')}</label>
                           <p className="text-sm text-dark dark:text-white mt-2 bg-light-bg dark:bg-slate-700 p-3 rounded-lg max-h-32 overflow-y-auto">
                             {selectedAgent.system_prompt}
                           </p>
@@ -420,7 +422,7 @@ export default function AgentsPage() {
 
                       {selectedAgent.greeting_message && (
                         <div>
-                          <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Greeting Message</label>
+                          <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">{t('greetingMessage')}</label>
                           <p className="text-sm text-dark dark:text-white mt-2 bg-light-bg dark:bg-slate-700 p-3 rounded-lg">
                             {selectedAgent.greeting_message}
                           </p>

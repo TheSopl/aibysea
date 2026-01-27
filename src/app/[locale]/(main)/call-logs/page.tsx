@@ -345,7 +345,7 @@ export default function CallLogsPage() {
                 key={call.id}
                 onClick={() => setSelectedCall(call)}
                 className={`p-3 sm:p-4 min-h-[72px] border-b border-gray-100 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:bg-gray-50 dark:hover:bg-slate-700 ${
-                  selectedCall?.id === call.id ? 'bg-teal-50 dark:bg-slate-700 border-l-4 border-l-teal-500 shadow-md' : ''
+                  selectedCall?.id === call.id ? 'bg-teal-50 dark:bg-slate-700 border-s-4 border-s-teal-500 shadow-md' : ''
                 }`}
                 style={{
                   animation: `slideInFromLeft 0.3s ease-out ${index * 0.05}s both`
@@ -403,7 +403,7 @@ export default function CallLogsPage() {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setSelectedCall(null)}
-                    className="lg:hidden p-2 -ml-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center"
+                    className="lg:hidden p-2 -ms-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center"
                   >
                     <ChevronLeft size={24} className="text-gray-600 dark:text-slate-400" />
                   </button>
@@ -448,7 +448,7 @@ export default function CallLogsPage() {
                   {selectedCall.transcription.map((line, idx) => (
                     <div key={idx} className={`p-3 rounded-lg text-sm ${
                       line.speaker === 'Agent'
-                        ? 'bg-teal-100 text-teal-900 border-l-4 border-teal-500'
+                        ? 'bg-teal-100 text-teal-900 border-s-4 border-teal-500'
                         : 'bg-gray-100 text-gray-900'
                     }`}>
                       <span className="font-bold text-xs uppercase block mb-1">
@@ -463,11 +463,11 @@ export default function CallLogsPage() {
               {/* Timeline */}
               <div className="p-4 border-b border-gray-200 dark:border-slate-700">
                 <h4 className="font-bold text-dark dark:text-white text-sm mb-3">Call Timeline</h4>
-                <div className="space-y-3 relative pl-6">
-                  <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-teal-300"></div>
+                <div className="space-y-3 relative ps-6">
+                  <div className="absolute start-2 top-0 bottom-0 w-0.5 bg-teal-300"></div>
                   {selectedCall.events.map((event, idx) => (
                     <div key={idx} className="relative">
-                      <div className="absolute -left-3.5 top-0.5 w-3 h-3 bg-teal-500 rounded-full border-2 border-white dark:border-slate-800 shadow-md"></div>
+                      <div className="absolute -start-3.5 top-0.5 w-3 h-3 bg-teal-500 rounded-full border-2 border-white dark:border-slate-800 shadow-md"></div>
                       <div>
                         <p className="text-sm font-bold text-dark dark:text-white">{event.action}</p>
                         <p className="text-xs text-gray-500 dark:text-slate-400">{event.time}</p>

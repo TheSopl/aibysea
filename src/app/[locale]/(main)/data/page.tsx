@@ -200,13 +200,13 @@ export default function ExtractedDataPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Search */}
             <div className="md:col-span-2 relative">
-              <Search className="absolute left-4 top-3.5 text-text-secondary dark:text-slate-400" size={20} />
+              <Search className="absolute start-4 top-3.5 text-text-secondary dark:text-slate-400" size={20} />
               <input
                 type="text"
                 placeholder="Search by document name or job ID..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 dark:border-slate-700 rounded-xl focus:border-blue-500 focus:outline-none transition-all duration-300"
+                className="w-full ps-12 pe-4 py-3 border-2 border-gray-200 dark:border-slate-700 rounded-xl focus:border-blue-500 focus:outline-none transition-all duration-300"
               />
             </div>
 
@@ -259,7 +259,7 @@ export default function ExtractedDataPage() {
 
                 {/* Right Section - Confidence and Actions */}
                 <div className="flex items-center gap-4 flex-shrink-0">
-                  <div className="text-right">
+                  <div className="text-end">
                     <p className="text-xs text-text-secondary mb-1">Overall Confidence</p>
                     <p className={`text-2xl font-extrabold ${getConfidenceColor(data.confidence)}`}>
                       {data.confidence}%
@@ -305,7 +305,7 @@ export default function ExtractedDataPage() {
 
         {/* Detail Modal / Sidebar */}
         {selectedData && (
-          <div className="fixed right-0 top-0 h-full w-full max-w-2xl bg-white dark:bg-slate-800 shadow-2xl z-50 overflow-y-auto rounded-l-3xl">
+          <div className="fixed end-0 top-0 h-full w-full max-w-2xl bg-white dark:bg-slate-800 shadow-2xl z-50 overflow-y-auto rounded-s-3xl">
             <div className="p-8 bg-white dark:bg-slate-900">
               {/* Header */}
               <div className="flex items-start justify-between mb-6">
@@ -324,7 +324,7 @@ export default function ExtractedDataPage() {
               </div>
 
               {/* Status Bar */}
-              <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 mb-6 border-l-4 border-blue-500">
+              <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 mb-6 border-s-4 border-blue-500">
                 <div className="grid grid-cols-3 gap-4">
                   <div>
                     <p className="text-xs text-text-secondary mb-1">Status</p>

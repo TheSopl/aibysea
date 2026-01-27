@@ -90,7 +90,7 @@ export function TakeoverButton({
 
       {/* Error Display */}
       {error && (
-        <div className="absolute top-full mt-1 right-0 p-2 bg-red-50 border border-red-200 rounded text-xs text-red-600 shadow-lg z-10 max-w-xs">
+        <div className="absolute top-full mt-1 end-0 p-2 bg-red-50 border border-red-200 rounded text-xs text-red-600 shadow-lg z-10 max-w-xs">
           {error}
         </div>
       )}

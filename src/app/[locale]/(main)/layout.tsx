@@ -22,7 +22,7 @@ export default function MainLayout({
       <BottomNav />
 
       {/* Main Content - adjusted for mobile header/footer and desktop sidebar */}
-      <div className="pt-16 pb-[calc(56px+env(safe-area-inset-bottom,0px))] lg:pt-0 lg:pb-0 lg:ml-20 h-screen flex flex-col overflow-hidden">
+      <div className="pt-16 pb-[calc(56px+env(safe-area-inset-bottom,0px))] lg:pt-0 lg:pb-0 lg:ms-20 h-screen flex flex-col overflow-hidden">
         <div className="hidden lg:block">
           <Breadcrumbs />
         </div>

@@ -70,7 +70,7 @@ export default function SmartActions() {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className={`w-full text-left flex items-center gap-3 p-3 rounded-lg border transition-all duration-200 ${priorityStyles[action.priority]}`}
+            className={`w-full text-start flex items-center gap-3 p-3 rounded-lg border transition-all duration-200 ${priorityStyles[action.priority]}`}
           >
             <span className="text-lg">{action.icon}</span>
             <span className="text-sm text-text-primary flex-1">{action.text}</span>

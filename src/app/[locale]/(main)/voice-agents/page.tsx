@@ -257,7 +257,7 @@ export default function VoiceAgentsPage() {
                 {/* Mobile Back Button */}
                 <button
                   onClick={() => setSelectedAgent(null)}
-                  className="lg:hidden flex items-center gap-2 text-text-secondary hover:text-dark dark:hover:text-white mb-4 min-h-[44px] -ml-1"
+                  className="lg:hidden flex items-center gap-2 text-text-secondary hover:text-dark dark:hover:text-white mb-4 min-h-[44px] -ms-1"
                 >
                   <ChevronLeft size={24} />
                   <span className="font-semibold">Back to Agents</span>

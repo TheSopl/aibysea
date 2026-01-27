@@ -259,7 +259,7 @@ export default function PhoneNumbersPage() {
                 <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4 pb-3 sm:pb-4 border-b border-gray-200 dark:border-slate-700">
                   <div className="flex justify-between items-center">
                     <span className="text-xs sm:text-sm text-text-secondary dark:text-slate-300">Agent</span>
-                    <span className="text-xs sm:text-sm font-semibold text-dark dark:text-white truncate ml-2">{phone.assignedAgent}</span>
+                    <span className="text-xs sm:text-sm font-semibold text-dark dark:text-white truncate ms-2">{phone.assignedAgent}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-xs sm:text-sm text-text-secondary dark:text-slate-300">Monthly</span>

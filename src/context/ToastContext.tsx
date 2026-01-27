@@ -97,7 +97,7 @@ function ToastContainer({ toasts, onRemove }: { toasts: Toast[]; onRemove: (id: 
   };
 
   return (
-    <div className="fixed bottom-8 right-8 space-y-3 z-50 max-w-sm pointer-events-none">
+    <div className="fixed bottom-8 end-8 space-y-3 z-50 max-w-sm pointer-events-none">
       {toasts.map(toast => (
         <div
           key={toast.id}

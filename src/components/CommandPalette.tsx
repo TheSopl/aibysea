@@ -226,7 +226,7 @@ export function CommandPalette() {
                         <div className="text-text-secondary dark:text-slate-400 group-hover:text-primary dark:group-hover:text-blue-400 transition-colors">
                           {cmd.icon}
                         </div>
-                        <div className="flex-1 text-left">
+                        <div className="flex-1 text-start">
                           <p className="text-sm font-semibold text-dark dark:text-white">{cmd.title}</p>
                           <p className="text-xs text-text-secondary dark:text-slate-400">{cmd.description}</p>
                         </div>

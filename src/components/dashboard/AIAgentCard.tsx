@@ -43,14 +43,14 @@ export default function AIAgentCard({
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="absolute -top-1 -right-1 w-3 h-3 bg-green rounded-full border-2 border-white shadow-sm"
+                className="absolute -top-1 -end-1 w-3 h-3 bg-green rounded-full border-2 border-white shadow-sm"
               />
             )}
           </div>
         </div>
 
         {/* Agent info */}
-        <div className="flex-1 text-center sm:text-left">
+        <div className="flex-1 text-center sm:text-start">
           <h3 className="text-xl font-extrabold text-dark">{name}</h3>
           <div className="flex items-center justify-center sm:justify-start gap-3 mt-2">
             {/* Health badge */}
@@ -67,7 +67,7 @@ export default function AIAgentCard({
         </div>
 
         {/* Learned counter */}
-        <div className="text-right">
+        <div className="text-end">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}

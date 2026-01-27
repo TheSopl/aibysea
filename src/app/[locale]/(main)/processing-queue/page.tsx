@@ -362,7 +362,7 @@ export default function ProcessingQueuePage() {
             >
               {tab.label} ({tab.count})
               {selectedTab === tab.id && (
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
+                <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
               )}
             </button>
           ))}
@@ -376,14 +376,14 @@ export default function ProcessingQueuePage() {
                 <div
                   key={job.id}
                   onClick={() => setSelectedJob(job)}
-                  className={`p-6 cursor-pointer transition-all duration-300 hover:bg-blue-50/30 border-l-4 ${
+                  className={`p-6 cursor-pointer transition-all duration-300 hover:bg-blue-50/30 border-s-4 ${
                     job.status === 'processing'
-                      ? 'border-l-orange-400 hover:shadow-md'
+                      ? 'border-s-orange-400 hover:shadow-md'
                       : job.status === 'completed'
-                      ? 'border-l-green-400'
+                      ? 'border-s-green-400'
                       : job.status === 'failed'
-                      ? 'border-l-red-400'
-                      : 'border-l-gray-300'
+                      ? 'border-s-red-400'
+                      : 'border-s-gray-300'
                   } ${selectedJob?.id === job.id ? 'bg-orange-50 shadow-md' : ''}`}
                   style={{ animation: `slideInFromLeft 0.3s ease-out ${index * 0.05}s both` }}
                 >

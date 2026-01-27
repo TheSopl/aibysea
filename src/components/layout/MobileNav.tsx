@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, usePathname } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
@@ -59,6 +59,13 @@ export default function MobileNav() {
   const { isDrawerOpen, openDrawer, closeDrawer } = useNavigationStore();
   const pathname = usePathname();
   const t = useTranslations('Navigation');
+  const [isRTL, setIsRTL] = useState(false);
+
+  // Detect RTL direction
+  useEffect(() => {
+    const dir = document.documentElement.dir || document.body.dir;
+    setIsRTL(dir === 'rtl');
+  }, []);
 
   // Close drawer when route changes
   useEffect(() => {
@@ -77,13 +84,26 @@ export default function MobileNav() {
     };
   }, [isDrawerOpen]);
 
-  // Handle swipe-to-close gesture
+  // Handle swipe-to-close gesture (direction-aware)
   const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    // Close if dragged more than 100px to the left or with significant velocity
-    if (info.offset.x < -100 || info.velocity.x < -500) {
-      closeDrawer();
+    // Close if dragged in the start direction (left in LTR, right in RTL)
+    const closeThreshold = isRTL ? 100 : -100;
+    const velocityThreshold = isRTL ? 500 : -500;
+
+    if (isRTL) {
+      if (info.offset.x > closeThreshold || info.velocity.x > velocityThreshold) {
+        closeDrawer();
+      }
+    } else {
+      if (info.offset.x < closeThreshold || info.velocity.x < velocityThreshold) {
+        closeDrawer();
+      }
     }
   };
+
+  // Direction-aware animation values
+  const drawerInitialX = isRTL ? '100%' : '-100%';
+  const drawerExitX = isRTL ? '100%' : '-100%';
 
   const renderNavItem = (item: NavItem) => {
     const isActive = pathname?.startsWith(item.href);
@@ -110,7 +130,7 @@ export default function MobileNav() {
   return (
     <>
       {/* Mobile Header Bar */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-gradient-to-r from-[#1a1a2e] to-[#16213e] z-50 flex items-center justify-between px-4 shadow-lg">
+      <div className="lg:hidden fixed top-0 inset-x-0 h-16 bg-gradient-to-r from-[#1a1a2e] to-[#16213e] z-50 flex items-center justify-between px-4 shadow-lg">
         {/* Menu Button */}
         <button
           onClick={openDrawer}
@@ -154,19 +174,19 @@ export default function MobileNav() {
       <AnimatePresence>
         {isDrawerOpen && (
           <motion.div
-            initial={{ x: '-100%' }}
+            initial={{ x: drawerInitialX }}
             animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
+            exit={{ x: drawerExitX }}
             transition={{
               type: 'tween',
               duration: 0.3,
               ease: [0.32, 0.72, 0, 1],
             }}
             drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={{ left: 0.2, right: 0 }}
+            dragConstraints={isRTL ? { left: 0, right: 0 } : { left: 0, right: 0 }}
+            dragElastic={isRTL ? { left: 0, right: 0.2 } : { left: 0.2, right: 0 }}
             onDragEnd={handleDragEnd}
-            className="lg:hidden fixed top-0 left-0 h-full w-72 bg-gradient-to-b from-[#1a1a2e] to-[#16213e] z-50 shadow-2xl flex flex-col"
+            className={`lg:hidden fixed top-0 h-full w-72 bg-gradient-to-b from-[#1a1a2e] to-[#16213e] z-50 shadow-2xl flex flex-col ${isRTL ? 'end-0' : 'start-0'}`}
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-white/10">

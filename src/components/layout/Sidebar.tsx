@@ -101,7 +101,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="hidden lg:flex fixed left-0 top-0 h-full w-20 bg-gradient-to-b from-[#1a1a2e] to-[#16213e] text-white z-50 flex-col shadow-2xl">
+    <div className="hidden lg:flex fixed start-0 top-0 h-full w-20 bg-gradient-to-b from-[#1a1a2e] to-[#16213e] text-white z-50 flex-col shadow-2xl">
       {/* Logo */}
       <div className="flex items-center justify-center border-b border-white/10 h-20">
         <div className="relative w-16 h-16">

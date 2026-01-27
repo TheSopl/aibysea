@@ -148,25 +148,25 @@ export default function ContactsPage() {
             <table className="w-full">
               <thead>
                 <tr className="bg-light-bg dark:bg-slate-700">
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">
                     Name
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">
                     Channel
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">
                     Last Message
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">
                     Lifecycle
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">
                     Assignee
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-4 text-start text-xs font-bold text-text-secondary uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>

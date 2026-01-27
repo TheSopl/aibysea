@@ -225,7 +225,7 @@ export default function SettingsPage() {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-2 sm:gap-3 ml-[52px] sm:ml-0">
+                        <div className="flex items-center gap-2 sm:gap-3 ms-[52px] sm:ms-0">
                           <span className={`px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-bold rounded-lg ${
                             user.role === 'Admin'
                               ? 'bg-primary/20 text-primary border border-primary/30'
@@ -240,7 +240,7 @@ export default function SettingsPage() {
                           }`}>
                             {user.status}
                           </span>
-                          <button className="p-1.5 sm:p-2 hover:bg-red/10 rounded-lg transition-colors ml-auto sm:ml-0">
+                          <button className="p-1.5 sm:p-2 hover:bg-red/10 rounded-lg transition-colors ms-auto sm:ms-0">
                             <Trash size={14} className="sm:w-4 sm:h-4 text-red" />
                           </button>
                         </div>
@@ -455,7 +455,7 @@ export default function SettingsPage() {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-2 ml-9 sm:ml-0">
+                        <div className="flex items-center gap-2 ms-9 sm:ms-0">
                           <button className="p-1.5 sm:p-2 hover:bg-white dark:hover:bg-slate-600 rounded-lg transition-colors">
                             <Edit size={16} className="sm:w-[18px] sm:h-[18px] text-text-secondary dark:text-slate-400 hover:text-primary" />
                           </button>

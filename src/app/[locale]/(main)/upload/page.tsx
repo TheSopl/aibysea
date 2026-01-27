@@ -277,7 +277,7 @@ export default function UploadPage() {
                 <button
                   key={template.id}
                   onClick={() => setSelectedTemplate(template)}
-                  className={`w-full text-left p-3 sm:p-4 min-h-[56px] rounded-xl transition-all duration-300 border-2 ${
+                  className={`w-full text-start p-3 sm:p-4 min-h-[56px] rounded-xl transition-all duration-300 border-2 ${
                     selectedTemplate.id === template.id
                       ? 'bg-gradient-to-r from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 border-blue-400 dark:border-blue-500 shadow-lg'
                       : 'bg-light-bg dark:bg-slate-700 border-transparent hover:border-blue-300 dark:hover:border-slate-600'

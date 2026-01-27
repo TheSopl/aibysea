@@ -4,6 +4,7 @@ import TopBar from '@/components/layout/TopBar';
 import React, { useState, useEffect, useCallback } from 'react';
 import { Search, MoreVertical, Paperclip, Send, Phone, Video, UserCheck, Bot, Smile, Image as ImageIcon, ArrowLeft, Info, X } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import { useTranslations } from 'next-intl';
 
 // Types
 interface Contact {
@@ -106,6 +107,7 @@ function getContactDisplayName(name: string | null, phone: string | undefined): 
 }
 
 export default function InboxPage() {
+  const t = useTranslations('Inbox');
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -121,6 +123,13 @@ export default function InboxPage() {
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
 
   const supabase = createClient();
+
+  // Translated tab labels
+  const tabLabels: Record<'all' | 'assigned' | 'unassigned', string> = {
+    all: t('all'),
+    assigned: t('assigned'),
+    unassigned: t('unassigned'),
+  };
 
   // Fetch conversations
   const fetchConversations = useCallback(async () => {
@@ -554,7 +563,7 @@ export default function InboxPage() {
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
-      <TopBar title="Inbox" />
+      <TopBar title={t('title')} />
 
       <div className="flex flex-1 overflow-hidden relative">
         {/* Column 1: Conversation List */}
@@ -579,18 +588,18 @@ export default function InboxPage() {
                       : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 border-gray-200 dark:border-slate-600'
                   }`}
                 >
-                  {tab}
+                  {tabLabels[tab]}
                 </button>
               ))}
             </div>
 
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary dark:text-slate-300" size={16} />
+              <Search className="absolute start-3 top-1/2 -translate-y-1/2 text-text-secondary dark:text-slate-300" size={16} />
               <input
                 type="text"
-                placeholder="Search conversations..."
-                className="w-full pl-10 pr-4 py-2.5 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-sm text-dark dark:text-white placeholder:text-text-secondary dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                placeholder={t('searchPlaceholder')}
+                className="w-full ps-10 pe-4 py-2.5 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-sm text-dark dark:text-white placeholder:text-text-secondary dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
               />
             </div>
           </div>
@@ -598,10 +607,10 @@ export default function InboxPage() {
           {/* Conversation List */}
           <div className="flex-1 overflow-y-auto">
             {loading ? (
-              <div className="p-4 text-center text-text-secondary">Loading...</div>
+              <div className="p-4 text-center text-text-secondary">{t('loading')}</div>
             ) : conversations.length === 0 ? (
               <div className="p-4 text-center text-text-secondary">
-                No conversations yet. They will appear here when messages arrive.
+                {t('noConversations')}
               </div>
             ) : (
               conversations.map((conv) => (
@@ -609,7 +618,7 @@ export default function InboxPage() {
                   key={conv.id}
                   onClick={() => setSelectedConversation(conv)}
                   className={`p-4 min-h-[72px] border-b border-gray-200 dark:border-slate-700 cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-slate-700 active:bg-gray-100 dark:active:bg-slate-600 ${
-                    selectedConversation?.id === conv.id ? 'bg-primary/5 border-l-4 border-l-primary shadow-lg' : ''
+                    selectedConversation?.id === conv.id ? 'bg-primary/5 border-s-4 border-s-primary shadow-lg' : ''
                   }`}
                 >
                   <div className="flex items-start gap-3">
@@ -642,7 +651,7 @@ export default function InboxPage() {
                         <span className={`text-xs px-2 py-0.5 rounded-md font-bold ${
                           conv.handler_type === 'ai' ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
                         }`}>
-                          {conv.handler_type === 'ai' ? '🤖 AI' : '👤 Human'}
+                          {conv.handler_type === 'ai' ? `🤖 ${t('aiHandler')}` : `👤 ${t('humanHandler')}`}
                         </span>
                         {conv.ai_agent ? (
                           <span className="text-xs px-2 py-0.5 bg-green/20 text-green-600 dark:text-green-400 rounded-md font-bold truncate max-w-[100px]" title={conv.ai_agent.name}>
@@ -650,13 +659,13 @@ export default function InboxPage() {
                           </span>
                         ) : conv.handler_type === 'ai' ? (
                           <span className="text-xs px-2 py-0.5 bg-orange-500/20 text-orange-600 dark:text-orange-400 rounded-md font-bold">
-                            No Agent
+                            {t('noAgent')}
                           </span>
                         ) : null}
                       </div>
 
                       <p className="text-sm text-text-secondary dark:text-slate-300 truncate">
-                        {conv.messages?.[0]?.content || 'No messages'}
+                        {conv.messages?.[0]?.content || t('noMessages')}
                       </p>
                     </div>
                   </div>
@@ -696,7 +705,7 @@ export default function InboxPage() {
                     <span className={`text-xs px-1.5 md:px-2 py-0.5 rounded-md font-bold ${
                       isAIMode ? 'bg-primary/20 text-primary' : 'bg-purple/20 text-purple'
                     }`}>
-                      {isAIMode ? '🤖 AI' : '👤 Human'}
+                      {isAIMode ? `🤖 ${t('aiHandler')}` : `👤 ${t('humanHandler')}`}
                     </span>
                   </div>
                 </div>
@@ -715,12 +724,12 @@ export default function InboxPage() {
                   {isAIMode ? (
                     <div className="flex items-center gap-1 md:gap-2">
                       <UserCheck size={14} className="md:w-4 md:h-4" />
-                      <span className="hidden sm:inline">Take Over</span>
+                      <span className="hidden sm:inline">{t('takeOver')}</span>
                     </div>
                   ) : (
                     <div className="flex items-center gap-1 md:gap-2">
                       <Bot size={14} className="md:w-4 md:h-4" />
-                      <span className="hidden sm:inline">Return to AI</span>
+                      <span className="hidden sm:inline">{t('returnToAI')}</span>
                     </div>
                   )}
                 </button>
@@ -749,7 +758,7 @@ export default function InboxPage() {
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-3 md:p-6 space-y-3 md:space-y-4 bg-gradient-to-b from-light-bg/30 to-white dark:from-slate-900 dark:to-slate-900 scroll-smooth">
               {messages.length === 0 ? (
-                <div className="text-center text-text-secondary py-8">No messages yet</div>
+                <div className="text-center text-text-secondary py-8">{t('noMessagesYet')}</div>
               ) : (
                 messages.map((msg, index) => {
                   // Only animate the last 6 messages for better performance on long conversations
@@ -776,13 +785,13 @@ export default function InboxPage() {
                         {msg.direction === 'outbound' && msg.sender_type === 'ai' && (
                           <div className="text-xs font-bold text-dark/80 dark:text-white/90 mb-1 flex items-center gap-1">
                             <Bot size={14} />
-                            AI Assistant
+                            {t('aiAssistant')}
                           </div>
                         )}
                         {msg.direction === 'outbound' && msg.sender_type === 'agent' && (
                           <div className="text-xs font-bold text-dark/80 dark:text-white/90 mb-1 flex items-center gap-1">
                             <UserCheck size={14} />
-                            You
+                            {t('you')}
                           </div>
                         )}
                         <p className="text-sm leading-relaxed break-words">{msg.content}</p>
@@ -804,8 +813,8 @@ export default function InboxPage() {
                 <div className="mb-2 md:mb-3 px-2 md:px-3 py-1.5 md:py-2 bg-purple/10 border border-purple/30 rounded-lg">
                   <p className="text-xs font-bold text-purple flex items-center gap-2">
                     <UserCheck size={14} />
-                    <span className="hidden sm:inline">You&apos;re in Human Mode - AI is paused for this conversation</span>
-                    <span className="sm:hidden">Human Mode - AI paused</span>
+                    <span className="hidden sm:inline">{t('humanModeActive')}</span>
+                    <span className="sm:hidden">{t('humanModeShort')}</span>
                   </p>
                 </div>
               )}
@@ -836,7 +845,7 @@ export default function InboxPage() {
                         handleSend();
                       }
                     }}
-                    placeholder="Type your message..."
+                    placeholder={t('typeMessage')}
                     rows={1}
                     className="w-full px-3 md:px-4 py-2 md:py-3 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-xl resize-none text-dark dark:text-white placeholder:text-text-secondary dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm md:text-base"
                   />
@@ -848,7 +857,7 @@ export default function InboxPage() {
                   className="px-3 md:px-6 py-2 md:py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-1 md:gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm md:text-base"
                 >
                   <Send size={16} className="md:w-[18px] md:h-[18px]" />
-                  <span className="hidden sm:inline">{sendingMessage ? 'Sending...' : 'Send'}</span>
+                  <span className="hidden sm:inline">{sendingMessage ? t('sending') : t('send')}</span>
                 </button>
               </div>
             </div>
@@ -859,8 +868,8 @@ export default function InboxPage() {
               <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full flex items-center justify-center">
                 <Bot size={48} className="text-primary" />
               </div>
-              <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-2">Select a conversation</h3>
-              <p className="text-text-secondary dark:text-slate-300">Choose a conversation from the list to start chatting</p>
+              <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-2">{t('selectConversation')}</h3>
+              <p className="text-text-secondary dark:text-slate-300">{t('selectConversationHint')}</p>
             </div>
           </div>
         )}
@@ -876,15 +885,15 @@ export default function InboxPage() {
               />
             )}
             <div className={`
-              fixed lg:relative inset-y-0 right-0 w-full max-w-sm lg:w-80
-              bg-white dark:bg-slate-800 border-l border-gray-200 dark:border-slate-700
+              fixed lg:relative inset-y-0 end-0 w-full max-w-sm lg:w-80
+              bg-white dark:bg-slate-800 border-s border-gray-200 dark:border-slate-700
               flex flex-col overflow-hidden flex-shrink-0 z-50
               transform transition-transform duration-300 ease-out
-              ${showMobileContext ? 'translate-x-0 pointer-events-auto' : 'translate-x-full pointer-events-none lg:translate-x-0 lg:pointer-events-auto'}
+              ${showMobileContext ? 'translate-x-0 pointer-events-auto' : 'ltr:translate-x-full rtl:-translate-x-full pointer-events-none lg:translate-x-0 lg:pointer-events-auto'}
             `}>
             {/* Mobile/Tablet Header with Close */}
             <div className="lg:hidden flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-700">
-              <h3 className="font-bold text-dark dark:text-white">Details</h3>
+              <h3 className="font-bold text-dark dark:text-white">{t('details')}</h3>
               <button
                 onClick={() => setShowMobileContext(false)}
                 className="p-2 min-h-[44px] min-w-[44px] hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors flex items-center justify-center"
@@ -897,10 +906,10 @@ export default function InboxPage() {
             <div className="p-4 border-b border-gray-200 dark:border-slate-700">
               <div className="grid grid-cols-2 gap-1">
                 {[
-                  { id: 'profile', label: 'Profile' },
-                  { id: 'agents', label: 'AI Agents' },
-                  { id: 'timeline', label: 'Timeline' },
-                  { id: 'notes', label: 'Notes' }
+                  { id: 'profile', label: t('profile') },
+                  { id: 'agents', label: t('aiAgents') },
+                  { id: 'timeline', label: t('timeline') },
+                  { id: 'notes', label: t('notes') }
                 ].map((tab) => (
                   <button
                     key={tab.id}
@@ -927,29 +936,29 @@ export default function InboxPage() {
               {contextTab === 'profile' && (
                 <div className="space-y-4">
                   <div>
-                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Name</label>
+                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">{t('name')}</label>
                     <p className="text-sm text-dark dark:text-white mt-1 font-semibold">
                       {getContactDisplayName(selectedConversation.contact?.name ?? null, selectedConversation.contact?.phone)}
                     </p>
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Phone/ID</label>
+                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">{t('phoneId')}</label>
                     <p className="text-sm text-dark dark:text-white mt-1">
                       {selectedConversation.contact?.phone?.replace('telegram:', '') || 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Channel</label>
+                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">{t('channel')}</label>
                     <p className="text-sm text-dark dark:text-white mt-1 capitalize">{selectedConversation.channel}</p>
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Status</label>
+                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">{t('status')}</label>
                     <p className="text-sm text-dark dark:text-white mt-1 capitalize">{selectedConversation.status}</p>
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Handler</label>
+                    <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">{t('handler')}</label>
                     <p className="text-sm text-dark dark:text-white mt-1">
-                      {selectedConversation.handler_type === 'ai' ? '🤖 AI Agent' : '👤 Human Agent'}
+                      {selectedConversation.handler_type === 'ai' ? `🤖 ${t('aiAgent')}` : `👤 ${t('humanAgent')}`}
                     </p>
                   </div>
                 </div>
@@ -960,11 +969,11 @@ export default function InboxPage() {
                   <div className="flex gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-1.5"></div>
                     <div className="flex-1">
-                      <p className="text-sm font-bold text-dark dark:text-white">Conversation started</p>
+                      <p className="text-sm font-bold text-dark dark:text-white">{t('conversationStarted')}</p>
                       <p className="text-xs text-text-secondary dark:text-slate-400">
                         {selectedConversation.last_message_at
                           ? new Date(selectedConversation.last_message_at).toLocaleString()
-                          : 'Unknown'}
+                          : t('unknown')}
                       </p>
                     </div>
                   </div>
@@ -974,7 +983,7 @@ export default function InboxPage() {
               {contextTab === 'notes' && (
                 <div>
                   <textarea
-                    placeholder="Add notes about this contact..."
+                    placeholder={t('addNotes')}
                     rows={10}
                     className="w-full px-3 py-2 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg resize-none text-dark dark:text-white placeholder:text-text-secondary dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm"
                   />
@@ -986,7 +995,7 @@ export default function InboxPage() {
                   {/* Agent Assignment Dropdown */}
                   <div>
                     <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider block mb-2">
-                      Assigned AI Agent
+                      {t('assignedAIAgent')}
                     </label>
                     <select
                       value={selectedConversation.ai_agent_id || ''}
@@ -994,7 +1003,7 @@ export default function InboxPage() {
                       disabled={updatingAgent}
                       className="w-full px-3 py-2.5 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-sm text-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <option value="">No agent assigned</option>
+                      <option value="">{t('noAgentAssigned')}</option>
                       {availableAgents.map(agent => (
                         <option key={agent.id} value={agent.id}>
                           {agent.name} ({agent.model})
@@ -1002,7 +1011,7 @@ export default function InboxPage() {
                       ))}
                     </select>
                     {updatingAgent && (
-                      <p className="text-xs text-text-secondary dark:text-slate-400 mt-1">Updating...</p>
+                      <p className="text-xs text-text-secondary dark:text-slate-400 mt-1">{t('updating')}</p>
                     )}
                   </div>
 
@@ -1015,7 +1024,7 @@ export default function InboxPage() {
                         </div>
                         <div className="flex-1">
                           <h3 className="font-extrabold text-dark dark:text-white text-base">{selectedConversation.ai_agent.name}</h3>
-                          <p className="text-xs text-text-secondary dark:text-slate-400">AI Agent</p>
+                          <p className="text-xs text-text-secondary dark:text-slate-400">{t('aiAgent')}</p>
                         </div>
                         <div className={`w-3 h-3 rounded-full shadow-lg ${
                           selectedConversation.ai_agent.status === 'active' && isAIMode ? 'bg-green animate-pulse' : 'bg-gray-400'
@@ -1024,7 +1033,7 @@ export default function InboxPage() {
 
                       <div className="space-y-3">
                         <div>
-                          <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">Status</label>
+                          <label className="text-xs font-bold text-text-secondary dark:text-slate-400 uppercase tracking-wider">{t('status')}</label>
                           <p className="text-sm text-dark dark:text-white mt-1 font-semibold">
                             {!isAIMode ? 'Paused (Human Mode)' :
                              selectedConversation.ai_agent.status === 'active' ? 'Active & Handling' : 'Inactive'}
@@ -1043,9 +1052,9 @@ export default function InboxPage() {
                           <Bot size={24} className="text-orange-500" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-dark dark:text-white text-sm">No Agent Assigned</h3>
+                          <h3 className="font-bold text-dark dark:text-white text-sm">{t('noAgentAssignedTitle')}</h3>
                           <p className="text-xs text-text-secondary dark:text-slate-400">
-                            Select an agent from the dropdown above to assign one to this conversation.
+                            {t('selectAgentHint')}
                           </p>
                         </div>
                       </div>

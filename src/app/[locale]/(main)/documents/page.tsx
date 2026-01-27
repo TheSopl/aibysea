@@ -276,7 +276,7 @@ export default function DocumentsPage() {
                 <button
                   key={template.id}
                   onClick={() => setSelectedTemplate(template)}
-                  className={`w-full text-left p-4 rounded-xl transition-all duration-300 border-2 ${
+                  className={`w-full text-start p-4 rounded-xl transition-all duration-300 border-2 ${
                     selectedTemplate.id === template.id
                       ? 'bg-gradient-to-r from-blue-400/10 to-blue-600/10 border-blue-400 dark:border-blue-500 shadow-lg'
                       : 'bg-light-bg border-transparent hover:border-blue-300 dark:border-slate-600'
