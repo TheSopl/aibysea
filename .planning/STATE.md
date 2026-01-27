@@ -9,19 +9,19 @@ See: .planning/PROJECT.md (updated 2026-01-16)
 
 ## Current Position
 
-Phase: 18 of 19 (Secondary Pages - Responsive)
-Plan: 2 of 3 in current phase
+Phase: 18.1 of 19 (Internationalization)
+Plan: 1 of ? in current phase
 Status: In progress
-Last activity: 2026-01-27 — Completed 18-02-PLAN.md (Voice Module Responsive)
+Last activity: 2026-01-27 — Completed 18.1-01-PLAN.md (i18n Infrastructure)
 
-Progress: ██████████░░░░░░ 60% (v4.0 Phase 18 - 2/3 plans complete)
+Progress: ██████████░░░░░░ 62% (v4.0 Phase 18.1 - 1/? plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 39 (v1.0 + v2.0 + v3.0 + v4.0)
-- Average duration: 8.7 min
-- Total execution time: 6.1 hours
+- Total plans completed: 40 (v1.0 + v2.0 + v3.0 + v4.0)
+- Average duration: 8.9 min
+- Total execution time: 6.4 hours
 
 **By Phase (v1.0 + v2.0):**
 
@@ -46,6 +46,7 @@ Progress: ██████████░░░░░░ 60% (v4.0 Phase 18 - 
 | 16 | 2 | 16 min | 8 min |
 | 17 | 2 | 40 min | 20 min |
 | 18 | 2 | 30 min | 15 min |
+| 18.1 | 1 | 18 min | 18 min |
 
 ## Accumulated Context
 
@@ -53,6 +54,10 @@ Progress: ██████████░░░░░░ 60% (v4.0 Phase 18 - 
 
 Recent decisions affecting current work:
 
+- **Phase 18.1-01:** Use next-intl with localePrefix: 'as-needed' for clean default locale URLs
+- **Phase 18.1-01:** Integrate i18n middleware with proxy.ts (Next.js 16 renamed middleware.ts)
+- **Phase 18.1-01:** IBM Plex Sans Arabic font for Arabic glyphs with RTL direction support
+- **Phase 18.1-01:** All pages moved to [locale] dynamic segment for locale-based routing
 - **Phase 18-02:** Use `lg:` breakpoint (1024px) consistently for master-detail toggle across all pages (not tablet: 768px)
 - **Phase 18-02:** Stats grid pattern: grid-cols-2 md:grid-cols-4 with responsive icon sizes (w-10 sm:w-12)
 - **Phase 18-01:** Master-detail toggle pattern: list hidden with `selectedItem && "hidden lg:flex"`, detail uses `fixed inset-0` on mobile
@@ -131,6 +136,6 @@ None blocking current development.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed 18-02-PLAN.md (Voice Module Responsive)
+Stopped at: Completed 18.1-01-PLAN.md (i18n Infrastructure)
 Resume file: None
-Next action: Execute 18-03-PLAN.md (Document Intelligence Responsive)
+Next action: Execute 18.1-02-PLAN.md (Translation Files & Navigation)

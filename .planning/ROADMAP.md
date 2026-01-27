@@ -121,18 +121,19 @@ Plans:
 - [x] 18-02: Voice Module Responsive (Voice Agents, Phone Numbers, Voice Settings)
 - [ ] 18-03: Document Intelligence Responsive (Upload, Templates)
 
-#### Phase 18.1: Internationalization (INSERTED)
+#### Phase 18.1: Internationalization (INSERTED) - In Progress
 
 **Goal**: Full i18n support with language switcher for English, Turkish, and Arabic - enabling the entire platform to be used in all three languages.
 
 **Depends on**: Phase 18 (can run in parallel with 18-03)
 
-**Research**: Unlikely (next-intl is standard pattern)
+**Research**: Complete (next-intl is standard pattern)
 
-**Plans**: TBD
+**Plans**: 2+
 
 Plans:
-- [ ] 18.1-01: TBD
+- [x] 18.1-01: i18n Infrastructure (next-intl, [locale] routing, RTL Arabic support)
+- [ ] 18.1-02: Translation Files & Language Switcher
 
 #### Phase 19: Performance & Polish
 
@@ -177,6 +178,7 @@ Plans:
 | 16. Navigation & Mobile UX | v4.0 | 2/2 | Complete | 2026-01-27 |
 | 17. Core Pages Responsive | v4.0 | 2/2 | Complete | 2026-01-27 |
 | 18. Secondary Pages Responsive | v4.0 | 2/3 | In progress | - |
+| 18.1. Internationalization | v4.0 | 1/2+ | In progress | - |
 | 19. Performance & Polish | v4.0 | 0/? | Not started | - |
 
-**Overall Progress**: v4.0 — 3/5 phases complete
+**Overall Progress**: v4.0 — 3/6 phases complete (18, 18.1, 19 remaining)
