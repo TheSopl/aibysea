@@ -2,6 +2,7 @@
 
 import TopBar from '@/components/layout/TopBar';
 import { useState } from 'react';
+import { cn } from '@/lib/utils';
 import {
   Phone,
   Plus,
@@ -17,7 +18,8 @@ import {
   Settings as SettingsIcon,
   BarChart3,
   PhoneOff,
-  Share2
+  Share2,
+  ChevronLeft
 } from 'lucide-react';
 
 const voiceAgents = [
@@ -59,8 +61,10 @@ const voiceAgents = [
   },
 ];
 
+type VoiceAgent = typeof voiceAgents[0];
+
 export default function VoiceAgentsPage() {
-  const [selectedAgent, setSelectedAgent] = useState(voiceAgents[0]);
+  const [selectedAgent, setSelectedAgent] = useState<VoiceAgent | null>(null);
 
   const activeAgentsCount = voiceAgents.filter(a => a.status === 'active').length;
   const totalCallsHandled = voiceAgents.reduce((sum, a) => sum + a.totalCalls, 0);
@@ -147,15 +151,15 @@ export default function VoiceAgentsPage() {
 
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Agents List */}
-          <div className="flex-1 min-w-0">
+          <div className={cn("flex-1 min-w-0", selectedAgent && "hidden lg:block")}>
             <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 mb-4 sm:mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
                 <div>
                   <h2 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Your Voice Agents</h2>
                   <p className="text-xs sm:text-sm text-text-secondary mt-1">Manage and monitor your voice agents</p>
                 </div>
-                <button className="px-3 sm:px-4 py-2 bg-gradient-to-r from-teal-400 to-teal-600 text-white rounded-lg sm:rounded-xl font-bold text-sm hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5 w-full sm:w-auto justify-center">
-                  <Plus size={16} className="sm:w-[18px] sm:h-[18px]" />
+                <button className="px-4 py-2.5 min-h-[44px] bg-gradient-to-r from-teal-400 to-teal-600 text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5 w-full sm:w-auto justify-center">
+                  <Plus size={18} />
                   <span className="sm:hidden">Create Agent</span>
                   <span className="hidden sm:inline">Create Voice Agent</span>
                 </button>
@@ -166,8 +170,8 @@ export default function VoiceAgentsPage() {
                   <div
                     key={agent.id}
                     onClick={() => setSelectedAgent(agent)}
-                    className={`p-3 sm:p-4 lg:p-5 rounded-lg sm:rounded-xl cursor-pointer transition-all duration-500 border-2 hover:scale-[1.01] sm:hover:scale-[1.02] ${
-                      selectedAgent.id === agent.id
+                    className={`p-3 sm:p-4 lg:p-5 rounded-lg sm:rounded-xl cursor-pointer transition-all duration-500 border-2 hover:scale-[1.01] sm:hover:scale-[1.02] min-h-[72px] ${
+                      selectedAgent?.id === agent.id
                         ? 'bg-gradient-to-r from-teal-400/5 to-teal-600/5 border-teal-400/30 shadow-xl'
                         : 'bg-light-bg dark:bg-slate-700/50 border-transparent hover:border-gray-200 dark:hover:border-slate-600 hover:shadow-lg'
                     }`}
@@ -197,25 +201,25 @@ export default function VoiceAgentsPage() {
 
                       <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-end">
                         {agent.status === 'active' ? (
-                          <button className="p-1.5 sm:p-2 hover:bg-amber/10 rounded-lg transition-colors group">
-                            <Pause size={16} className="sm:w-[18px] sm:h-[18px] text-amber group-hover:scale-110 transition-transform" />
+                          <button className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-amber/10 rounded-lg transition-colors group flex items-center justify-center">
+                            <Pause size={18} className="text-amber group-hover:scale-110 transition-transform" />
                           </button>
                         ) : (
-                          <button className="p-1.5 sm:p-2 hover:bg-green/10 rounded-lg transition-colors group">
-                            <Play size={16} className="sm:w-[18px] sm:h-[18px] text-green group-hover:scale-110 transition-transform" />
+                          <button className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-green/10 rounded-lg transition-colors group flex items-center justify-center">
+                            <Play size={18} className="text-green group-hover:scale-110 transition-transform" />
                           </button>
                         )}
-                        <button className="p-1.5 sm:p-2 hover:bg-light-bg rounded-lg transition-colors group">
-                          <Edit size={16} className="sm:w-[18px] sm:h-[18px] text-text-secondary group-hover:text-teal-500 group-hover:scale-110 transition-all" />
+                        <button className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-light-bg rounded-lg transition-colors group flex items-center justify-center">
+                          <Edit size={18} className="text-text-secondary group-hover:text-teal-500 group-hover:scale-110 transition-all" />
                         </button>
-                        <button className="p-1.5 sm:p-2 hover:bg-red/10 rounded-lg transition-colors group">
-                          <Trash size={16} className="sm:w-[18px] sm:h-[18px] text-red group-hover:scale-110 transition-transform" />
+                        <button className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-red/10 rounded-lg transition-colors group flex items-center justify-center">
+                          <Trash size={18} className="text-red group-hover:scale-110 transition-transform" />
                         </button>
-                        <button className="hidden sm:block p-1.5 sm:p-2 hover:bg-blue/10 rounded-lg transition-colors group">
-                          <Share2 size={16} className="sm:w-[18px] sm:h-[18px] text-blue group-hover:scale-110 transition-transform" />
+                        <button className="hidden sm:flex p-2.5 min-h-[44px] min-w-[44px] hover:bg-blue/10 rounded-lg transition-colors group items-center justify-center">
+                          <Share2 size={18} className="text-blue group-hover:scale-110 transition-transform" />
                         </button>
-                        <button className="hidden sm:block p-1.5 sm:p-2 hover:bg-purple/10 rounded-lg transition-colors group">
-                          <PhoneOff size={16} className="sm:w-[18px] sm:h-[18px] text-purple group-hover:scale-110 transition-transform" />
+                        <button className="hidden sm:flex p-2.5 min-h-[44px] min-w-[44px] hover:bg-purple/10 rounded-lg transition-colors group items-center justify-center">
+                          <PhoneOff size={18} className="text-purple group-hover:scale-110 transition-transform" />
                         </button>
                       </div>
                     </div>
@@ -247,87 +251,98 @@ export default function VoiceAgentsPage() {
           </div>
 
           {/* Agent Details Panel */}
-          <div className="w-full lg:w-96 order-first lg:order-last">
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4 sm:p-6 lg:sticky lg:top-8">
-              <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-slate-700">
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <Phone size={32} className="text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-extrabold text-dark">{selectedAgent.name}</h3>
-                  <p className="text-sm text-text-secondary dark:text-slate-300">{selectedAgent.model}</p>
-                </div>
-              </div>
+          {selectedAgent && (
+            <div className="fixed inset-0 z-40 bg-white dark:bg-slate-800 lg:relative lg:w-96 lg:z-auto lg:bg-transparent dark:lg:bg-transparent overflow-y-auto">
+              <div className="bg-white dark:bg-slate-800 lg:rounded-2xl lg:shadow-lg p-4 sm:p-6 lg:sticky lg:top-8 min-h-full lg:min-h-0">
+                {/* Mobile Back Button */}
+                <button
+                  onClick={() => setSelectedAgent(null)}
+                  className="lg:hidden flex items-center gap-2 text-text-secondary hover:text-dark dark:hover:text-white mb-4 min-h-[44px] -ml-1"
+                >
+                  <ChevronLeft size={24} />
+                  <span className="font-semibold">Back to Agents</span>
+                </button>
 
-              <div className="space-y-4">
-                <div>
-                  <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Status</label>
-                  <div className="mt-2">
-                    <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold border-2 ${
-                      selectedAgent.status === 'active'
-                        ? 'bg-green/20 text-green border-green/30'
-                        : 'bg-gray-200 text-gray-700 border-gray-300'
-                    }`}>
-                      <div className={`w-2 h-2 rounded-full ${
-                        selectedAgent.status === 'active' ? 'bg-green animate-pulse' : 'bg-gray-400'
-                      }`}></div>
-                      {selectedAgent.status === 'active' ? 'Active' : 'Offline'}
-                    </span>
+                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-slate-700">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+                    <Phone size={28} className="sm:w-8 sm:h-8 text-white" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white truncate">{selectedAgent.name}</h3>
+                    <p className="text-sm text-text-secondary dark:text-slate-300">{selectedAgent.model}</p>
                   </div>
                 </div>
 
-                <div>
-                  <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Specialization</label>
-                  <p className="text-sm text-dark mt-2 font-semibold">{selectedAgent.specialization}</p>
-                </div>
-
-                <div>
-                  <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Description</label>
-                  <p className="text-sm text-dark mt-2">{selectedAgent.description}</p>
-                </div>
-
-                <div>
-                  <label className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-2 block">Performance</label>
-                  <div className="space-y-3">
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-bold text-dark">Success Rate</span>
-                        <span className="text-xs font-bold text-teal-500">{selectedAgent.successRate}%</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2.5">
-                        <div
-                          className="bg-gradient-to-r from-teal-400 to-teal-600 h-2.5 rounded-full transition-all duration-500"
-                          style={{ width: `${selectedAgent.successRate}%` }}
-                        ></div>
-                      </div>
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Status</label>
+                    <div className="mt-2">
+                      <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold border-2 ${
+                        selectedAgent.status === 'active'
+                          ? 'bg-green/20 text-green border-green/30'
+                          : 'bg-gray-200 text-gray-700 border-gray-300'
+                      }`}>
+                        <div className={`w-2 h-2 rounded-full ${
+                          selectedAgent.status === 'active' ? 'bg-green animate-pulse' : 'bg-gray-400'
+                        }`}></div>
+                        {selectedAgent.status === 'active' ? 'Active' : 'Offline'}
+                      </span>
                     </div>
+                  </div>
 
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="bg-light-bg rounded-lg p-3">
-                        <p className="text-xs text-text-secondary font-bold mb-1">Total Calls</p>
-                        <p className="text-xl font-extrabold text-dark">{selectedAgent.totalCalls}</p>
+                  <div>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Specialization</label>
+                    <p className="text-sm text-dark dark:text-white mt-2 font-semibold">{selectedAgent.specialization}</p>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Description</label>
+                    <p className="text-sm text-dark dark:text-slate-300 mt-2">{selectedAgent.description}</p>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-2 block">Performance</label>
+                    <div className="space-y-3">
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-xs font-bold text-dark dark:text-white">Success Rate</span>
+                          <span className="text-xs font-bold text-teal-500">{selectedAgent.successRate}%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2.5">
+                          <div
+                            className="bg-gradient-to-r from-teal-400 to-teal-600 h-2.5 rounded-full transition-all duration-500"
+                            style={{ width: `${selectedAgent.successRate}%` }}
+                          ></div>
+                        </div>
                       </div>
-                      <div className="bg-light-bg rounded-lg p-3">
-                        <p className="text-xs text-text-secondary font-bold mb-1">Active Now</p>
-                        <p className="text-xl font-extrabold text-teal-600">{selectedAgent.activeCalls}</p>
+
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="bg-light-bg dark:bg-slate-700/50 rounded-lg p-3">
+                          <p className="text-xs text-text-secondary font-bold mb-1">Total Calls</p>
+                          <p className="text-xl font-extrabold text-dark dark:text-white">{selectedAgent.totalCalls}</p>
+                        </div>
+                        <div className="bg-light-bg dark:bg-slate-700/50 rounded-lg p-3">
+                          <p className="text-xs text-text-secondary font-bold mb-1">Active Now</p>
+                          <p className="text-xl font-extrabold text-teal-600">{selectedAgent.activeCalls}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
-                <button className="w-full px-4 py-3 bg-gradient-to-r from-teal-400 to-teal-600 text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
-                  <SettingsIcon size={18} />
-                  Configure Agent
-                </button>
-                <button className="w-full px-4 py-3 bg-light-bg hover:bg-gray-200 text-dark rounded-xl font-bold transition-colors flex items-center justify-center gap-2">
-                  <BarChart3 size={18} />
-                  View Call Logs
-                </button>
+                <div className="mt-6 pt-6 border-t border-gray-200 dark:border-slate-700 space-y-3">
+                  <button className="w-full px-4 py-3 min-h-[44px] bg-gradient-to-r from-teal-400 to-teal-600 text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
+                    <SettingsIcon size={18} />
+                    Configure Agent
+                  </button>
+                  <button className="w-full px-4 py-3 min-h-[44px] bg-light-bg dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-dark dark:text-white rounded-xl font-bold transition-colors flex items-center justify-center gap-2">
+                    <BarChart3 size={18} />
+                    View Call Logs
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>
