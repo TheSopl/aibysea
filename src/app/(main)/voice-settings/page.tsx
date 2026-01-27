@@ -74,14 +74,14 @@ export default function VoiceSettingsPage() {
     <>
       <TopBar title="Voice Settings" />
 
-      <div className="p-8 max-w-4xl">
+      <div className="p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
         {/* Greeting Settings */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
-          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
-            <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg">1</span>
+        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-200 dark:border-slate-700">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+              <span className="text-white font-bold text-base sm:text-lg">1</span>
             </div>
-            <h3 className="text-xl font-extrabold text-dark">Greeting Settings</h3>
+            <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Greeting Settings</h3>
           </div>
 
           <div className="space-y-6">
@@ -141,12 +141,12 @@ export default function VoiceSettingsPage() {
         </div>
 
         {/* Voicemail Settings */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
-          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
-            <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg">2</span>
+        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-200 dark:border-slate-700">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+              <span className="text-white font-bold text-base sm:text-lg">2</span>
             </div>
-            <h3 className="text-xl font-extrabold text-dark">Voicemail Settings</h3>
+            <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Voicemail Settings</h3>
           </div>
 
           <div className="space-y-6">
@@ -227,12 +227,12 @@ export default function VoiceSettingsPage() {
         </div>
 
         {/* Call Routing Settings */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
-          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
-            <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg">3</span>
+        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-200 dark:border-slate-700">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+              <span className="text-white font-bold text-base sm:text-lg">3</span>
             </div>
-            <h3 className="text-xl font-extrabold text-dark">Call Routing Settings</h3>
+            <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Call Routing Settings</h3>
           </div>
 
           <div className="space-y-6">
@@ -309,12 +309,12 @@ export default function VoiceSettingsPage() {
         </div>
 
         {/* Advanced Settings */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
-          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
-            <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg">4</span>
+        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-200 dark:border-slate-700">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+              <span className="text-white font-bold text-base sm:text-lg">4</span>
             </div>
-            <h3 className="text-xl font-extrabold text-dark">Advanced Settings</h3>
+            <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Advanced Settings</h3>
           </div>
 
           <div className="space-y-6">
@@ -391,11 +391,11 @@ export default function VoiceSettingsPage() {
         </div>
 
         {/* Save Button */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
           <button
             onClick={handleSave}
             disabled={saveStatus === 'saving'}
-            className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 ${
+            className={`px-6 py-3 min-h-[44px] rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto ${
               saveStatus === 'saved'
                 ? 'bg-green-500 text-white'
                 : 'bg-gradient-to-r from-teal-400 to-cyan-500 text-white hover:shadow-lg hover:-translate-y-0.5'
@@ -406,7 +406,7 @@ export default function VoiceSettingsPage() {
             {saveStatus === 'saving' && 'Saving...'}
             {saveStatus === 'saved' && 'Saved!'}
           </button>
-          <p className="text-sm text-text-secondary dark:text-slate-300">
+          <p className="text-sm text-text-secondary dark:text-slate-300 text-center sm:text-left">
             {saveStatus === 'saved' && 'Settings saved successfully'}
           </p>
         </div>
