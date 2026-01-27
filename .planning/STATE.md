@@ -111,6 +111,7 @@ Recent decisions affecting current work:
 - Phase 13.1 inserted: 2026-01-20 — WhatsApp Integration as urgent work after Phase 13
 - v3.0 Complete: 2026-01-26 (4 phases: 13, 13.1, 14, 14.1) — Messaging integrations and AI agent management
 - v4.0 Created: 2026-01-26 (5 phases: 15-19) — Mobile Compatibility as urgent priority
+- Phase 18.1 inserted: 2026-01-27 — Internationalization (EN/TR/AR) as URGENT business requirement
 
 ### Deferred Issues
 

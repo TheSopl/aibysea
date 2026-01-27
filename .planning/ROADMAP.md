@@ -121,11 +121,24 @@ Plans:
 - [x] 18-02: Voice Module Responsive (Voice Agents, Phone Numbers, Voice Settings)
 - [ ] 18-03: Document Intelligence Responsive (Upload, Templates)
 
+#### Phase 18.1: Internationalization (INSERTED)
+
+**Goal**: Full i18n support with language switcher for English, Turkish, and Arabic - enabling the entire platform to be used in all three languages.
+
+**Depends on**: Phase 18 (can run in parallel with 18-03)
+
+**Research**: Unlikely (next-intl is standard pattern)
+
+**Plans**: TBD
+
+Plans:
+- [ ] 18.1-01: TBD
+
 #### Phase 19: Performance & Polish
 
 **Goal**: Bundle optimization, lazy loading, image optimization, loading states, and final professional polish pass.
 
-**Depends on**: Phase 18
+**Depends on**: Phase 18.1
 
 **Research**: Unlikely (Next.js optimization patterns)
 
