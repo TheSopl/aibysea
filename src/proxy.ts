@@ -18,16 +18,16 @@ export async function proxy(request: NextRequest) {
     return await updateSession(request)
   }
 
-  // First, check authentication and get Supabase session
-  const authResponse = await updateSession(request)
+  // Handle i18n first to get proper locale
+  const intlResponse = intlMiddleware(request)
 
-  // If auth is redirecting (not authenticated on protected route), return redirect
-  if (authResponse.status === 307 || authResponse.status === 308) {
-    return authResponse
+  // If i18n is redirecting (for locale handling), let it proceed
+  if (intlResponse.status === 307 || intlResponse.status === 308) {
+    return intlResponse
   }
 
-  // Otherwise, handle i18n
-  return intlMiddleware(request)
+  // Then check authentication
+  return await updateSession(request)
 }
 
 export const config = {
