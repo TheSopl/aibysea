@@ -28,24 +28,18 @@ export async function proxy(request: NextRequest) {
     return await updateSession(request)
   }
 
-  // Handle i18n routing
-  const intlResponse = intlMiddleware(request)
-
-  // If intl middleware redirected/rewrote the request, return that
-  // (This handles locale detection and redirects)
-  if (intlResponse.status !== 200) {
-    return intlResponse
-  }
-
-  // For paths that already have a locale prefix OR are the root path,
-  // continue with auth handling
+  // For app routes with or without locale prefix, handle auth first
   if (hasLocalePrefix(pathname) || pathname === '/') {
-    return await updateSession(request)
+    const authResponse = await updateSession(request)
+
+    // If auth is redirecting (e.g., to login), return that redirect
+    if (authResponse.status === 307 || authResponse.status === 308) {
+      return authResponse
+    }
   }
 
-  // For paths without locale prefix (default locale), return intl response
-  // which has the internal rewrite set up
-  return intlResponse
+  // Handle i18n routing for all other cases
+  return intlMiddleware(request)
 }
 
 export const config = {
