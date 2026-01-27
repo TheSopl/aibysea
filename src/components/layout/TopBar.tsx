@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import { Search, Bell, Moon, Sun, X, ArrowLeft } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
+import LanguageToggle from '@/components/LanguageToggle';
 
 interface TopBarProps {
   title: string;
@@ -15,6 +17,7 @@ export default function TopBar({ title, showBackButton = false, backHref }: TopB
   const { theme, toggleTheme } = useTheme();
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const router = useRouter();
+  const t = useTranslations('TopBar');
 
   const handleBack = () => {
     if (backHref) {
@@ -48,7 +51,7 @@ export default function TopBar({ title, showBackButton = false, backHref }: TopB
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary dark:text-slate-500" size={20} />
           <input
             type="text"
-            placeholder="Search conversations, AI agents, contacts..."
+            placeholder={t('searchPlaceholder')}
             className="w-full pl-12 pr-4 py-2.5 bg-light-bg dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg text-dark dark:text-white placeholder:text-text-secondary dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
           />
         </div>
@@ -83,11 +86,16 @@ export default function TopBar({ title, showBackButton = false, backHref }: TopB
           )}
         </button>
 
+        {/* Language Toggle */}
+        <div className="hidden md:block">
+          <LanguageToggle />
+        </div>
+
         {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
           className="p-2 hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-colors"
-          title="Toggle dark mode"
+          title={t('toggleDarkMode')}
         >
           {theme === 'light' ? (
             <Moon size={20} className="text-text-secondary dark:text-slate-400" />
