@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import {
   LayoutDashboard,
   Inbox,
@@ -12,15 +13,16 @@ import {
 import BottomNavItem from './BottomNavItem';
 import { useNavigationStore } from '@/stores/navigation';
 
-const navItems = [
-  { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-  { href: '/inbox', icon: Inbox, label: 'Inbox' },
-  { href: '/agents', icon: Zap, label: 'Agents' },
-  { href: '/voice-agents', icon: Phone, label: 'Voice' },
+const navItemsConfig = [
+  { href: '/dashboard', icon: LayoutDashboard, labelKey: 'dashboard' },
+  { href: '/inbox', icon: Inbox, labelKey: 'inbox' },
+  { href: '/agents', icon: Zap, labelKey: 'agents' },
+  { href: '/voice-agents', icon: Phone, labelKey: 'voice' },
 ];
 
 export default function BottomNav() {
   const pathname = usePathname();
+  const t = useTranslations('Navigation');
   const { openDrawer, bottomNavVisible, hideBottomNav, showBottomNav } = useNavigationStore();
 
   // Keyboard detection using visualViewport API
@@ -61,18 +63,18 @@ export default function BottomNav() {
       }}
     >
       <div className="flex h-[56px]">
-        {navItems.map((item) => (
+        {navItemsConfig.map((item) => (
           <BottomNavItem
             key={item.href}
             href={item.href}
             icon={item.icon}
-            label={item.label}
+            label={t(item.labelKey)}
             isActive={pathname?.startsWith(item.href) || false}
           />
         ))}
         <BottomNavItem
           icon={MoreHorizontal}
-          label="More"
+          label={t('more')}
           isActive={false}
           onClick={openDrawer}
         />

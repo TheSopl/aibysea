@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import {
   X,
@@ -18,45 +18,47 @@ import Image from 'next/image';
 import { useNavigationStore } from '@/stores/navigation';
 
 interface NavItem {
-  name: string;
+  nameKey: string;
   href: string;
   icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
 }
 
 interface NavSection {
-  name: string;
+  nameKey: string;
   items: NavItem[];
 }
 
 // Secondary navigation - items NOT in bottom nav
-const drawerNavigation: { sections: NavSection[]; bottom: NavItem[] } = {
+const drawerNavigationConfig: { sections: NavSection[]; bottom: NavItem[] } = {
   sections: [
     {
-      name: 'Conversational',
-      items: [{ name: 'Contacts', href: '/contacts', icon: Users }],
+      nameKey: 'conversational',
+      items: [{ nameKey: 'contacts', href: '/contacts', icon: Users }],
     },
     {
-      name: 'Voice',
+      nameKey: 'voice',
       items: [
-        { name: 'Call Logs', href: '/call-logs', icon: FileText },
-        { name: 'Phone Numbers', href: '/phone-numbers', icon: Phone },
+        { nameKey: 'callLogs', href: '/call-logs', icon: FileText },
+        { nameKey: 'phoneNumbers', href: '/phone-numbers', icon: Phone },
       ],
     },
     {
-      name: 'Documents',
+      nameKey: 'documents',
       items: [
-        { name: 'Upload', href: '/documents', icon: FileText },
-        { name: 'Processing', href: '/processing', icon: Zap },
-        { name: 'Data', href: '/data', icon: Database },
+        { nameKey: 'upload', href: '/upload', icon: FileText },
+        { nameKey: 'templates', href: '/templates', icon: FileText },
+        { nameKey: 'processing', href: '/processing', icon: Zap },
+        { nameKey: 'data', href: '/data', icon: Database },
       ],
     },
   ],
-  bottom: [{ name: 'Settings', href: '/settings', icon: Settings }],
+  bottom: [{ nameKey: 'settings', href: '/settings', icon: Settings }],
 };
 
 export default function MobileNav() {
   const { isDrawerOpen, openDrawer, closeDrawer } = useNavigationStore();
   const pathname = usePathname();
+  const t = useTranslations('Navigation');
 
   // Close drawer when route changes
   useEffect(() => {
@@ -86,10 +88,11 @@ export default function MobileNav() {
   const renderNavItem = (item: NavItem) => {
     const isActive = pathname?.startsWith(item.href);
     const Icon = item.icon;
+    const name = t(item.nameKey);
 
     return (
       <Link
-        key={item.name}
+        key={item.nameKey}
         href={item.href}
         onClick={closeDrawer}
         className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 min-h-[44px] ${
@@ -99,7 +102,7 @@ export default function MobileNav() {
         }`}
       >
         <Icon size={20} strokeWidth={2} />
-        <span className="font-medium">{item.name}</span>
+        <span className="font-medium">{name}</span>
       </Link>
     );
   };
@@ -167,7 +170,7 @@ export default function MobileNav() {
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-white/10">
-              <span className="text-white font-bold text-lg">More</span>
+              <span className="text-white font-bold text-lg">{t('more')}</span>
               <button
                 onClick={closeDrawer}
                 className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
@@ -179,11 +182,11 @@ export default function MobileNav() {
 
             {/* Navigation - Flat grouped list with section headers */}
             <nav className="flex-1 p-4 overflow-y-auto">
-              {drawerNavigation.sections.map((section, sectionIndex) => (
-                <div key={section.name} className={sectionIndex > 0 ? 'mt-4' : ''}>
+              {drawerNavigationConfig.sections.map((section, sectionIndex) => (
+                <div key={section.nameKey} className={sectionIndex > 0 ? 'mt-4' : ''}>
                   {/* Section Header */}
                   <div className="px-4 py-2 text-xs font-semibold text-white/40 uppercase tracking-wider">
-                    {section.name}
+                    {t(section.nameKey)}
                   </div>
                   {/* Section Items */}
                   <div className="space-y-1">
@@ -194,7 +197,7 @@ export default function MobileNav() {
 
               {/* Bottom Section (Settings) */}
               <div className="mt-6 pt-4 border-t border-white/10 space-y-1">
-                {drawerNavigation.bottom.map((item) => renderNavItem(item))}
+                {drawerNavigationConfig.bottom.map((item) => renderNavItem(item))}
               </div>
             </nav>
 
