@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import Image from 'next/image';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -43,21 +44,25 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left Panel */}
+      {/* Left Panel - Login Form */}
       <div className="flex-1 flex items-center justify-center bg-white p-8">
         <div className="w-full max-w-md">
+          {/* Logo */}
           <div className="mb-8">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-white font-extrabold text-lg">AI</span>
-              </div>
-              <span className="text-2xl font-bold text-dark">AI BY SEA</span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="bysea"
+              width={140}
+              height={40}
+              className="h-10 w-auto"
+              priority
+            />
           </div>
 
+          {/* Welcome Text */}
           <div className="mb-8">
-            <h1 className="text-3xl font-extrabold text-dark mb-2">Welcome Back 👋</h1>
-            <p className="text-text-secondary">Sign in to manage your AI agents and customer conversations.</p>
+            <h1 className="text-3xl font-extrabold text-slate-900 mb-2">Welcome Back 👋</h1>
+            <p className="text-slate-600">Sign in to manage your AI agents and customer conversations.</p>
           </div>
 
           <form className="space-y-5" onSubmit={handleLogin}>
@@ -68,19 +73,19 @@ export default function LoginPage() {
             )}
 
             <div>
-              <label className="block text-sm font-semibold text-dark mb-2">Email</label>
+              <label className="block text-sm font-semibold text-slate-900 mb-2">Email</label>
               <input
                 type="email"
                 placeholder="Example@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20"
+                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-900 placeholder:text-slate-400"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-dark mb-2">Password</label>
+              <label className="block text-sm font-semibold text-slate-900 mb-2">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
@@ -88,12 +93,12 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-900 placeholder:text-slate-400"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
@@ -103,7 +108,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-primary to-accent text-white font-bold py-3 rounded-xl hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-[#4052a8] hover:bg-[#364694] text-white font-bold py-3 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? 'Signing in...' : 'Sign in'}
             </button>
@@ -111,19 +116,24 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right Panel */}
-      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f1419] items-center justify-center p-16 relative overflow-hidden">
+      {/* Right Panel - Branding */}
+      <div className="hidden lg:flex flex-1 bg-[#4052a8] items-center justify-center p-16 relative overflow-hidden">
         {/* Decorative circles */}
-        <div className="absolute top-20 right-20 w-64 h-64 bg-accent/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
 
         {/* Content */}
         <div className="relative z-10 text-center">
           <div className="mb-8">
-            <div className="w-24 h-24 mx-auto bg-gradient-to-br from-accent to-primary rounded-3xl flex items-center justify-center shadow-2xl mb-6">
-              <span className="text-white font-extrabold text-4xl">AI</span>
-            </div>
-            <h2 className="text-4xl font-extrabold text-white mb-4">AI BY SEA</h2>
+            {/* Logo */}
+            <Image
+              src="/logo.png"
+              alt="bysea"
+              width={280}
+              height={80}
+              className="mx-auto mb-8 brightness-0 invert"
+              priority
+            />
             <p className="text-lg text-white/80 max-w-md mx-auto">
               Your AI Agent Hosting Platform - Deploy, monitor, and manage intelligent AI agents across WhatsApp, Telegram, and more
             </p>
