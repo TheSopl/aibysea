@@ -261,8 +261,8 @@ export default function CallLogsPage() {
       <div className="flex h-[calc(100vh-4rem)]">
         {/* Left Panel: Call List */}
         <div className={cn(
-          "flex-1 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col overflow-hidden",
-          selectedCall && "hidden tablet:flex tablet:flex-col"
+          "flex-1 min-w-0 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col overflow-hidden",
+          selectedCall && "hidden lg:flex lg:flex-col"
         )}>
           {/* Filters */}
           <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-slate-700 space-y-3 bg-white dark:bg-slate-800">
@@ -393,9 +393,9 @@ export default function CallLogsPage() {
         {selectedCall ? (
           <div className={cn(
             "fixed inset-0 z-40 bg-white dark:bg-slate-900 flex flex-col",
-            "tablet:relative tablet:w-96 tablet:flex-shrink-0",
-            "tablet:border-l tablet:border-gray-200 dark:tablet:border-slate-700",
-            "tablet:z-auto tablet:inset-auto tablet:shadow-lg"
+            "lg:relative lg:w-96 lg:flex-shrink-0",
+            "lg:border-l lg:border-gray-200 lg:dark:border-slate-700",
+            "lg:z-auto lg:shadow-lg"
           )}>
             {/* Detail Header */}
             <div className="p-4 border-b border-gray-200 dark:border-slate-700 bg-gradient-to-r from-white dark:from-slate-800 to-teal-50 dark:to-slate-700">
@@ -403,7 +403,7 @@ export default function CallLogsPage() {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setSelectedCall(null)}
-                    className="tablet:hidden p-2 -ml-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center"
+                    className="lg:hidden p-2 -ml-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center"
                   >
                     <ChevronLeft size={24} className="text-gray-600 dark:text-slate-400" />
                   </button>
