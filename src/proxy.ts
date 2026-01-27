@@ -6,6 +6,13 @@ import { updateSession } from '@/lib/supabase/middleware'
 // Create the next-intl middleware
 const intlMiddleware = createIntlMiddleware(routing)
 
+// Check if pathname has a locale prefix
+function hasLocalePrefix(pathname: string): boolean {
+  return routing.locales.some(
+    locale => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
+  )
+}
+
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
@@ -21,16 +28,24 @@ export async function proxy(request: NextRequest) {
     return await updateSession(request)
   }
 
-  // First, handle i18n routing
+  // Handle i18n routing
   const intlResponse = intlMiddleware(request)
 
-  // If intl middleware redirected, return that response
+  // If intl middleware redirected/rewrote the request, return that
+  // (This handles locale detection and redirects)
   if (intlResponse.status !== 200) {
     return intlResponse
   }
 
-  // Then handle Supabase session (auth)
-  return await updateSession(request)
+  // For paths that already have a locale prefix OR are the root path,
+  // continue with auth handling
+  if (hasLocalePrefix(pathname) || pathname === '/') {
+    return await updateSession(request)
+  }
+
+  // For paths without locale prefix (default locale), return intl response
+  // which has the internal rewrite set up
+  return intlResponse
 }
 
 export const config = {
