@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-16)
 ## Current Position
 
 Phase: 18.1 of 19 (Internationalization)
-Plan: 2 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-27 — Completed 18.1-02-PLAN.md (Translation Files & Navigation)
+Last activity: 2026-02-01 — Completed 18.1-03-PLAN.md (RTL CSS & Core Pages)
 
-Progress: ██████████░░░░░░ 64% (v4.0 Phase 18.1 - 2/4 plans complete)
+Progress: ██████████░░░░░░ 66% (v4.0 Phase 18.1 - 3/4 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 40 (v1.0 + v2.0 + v3.0 + v4.0)
-- Average duration: 8.9 min
-- Total execution time: 6.4 hours
+- Total plans completed: 41 (v1.0 + v2.0 + v3.0 + v4.0)
+- Average duration: 9.0 min
+- Total execution time: 6.6 hours
 
 **By Phase (v1.0 + v2.0):**
 
@@ -46,7 +46,7 @@ Progress: ██████████░░░░░░ 64% (v4.0 Phase 18.1 
 | 16 | 2 | 16 min | 8 min |
 | 17 | 2 | 40 min | 20 min |
 | 18 | 2 | 30 min | 15 min |
-| 18.1 | 1 | 18 min | 18 min |
+| 18.1 | 3 | 46 min | 15.3 min |
 
 ## Accumulated Context
 
@@ -54,7 +54,10 @@ Progress: ██████████░░░░░░ 64% (v4.0 Phase 18.1 
 
 Recent decisions affecting current work:
 
-- **Phase 18.1-02:** LanguageToggle uses iPhone-style segmented control (EN|TR|AR) rather than dropdown
+- **Phase 18.1-03:** Removed Turkish language support - application supports only EN/AR (per user request)
+- **Phase 18.1-03:** Use Tailwind logical properties (start/end, ms/me, ps/pe) for RTL support throughout
+- **Phase 18.1-03:** Preserve left-0 for fixed desktop sidebar (physical positioning, not logical)
+- **Phase 18.1-02:** LanguageToggle uses iPhone-style segmented control (EN|AR) rather than dropdown
 - **Phase 18.1-02:** Navigation config uses nameKey pattern for translations (resolved at render time)
 - **Phase 18.1-02:** Desktop-only language toggle - mobile gets settings option in future
 - **Phase 18.1-01:** Use next-intl with localePrefix: 'as-needed' for clean default locale URLs
@@ -138,7 +141,7 @@ None blocking current development.
 
 ## Session Continuity
 
-Last session: 2026-01-27
-Stopped at: Completed 18.1-02-PLAN.md (Translation Files & Navigation)
+Last session: 2026-02-01
+Stopped at: Completed 18.1-03-PLAN.md (RTL CSS & Core Pages)
 Resume file: None
-Next action: Execute 18.1-03-PLAN.md (RTL CSS & Core Pages)
+Next action: Execute 18.1-04-PLAN.md (Secondary Pages Translation)
