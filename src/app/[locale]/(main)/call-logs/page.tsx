@@ -4,6 +4,8 @@ import TopBar from '@/components/layout/TopBar';
 import React, { useState } from 'react';
 import { Phone, PhoneOff, Clock, User, Calendar, MoreVertical, Download, MessageSquare, Play, ChevronLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useTranslations } from 'next-intl';
 
 // Mock call logs data
 const callLogs = [
@@ -196,10 +198,13 @@ const callLogs = [
 ];
 
 const agents = ['All Agents', 'Sales Voice Agent', 'Support Voice Agent'];
-const statuses = ['All', 'Completed', 'Missed', 'Transferred', 'Abandoned'];
-const directions = ['All', 'Inbound', 'Outbound'];
 
 export default function CallLogsPage() {
+  const t = useTranslations('CallLogs');
+  usePageTitle(t('title'));
+
+  const statuses = [t('all'), t('completed'), t('missed'), t('transferred'), t('abandoned')];
+  const directions = [t('all'), t('inbound'), t('outbound')];
   const [selectedCall, setSelectedCall] = useState<typeof callLogs[0] | null>(callLogs[0]);
   const [agentFilter, setAgentFilter] = useState('All Agents');
   const [statusFilter, setStatusFilter] = useState('All');
@@ -256,7 +261,7 @@ export default function CallLogsPage() {
 
   return (
     <>
-      <TopBar title="Call Logs" />
+      <TopBar title={t('title')} />
 
       <div className="flex h-[calc(100vh-4rem)]">
         {/* Left Panel: Call List */}
@@ -268,7 +273,7 @@ export default function CallLogsPage() {
           <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-slate-700 space-y-3 bg-white dark:bg-slate-800">
             {/* Agent Filter */}
             <div className="flex items-center gap-3">
-              <label className="text-xs font-bold text-gray-600 dark:text-slate-400 whitespace-nowrap">Agent:</label>
+              <label className="text-xs font-bold text-gray-600 dark:text-slate-400 whitespace-nowrap">{t('agent')}:</label>
               <select
                 value={agentFilter}
                 onChange={(e) => setAgentFilter(e.target.value)}
@@ -282,7 +287,7 @@ export default function CallLogsPage() {
 
             {/* Status Filter Chips */}
             <div className="flex items-center gap-2 flex-wrap">
-              <label className="text-xs font-bold text-gray-600 dark:text-slate-400">Status:</label>
+              <label className="text-xs font-bold text-gray-600 dark:text-slate-400">{t('status')}:</label>
               {statuses.map(status => (
                 <button
                   key={status}
@@ -300,7 +305,7 @@ export default function CallLogsPage() {
 
             {/* Direction Filter Chips */}
             <div className="flex items-center gap-2 flex-wrap">
-              <label className="text-xs font-bold text-gray-600 dark:text-slate-400">Direction:</label>
+              <label className="text-xs font-bold text-gray-600 dark:text-slate-400">{t('direction')}:</label>
               {directions.map(direction => (
                 <button
                   key={direction}
@@ -318,9 +323,9 @@ export default function CallLogsPage() {
 
             {/* Date Range */}
             <div className="space-y-2 sm:space-y-0">
-              <label className="text-xs font-bold text-gray-600 dark:text-slate-400 block sm:hidden mb-1">Date Range:</label>
+              <label className="text-xs font-bold text-gray-600 dark:text-slate-400 block sm:hidden mb-1">{t('dateRange')}:</label>
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                <label className="text-xs font-bold text-gray-600 dark:text-slate-400 whitespace-nowrap hidden sm:block">Date Range:</label>
+                <label className="text-xs font-bold text-gray-600 dark:text-slate-400 whitespace-nowrap hidden sm:block">{t('dateRange')}:</label>
                 <input
                   type="date"
                   value={dateFrom}
@@ -419,19 +424,19 @@ export default function CallLogsPage() {
 
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div>
-                  <label className="text-gray-600 dark:text-slate-400 font-bold uppercase tracking-wider">Agent</label>
+                  <label className="text-gray-600 dark:text-slate-400 font-bold uppercase tracking-wider">{t('agent')}</label>
                   <p className="text-dark dark:text-white font-semibold mt-1">{selectedCall.agent}</p>
                 </div>
                 <div>
-                  <label className="text-gray-600 dark:text-slate-400 font-bold uppercase tracking-wider">Duration</label>
+                  <label className="text-gray-600 dark:text-slate-400 font-bold uppercase tracking-wider">{t('duration')}</label>
                   <p className="text-dark dark:text-white font-semibold mt-1">{selectedCall.duration.toFixed(1)} min</p>
                 </div>
                 <div>
-                  <label className="text-gray-600 dark:text-slate-400 font-bold uppercase tracking-wider">Time</label>
+                  <label className="text-gray-600 dark:text-slate-400 font-bold uppercase tracking-wider">{t('time')}</label>
                   <p className="text-dark dark:text-white font-semibold mt-1">{selectedCall.time}</p>
                 </div>
                 <div>
-                  <label className="text-gray-600 font-bold uppercase tracking-wider">Status</label>
+                  <label className="text-gray-600 font-bold uppercase tracking-wider">{t('status')}</label>
                   <span className={`inline-block text-xs px-2 py-1 rounded-full border font-bold mt-1 ${getStatusColor(selectedCall.status)}`}>
                     {getStatusLabel(selectedCall.status)}
                   </span>
@@ -443,7 +448,7 @@ export default function CallLogsPage() {
             <div className="flex-1 overflow-y-auto pb-safe">
               {/* Transcription */}
               <div className="p-4 border-b border-gray-200 dark:border-slate-700">
-                <h4 className="font-bold text-dark dark:text-white text-sm mb-3">Transcription</h4>
+                <h4 className="font-bold text-dark dark:text-white text-sm mb-3">{t('transcription')}</h4>
                 <div className="space-y-3 max-h-64 overflow-y-auto">
                   {selectedCall.transcription.map((line, idx) => (
                     <div key={idx} className={`p-3 rounded-lg text-sm ${
@@ -452,7 +457,7 @@ export default function CallLogsPage() {
                         : 'bg-gray-100 text-gray-900'
                     }`}>
                       <span className="font-bold text-xs uppercase block mb-1">
-                        {line.speaker === 'Agent' ? '🎙️ Agent' : '👤 Caller'}
+                        {line.speaker === 'Agent' ? t('agentLabel') : t('callerLabel')}
                       </span>
                       <p className="leading-relaxed">{line.text}</p>
                     </div>
@@ -462,7 +467,7 @@ export default function CallLogsPage() {
 
               {/* Timeline */}
               <div className="p-4 border-b border-gray-200 dark:border-slate-700">
-                <h4 className="font-bold text-dark dark:text-white text-sm mb-3">Call Timeline</h4>
+                <h4 className="font-bold text-dark dark:text-white text-sm mb-3">{t('callTimeline')}</h4>
                 <div className="space-y-3 relative ps-6">
                   <div className="absolute start-2 top-0 bottom-0 w-0.5 bg-teal-300"></div>
                   {selectedCall.events.map((event, idx) => (
@@ -479,10 +484,10 @@ export default function CallLogsPage() {
 
               {/* Sentiment & Keywords */}
               <div className="p-4 border-b border-gray-200 dark:border-slate-700">
-                <h4 className="font-bold text-dark dark:text-white text-sm mb-3">Call Analysis</h4>
+                <h4 className="font-bold text-dark dark:text-white text-sm mb-3">{t('callAnalysis')}</h4>
 
                 <div className="mb-4">
-                  <label className="text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider">Sentiment</label>
+                  <label className="text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider">{t('sentiment')}</label>
                   <div className="mt-2 flex items-center gap-2">
                     <span className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg font-bold text-sm ${getSentimentColor(selectedCall.sentiment)}`}>
                       {selectedCall.sentiment === 'positive' ? '😊' : '😐'}
@@ -492,7 +497,7 @@ export default function CallLogsPage() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider">Keywords</label>
+                  <label className="text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider">{t('keywords')}</label>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {getKeywords(selectedCall).map((keyword, idx) => (
                       <span key={idx} className="px-2 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-bold">
@@ -505,9 +510,9 @@ export default function CallLogsPage() {
 
               {/* Notes Section */}
               <div className="p-4 border-b border-gray-200 dark:border-slate-700">
-                <label className="text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider block mb-2">Notes</label>
+                <label className="text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider block mb-2">{t('notes')}</label>
                 <textarea
-                  placeholder="Add notes about this call..."
+                  placeholder={t('addNotes')}
                   rows={4}
                   className="w-full px-3 py-2 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-lg resize-none text-dark dark:text-white placeholder:text-gray-500 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm"
                 />
@@ -518,15 +523,15 @@ export default function CallLogsPage() {
             <div className="p-4 pb-safe border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 space-y-2 sticky bottom-0">
               <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-teal-500 text-white rounded-lg font-bold text-sm hover:bg-teal-600 transition-all hover:shadow-lg">
                 <Download size={18} />
-                Download Recording
+                {t('downloadRecording')}
               </button>
               <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600 text-dark dark:text-white rounded-lg font-bold text-sm hover:bg-gray-50 dark:hover:bg-slate-600 transition-all">
                 <MessageSquare size={18} />
-                Add Note
+                {t('addNote')}
               </button>
               <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600 text-dark dark:text-white rounded-lg font-bold text-sm hover:bg-gray-50 dark:hover:bg-slate-600 transition-all">
                 <Play size={18} />
-                Replay Call
+                {t('replayCall')}
               </button>
             </div>
           </div>
@@ -536,8 +541,8 @@ export default function CallLogsPage() {
               <div className="w-24 h-24 mx-auto mb-6 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
                 <Phone size={48} className="text-teal-600 dark:text-teal-400" />
               </div>
-              <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-2">Select a call</h3>
-              <p className="text-gray-600 dark:text-slate-400">Choose a call from the list to view details</p>
+              <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-2">{t('selectCall')}</h3>
+              <p className="text-gray-600 dark:text-slate-400">{t('selectCallHint')}</p>
             </div>
           </div>
         )}

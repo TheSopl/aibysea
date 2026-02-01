@@ -21,6 +21,8 @@ import {
   Share2,
   ChevronLeft
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useTranslations } from 'next-intl';
 
 const voiceAgents = [
   {
@@ -64,6 +66,8 @@ const voiceAgents = [
 type VoiceAgent = typeof voiceAgents[0];
 
 export default function VoiceAgentsPage() {
+  const t = useTranslations('VoiceAgents');
+  usePageTitle(t('title'));
   const [selectedAgent, setSelectedAgent] = useState<VoiceAgent | null>(null);
 
   const activeAgentsCount = voiceAgents.filter(a => a.status === 'active').length;
@@ -73,7 +77,7 @@ export default function VoiceAgentsPage() {
 
   return (
     <>
-      <TopBar title="Voice Agents" />
+      <TopBar title={t('title')} />
 
       <div className="p-4 sm:p-6 lg:p-8 bg-light-bg dark:bg-slate-900">
         {/* Stats Overview */}
@@ -91,7 +95,7 @@ export default function VoiceAgentsPage() {
               <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-teal-500" />
             </div>
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{activeAgentsCount}</h3>
-            <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">Active Voice Agents</p>
+            <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">{t('activeVoiceAgents')}</p>
           </div>
 
           <div
@@ -109,7 +113,7 @@ export default function VoiceAgentsPage() {
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
               {totalCallsHandled.toLocaleString()}
             </h3>
-            <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">Total Calls</p>
+            <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">{t('totalCalls')}</p>
           </div>
 
           <div
@@ -127,7 +131,7 @@ export default function VoiceAgentsPage() {
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
               {avgCallDuration}m
             </h3>
-            <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">Avg Duration</p>
+            <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">{t('avgDuration')}</p>
           </div>
 
           <div
@@ -145,7 +149,7 @@ export default function VoiceAgentsPage() {
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
               {avgSuccessRate}%
             </h3>
-            <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">Success Rate</p>
+            <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">{t('successRate')}</p>
           </div>
         </div>
 
@@ -155,13 +159,13 @@ export default function VoiceAgentsPage() {
             <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 mb-4 sm:mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
                 <div>
-                  <h2 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Your Voice Agents</h2>
-                  <p className="text-xs sm:text-sm text-text-secondary mt-1">Manage and monitor your voice agents</p>
+                  <h2 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">{t('yourVoiceAgents')}</h2>
+                  <p className="text-xs sm:text-sm text-text-secondary mt-1">{t('manageAndMonitor')}</p>
                 </div>
                 <button className="px-4 py-2.5 min-h-[44px] bg-gradient-to-r from-teal-400 to-teal-600 text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5 w-full sm:w-auto justify-center">
                   <Plus size={18} />
-                  <span className="sm:hidden">Create Agent</span>
-                  <span className="hidden sm:inline">Create Voice Agent</span>
+                  <span className="sm:hidden">{t('createAgentShort')}</span>
+                  <span className="hidden sm:inline">{t('createAgent')}</span>
                 </button>
               </div>
 
@@ -228,19 +232,19 @@ export default function VoiceAgentsPage() {
 
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
                       <div className="bg-white/50 dark:bg-slate-800/50 rounded-lg p-2 sm:p-0 sm:bg-transparent">
-                        <p className="text-[10px] sm:text-xs text-text-secondary font-bold uppercase tracking-wider mb-0.5 sm:mb-1">Calls</p>
+                        <p className="text-[10px] sm:text-xs text-text-secondary font-bold uppercase tracking-wider mb-0.5 sm:mb-1">{t('calls')}</p>
                         <p className="text-sm sm:text-base lg:text-lg font-extrabold text-dark dark:text-white">{agent.totalCalls.toLocaleString()}</p>
                       </div>
                       <div className="bg-white/50 dark:bg-slate-800/50 rounded-lg p-2 sm:p-0 sm:bg-transparent">
-                        <p className="text-[10px] sm:text-xs text-text-secondary font-bold uppercase tracking-wider mb-0.5 sm:mb-1">Duration</p>
+                        <p className="text-[10px] sm:text-xs text-text-secondary font-bold uppercase tracking-wider mb-0.5 sm:mb-1">{t('duration')}</p>
                         <p className="text-sm sm:text-base lg:text-lg font-extrabold text-dark dark:text-white">{agent.avgDuration}m</p>
                       </div>
                       <div className="bg-white/50 dark:bg-slate-800/50 rounded-lg p-2 sm:p-0 sm:bg-transparent">
-                        <p className="text-[10px] sm:text-xs text-text-secondary font-bold uppercase tracking-wider mb-0.5 sm:mb-1">Success</p>
+                        <p className="text-[10px] sm:text-xs text-text-secondary font-bold uppercase tracking-wider mb-0.5 sm:mb-1">{t('success')}</p>
                         <p className="text-sm sm:text-base lg:text-lg font-extrabold text-teal-500">{agent.successRate}%</p>
                       </div>
                       <div className="bg-white/50 dark:bg-slate-800/50 rounded-lg p-2 sm:p-0 sm:bg-transparent">
-                        <p className="text-[10px] sm:text-xs text-text-secondary font-bold uppercase tracking-wider mb-0.5 sm:mb-1">Active</p>
+                        <p className="text-[10px] sm:text-xs text-text-secondary font-bold uppercase tracking-wider mb-0.5 sm:mb-1">{t('active')}</p>
                         <p className="text-sm sm:text-base lg:text-lg font-extrabold text-teal-600">{agent.activeCalls}</p>
                       </div>
                     </div>
@@ -260,7 +264,7 @@ export default function VoiceAgentsPage() {
                   className="lg:hidden flex items-center gap-2 text-text-secondary hover:text-dark dark:hover:text-white mb-4 min-h-[44px] -ms-1"
                 >
                   <ChevronLeft size={24} />
-                  <span className="font-semibold">Back to Agents</span>
+                  <span className="font-semibold">{t('backToAgents')}</span>
                 </button>
 
                 <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-slate-700">
@@ -275,7 +279,7 @@ export default function VoiceAgentsPage() {
 
                 <div className="space-y-4">
                   <div>
-                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Status</label>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">{t('active')}</label>
                     <div className="mt-2">
                       <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-bold border-2 ${
                         selectedAgent.status === 'active'
@@ -285,27 +289,27 @@ export default function VoiceAgentsPage() {
                         <div className={`w-2 h-2 rounded-full ${
                           selectedAgent.status === 'active' ? 'bg-green animate-pulse' : 'bg-gray-400'
                         }`}></div>
-                        {selectedAgent.status === 'active' ? 'Active' : 'Offline'}
+                        {selectedAgent.status === 'active' ? t('active') : t('offline')}
                       </span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Specialization</label>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">{t('specialization')}</label>
                     <p className="text-sm text-dark dark:text-white mt-2 font-semibold">{selectedAgent.specialization}</p>
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Description</label>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">{t('description')}</label>
                     <p className="text-sm text-dark dark:text-slate-300 mt-2">{selectedAgent.description}</p>
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-2 block">Performance</label>
+                    <label className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-2 block">{t('performance')}</label>
                     <div className="space-y-3">
                       <div>
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-xs font-bold text-dark dark:text-white">Success Rate</span>
+                          <span className="text-xs font-bold text-dark dark:text-white">{t('successRate')}</span>
                           <span className="text-xs font-bold text-teal-500">{selectedAgent.successRate}%</span>
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2.5">
@@ -318,11 +322,11 @@ export default function VoiceAgentsPage() {
 
                       <div className="grid grid-cols-2 gap-3">
                         <div className="bg-light-bg dark:bg-slate-700/50 rounded-lg p-3">
-                          <p className="text-xs text-text-secondary font-bold mb-1">Total Calls</p>
+                          <p className="text-xs text-text-secondary font-bold mb-1">{t('totalCallsLabel')}</p>
                           <p className="text-xl font-extrabold text-dark dark:text-white">{selectedAgent.totalCalls}</p>
                         </div>
                         <div className="bg-light-bg dark:bg-slate-700/50 rounded-lg p-3">
-                          <p className="text-xs text-text-secondary font-bold mb-1">Active Now</p>
+                          <p className="text-xs text-text-secondary font-bold mb-1">{t('activeNow')}</p>
                           <p className="text-xl font-extrabold text-teal-600">{selectedAgent.activeCalls}</p>
                         </div>
                       </div>
@@ -333,11 +337,11 @@ export default function VoiceAgentsPage() {
                 <div className="mt-6 pt-6 border-t border-gray-200 dark:border-slate-700 space-y-3">
                   <button className="w-full px-4 py-3 min-h-[44px] bg-gradient-to-r from-teal-400 to-teal-600 text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
                     <SettingsIcon size={18} />
-                    Configure Agent
+                    {t('configureAgent')}
                   </button>
                   <button className="w-full px-4 py-3 min-h-[44px] bg-light-bg dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-dark dark:text-white rounded-xl font-bold transition-colors flex items-center justify-center gap-2">
                     <BarChart3 size={18} />
-                    View Call Logs
+                    {t('viewCallLogs')}
                   </button>
                 </div>
               </div>
