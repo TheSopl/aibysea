@@ -6,7 +6,6 @@ import { routing } from '@/i18n/routing';
 
 const localeLabels: Record<string, string> = {
   en: 'EN',
-  tr: 'TR',
   ar: 'AR',
 };
 
