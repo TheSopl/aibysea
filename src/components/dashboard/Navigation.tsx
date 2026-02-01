@@ -29,7 +29,7 @@ export default function Navigation() {
       transition={{ duration: 0.5 }}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
-      className="fixed left-0 top-0 h-full bg-white border-r border-gray-200 transition-all duration-500 z-50 shadow-sm"
+      className="fixed left-0 top-0 h-full bg-white border-e border-gray-200 transition-all duration-500 z-50 shadow-sm"
       style={{
         width: isExpanded ? '280px' : '80px',
       }}
@@ -78,7 +78,7 @@ export default function Navigation() {
                   {/* Active indicator */}
                   {isActive && (
                     <motion.div
-                      className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r"
+                      className="absolute start-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-e"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                     />

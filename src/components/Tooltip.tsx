@@ -12,17 +12,17 @@ export function Tooltip({ children, content, side = 'top' }: TooltipProps) {
   const [visible, setVisible] = useState(false);
 
   const sideClasses = {
-    top: 'bottom-full mb-2 left-1/2 -translate-x-1/2',
-    bottom: 'top-full mt-2 left-1/2 -translate-x-1/2',
-    left: 'right-full mr-2 top-1/2 -translate-y-1/2',
-    right: 'left-full ml-2 top-1/2 -translate-y-1/2',
+    top: 'bottom-full mb-2 start-1/2 -translate-x-1/2',
+    bottom: 'top-full mt-2 start-1/2 -translate-x-1/2',
+    left: 'end-full me-2 top-1/2 -translate-y-1/2',
+    right: 'start-full ms-2 top-1/2 -translate-y-1/2',
   };
 
   const arrowClasses = {
-    top: 'top-full left-1/2 -translate-x-1/2 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-slate-900 dark:border-t-slate-700',
-    bottom: 'bottom-full left-1/2 -translate-x-1/2 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-slate-900 dark:border-b-slate-700',
-    left: 'left-full top-1/2 -translate-y-1/2 border-t-4 border-b-4 border-l-4 border-t-transparent border-b-transparent border-l-slate-900 dark:border-l-slate-700',
-    right: 'right-full top-1/2 -translate-y-1/2 border-t-4 border-b-4 border-r-4 border-t-transparent border-b-transparent border-r-slate-900 dark:border-r-slate-700',
+    top: 'top-full start-1/2 -translate-x-1/2 border-s-4 border-e-4 border-t-4 border-s-transparent border-e-transparent border-t-slate-900 dark:border-t-slate-700',
+    bottom: 'bottom-full start-1/2 -translate-x-1/2 border-s-4 border-e-4 border-b-4 border-s-transparent border-e-transparent border-b-slate-900 dark:border-b-slate-700',
+    left: 'start-full top-1/2 -translate-y-1/2 border-t-4 border-b-4 border-s-4 border-t-transparent border-b-transparent border-s-slate-900 dark:border-s-slate-700',
+    right: 'end-full top-1/2 -translate-y-1/2 border-t-4 border-b-4 border-e-4 border-t-transparent border-b-transparent border-e-slate-900 dark:border-e-slate-700',
   };
 
   return (
