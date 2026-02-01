@@ -259,7 +259,13 @@
     "tollFree": "Toll-Free",
     "mobile": "Mobile",
     "noNumbers": "No phone numbers",
-    "noNumbersHint": "Add a phone number to get started."
+    "noNumbersHint": "Add a phone number to get started.",
+    "activeNumbers": "Active Numbers",
+    "monthlyCost": "Monthly Cost",
+    "pending": "Pending",
+    "test": "Test",
+    "yourPhoneNumbers": "Your Phone Numbers",
+    "manageNumbers": "Manage and configure your phone number inventory"
   },
   "VoiceSettings": {
     "title": "Voice Settings",

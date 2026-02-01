@@ -20,6 +20,8 @@ import {
   TrendingUp,
   FileText
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useTranslations } from 'next-intl';
 
 // Mock template data
 const mockTemplates = [
@@ -209,6 +211,8 @@ type FormState = {
 };
 
 export default function TemplatesPage() {
+  const t = useTranslations('Templates');
+  usePageTitle(t('title'));
   const [templates, setTemplates] = useState(mockTemplates);
   const [expandedTemplate, setExpandedTemplate] = useState<string | null>(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -389,7 +393,7 @@ export default function TemplatesPage() {
 
   return (
     <>
-      <TopBar title="Document Templates" />
+      <TopBar title={t('title')} />
 
       <div className="p-4 sm:p-6 lg:p-8 bg-light-bg dark:bg-slate-900">
         {/* Statistics */}

@@ -3,6 +3,8 @@
 import TopBar from '@/components/layout/TopBar';
 import { useState } from 'react';
 import { Save, ChevronDown } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useTranslations } from 'next-intl';
 
 // Mock voice agents for dropdown
 const voiceAgents = ['Sales Voice Agent', 'Support Voice Agent', 'Enterprise Voice Agent'];
@@ -28,6 +30,8 @@ type VoiceSettings = {
 };
 
 export default function VoiceSettingsPage() {
+  const t = useTranslations('VoiceSettings');
+  usePageTitle(t('title'));
   const [settings, setSettings] = useState<VoiceSettings>({
     greetingMessage: 'Thank you for calling AI BY SEA. How can we assist you today?',
     greetingEnabled: true,
@@ -72,7 +76,7 @@ export default function VoiceSettingsPage() {
 
   return (
     <>
-      <TopBar title="Voice Settings" />
+      <TopBar title={t('title')} />
 
       <div className="p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
         {/* Greeting Settings */}

@@ -2,6 +2,8 @@
 
 import TopBar from '@/components/layout/TopBar';
 import { MoreVertical, Mail, Phone, Edit, Trash } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useTranslations } from 'next-intl';
 
 const contacts = [
   {
@@ -67,9 +69,11 @@ const contacts = [
 ];
 
 export default function ContactsPage() {
+  const t = useTranslations('Contacts');
+  usePageTitle(t('title'));
   return (
     <>
-      <TopBar title="Contacts" />
+      <TopBar title={t('title')} />
 
       <div className="p-4 tablet:p-8 bg-light-bg dark:bg-slate-900 min-h-screen overflow-y-auto">
         <div

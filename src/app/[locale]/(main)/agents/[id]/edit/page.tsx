@@ -28,6 +28,8 @@ import {
   Phone,
   Tags
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useTranslations } from 'next-intl';
 
 // Types for the enhanced form
 interface Instruction {
@@ -182,6 +184,8 @@ function ActionCard({
 }
 
 export default function AgentEditPage() {
+  const t = useTranslations('AgentEdit');
+  usePageTitle(t('title'));
   const params = useParams();
   const router = useRouter();
   const agentId = params.id as string;

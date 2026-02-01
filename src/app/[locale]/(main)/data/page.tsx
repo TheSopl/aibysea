@@ -19,6 +19,8 @@ import {
   AlertCircle,
   X
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useTranslations } from 'next-intl';
 
 // Mock extracted data
 const extractedDataList = [
@@ -112,6 +114,8 @@ const stats = {
 };
 
 export default function ExtractedDataPage() {
+  const t = useTranslations('Data');
+  usePageTitle(t('title'));
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedData, setSelectedData] = useState<typeof extractedDataList[0] | null>(null);
   const [filterTemplate, setFilterTemplate] = useState('all');
@@ -145,7 +149,7 @@ export default function ExtractedDataPage() {
 
   return (
     <>
-      <TopBar title="Extracted Data" />
+      <TopBar title={t('title')} />
 
       <div className="p-8 bg-white dark:bg-slate-900">
         {/* Stats Overview */}

@@ -16,6 +16,8 @@ import {
   Check,
   AlertCircle
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useTranslations } from 'next-intl';
 
 type SettingsTab = 'users' | 'team' | 'channels' | 'lifecycle';
 
@@ -43,6 +45,8 @@ const defaultLifecycles = [
 ];
 
 export default function SettingsPage() {
+  const t = useTranslations('Settings');
+  usePageTitle(t('title'));
   const [activeTab, setActiveTab] = useState<SettingsTab>('users');
   const [inviteEmail, setInviteEmail] = useState('');
   const [inviteRole, setInviteRole] = useState<'Admin' | 'Member'>('Member');
@@ -86,7 +90,7 @@ export default function SettingsPage() {
 
   return (
     <>
-      <TopBar title="Settings" />
+      <TopBar title={t('title')} />
 
       <div className="flex flex-col lg:flex-row h-[calc(100vh-4rem)]">
         {/* Mobile Tabs - Horizontal scrollable */}

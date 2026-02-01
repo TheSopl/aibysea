@@ -16,6 +16,8 @@ import {
   BarChart3,
   Activity
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useTranslations } from 'next-intl';
 
 // Mock templates
 const templates = [
@@ -99,6 +101,8 @@ const statistics = {
 };
 
 export default function UploadPage() {
+  const t = useTranslations('Upload');
+  usePageTitle(t('title'));
   const [selectedTemplate, setSelectedTemplate] = useState(templates[0]);
   const [uploads, setUploads] = useState(recentUploads);
   const [dragActive, setDragActive] = useState(false);
@@ -162,7 +166,7 @@ export default function UploadPage() {
 
   return (
     <>
-      <TopBar title="Upload & Process" />
+      <TopBar title={t('title')} />
 
       <div className="p-4 sm:p-6 lg:p-8 bg-light-bg dark:bg-slate-900">
         {/* Statistics Overview */}

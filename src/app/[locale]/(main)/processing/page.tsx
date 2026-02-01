@@ -18,6 +18,8 @@ import {
   BarChart3,
   Zap
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useTranslations } from 'next-intl';
 
 // Mock processing jobs data
 const processingJobs = [
@@ -116,6 +118,8 @@ const stats = {
 };
 
 export default function ProcessingPage() {
+  const t = useTranslations('Processing');
+  usePageTitle(t('title'));
   const [selectedStatus, setSelectedStatus] = useState<'all' | 'processing' | 'completed' | 'failed'>('all');
   const [jobs, setJobs] = useState(processingJobs);
 
@@ -149,7 +153,7 @@ export default function ProcessingPage() {
 
   return (
     <>
-      <TopBar title="Processing Queue" />
+      <TopBar title={t('title')} />
 
       <div className="p-8 bg-white dark:bg-slate-900">
         {/* Stats Overview */}

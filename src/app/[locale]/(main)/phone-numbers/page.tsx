@@ -13,6 +13,8 @@ import {
   Phone,
   TrendingUp
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useTranslations } from 'next-intl';
 
 // Mock data for phone numbers
 const phoneNumbers = [
@@ -85,6 +87,8 @@ const phoneNumbers = [
 ];
 
 export default function PhoneNumbersPage() {
+  const t = useTranslations('PhoneNumbers');
+  usePageTitle(t('title'));
   const [numbers, setNumbers] = useState(phoneNumbers);
   const [pausedNumbers, setPausedNumbers] = useState<number[]>([]);
 
@@ -126,7 +130,7 @@ export default function PhoneNumbersPage() {
 
   return (
     <>
-      <TopBar title="Phone Numbers" />
+      <TopBar title={t('title')} />
 
       <div className="p-4 sm:p-6 lg:p-8 bg-light-bg dark:bg-slate-900">
         {/* Summary Stats */}
@@ -144,7 +148,7 @@ export default function PhoneNumbersPage() {
               <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{activeCount}</h3>
-            <p className="text-xs sm:text-sm text-text-secondary font-bold">Active Numbers</p>
+            <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('activeNumbers')}</p>
           </div>
 
           <div
@@ -160,7 +164,7 @@ export default function PhoneNumbersPage() {
               <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">${totalCost.toFixed(2)}</h3>
-            <p className="text-xs sm:text-sm text-text-secondary font-bold">Monthly Cost</p>
+            <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('monthlyCost')}</p>
           </div>
 
           <div
@@ -176,7 +180,7 @@ export default function PhoneNumbersPage() {
               <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{pendingCount}</h3>
-            <p className="text-xs sm:text-sm text-text-secondary font-bold">Pending</p>
+            <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('pending')}</p>
           </div>
 
           <div
@@ -192,20 +196,20 @@ export default function PhoneNumbersPage() {
               <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{testCount}</h3>
-            <p className="text-xs sm:text-sm text-text-secondary font-bold">Test</p>
+            <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('test')}</p>
           </div>
         </div>
 
         {/* Header with Add Button */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
           <div>
-            <h2 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Your Phone Numbers</h2>
-            <p className="text-xs sm:text-sm text-text-secondary mt-1">Manage and configure your phone number inventory</p>
+            <h2 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">{t('yourPhoneNumbers')}</h2>
+            <p className="text-xs sm:text-sm text-text-secondary mt-1">{t('manageNumbers')}</p>
           </div>
           <button className="px-4 py-2.5 min-h-[44px] bg-gradient-to-r from-teal-400 to-cyan-500 text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5 w-full sm:w-auto justify-center">
             <Plus size={18} />
-            <span className="sm:hidden">Add Number</span>
-            <span className="hidden sm:inline">Add Phone Number</span>
+            <span className="sm:hidden">{t('addNumber')}</span>
+            <span className="hidden sm:inline">{t('addNumber')}</span>
           </button>
         </div>
 

@@ -259,7 +259,13 @@
     "tollFree": "مجاني",
     "mobile": "محمول",
     "noNumbers": "لا توجد أرقام هواتف",
-    "noNumbersHint": "أضف رقم هاتف للبدء."
+    "noNumbersHint": "أضف رقم هاتف للبدء.",
+    "activeNumbers": "الأرقام النشطة",
+    "monthlyCost": "التكلفة الشهرية",
+    "pending": "قيد الانتظار",
+    "test": "اختبار",
+    "yourPhoneNumbers": "أرقام الهاتف الخاصة بك",
+    "manageNumbers": "إدارة وتكوين مخزون أرقام الهواتف الخاصة بك"
   },
   "VoiceSettings": {
     "title": "إعدادات الصوت",
