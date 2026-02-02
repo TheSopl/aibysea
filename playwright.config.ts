@@ -68,7 +68,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true, // Always reuse - CI workflow starts server manually
     timeout: 120000, // 2 minutes for Next.js to start
   },
 });
