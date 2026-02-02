@@ -408,7 +408,7 @@ export default function TemplatesPage() {
               </div>
               <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.total}</h3>
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.total}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">Total Templates</p>
           </div>
 
@@ -422,7 +422,7 @@ export default function TemplatesPage() {
               </div>
               <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.active}</h3>
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.active}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">Active in Use</p>
           </div>
 
@@ -436,7 +436,7 @@ export default function TemplatesPage() {
               </div>
               <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.successRate}%</h3>
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.successRate}%</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">Success Rate</p>
           </div>
 
@@ -450,7 +450,7 @@ export default function TemplatesPage() {
               </div>
               <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.processed}</h3>
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.processed}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">Documents Processed</p>
           </div>
         </div>
@@ -459,7 +459,7 @@ export default function TemplatesPage() {
           {/* Template List */}
           <div className="lg:col-span-2">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
-              <h2 className="text-xl sm:text-2xl font-extrabold text-dark dark:text-white">Templates</h2>
+              <h2 className="text-xl sm:text-heading-2 font-extrabold text-dark dark:text-white">Templates</h2>
               <button
                 onClick={() => setShowCreateForm(!showCreateForm)}
                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 min-h-[44px] bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-xl font-bold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
@@ -479,7 +479,7 @@ export default function TemplatesPage() {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-start gap-3 flex-1">
-                      <span className="text-3xl">{template.icon}</span>
+                      <span className="text-heading-1">{template.icon}</span>
                       <div className="flex-1">
                         <h3 className="text-lg font-bold text-dark dark:text-white mb-1">{template.name}</h3>
                         <p className="text-xs text-text-secondary mb-3">{template.description}</p>
@@ -585,7 +585,7 @@ export default function TemplatesPage() {
           {showCreateForm && (
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-4 sm:p-6 border-2 border-orange-200 max-h-[calc(100vh-160px)] sm:max-h-[calc(100vh-200px)] overflow-y-auto">
               <div className="flex items-center justify-between mb-4 sm:mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
-                <h2 className="text-lg sm:text-xl font-bold text-dark dark:text-white">Create New Template</h2>
+                <h2 className="text-lg sm:text-heading-3 font-bold text-dark dark:text-white">Create New Template</h2>
                 <button
                   onClick={() => setShowCreateForm(false)}
                   className="p-2 min-h-[44px] min-w-[44px] text-gray-400 hover:text-gray-600 transition-colors flex items-center justify-center"

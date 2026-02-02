@@ -123,7 +123,7 @@ const mockAgents: VoiceAgent[] = [
 ]
 
 // Store for created agents (in-memory, resets on server restart)
-let createdAgents: VoiceAgent[] = []
+const createdAgents: VoiceAgent[] = []
 let nextId = 100
 
 /**

@@ -161,7 +161,7 @@ export default function ExtractedDataPage() {
               </div>
               <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.totalExtracted}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.totalExtracted}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Total Extracted</p>
           </div>
 
@@ -172,7 +172,7 @@ export default function ExtractedDataPage() {
               </div>
               <Activity size={20} className="text-green-500 dark:text-green-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.verified}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.verified}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Verified</p>
           </div>
 
@@ -183,7 +183,7 @@ export default function ExtractedDataPage() {
               </div>
               <BarChart3 size={20} className="text-amber-500 dark:text-amber-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.pendingReview}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.pendingReview}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Pending Review</p>
           </div>
 
@@ -194,7 +194,7 @@ export default function ExtractedDataPage() {
               </div>
               <TrendingUp size={20} className="text-purple-500 dark:text-purple-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.avgConfidence}%</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.avgConfidence}%</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Avg Confidence</p>
           </div>
         </div>
@@ -314,7 +314,7 @@ export default function ExtractedDataPage() {
               {/* Header */}
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <h2 className="text-2xl font-extrabold text-dark mb-2">{selectedData.documentName}</h2>
+                  <h2 className="text-heading-2 font-extrabold text-dark mb-2">{selectedData.documentName}</h2>
                   <p className="text-sm text-text-secondary dark:text-slate-300">
                     {selectedData.template} Template • Job ID: {selectedData.jobId}
                   </p>

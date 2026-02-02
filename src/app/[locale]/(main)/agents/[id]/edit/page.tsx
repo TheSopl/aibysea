@@ -423,7 +423,7 @@ export default function AgentEditPage() {
                 value={formData.name}
                 onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                 placeholder="Agent Name"
-                className="text-xl font-bold bg-transparent border-none outline-none text-dark dark:text-white placeholder-gray-400"
+                className="text-heading-3 font-bold bg-transparent border-none outline-none text-dark dark:text-white placeholder-gray-400"
               />
             </div>
           </div>

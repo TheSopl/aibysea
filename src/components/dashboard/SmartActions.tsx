@@ -56,7 +56,7 @@ export default function SmartActions() {
     >
       {/* Header */}
       <div className="flex items-center gap-2 mb-4">
-        <span className="text-2xl">🎯</span>
+        <span className="text-heading-2">🎯</span>
         <h3 className="text-lg font-semibold text-teal uppercase tracking-wide">
           Smart Actions
         </h3>

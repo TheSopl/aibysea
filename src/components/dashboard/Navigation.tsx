@@ -62,7 +62,7 @@ export default function Navigation() {
                       : 'text-text-secondary hover:text-primary hover:bg-light-bg'
                   }`}
                 >
-                  <span className="text-2xl">{item.icon}</span>
+                  <span className="text-heading-2">{item.icon}</span>
                   <motion.span
                     className="text-sm font-semibold whitespace-nowrap"
                     initial={{ opacity: 0, width: 0 }}
@@ -92,7 +92,7 @@ export default function Navigation() {
         {/* Logout button */}
         <div className="border-t border-gray-200 p-4">
           <button className="flex items-center gap-4 px-6 py-4 w-full text-text-secondary hover:text-red hover:bg-red/10 transition-all duration-200 rounded-design focus:outline-none focus:ring-2 focus:ring-red focus:ring-offset-2">
-            <span className="text-2xl">↪️</span>
+            <span className="text-heading-2">↪️</span>
             <motion.span
               className="text-sm font-semibold whitespace-nowrap"
               initial={{ opacity: 0, width: 0 }}

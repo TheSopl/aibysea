@@ -142,7 +142,7 @@ export default function AIMetricsDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        <h2 className="text-2xl font-extrabold text-dark mb-6">Key Metrics</h2>
+        <h2 className="text-heading-2 font-extrabold text-dark mb-6">Key Metrics</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {metrics.map((metric, index) => (
             <MetricsCard key={metric.label} {...metric} index={index} />

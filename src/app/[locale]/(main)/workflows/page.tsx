@@ -86,7 +86,7 @@ export default function WorkflowsPage() {
                 <Workflow size={24} className="text-white" />
               </div>
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{workflows.filter(w => w.status === 'active').length}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{workflows.filter(w => w.status === 'active').length}</h3>
             <p className="text-sm text-text-secondary font-bold">Active Workflows</p>
           </div>
 
@@ -101,7 +101,7 @@ export default function WorkflowsPage() {
                 <CheckCircle size={24} className="text-white" />
               </div>
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">
               {workflows.reduce((sum, w) => sum + w.totalRuns, 0).toLocaleString()}
             </h3>
             <p className="text-sm text-text-secondary font-bold">Total Executions</p>
@@ -118,7 +118,7 @@ export default function WorkflowsPage() {
                 <Zap size={24} className="text-white" />
               </div>
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">
               {Math.round(workflows.reduce((sum, w) => sum + w.successRate, 0) / workflows.length)}%
             </h3>
             <p className="text-sm text-text-secondary font-bold">Avg Success Rate</p>
@@ -135,7 +135,7 @@ export default function WorkflowsPage() {
                 <GitBranch size={24} className="text-white" />
               </div>
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">
               {workflows.reduce((sum, w) => sum + w.actions, 0)}
             </h3>
             <p className="text-sm text-text-secondary font-bold">Total Actions</p>
@@ -145,7 +145,7 @@ export default function WorkflowsPage() {
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-xl font-extrabold text-dark">Your Workflows</h2>
+              <h2 className="text-heading-3 font-extrabold text-dark">Your Workflows</h2>
               <p className="text-sm text-text-secondary mt-1">Automate your messaging workflows</p>
             </div>
             <button className="px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5">

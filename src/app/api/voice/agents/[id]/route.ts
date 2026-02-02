@@ -124,7 +124,7 @@ const mockAgents: VoiceAgent[] = [
 ]
 
 // Store for created agents (in-memory)
-let createdAgents: VoiceAgent[] = []
+const createdAgents: VoiceAgent[] = []
 
 /**
  * GET /api/voice/agents/[id]

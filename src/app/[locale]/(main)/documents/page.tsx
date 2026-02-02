@@ -181,7 +181,7 @@ export default function DocumentsPage() {
               </div>
               <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{statistics.totalProcessed}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{statistics.totalProcessed}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Documents Processed</p>
           </div>
 
@@ -197,7 +197,7 @@ export default function DocumentsPage() {
               </div>
               <Activity size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">
               {statistics.avgProcessingTime}m
             </h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Avg Processing Time</p>
@@ -215,7 +215,7 @@ export default function DocumentsPage() {
               </div>
               <BarChart3 size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">
               {statistics.successRate}%
             </h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Success Rate</p>
@@ -233,7 +233,7 @@ export default function DocumentsPage() {
               </div>
               <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{failedDocs}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{failedDocs}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Failed Uploads</p>
           </div>
         </div>
@@ -255,7 +255,7 @@ export default function DocumentsPage() {
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mb-4 shadow-lg">
                 <Upload size={40} className="text-white" />
               </div>
-              <h3 className="text-xl font-extrabold text-dark mb-2 text-center">
+              <h3 className="text-heading-3 font-extrabold text-dark mb-2 text-center">
                 Drag documents here or click to browse
               </h3>
               <p className="text-sm text-text-secondary mb-6 text-center">
@@ -303,7 +303,7 @@ export default function DocumentsPage() {
         {/* Processing Documents Section */}
         {processingDocs.length > 0 && (
           <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md mb-8">
-            <h2 className="text-xl font-extrabold text-dark mb-6">Currently Processing</h2>
+            <h2 className="text-heading-3 font-extrabold text-dark mb-6">Currently Processing</h2>
             <div className="space-y-4">
               {processingDocs.map((doc, index) => {
                 const statusTexts = ['Analyzing...', 'Extracting...', 'Finalizing...'];
@@ -357,7 +357,7 @@ export default function DocumentsPage() {
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-xl font-extrabold text-dark">Recent Uploads</h2>
+              <h2 className="text-heading-3 font-extrabold text-dark">Recent Uploads</h2>
               <p className="text-sm text-text-secondary mt-1">Manage and monitor your document uploads</p>
             </div>
           </div>

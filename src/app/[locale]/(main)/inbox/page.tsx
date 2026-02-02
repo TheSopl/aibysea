@@ -874,7 +874,7 @@ export default function InboxPage() {
               <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full flex items-center justify-center">
                 <Bot size={48} className="text-primary" />
               </div>
-              <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-2">{t('selectConversation')}</h3>
+              <h3 className="text-heading-2 font-extrabold text-dark dark:text-white mb-2">{t('selectConversation')}</h3>
               <p className="text-text-secondary dark:text-slate-300">{t('selectConversationHint')}</p>
             </div>
           </div>

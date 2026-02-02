@@ -34,7 +34,7 @@ const MetricCard = ({ icon, label, value, iconBgColor, iconColor }: MetricCardPr
           <div className="text-xs uppercase tracking-widest text-text-secondary font-bold mb-2">
             {label}
           </div>
-          <div className="text-3xl md:text-4xl font-extrabold text-dark leading-none">
+          <div className="text-heading-1 md:text-4xl font-extrabold text-dark leading-none">
             {value}
           </div>
         </div>

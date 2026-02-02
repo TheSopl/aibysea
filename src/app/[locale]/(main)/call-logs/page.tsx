@@ -541,7 +541,7 @@ export default function CallLogsPage() {
               <div className="w-24 h-24 mx-auto mb-6 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
                 <Phone size={48} className="text-teal-600 dark:text-teal-400" />
               </div>
-              <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-2">{t('selectCall')}</h3>
+              <h3 className="text-heading-2 font-extrabold text-dark dark:text-white mb-2">{t('selectCall')}</h3>
               <p className="text-gray-600 dark:text-slate-400">{t('selectCallHint')}</p>
             </div>
           </div>

@@ -51,7 +51,7 @@ export default function AIAgentCard({
 
         {/* Agent info */}
         <div className="flex-1 text-center sm:text-start">
-          <h3 className="text-xl font-extrabold text-dark">{name}</h3>
+          <h3 className="text-heading-3 font-extrabold text-dark">{name}</h3>
           <div className="flex items-center justify-center sm:justify-start gap-3 mt-2">
             {/* Health badge */}
             <div className="flex items-center gap-1.5 px-3 py-1 bg-accent/20 rounded-design border border-accent/30">
@@ -72,7 +72,7 @@ export default function AIAgentCard({
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-3xl font-extrabold font-mono text-accent"
+            className="text-heading-1 font-extrabold font-mono text-accent"
           >
             +{learnedToday}
           </motion.div>

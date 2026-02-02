@@ -92,7 +92,7 @@ const mockTemplates: Template[] = [
 ]
 
 // Store for updates (in-memory, resets on server restart)
-let templateUpdates: Map<string, Template> = new Map()
+const templateUpdates: Map<string, Template> = new Map()
 
 /**
  * GET /api/documents/templates/[id]

@@ -147,7 +147,7 @@ export default function PhoneNumbersPage() {
               </div>
               <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{activeCount}</h3>
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{activeCount}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('activeNumbers')}</p>
           </div>
 
@@ -163,7 +163,7 @@ export default function PhoneNumbersPage() {
               </div>
               <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">${totalCost.toFixed(2)}</h3>
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">${totalCost.toFixed(2)}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('monthlyCost')}</p>
           </div>
 
@@ -179,7 +179,7 @@ export default function PhoneNumbersPage() {
               </div>
               <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{pendingCount}</h3>
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{pendingCount}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('pending')}</p>
           </div>
 
@@ -195,7 +195,7 @@ export default function PhoneNumbersPage() {
               </div>
               <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{testCount}</h3>
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{testCount}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('test')}</p>
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function PhoneNumbersPage() {
         {/* Header with Add Button */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
           <div>
-            <h2 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">{t('yourPhoneNumbers')}</h2>
+            <h2 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white">{t('yourPhoneNumbers')}</h2>
             <p className="text-xs sm:text-sm text-text-secondary mt-1">{t('manageNumbers')}</p>
           </div>
           <button className="px-4 py-2.5 min-h-[44px] bg-gradient-to-r from-teal-400 to-cyan-500 text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5 w-full sm:w-auto justify-center">
@@ -233,7 +233,7 @@ export default function PhoneNumbersPage() {
                 <div className="flex items-start justify-between mb-3 sm:mb-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xl sm:text-2xl">{phone.flag}</span>
+                      <span className="text-xl sm:text-heading-2">{phone.flag}</span>
                       <div className="min-w-0">
                         <h3 className="text-base sm:text-lg font-extrabold text-dark dark:text-white truncate">{phone.number}</h3>
                         <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300">{phone.country}</p>

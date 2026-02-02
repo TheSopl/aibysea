@@ -119,7 +119,7 @@ export default function AgentFormModal({ isOpen, onClose, onSave, agent }: Agent
             <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center">
               <Bot size={20} className="text-primary" />
             </div>
-            <h2 className="text-xl font-extrabold text-dark dark:text-white">
+            <h2 className="text-heading-3 font-extrabold text-dark dark:text-white">
               {isEditing ? 'Edit Agent' : 'Create Agent'}
             </h2>
           </div>

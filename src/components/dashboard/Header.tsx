@@ -92,7 +92,7 @@ export default function Header() {
           <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-design flex items-center justify-center shadow-md">
             <span className="text-white font-extrabold text-base">AI</span>
           </div>
-          <h1 className="text-xl font-extrabold text-primary">AIBYSEA</h1>
+          <h1 className="text-heading-3 font-extrabold text-primary">AIBYSEA</h1>
         </div>
 
         {/* Center: Date & Time */}

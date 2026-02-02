@@ -250,7 +250,7 @@ export default function ExtractedDataPage() {
               </div>
               <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{totalExtractions}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{totalExtractions}</h3>
             <p className="text-sm text-text-secondary font-bold">Total Extractions</p>
           </div>
 
@@ -264,7 +264,7 @@ export default function ExtractedDataPage() {
               </div>
               <Zap size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{avgConfidence}%</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{avgConfidence}%</h3>
             <p className="text-sm text-text-secondary font-bold">Accuracy Score</p>
           </div>
 
@@ -278,7 +278,7 @@ export default function ExtractedDataPage() {
               </div>
               <Activity size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{highQuality}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{highQuality}</h3>
             <p className="text-sm text-text-secondary font-bold">High Quality ({Math.round((highQuality / totalExtractions) * 100)}%)</p>
           </div>
 
@@ -292,7 +292,7 @@ export default function ExtractedDataPage() {
               </div>
               <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{pendingReview}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{pendingReview}</h3>
             <p className="text-sm text-text-secondary font-bold">Pending Review</p>
           </div>
         </div>

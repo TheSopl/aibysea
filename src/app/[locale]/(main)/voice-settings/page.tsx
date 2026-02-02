@@ -85,7 +85,7 @@ export default function VoiceSettingsPage() {
             <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
               <span className="text-white font-bold text-base sm:text-lg">1</span>
             </div>
-            <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Greeting Settings</h3>
+            <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white">Greeting Settings</h3>
           </div>
 
           <div className="space-y-6">
@@ -150,7 +150,7 @@ export default function VoiceSettingsPage() {
             <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
               <span className="text-white font-bold text-base sm:text-lg">2</span>
             </div>
-            <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Voicemail Settings</h3>
+            <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white">Voicemail Settings</h3>
           </div>
 
           <div className="space-y-6">
@@ -236,7 +236,7 @@ export default function VoiceSettingsPage() {
             <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
               <span className="text-white font-bold text-base sm:text-lg">3</span>
             </div>
-            <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Call Routing Settings</h3>
+            <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white">Call Routing Settings</h3>
           </div>
 
           <div className="space-y-6">
@@ -318,7 +318,7 @@ export default function VoiceSettingsPage() {
             <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
               <span className="text-white font-bold text-base sm:text-lg">4</span>
             </div>
-            <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Advanced Settings</h3>
+            <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white">Advanced Settings</h3>
           </div>
 
           <div className="space-y-6">

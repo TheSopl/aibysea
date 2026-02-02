@@ -97,7 +97,7 @@ export default function HealthScore({ score, maxScore = 100 }: HealthScoreProps)
         {/* Center text with animated color */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <motion.span
-            className="text-3xl font-bold font-mono"
+            className="text-heading-1 font-bold font-mono"
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,

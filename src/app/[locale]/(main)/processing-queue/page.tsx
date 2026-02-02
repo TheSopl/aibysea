@@ -271,7 +271,7 @@ export default function ProcessingQueuePage() {
               </div>
               <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{activeJobs}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{activeJobs}</h3>
             <p className="text-sm text-text-secondary font-bold">Active Jobs</p>
           </div>
 
@@ -285,7 +285,7 @@ export default function ProcessingQueuePage() {
               </div>
               <BarChart3 size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{completedToday}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{completedToday}</h3>
             <p className="text-sm text-text-secondary font-bold">Completed Today</p>
           </div>
 
@@ -299,7 +299,7 @@ export default function ProcessingQueuePage() {
               </div>
               <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{failedJobs}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{failedJobs}</h3>
             <p className="text-sm text-text-secondary font-bold">Failed Jobs</p>
           </div>
 
@@ -313,7 +313,7 @@ export default function ProcessingQueuePage() {
               </div>
               <Zap size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1">{avgProcessingTime}</h3>
+            <h3 className="text-heading-2 font-extrabold text-dark dark:text-white mb-1">{avgProcessingTime}</h3>
             <p className="text-sm text-text-secondary font-bold">Avg Processing Time</p>
           </div>
         </div>

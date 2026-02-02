@@ -604,7 +604,7 @@ const mockJobs: ExtractionJob[] = [
 ]
 
 // Store for created jobs (in-memory, resets on server restart)
-let createdJobs: ExtractionJob[] = []
+const createdJobs: ExtractionJob[] = []
 let nextId = 100
 
 /**

@@ -165,7 +165,7 @@ export default function ProcessingPage() {
               </div>
               <Zap size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.processing}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.processing}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Currently Processing</p>
           </div>
 
@@ -176,7 +176,7 @@ export default function ProcessingPage() {
               </div>
               <TrendingUp size={20} className="text-green-500 dark:text-green-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.completed}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.completed}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Completed Today</p>
           </div>
 
@@ -187,7 +187,7 @@ export default function ProcessingPage() {
               </div>
               <ArrowUpRight size={20} className="text-red-500 dark:text-red-400" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{stats.failed}</h3>
+            <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.failed}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Failed</p>
           </div>
 
@@ -198,7 +198,7 @@ export default function ProcessingPage() {
               </div>
               <BarChart3 size={20} className="text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1">{stats.avgTime}</h3>
+            <h3 className="text-heading-2 font-extrabold text-dark dark:text-white mb-1">{stats.avgTime}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Avg Processing</p>
           </div>
         </div>
@@ -252,7 +252,7 @@ export default function ProcessingPage() {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-extrabold text-dark dark:text-white">{job.documentName}</h3>
+                      <h3 className="text-heading-3 font-extrabold text-dark dark:text-white">{job.documentName}</h3>
                       <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border-2 ${getStatusBadge(job.status)}`}>
                         {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
                       </span>
@@ -312,11 +312,11 @@ export default function ProcessingPage() {
                     <>
                       <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Time Elapsed</p>
-                        <p className="text-2xl font-extrabold text-blue-600 dark:text-blue-400">{job.timeElapsed}</p>
+                        <p className="text-heading-2 font-extrabold text-blue-600 dark:text-blue-400">{job.timeElapsed}</p>
                       </div>
                       <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Est. Time Remaining</p>
-                        <p className="text-2xl font-extrabold text-amber-600">{job.timeRemaining}</p>
+                        <p className="text-heading-2 font-extrabold text-amber-600">{job.timeRemaining}</p>
                       </div>
                     </>
                   )}
@@ -324,11 +324,11 @@ export default function ProcessingPage() {
                     <>
                       <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Total Processing Time</p>
-                        <p className="text-2xl font-extrabold text-green-600">{job.timeElapsed}</p>
+                        <p className="text-heading-2 font-extrabold text-green-600">{job.timeElapsed}</p>
                       </div>
                       <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Confidence Score</p>
-                        <p className="text-2xl font-extrabold text-purple-600">{job.confidence}%</p>
+                        <p className="text-heading-2 font-extrabold text-purple-600">{job.confidence}%</p>
                       </div>
                     </>
                   )}

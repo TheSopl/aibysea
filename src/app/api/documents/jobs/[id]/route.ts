@@ -127,7 +127,7 @@ const sampleExtractedData: ExtractedData[] = [
 ]
 
 // Store for updates (in-memory, resets on server restart)
-let jobUpdates: Map<string, ExtractionJob> = new Map()
+const jobUpdates: Map<string, ExtractionJob> = new Map()
 
 /**
  * GET /api/documents/jobs/[id]

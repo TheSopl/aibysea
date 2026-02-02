@@ -161,7 +161,7 @@ export default function SettingsPage() {
                     animation: 'scaleIn 0.5s ease-out both'
                   }}
                 >
-                  <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white mb-1 sm:mb-2">Invite User</h3>
+                  <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white mb-1 sm:mb-2">Invite User</h3>
                   <p className="text-xs sm:text-sm text-text-secondary mb-4 sm:mb-6">Send an invitation to join your workspace</p>
 
                   {showInviteSuccess && (
@@ -210,7 +210,7 @@ export default function SettingsPage() {
                 </div>
 
                 <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6">
-                  <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white mb-1 sm:mb-2">Team Members</h3>
+                  <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white mb-1 sm:mb-2">Team Members</h3>
                   <p className="text-xs sm:text-sm text-text-secondary mb-4 sm:mb-6">Manage your workspace members</p>
 
                   <div className="space-y-2 sm:space-y-3">
@@ -259,7 +259,7 @@ export default function SettingsPage() {
             {activeTab === 'team' && (
               <div className="space-y-4 sm:space-y-6">
                 <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6">
-                  <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white mb-1 sm:mb-2">Team Information</h3>
+                  <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white mb-1 sm:mb-2">Team Information</h3>
                   <p className="text-xs sm:text-sm text-text-secondary mb-4 sm:mb-6">Configure your team details</p>
 
                   <div className="space-y-3 sm:space-y-4">
@@ -319,7 +319,7 @@ export default function SettingsPage() {
                 </div>
 
                 <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 border-2 border-red/20">
-                  <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white mb-1 sm:mb-2 flex items-center gap-2">
+                  <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white mb-1 sm:mb-2 flex items-center gap-2">
                     <AlertCircle className="text-red w-5 h-5 sm:w-6 sm:h-6" />
                     Danger Zone
                   </h3>
@@ -346,7 +346,7 @@ export default function SettingsPage() {
                 <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
                     <div>
-                      <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Connected Channels</h3>
+                      <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white">Connected Channels</h3>
                       <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-400 mt-1">Manage your communication channels</p>
                     </div>
                     <button className="w-full sm:w-auto px-3 sm:px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-lg sm:rounded-xl font-bold text-sm hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
@@ -429,7 +429,7 @@ export default function SettingsPage() {
                 <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
                     <div>
-                      <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Lifecycle Stages</h3>
+                      <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white">Lifecycle Stages</h3>
                       <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-400 mt-1">Define and manage customer lifecycle stages</p>
                     </div>
                     <button className="w-full sm:w-auto px-3 sm:px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-lg sm:rounded-xl font-bold text-sm hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
@@ -445,7 +445,7 @@ export default function SettingsPage() {
                         className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-5 bg-light-bg dark:bg-slate-700 rounded-lg sm:rounded-xl hover:shadow-md transition-all border-2 border-transparent hover:border-primary/20 gap-3"
                       >
                         <div className="flex items-start sm:items-center gap-3 sm:gap-4 flex-1">
-                          <div className="text-lg sm:text-2xl font-extrabold text-text-secondary dark:text-slate-400 w-6 sm:w-8 flex-shrink-0">
+                          <div className="text-lg sm:text-heading-2 font-extrabold text-text-secondary dark:text-slate-400 w-6 sm:w-8 flex-shrink-0">
                             {index + 1}
                           </div>
                           <div className="flex-1 min-w-0">

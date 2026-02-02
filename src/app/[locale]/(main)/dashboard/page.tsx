@@ -310,7 +310,7 @@ export default function DashboardPage() {
               <p className="text-[10px] md:text-xs uppercase tracking-wider text-text-secondary dark:text-slate-300 font-bold mb-2 md:mb-3">
                 {stat.label}
               </p>
-              <p className="text-xl md:text-3xl font-extrabold text-dark dark:text-white">{stat.value}</p>
+              <p className="text-heading-1 md:text-heading-1-md font-extrabold text-dark dark:text-white">{stat.value}</p>
             </div>
           ))}
         </div>
@@ -320,7 +320,7 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between mb-4 md:mb-6">
             <div className="flex items-center gap-2">
               <Activity className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-              <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white">{t('recentActivity')}</h3>
+              <h3 className="text-lg md:text-heading-3 font-extrabold text-dark dark:text-white">{t('recentActivity')}</h3>
             </div>
           </div>
           <div className="space-y-2 md:space-y-3 max-h-48 md:max-h-64 overflow-y-auto">
@@ -359,7 +359,7 @@ export default function DashboardPage() {
             }}
           >
             <div className="flex items-center justify-between mb-4 md:mb-6">
-              <h3 className="text-base md:text-xl font-extrabold text-dark dark:text-white">{t('aiAgentPerformance')}</h3>
+              <h3 className="text-base md:text-heading-3 font-extrabold text-dark dark:text-white">{t('aiAgentPerformance')}</h3>
               <button className="text-xs md:text-sm text-primary dark:text-blue-400 font-semibold hover:underline transition-all duration-300">{t('viewDetails')}</button>
             </div>
             <div className="h-[180px] tablet:h-[240px] lg:h-[300px]">
@@ -452,7 +452,7 @@ export default function DashboardPage() {
               animation: 'slideInFromLeft 0.6s ease-out 0.8s both'
             }}
           >
-            <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white mb-4 md:mb-6">{t('topChannels')}</h3>
+            <h3 className="text-lg md:text-heading-3 font-extrabold text-dark dark:text-white mb-4 md:mb-6">{t('topChannels')}</h3>
             <div className="space-y-3 md:space-y-4">
               {topChannels.map((channel, index) => (
                 <div
@@ -484,7 +484,7 @@ export default function DashboardPage() {
               animation: 'slideInFromRight 0.6s ease-out 0.8s both'
             }}
           >
-            <h3 className="text-lg md:text-xl font-extrabold text-dark dark:text-white mb-4 md:mb-6">{t('lifecycleDistribution')}</h3>
+            <h3 className="text-lg md:text-heading-3 font-extrabold text-dark dark:text-white mb-4 md:mb-6">{t('lifecycleDistribution')}</h3>
             <div className="space-y-3 md:space-y-4">
               {translatedLifecycles.map((lifecycle, index) => (
                 <div
@@ -494,7 +494,7 @@ export default function DashboardPage() {
                     animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
                   }}
                 >
-                  <div className="text-2xl">{lifecycle.icon}</div>
+                  <div className="text-heading-2">{lifecycle.icon}</div>
                   <span className="flex-1 text-sm font-semibold text-dark dark:text-white">{lifecycle.name}</span>
                   <span className="text-lg font-extrabold text-dark dark:text-white">{lifecycle.count}</span>
                 </div>

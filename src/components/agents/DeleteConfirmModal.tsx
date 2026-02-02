@@ -42,7 +42,7 @@ export default function DeleteConfirmModal({
             <div className="w-10 h-10 bg-red/10 rounded-xl flex items-center justify-center">
               <AlertTriangle size={20} className="text-red" />
             </div>
-            <h2 className="text-xl font-extrabold text-dark dark:text-white">
+            <h2 className="text-heading-3 font-extrabold text-dark dark:text-white">
               Delete Agent
             </h2>
           </div>

@@ -51,7 +51,7 @@ export default function LoginPage() {
         <div className="w-full max-w-md">
           {/* Welcome Text */}
           <div className="mb-8">
-            <h1 className="text-3xl font-extrabold text-slate-900 mb-2">Welcome Back 👋</h1>
+            <h1 className="text-heading-1 font-extrabold text-slate-900 mb-2">Welcome Back 👋</h1>
             <p className="text-slate-600">Sign in to manage your AI agents and customer conversations.</p>
           </div>
 
@@ -132,11 +132,11 @@ export default function LoginPage() {
           {/* Features */}
           <div className="grid grid-cols-2 gap-4 mt-6 max-w-md mx-auto">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-              <p className="text-3xl font-extrabold text-white mb-1">35</p>
+              <p className="text-heading-1 font-extrabold text-white mb-1">35</p>
               <p className="text-sm text-white/70">Active AI Agents</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-              <p className="text-3xl font-extrabold text-white mb-1">97%</p>
+              <p className="text-heading-1 font-extrabold text-white mb-1">97%</p>
               <p className="text-sm text-white/70">AI Resolution Rate</p>
             </div>
           </div>

@@ -94,7 +94,7 @@ export default function VoiceAgentsPage() {
               </div>
               <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-teal-500" />
             </div>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{activeAgentsCount}</h3>
+            <h3 className="text-xl sm:text-heading-2 lg:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{activeAgentsCount}</h3>
             <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">{t('activeVoiceAgents')}</p>
           </div>
 
@@ -110,7 +110,7 @@ export default function VoiceAgentsPage() {
               </div>
               <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-teal-500" />
             </div>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
+            <h3 className="text-xl sm:text-heading-2 lg:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
               {totalCallsHandled.toLocaleString()}
             </h3>
             <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">{t('totalCalls')}</p>
@@ -128,7 +128,7 @@ export default function VoiceAgentsPage() {
               </div>
               <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-teal-500" />
             </div>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
+            <h3 className="text-xl sm:text-heading-2 lg:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
               {avgCallDuration}m
             </h3>
             <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">{t('avgDuration')}</p>
@@ -146,7 +146,7 @@ export default function VoiceAgentsPage() {
               </div>
               <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 text-teal-500" />
             </div>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
+            <h3 className="text-xl sm:text-heading-2 lg:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
               {avgSuccessRate}%
             </h3>
             <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">{t('successRate')}</p>
@@ -159,7 +159,7 @@ export default function VoiceAgentsPage() {
             <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 mb-4 sm:mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
                 <div>
-                  <h2 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">{t('yourVoiceAgents')}</h2>
+                  <h2 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white">{t('yourVoiceAgents')}</h2>
                   <p className="text-xs sm:text-sm text-text-secondary mt-1">{t('manageAndMonitor')}</p>
                 </div>
                 <button className="px-4 py-2.5 min-h-[44px] bg-gradient-to-r from-teal-400 to-teal-600 text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5 w-full sm:w-auto justify-center">
@@ -272,7 +272,7 @@ export default function VoiceAgentsPage() {
                     <Phone size={28} className="sm:w-8 sm:h-8 text-white" />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white truncate">{selectedAgent.name}</h3>
+                    <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white truncate">{selectedAgent.name}</h3>
                     <p className="text-sm text-text-secondary dark:text-slate-300">{selectedAgent.model}</p>
                   </div>
                 </div>
@@ -323,11 +323,11 @@ export default function VoiceAgentsPage() {
                       <div className="grid grid-cols-2 gap-3">
                         <div className="bg-light-bg dark:bg-slate-700/50 rounded-lg p-3">
                           <p className="text-xs text-text-secondary font-bold mb-1">{t('totalCallsLabel')}</p>
-                          <p className="text-xl font-extrabold text-dark dark:text-white">{selectedAgent.totalCalls}</p>
+                          <p className="text-heading-3 font-extrabold text-dark dark:text-white">{selectedAgent.totalCalls}</p>
                         </div>
                         <div className="bg-light-bg dark:bg-slate-700/50 rounded-lg p-3">
                           <p className="text-xs text-text-secondary font-bold mb-1">{t('activeNow')}</p>
-                          <p className="text-xl font-extrabold text-teal-600">{selectedAgent.activeCalls}</p>
+                          <p className="text-heading-3 font-extrabold text-teal-600">{selectedAgent.activeCalls}</p>
                         </div>
                       </div>
                     </div>

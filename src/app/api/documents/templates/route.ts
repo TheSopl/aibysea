@@ -468,7 +468,7 @@ const mockTemplates: Template[] = [
 ]
 
 // Store for created templates (in-memory, resets on server restart)
-let createdTemplates: Template[] = []
+const createdTemplates: Template[] = []
 let nextId = 100
 
 /**

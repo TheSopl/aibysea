@@ -183,7 +183,7 @@ export default function UploadPage() {
               </div>
               <TrendingUp size={20} className="text-blue-500 dark:text-blue-400 hidden sm:block" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{statistics.totalProcessed}</h3>
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">{statistics.totalProcessed}</h3>
             <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 font-bold">Documents Processed</p>
           </div>
 
@@ -199,7 +199,7 @@ export default function UploadPage() {
               </div>
               <Activity size={20} className="text-blue-500 dark:text-blue-400 hidden sm:block" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">
               {statistics.avgProcessingTime}m
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 font-bold">Avg Processing Time</p>
@@ -217,7 +217,7 @@ export default function UploadPage() {
               </div>
               <BarChart3 size={20} className="text-blue-500 dark:text-blue-400 hidden sm:block" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">
               {statistics.successRate}%
             </h3>
             <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 font-bold">Success Rate</p>
@@ -235,7 +235,7 @@ export default function UploadPage() {
               </div>
               <TrendingUp size={20} className="text-blue-500 dark:text-blue-400 hidden sm:block" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-dark dark:text-white mb-1">{failedDocs}</h3>
+            <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">{failedDocs}</h3>
             <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 font-bold">Failed Uploads</p>
           </div>
         </div>
@@ -258,7 +258,7 @@ export default function UploadPage() {
                 <Upload size={32} className="text-white sm:hidden" />
                 <Upload size={40} className="text-white hidden sm:block" />
               </div>
-              <h3 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white mb-2 text-center">
+              <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white mb-2 text-center">
                 Drag documents here or click to browse
               </h3>
               <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 mb-4 sm:mb-6 text-center px-2">
@@ -306,7 +306,7 @@ export default function UploadPage() {
         {/* Processing Documents Section */}
         {processingDocs.length > 0 && (
           <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
-            <h2 className="text-xl font-extrabold text-dark dark:text-white mb-6">Currently Processing</h2>
+            <h2 className="text-heading-3 font-extrabold text-dark dark:text-white mb-6">Currently Processing</h2>
             <div className="space-y-4">
               {processingDocs.map((doc, index) => {
                 const statusTexts = ['Analyzing...', 'Extracting...', 'Finalizing...'];
@@ -360,7 +360,7 @@ export default function UploadPage() {
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-6">
             <div>
-              <h2 className="text-lg sm:text-xl font-extrabold text-dark dark:text-white">Recent Uploads</h2>
+              <h2 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white">Recent Uploads</h2>
               <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-300 mt-1">Manage and monitor your document uploads</p>
             </div>
           </div>

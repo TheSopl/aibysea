@@ -418,7 +418,7 @@ const mockCallLogs: CallLog[] = [
 ]
 
 // Store for created call logs (in-memory)
-let createdCallLogs: CallLog[] = []
+const createdCallLogs: CallLog[] = []
 
 /**
  * GET /api/voice/calls/[id]

@@ -40,7 +40,7 @@ export default function TopBar({ title, showBackButton = false, backHref }: TopB
             <ArrowLeft size={20} className="text-dark dark:text-white" />
           </button>
         )}
-        <h1 className="text-lg md:text-2xl font-bold text-dark dark:text-white truncate">
+        <h1 className="text-lg md:text-heading-2 font-bold text-dark dark:text-white truncate">
           {title}
         </h1>
       </div>

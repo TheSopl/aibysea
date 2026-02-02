@@ -188,7 +188,7 @@ export default function AgentsPage() {
                     <TrendingUp size={20} className="text-primary dark:text-white" />
                   </div>
                 </div>
-                <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">
+                <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">
                   {agents.filter(a => a.status === 'active').length}
                 </h3>
                 <p className="text-sm text-text-secondary dark:text-slate-400 font-bold">
@@ -210,7 +210,7 @@ export default function AgentsPage() {
                     <Activity size={20} className="text-green dark:text-white" />
                   </div>
                 </div>
-                <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">{agents.length}</h3>
+                <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{agents.length}</h3>
                 <p className="text-sm text-text-secondary dark:text-slate-400 font-bold">Total Agents</p>
               </div>
 
@@ -228,7 +228,7 @@ export default function AgentsPage() {
                     <Zap size={20} className="text-blue dark:text-white" />
                   </div>
                 </div>
-                <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">—</h3>
+                <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">—</h3>
                 <p className="text-sm text-text-secondary dark:text-slate-400 font-bold">Avg Response Time</p>
               </div>
 
@@ -246,7 +246,7 @@ export default function AgentsPage() {
                     <BarChart3 size={20} className="text-purple dark:text-white" />
                   </div>
                 </div>
-                <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-1">—</h3>
+                <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">—</h3>
                 <p className="text-sm text-text-secondary dark:text-slate-400 font-bold">Avg Success Rate</p>
               </div>
             </div>
@@ -257,7 +257,7 @@ export default function AgentsPage() {
                 <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md mb-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
-                      <h2 className="text-xl font-extrabold text-dark dark:text-white">Your AI Agents</h2>
+                      <h2 className="text-heading-3 font-extrabold text-dark dark:text-white">Your AI Agents</h2>
                       <p className="text-sm text-text-secondary dark:text-slate-400 mt-1">Manage and monitor your AI workforce</p>
                     </div>
                     <button
@@ -391,7 +391,7 @@ export default function AgentsPage() {
                         <Bot size={32} className="text-primary dark:text-white" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-extrabold text-dark dark:text-white">{selectedAgent.name}</h3>
+                        <h3 className="text-heading-3 font-extrabold text-dark dark:text-white">{selectedAgent.name}</h3>
                         <p className="text-sm text-text-secondary dark:text-slate-300">{selectedAgent.model}</p>
                       </div>
                     </div>
