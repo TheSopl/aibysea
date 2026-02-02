@@ -12,7 +12,10 @@
     "test:coverage": "vitest --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:debug": "playwright test --debug"
+    "test:e2e:debug": "playwright test --debug",
+    "db:migrate": "npx supabase migration new",
+    "db:reset": "npx supabase db reset",
+    "db:push": "npx supabase db push"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
