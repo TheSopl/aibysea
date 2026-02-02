@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import "../globals.css";
 import { Providers } from "@/components/Providers";
+import { SentryInit } from "@/components/SentryInit";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,10 +28,7 @@ const ibmPlexArabic = IBM_Plex_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: {
-    template: "AI BY SEA - %s",
-    default: "AI BY SEA",
-  },
+  title: "AIBYSEA",
   description: "Conversational AI, Voice Agents, and Document Intelligence in one platform",
   viewport: {
     width: 'device-width',
@@ -96,6 +94,7 @@ export default async function LocaleLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${ibmPlexArabic.variable} antialiased font-sans bg-white dark:bg-slate-900 text-text-primary scroll-smooth`}
       >
+        <SentryInit />
         <NextIntlClientProvider messages={messages}>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
