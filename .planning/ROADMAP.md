@@ -137,6 +137,8 @@ Plans:
 - [x] 18.1-03: RTL CSS & Core Pages (Turkish removed per user request)
 - [x] 18.1-04: Secondary Pages Translation
 
+**Archived to:** `.planning/archive/v4.0-mobile/18.1-internationalization/`
+
 #### Phase 19: Performance & Polish
 
 **Goal**: Bundle optimization, lazy loading, image optimization, loading states, and final professional polish pass.
