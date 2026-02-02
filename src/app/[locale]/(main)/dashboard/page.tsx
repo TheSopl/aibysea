@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import TopBar from '@/components/layout/TopBar';
 import Image from 'next/image';
 import { MessageSquare, Users, CheckCircle, TrendingUp, Calendar, Zap, Phone, FileText, Activity } from 'lucide-react';
@@ -181,6 +182,11 @@ const topLifecycles = [
 export default function DashboardPage() {
   const t = useTranslations('Dashboard');
 
+  // Set page title
+  useEffect(() => {
+    document.title = `${t('title')} - AIBYSEA`;
+  }, [t]);
+
   // Translated service cards
   const translatedServiceCards = [
     {
@@ -190,7 +196,7 @@ export default function DashboardPage() {
       label: t('conversationsToday'),
       subtitle: t('multiChannelSubtitle'),
       icon: MessageSquare,
-      gradient: 'from-blue-600 to-blue-400',
+      gradient: 'from-blue-500 to-purple-500',
       borderColor: 'border-primary-500',
       buttonText: t('viewInbox'),
     },
@@ -201,8 +207,8 @@ export default function DashboardPage() {
       label: t('callsToday'),
       subtitle: t('phoneAnsweringSubtitle'),
       icon: Phone,
-      gradient: 'from-blue-600 to-blue-400',
-      borderColor: 'border-primary-500',
+      gradient: 'from-emerald-500 to-cyan-500',
+      borderColor: 'border-service-voice-500',
       buttonText: t('manageVoice'),
     },
     {
@@ -212,8 +218,8 @@ export default function DashboardPage() {
       label: t('documentsProcessedToday'),
       subtitle: t('invoiceContractSubtitle'),
       icon: FileText,
-      gradient: 'from-blue-600 to-blue-400',
-      borderColor: 'border-primary-500',
+      gradient: 'from-amber-500 to-red-500',
+      borderColor: 'border-service-documents-500',
       buttonText: t('processDocuments'),
     },
   ];
