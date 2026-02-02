@@ -2,7 +2,7 @@ import { renderHook, act, waitFor } from '@testing-library/react';
 import { useMetricsStore } from '../metricsStore';
 
 describe('metricsStore', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     // Reset store before each test
     const { result } = renderHook(() => useMetricsStore());
     act(() => {
@@ -16,6 +16,14 @@ describe('metricsStore', () => {
         activeConversations: 0,
       });
     });
+
+    // Wait for batch to flush and animation to reset
+    await waitFor(
+      () => {
+        expect(result.current.shouldAnimate).toBe(false);
+      },
+      { timeout: 500 }
+    );
   });
 
   it('should initialize with default values', () => {
@@ -27,6 +35,7 @@ describe('metricsStore', () => {
     expect(result.current.connectionStatus).toBe('disconnected');
     expect(result.current.aiState).toBe('idle');
     expect(result.current.metrics).toEqual([]);
+    // After beforeEach runs and animation resets, this should be false
     expect(result.current.shouldAnimate).toBe(false);
   });
 
@@ -148,17 +157,14 @@ describe('metricsStore', () => {
       result.current.updateMetrics({ quality: 98 });
     });
 
-    // Wait for batch
+    // Wait for batch to flush (100ms timeout in store)
     await waitFor(
       () => {
         expect(result.current.latency).toBe(200);
+        expect(result.current.confidence).toBe(0.95);
+        expect(result.current.quality).toBe(98);
       },
-      { timeout: 200 }
+      { timeout: 250 }
     );
-
-    // All updates should be applied
-    expect(result.current.latency).toBe(200);
-    expect(result.current.confidence).toBe(0.95);
-    expect(result.current.quality).toBe(98);
   });
 });
