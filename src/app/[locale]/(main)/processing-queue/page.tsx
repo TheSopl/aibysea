@@ -18,6 +18,7 @@ import {
   BarChart3,
   Zap
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 // Mock processing jobs data
 const processingJobs = [
@@ -173,6 +174,7 @@ const stageName = {
 };
 
 export default function ProcessingQueuePage() {
+  usePageTitle('Processing Queue');
   const [selectedTab, setSelectedTab] = useState('all');
   const [selectedJob, setSelectedJob] = useState<typeof processingJobs[0] | null>(null);
   const [sortBy, setSortBy] = useState('newest');
@@ -260,7 +262,7 @@ export default function ProcessingQueuePage() {
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0s both' }}
           >
             <div className="flex items-center justify-between mb-3">
@@ -274,7 +276,7 @@ export default function ProcessingQueuePage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.1s both' }}
           >
             <div className="flex items-center justify-between mb-3">
@@ -288,7 +290,7 @@ export default function ProcessingQueuePage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.2s both' }}
           >
             <div className="flex items-center justify-between mb-3">
@@ -302,7 +304,7 @@ export default function ProcessingQueuePage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.3s both' }}
           >
             <div className="flex items-center justify-between mb-3">
@@ -317,7 +319,7 @@ export default function ProcessingQueuePage() {
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md mb-8">
           <div className="flex items-center gap-4 flex-wrap">
             {/* Search */}
             <div className="flex-1 min-w-64">

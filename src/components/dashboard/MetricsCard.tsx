@@ -80,7 +80,7 @@ export default function MetricsCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ scale: 1.02, y: -4 }}
-      className="relative bg-white border border-gray-200 rounded-design-lg p-8 md:p-10 cursor-pointer group transition-all duration-300 shadow-lg hover:shadow-xl"
+      className="relative bg-white border border-gray-200 rounded-design-lg p-card-lg md:p-10 cursor-pointer group transition-all duration-300 shadow-lg hover:shadow-xl"
     >
       {/* Large colored icon circle at top */}
       <div className="flex items-start justify-between mb-6">

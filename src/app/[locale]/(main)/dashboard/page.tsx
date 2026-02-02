@@ -256,7 +256,7 @@ export default function DashboardPage() {
 
       {/* Scrollable content area with transparent background */}
       <div className="flex-1 overflow-y-auto">
-        <div className="p-4 md:p-8 space-y-4 md:space-y-8">
+        <div className="p-card md:p-card-lg space-y-section md:space-y-section-lg">
         {/* Service Health Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {translatedServiceCards.map((card, index) => {
@@ -264,7 +264,7 @@ export default function DashboardPage() {
             return (
               <div
                 key={index}
-                className={`min-w-0 bg-white dark:bg-slate-800 rounded-2xl p-6 border-s-4 ${card.borderColor} shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1`}
+                className={`min-w-0 bg-white dark:bg-slate-800 rounded-2xl p-card-md border-s-4 ${card.borderColor} shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1`}
                 style={{
                   animation: `scaleIn 0.5s ease-out ${index * 0.1}s both`
                 }}
@@ -302,7 +302,7 @@ export default function DashboardPage() {
           {translatedQuickStats.map((stat, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-md shadow-lg hover:shadow-xl transition-all duration-300"
               style={{
                 animation: `fadeIn 0.4s ease-out ${0.3 + index * 0.05}s both`
               }}
@@ -316,7 +316,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Activity Feed */}
-        <div className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500">
+        <div className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500">
           <div className="flex items-center justify-between mb-4 md:mb-6">
             <div className="flex items-center gap-2">
               <Activity className="w-4 h-4 md:w-5 md:h-5 text-primary" />
@@ -353,7 +353,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Conversations Chart */}
           <div
-            className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500"
             style={{
               animation: 'slideInFromLeft 0.6s ease-out 0.4s both'
             }}
@@ -397,7 +397,7 @@ export default function DashboardPage() {
 
           {/* Active AI Agents */}
           <div
-            className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+            className="bg-white dark:bg-slate-800 rounded-2xl p-card-md shadow-lg hover:shadow-xl transition-all duration-500"
             style={{
               animation: 'slideInFromRight 0.6s ease-out 0.4s both'
             }}
@@ -447,7 +447,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Top Channels */}
           <div
-            className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500"
             style={{
               animation: 'slideInFromLeft 0.6s ease-out 0.8s both'
             }}
@@ -479,7 +479,7 @@ export default function DashboardPage() {
 
           {/* Top Lifecycles */}
           <div
-            className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+            className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500"
             style={{
               animation: 'slideInFromRight 0.6s ease-out 0.8s both'
             }}

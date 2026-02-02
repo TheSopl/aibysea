@@ -2,7 +2,7 @@
 
 export function StatCardSkeleton() {
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border-2 border-gray-200 dark:border-slate-700 animate-pulse">
+    <div className="bg-white dark:bg-slate-800 rounded-2xl p-card-md border-2 border-gray-200 dark:border-slate-700 animate-pulse">
       <div className="flex items-center justify-between mb-3">
         <div className="w-12 h-12 rounded-xl bg-gray-200 dark:bg-slate-700" />
         <div className="w-5 h-5 rounded bg-gray-200 dark:bg-slate-700" />
@@ -15,7 +15,7 @@ export function StatCardSkeleton() {
 
 export function CardSkeleton() {
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg animate-pulse">
+    <div className="bg-white dark:bg-slate-800 rounded-2xl p-card-md shadow-lg animate-pulse">
       <div className="h-6 w-48 rounded bg-gray-200 dark:bg-slate-700 mb-4" />
       <div className="space-y-3">
         {[...Array(4)].map((_, i) => (
@@ -74,7 +74,7 @@ export function DocumentCardSkeleton() {
 
 export function ChartSkeleton() {
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg animate-pulse">
+    <div className="bg-white dark:bg-slate-800 rounded-2xl p-card-lg shadow-lg animate-pulse">
       <div className="h-6 w-48 rounded bg-gray-200 dark:bg-slate-700 mb-8" />
       <div className="space-y-4">
         {[...Array(5)].map((_, i) => (

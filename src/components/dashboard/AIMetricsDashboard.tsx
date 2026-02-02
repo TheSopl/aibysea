@@ -92,7 +92,7 @@ export default function AIMetricsDashboard() {
         className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10"
       >
         {/* Health Score Card */}
-        <div className="bg-white border border-gray-200 rounded-design-lg p-8 md:p-10 shadow-lg">
+        <div className="bg-white border border-gray-200 rounded-design-lg p-card-lg md:p-10 shadow-lg">
           <div className="text-xs uppercase tracking-widest text-text-secondary mb-6 md:mb-8 font-bold">
             Overall Health
           </div>

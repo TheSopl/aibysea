@@ -23,8 +23,10 @@ import {
 } from 'lucide-react';
 import { AIAgent } from '@/types/database';
 import DeleteConfirmModal from '@/components/agents/DeleteConfirmModal';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 export default function AgentsPage() {
+  usePageTitle('Agents');
   const t = useTranslations('Agents');
   const router = useRouter();
   const [agents, setAgents] = useState<AIAgent[]>([]);
@@ -159,7 +161,7 @@ export default function AgentsPage() {
 
         {/* Error State */}
         {error && (
-          <div className="bg-red/10 border border-red/20 rounded-xl p-6 mb-8 flex items-center gap-4">
+          <div className="bg-red/10 border border-red/20 rounded-xl p-card-md mb-8 flex items-center gap-4">
             <AlertCircle className="text-red" size={24} />
             <div>
               <h3 className="font-bold text-red">Error loading agents</h3>
@@ -173,7 +175,7 @@ export default function AgentsPage() {
             {/* Stats Overview */}
             <div className="grid grid-cols-2 tablet:grid-cols-4 gap-3 tablet:gap-6 mb-6 tablet:mb-8">
               <div
-                className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border-2 border-primary/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+                className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-card-md border-2 border-primary/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
                 style={{
                   animation: 'scaleIn 0.5s ease-out 0s both'
                 }}
@@ -195,7 +197,7 @@ export default function AgentsPage() {
               </div>
 
               <div
-                className="bg-gradient-to-br from-green/10 to-emerald/10 rounded-2xl p-6 border-2 border-green/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+                className="bg-gradient-to-br from-green/10 to-emerald/10 rounded-2xl p-card-md border-2 border-green/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
                 style={{
                   animation: 'scaleIn 0.5s ease-out 0.1s both'
                 }}
@@ -213,7 +215,7 @@ export default function AgentsPage() {
               </div>
 
               <div
-                className="bg-gradient-to-br from-blue/10 to-cyan/10 rounded-2xl p-6 border-2 border-blue/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+                className="bg-gradient-to-br from-blue/10 to-cyan/10 rounded-2xl p-card-md border-2 border-blue/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
                 style={{
                   animation: 'scaleIn 0.5s ease-out 0.2s both'
                 }}
@@ -231,7 +233,7 @@ export default function AgentsPage() {
               </div>
 
               <div
-                className="bg-gradient-to-br from-purple/10 to-pink/10 rounded-2xl p-6 border-2 border-purple/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+                className="bg-gradient-to-br from-purple/10 to-pink/10 rounded-2xl p-card-md border-2 border-purple/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
                 style={{
                   animation: 'scaleIn 0.5s ease-out 0.3s both'
                 }}
@@ -252,7 +254,7 @@ export default function AgentsPage() {
             <div className="flex flex-col lg:flex-row gap-6">
               {/* Agents List */}
               <div className="flex-1 min-w-0">
-                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-6">
+                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md mb-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <h2 className="text-xl font-extrabold text-dark dark:text-white">Your AI Agents</h2>
@@ -383,7 +385,7 @@ export default function AgentsPage() {
               {/* Agent Details Panel */}
               <div className="w-full lg:w-96 flex-shrink-0">
                 {selectedAgent ? (
-                  <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 sticky top-8">
+                  <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md sticky top-8">
                     <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-slate-700">
                       <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 rounded-xl flex items-center justify-center shadow-lg">
                         <Bot size={32} className="text-primary dark:text-white" />
@@ -463,7 +465,7 @@ export default function AgentsPage() {
                     </div>
                   </div>
                 ) : (
-                  <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 sticky top-8">
+                  <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md sticky top-8">
                     <div className="text-center py-8">
                       <Bot size={48} className="text-gray-300 dark:text-slate-600 mx-auto mb-4" />
                       <p className="text-text-secondary dark:text-slate-400">Select an agent to view details</p>

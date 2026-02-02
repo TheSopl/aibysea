@@ -154,7 +154,7 @@ export default function ExtractedDataPage() {
       <div className="p-8 bg-white dark:bg-slate-900">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FileText size={24} className="text-white" />
@@ -165,7 +165,7 @@ export default function ExtractedDataPage() {
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Total Extracted</p>
           </div>
 
-          <div className="bg-gradient-to-br from-green-400/10 to-green-600/10 dark:from-green-500/20 dark:to-green-700/20 rounded-2xl p-6 border-2 border-green-400/20 dark:border-green-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-green-400/10 to-green-600/10 dark:from-green-500/20 dark:to-green-700/20 rounded-2xl p-card-md border-2 border-green-400/20 dark:border-green-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
@@ -176,7 +176,7 @@ export default function ExtractedDataPage() {
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Verified</p>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-400/10 to-amber-600/10 dark:from-amber-500/20 dark:to-amber-700/20 rounded-2xl p-6 border-2 border-amber-400/20 dark:border-amber-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-amber-400/10 to-amber-600/10 dark:from-amber-500/20 dark:to-amber-700/20 rounded-2xl p-card-md border-2 border-amber-400/20 dark:border-amber-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
@@ -187,7 +187,7 @@ export default function ExtractedDataPage() {
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Pending Review</p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-400/10 to-purple-600/10 dark:from-purple-500/20 dark:to-purple-700/20 rounded-2xl p-6 border-2 border-purple-400/20 dark:border-purple-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-purple-400/10 to-purple-600/10 dark:from-purple-500/20 dark:to-purple-700/20 rounded-2xl p-card-md border-2 border-purple-400/20 dark:border-purple-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                 <BarChart3 size={24} className="text-white" />
@@ -200,7 +200,7 @@ export default function ExtractedDataPage() {
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Search */}
             <div className="md:col-span-2 relative">
@@ -236,7 +236,7 @@ export default function ExtractedDataPage() {
           {filteredData.map((data, index) => (
             <div
               key={data.id}
-              className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer"
+              className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md hover:shadow-2xl transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedData(data)}
               style={{
                 animation: `fadeIn 0.5s ease-out ${index * 0.1}s both`

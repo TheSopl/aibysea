@@ -5,6 +5,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Search, MoreVertical, Paperclip, Send, Phone, Video, UserCheck, Bot, Smile, Image as ImageIcon, ArrowLeft, Info, X } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useTranslations } from 'next-intl';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 // Types
 interface Contact {
@@ -107,6 +108,7 @@ function getContactDisplayName(name: string | null, phone: string | undefined): 
 }
 
 export default function InboxPage() {
+  usePageTitle('Inbox');
   const t = useTranslations('Inbox');
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);

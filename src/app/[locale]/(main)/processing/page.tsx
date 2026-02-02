@@ -158,7 +158,7 @@ export default function ProcessingPage() {
       <div className="p-8 bg-white dark:bg-slate-900">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Activity size={24} className="text-white" />
@@ -169,7 +169,7 @@ export default function ProcessingPage() {
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Currently Processing</p>
           </div>
 
-          <div className="bg-gradient-to-br from-green-400/10 to-green-600/10 dark:from-green-500/20 dark:to-green-700/20 rounded-2xl p-6 border-2 border-green-400/20 dark:border-green-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-green-400/10 to-green-600/10 dark:from-green-500/20 dark:to-green-700/20 rounded-2xl p-card-md border-2 border-green-400/20 dark:border-green-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
@@ -180,7 +180,7 @@ export default function ProcessingPage() {
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Completed Today</p>
           </div>
 
-          <div className="bg-gradient-to-br from-red-400/10 to-red-600/10 dark:from-red-500/20 dark:to-red-700/20 rounded-2xl p-6 border-2 border-red-400/20 dark:border-red-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-red-400/10 to-red-600/10 dark:from-red-500/20 dark:to-red-700/20 rounded-2xl p-card-md border-2 border-red-400/20 dark:border-red-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
@@ -191,7 +191,7 @@ export default function ProcessingPage() {
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Failed</p>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Clock size={24} className="text-white" />
@@ -204,7 +204,7 @@ export default function ProcessingPage() {
         </div>
 
         {/* Filter Section */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md mb-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Filter size={20} className="text-blue-600 dark:text-blue-400" />
@@ -233,7 +233,7 @@ export default function ProcessingPage() {
           {filteredJobs.map((job, index) => (
             <div
               key={job.id}
-              className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300"
+              className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-lg hover:shadow-2xl transition-all duration-300"
               style={{
                 animation: `fadeIn 0.5s ease-out ${index * 0.1}s both`
               }}

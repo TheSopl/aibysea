@@ -15,6 +15,7 @@ import {
   GitBranch,
   MoreVertical
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 const workflows = [
   {
@@ -64,6 +65,7 @@ const workflows = [
 ];
 
 export default function WorkflowsPage() {
+  usePageTitle('Workflows');
   const [selectedWorkflow, setSelectedWorkflow] = useState(workflows[0]);
 
   return (
@@ -74,7 +76,7 @@ export default function WorkflowsPage() {
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
-            className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border-2 border-primary/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-card-md border-2 border-primary/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0s both'
             }}
@@ -89,7 +91,7 @@ export default function WorkflowsPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-green/10 to-emerald/10 rounded-2xl p-6 border-2 border-green/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-green/10 to-emerald/10 rounded-2xl p-card-md border-2 border-green/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.1s both'
             }}
@@ -106,7 +108,7 @@ export default function WorkflowsPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue/10 to-cyan/10 rounded-2xl p-6 border-2 border-blue/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue/10 to-cyan/10 rounded-2xl p-card-md border-2 border-blue/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.2s both'
             }}
@@ -123,7 +125,7 @@ export default function WorkflowsPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-purple/10 to-pink/10 rounded-2xl p-6 border-2 border-purple/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-purple/10 to-pink/10 rounded-2xl p-card-md border-2 border-purple/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.3s both'
             }}
@@ -140,7 +142,7 @@ export default function WorkflowsPage() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-xl font-extrabold text-dark">Your Workflows</h2>
@@ -234,7 +236,7 @@ export default function WorkflowsPage() {
         </div>
 
         {/* N8N Integration Notice */}
-        <div className="mt-8 bg-gradient-to-r from-primary/10 via-accent/10 to-purple/10 rounded-2xl p-6 border-2 border-primary/20">
+        <div className="mt-8 bg-gradient-to-r from-primary/10 via-accent/10 to-purple/10 rounded-2xl p-card-md border-2 border-primary/20">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
               <Zap size={24} className="text-white" />

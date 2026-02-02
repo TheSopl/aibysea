@@ -6,7 +6,7 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { spring } from '@/lib/animations/transitions';
 
-interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag' | 'onDragStart' | 'onDragEnd'> {
+interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd'> {
   variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
@@ -97,6 +97,7 @@ export default function Button({
       )}
       disabled={disabled || loading}
       onClick={onClick}
+      {...props}
       {...animationProps}
     >
       {loading ? (

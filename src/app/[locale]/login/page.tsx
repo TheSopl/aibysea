@@ -5,8 +5,10 @@ import { useRouter } from 'next/navigation';
 import { Eye, EyeOff } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import Image from 'next/image';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 export default function LoginPage() {
+  usePageTitle('Login');
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
@@ -105,7 +107,7 @@ export default function LoginPage() {
       </div>
 
       {/* Right Panel - Branding */}
-      <div className="hidden lg:flex flex-1 bg-[#4052a8] items-start justify-center pt-16 p-16 relative overflow-hidden">
+      <div className="hidden lg:flex flex-1 bg-[#4052a8] items-start justify-center pt-16 px-8 pb-16 relative overflow-hidden">
         {/* Decorative circles */}
         <div className="absolute top-20 right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
@@ -115,14 +117,14 @@ export default function LoginPage() {
           <div>
             {/* Logo */}
             <Image
-              src="/logo.png"
-              alt="bysea"
-              width={800}
-              height={240}
-              className="mx-auto mt-8 -mb-32 h-96 w-auto brightness-0 invert"
+              src="/aibysea-logo-full.png"
+              alt="AI bysea"
+              width={1200}
+              height={800}
+              className="mx-auto mt-4 mb-1 w-full brightness-0 invert"
               priority
             />
-            <p className="text-lg text-white/80 max-w-md mx-auto">
+            <p className="text-lg text-white/80 max-w-md mx-auto -mt-48">
               Your AI Agent Hosting Platform - Deploy, monitor, and manage intelligent AI agents across WhatsApp, Telegram, and more
             </p>
           </div>

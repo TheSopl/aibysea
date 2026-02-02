@@ -1,5 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
+
+export const metadata = {
+  title: 'Conversation - AIBYSEA',
+};
 import { Suspense } from 'react'
 import { MessageList } from '@/components/MessageList'
 import { MessageCompose } from '@/components/MessageCompose'

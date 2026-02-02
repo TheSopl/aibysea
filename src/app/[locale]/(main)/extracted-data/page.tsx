@@ -18,6 +18,7 @@ import {
   Activity,
   Zap
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 // Mock extracted data
 const extractedData = [
@@ -184,6 +185,7 @@ const getStatusLabel = (status: string) => {
 };
 
 export default function ExtractedDataPage() {
+  usePageTitle('Extracted Data');
   const [expandedId, setExpandedId] = useState<number | null>(1);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editValues, setEditValues] = useState<{ [key: string]: string }>({});
@@ -239,7 +241,7 @@ export default function ExtractedDataPage() {
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0s both' }}
           >
             <div className="flex items-center justify-between mb-3">
@@ -253,7 +255,7 @@ export default function ExtractedDataPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.1s both' }}
           >
             <div className="flex items-center justify-between mb-3">
@@ -267,7 +269,7 @@ export default function ExtractedDataPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.2s both' }}
           >
             <div className="flex items-center justify-between mb-3">
@@ -281,7 +283,7 @@ export default function ExtractedDataPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.3s both' }}
           >
             <div className="flex items-center justify-between mb-3">
@@ -296,7 +298,7 @@ export default function ExtractedDataPage() {
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md mb-8">
           <div className="flex items-center gap-4 flex-wrap">
             {/* Search */}
             <div className="flex-1 min-w-64">

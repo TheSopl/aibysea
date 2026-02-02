@@ -12,7 +12,7 @@ interface LatencyPoint {
 
 // Memoized chart component
 const LatencyChartComponent = ({ data }: { data: LatencyPoint[] }) => (
-  <div className="bg-white border border-gray-200 rounded-design-lg p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300">
+  <div className="bg-white border border-gray-200 rounded-design-lg p-card-lg md:p-10 shadow-lg hover:shadow-xl transition-all duration-300">
     <h3 className="text-2xl font-extrabold text-dark mb-6 md:mb-8">Latency Metrics</h3>
     <ResponsiveContainer width="100%" height={300}>
       <LineChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>

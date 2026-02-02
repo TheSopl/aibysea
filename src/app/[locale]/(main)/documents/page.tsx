@@ -16,6 +16,7 @@ import {
   BarChart3,
   Activity
 } from 'lucide-react';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 // Mock templates
 const templates = [
@@ -99,6 +100,7 @@ const statistics = {
 };
 
 export default function DocumentsPage() {
+  usePageTitle('Documents');
   const [selectedTemplate, setSelectedTemplate] = useState(templates[0]);
   const [uploads, setUploads] = useState(recentUploads);
   const [dragActive, setDragActive] = useState(false);
@@ -168,7 +170,7 @@ export default function DocumentsPage() {
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-6 border-2 border-blue-400 dark:border-blue-500/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-blue-400 dark:border-blue-500/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0s both'
             }}
@@ -184,7 +186,7 @@ export default function DocumentsPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400 dark:border-blue-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400 dark:border-blue-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.1s both'
             }}
@@ -202,7 +204,7 @@ export default function DocumentsPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400 dark:border-blue-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400 dark:border-blue-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.2s both'
             }}
@@ -220,7 +222,7 @@ export default function DocumentsPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-6 border-2 border-blue-400 dark:border-blue-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400 dark:border-blue-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.3s both'
             }}
@@ -267,7 +269,7 @@ export default function DocumentsPage() {
           </div>
 
           {/* Template Selector */}
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md">
             <label className="block text-sm font-bold text-text-secondary uppercase tracking-wider mb-3">
               Select Extraction Template
             </label>
@@ -300,7 +302,7 @@ export default function DocumentsPage() {
 
         {/* Processing Documents Section */}
         {processingDocs.length > 0 && (
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md mb-8">
             <h2 className="text-xl font-extrabold text-dark mb-6">Currently Processing</h2>
             <div className="space-y-4">
               {processingDocs.map((doc, index) => {
@@ -352,7 +354,7 @@ export default function DocumentsPage() {
         )}
 
         {/* Recent Uploads */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-xl font-extrabold text-dark">Recent Uploads</h2>

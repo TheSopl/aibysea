@@ -31,7 +31,7 @@ export function ResponsiveContainer({
       className={cn(
         'w-full mx-auto',
         maxWidthClasses[maxWidth],
-        padding && 'px-4 sm:px-5 tablet:px-6 lg:px-8',
+        padding && 'px-page sm:px-page-sm tablet:px-page-md lg:px-page-lg',
         className
       )}
     >
