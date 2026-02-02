@@ -75,7 +75,7 @@ export default function SmartInsights() {
       {/* Summary stats */}
       <div className="mt-5 pt-4 border-t border-accent-surface">
         <div className="text-xs uppercase tracking-wide text-text-secondary mb-2">
-          Today's Overview
+          Today&apos;s Overview
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-dark-surface/60 rounded-lg p-2">
