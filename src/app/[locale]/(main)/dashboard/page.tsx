@@ -3,181 +3,13 @@
 import { useEffect } from 'react';
 import TopBar from '@/components/layout/TopBar';
 import Image from 'next/image';
-import { MessageSquare, Users, CheckCircle, TrendingUp, Calendar, Zap, Phone, FileText, Activity } from 'lucide-react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { MessageSquare, Phone, FileText, Activity, Zap } from 'lucide-react';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import FadeIn from '@/components/ui/FadeIn';
 import { motion } from 'framer-motion';
 import { staggerContainer, staggerItem } from '@/lib/animations/variants';
-import AnimatedCounter from '@/components/ui/AnimatedCounter';
-
-// Service health cards data
-const serviceCards = [
-  {
-    name: 'Conversational AI',
-    status: 'Active',
-    value: '847',
-    label: 'conversations today',
-    subtitle: 'Multi-channel (WhatsApp, Telegram, Facebook)',
-    icon: MessageSquare,
-    gradient: 'from-blue-600 to-blue-400',
-    borderColor: 'border-primary-500',
-    buttonText: 'View Inbox',
-  },
-  {
-    name: 'Voice Agents',
-    status: 'Active',
-    value: '234',
-    label: 'calls today',
-    subtitle: 'Phone answering & outbound',
-    icon: Phone,
-    gradient: 'from-blue-600 to-blue-400',
-    borderColor: 'border-primary-500',
-    buttonText: 'Manage Voice',
-  },
-  {
-    name: 'Document Intelligence',
-    status: 'Active',
-    value: '89',
-    label: 'documents processed today',
-    subtitle: 'Invoice, contract, and data extraction',
-    icon: FileText,
-    gradient: 'from-blue-600 to-blue-400',
-    borderColor: 'border-primary-500',
-    buttonText: 'Process Documents',
-  },
-];
-
-// Quick stats data
-const quickStatsData = [
-  {
-    label: 'Total AI Interactions',
-    value: '12,847',
-  },
-  {
-    label: 'Active Services',
-    value: '3 of 3',
-  },
-  {
-    label: 'Cost Savings This Month',
-    value: '$23,400',
-  },
-  {
-    label: 'Automation Rate',
-    value: '87%',
-  },
-];
-
-// Activity feed data with service-specific colors
-const activityFeedData = [
-  {
-    icon: Phone,
-    service: 'Voice Agent',
-    action: 'handled call from +1-555-0123',
-    time: '5m ago',
-    color: 'text-service-voice-500',
-  },
-  {
-    icon: MessageSquare,
-    service: 'Chat',
-    action: 'conversation resolved with John Doe',
-    time: '12m ago',
-    color: 'text-primary',
-  },
-  {
-    icon: FileText,
-    service: 'Document',
-    action: 'Invoice processed: INV-2024-001',
-    time: '23m ago',
-    color: 'text-service-documents-500',
-  },
-  {
-    icon: Phone,
-    service: 'Voice Agent',
-    action: 'Call transcription completed',
-    time: '1h ago',
-    color: 'text-service-voice-500',
-  },
-  {
-    icon: MessageSquare,
-    service: 'Chat',
-    action: 'Customer inquiry escalated to queue',
-    time: '1h 15m ago',
-    color: 'text-primary',
-  },
-  {
-    icon: FileText,
-    service: 'Document',
-    action: 'Contract extraction completed',
-    time: '2h ago',
-    color: 'text-service-documents-500',
-  },
-];
-
-// Mock data
-const statsData = [
-  {
-    label: 'Active AI Agents',
-    value: '12',
-    change: '+2 this week',
-    trend: 'up',
-    icon: Zap,
-    bgColor: 'bg-accent',
-  },
-  {
-    label: 'Conversations Handled',
-    value: '2,847',
-    change: '+18% from yesterday',
-    trend: 'up',
-    icon: MessageSquare,
-    bgColor: 'bg-primary',
-  },
-  {
-    label: 'AI Resolution Rate',
-    value: '74%',
-    change: '+3% this week',
-    trend: 'up',
-    icon: CheckCircle,
-    bgColor: 'bg-green',
-  },
-  {
-    label: 'Avg Response Time',
-    value: '1.2s',
-    change: '-0.3s faster',
-    trend: 'up',
-    icon: TrendingUp,
-    bgColor: 'bg-accent',
-  },
-];
-
-const conversationsData = [
-  { date: 'Mon', conversations: 120 },
-  { date: 'Tue', conversations: 180 },
-  { date: 'Wed', conversations: 150 },
-  { date: 'Thu', conversations: 220 },
-  { date: 'Fri', conversations: 190 },
-  { date: 'Sat', conversations: 160 },
-  { date: 'Sun', conversations: 140 },
-];
-
-const queueData = [
-  { name: 'Rashed', channel: 'WhatsApp', chatCount: 12, color: 'from-accent to-primary', photo: '/rashed.jpeg' },
-];
-
-const topChannels = [
-  { name: 'WhatsApp', count: 1250, logo: '/whatsapp.svg' },
-  { name: 'Telegram', count: 890, logo: '/telegram.svg' },
-  { name: 'Facebook', count: 560, logo: '/facebook.svg' },
-  { name: 'TikTok', count: 420, logo: '/tiktok.svg' },
-];
-
-const topLifecycles = [
-  { name: 'Customer', count: 450, color: 'bg-green', icon: '🎯' },
-  { name: 'Lead', count: 380, color: 'bg-blue', icon: '📈' },
-  { name: 'Qualified Lead', count: 210, color: 'bg-primary', icon: '⭐' },
-  { name: 'Prospect', count: 180, color: 'bg-amber', icon: '🔍' },
-];
 
 export default function DashboardPage() {
   const t = useTranslations('Dashboard');
@@ -187,358 +19,305 @@ export default function DashboardPage() {
     document.title = `${t('title')} - AIBYSEA`;
   }, [t]);
 
-  // Translated service cards
-  const translatedServiceCards = [
+  // Service cards data
+  const serviceCards = [
     {
       name: t('conversationalAI'),
-      status: t('active'),
       value: '847',
       label: t('conversationsToday'),
       subtitle: t('multiChannelSubtitle'),
       icon: MessageSquare,
       gradient: 'from-blue-500 to-purple-500',
-      borderColor: 'border-primary-500',
       buttonText: t('viewInbox'),
     },
     {
       name: t('voiceAgents'),
-      status: t('active'),
       value: '234',
       label: t('callsToday'),
       subtitle: t('phoneAnsweringSubtitle'),
       icon: Phone,
       gradient: 'from-emerald-500 to-cyan-500',
-      borderColor: 'border-service-voice-500',
       buttonText: t('manageVoice'),
     },
     {
       name: t('documentIntelligence'),
-      status: t('active'),
       value: '89',
       label: t('documentsProcessedToday'),
       subtitle: t('invoiceContractSubtitle'),
       icon: FileText,
       gradient: 'from-amber-500 to-red-500',
-      borderColor: 'border-service-documents-500',
       buttonText: t('processDocuments'),
     },
   ];
 
-  // Translated quick stats
-  const translatedQuickStats = [
+  // KPI stats - all in cards
+  const kpiStats = [
     { label: t('totalAIInteractions'), value: '12,847' },
     { label: t('activeServices'), value: '3 of 3' },
     { label: t('costSavingsThisMonth'), value: '$23,400' },
     { label: t('automationRate'), value: '87%' },
   ];
 
-  // Translated activity feed
-  const translatedActivityFeed = [
-    { icon: Phone, service: t('voiceAgent'), action: t('handledCallFrom') + ' +1-555-0123', time: '5m ago', color: 'text-service-voice-500' },
-    { icon: MessageSquare, service: t('chat'), action: t('conversationResolvedWith') + ' John Doe', time: '12m ago', color: 'text-primary' },
-    { icon: FileText, service: t('document'), action: t('invoiceProcessed') + ': INV-2024-001', time: '23m ago', color: 'text-service-documents-500' },
-    { icon: Phone, service: t('voiceAgent'), action: t('callTranscriptionCompleted'), time: '1h ago', color: 'text-service-voice-500' },
-    { icon: MessageSquare, service: t('chat'), action: t('customerInquiryEscalated'), time: '1h 15m ago', color: 'text-primary' },
-    { icon: FileText, service: t('document'), action: t('contractExtractionCompleted'), time: '2h ago', color: 'text-service-documents-500' },
+  // Activity feed
+  const activityFeed = [
+    { icon: Phone, service: t('voiceAgent'), action: t('handledCallFrom') + ' +1-555-0123', time: '5m ago', color: 'text-emerald-500' },
+    { icon: MessageSquare, service: t('chat'), action: t('conversationResolvedWith') + ' John Doe', time: '12m ago', color: 'text-blue-500' },
+    { icon: FileText, service: t('document'), action: t('invoiceProcessed') + ': INV-2024-001', time: '23m ago', color: 'text-amber-500' },
+    { icon: Phone, service: t('voiceAgent'), action: t('callTranscriptionCompleted'), time: '1h ago', color: 'text-emerald-500' },
+    { icon: MessageSquare, service: t('chat'), action: t('customerInquiryEscalated'), time: '1h 15m ago', color: 'text-blue-500' },
+    { icon: FileText, service: t('document'), action: t('contractExtractionCompleted'), time: '2h ago', color: 'text-amber-500' },
   ];
 
-  // Translated lifecycles
-  const translatedLifecycles = [
-    { name: t('customer'), count: 450, color: 'bg-green', icon: '🎯' },
-    { name: t('lead'), count: 380, color: 'bg-blue', icon: '📈' },
-    { name: t('qualifiedLead'), count: 210, color: 'bg-primary', icon: '⭐' },
-    { name: t('prospect'), count: 180, color: 'bg-amber', icon: '🔍' },
+  // Chart data
+  const chartData = [
+    { date: t('mon'), value: 120 },
+    { date: t('tue'), value: 180 },
+    { date: t('wed'), value: 150 },
+    { date: t('thu'), value: 220 },
+    { date: t('fri'), value: 190 },
+    { date: t('sat'), value: 160 },
+    { date: t('sun'), value: 140 },
   ];
 
-  // Translated chart data with day abbreviations
-  const translatedConversationsData = [
-    { date: t('mon'), conversations: 120 },
-    { date: t('tue'), conversations: 180 },
-    { date: t('wed'), conversations: 150 },
-    { date: t('thu'), conversations: 220 },
-    { date: t('fri'), conversations: 190 },
-    { date: t('sat'), conversations: 160 },
-    { date: t('sun'), conversations: 140 },
+  // Active agents
+  const activeAgents = [
+    { name: 'Rashed', channel: 'WhatsApp', chatCount: 12, photo: '/rashed.jpeg' },
+  ];
+
+  // Top channels
+  const topChannels = [
+    { name: 'WhatsApp', count: 1250, logo: '/whatsapp.svg' },
+    { name: 'Telegram', count: 890, logo: '/telegram.svg' },
+    { name: 'Facebook', count: 560, logo: '/facebook.svg' },
+    { name: 'TikTok', count: 420, logo: '/tiktok.svg' },
+  ];
+
+  // Lifecycles
+  const lifecycles = [
+    { name: t('customer'), count: 450, icon: '🎯' },
+    { name: t('lead'), count: 380, icon: '📈' },
+    { name: t('qualifiedLead'), count: 210, icon: '⭐' },
+    { name: t('prospect'), count: 180, icon: '🔍' },
   ];
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-slate-900">
+    <div className="flex flex-col h-full bg-light-bg dark:bg-slate-900">
       <TopBar title={t('title')} />
 
-      {/* Scrollable content area with transparent background */}
+      {/* Scrollable content - strict grid system */}
       <div className="flex-1 overflow-y-auto">
-        <div className="p-card md:p-card-lg space-y-section md:space-y-section-lg">
-        {/* Service Health Cards */}
-        <FadeIn>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
-          >
-            {translatedServiceCards.map((card, index) => {
-            const Icon = card.icon;
-            return (
-              <motion.div
-                key={index}
-                variants={staggerItem}
-                className={`min-w-0 bg-white dark:bg-slate-800 rounded-2xl p-card-md border-s-4 ${card.borderColor} shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1`}
-              >
-                {/* Header with icon */}
-                <div className="flex items-start justify-end mb-4">
-                  <div className={`bg-gradient-to-br ${card.gradient} rounded-lg p-3 shadow-md`}>
-                    <Icon className="w-6 h-6 text-white" strokeWidth={2} />
-                  </div>
-                </div>
+        <div className="max-w-[1400px] mx-auto p-6 space-y-6">
 
-                {/* Service name */}
-                <p className="text-xs uppercase tracking-wider text-text-secondary dark:text-slate-300 font-bold mb-2">
-                  {card.name}
-                </p>
+          {/* Section 1: Service Cards - 3 columns, equal height */}
+          <FadeIn>
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+              className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            >
+              {serviceCards.map((card, index) => {
+                const Icon = card.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    variants={staggerItem}
+                    className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700 flex flex-col"
+                  >
+                    {/* Icon */}
+                    <div className="flex justify-end mb-4">
+                      <div className={`bg-gradient-to-br ${card.gradient} rounded-lg p-3 shadow-sm`}>
+                        <Icon className="w-6 h-6 text-white" strokeWidth={2} />
+                      </div>
+                    </div>
 
-                {/* Main metric value */}
-                <p className="text-4xl font-extrabold text-dark dark:text-white mb-1">{card.value}</p>
-                <p className="text-xs text-text-secondary dark:text-slate-400 mb-4">{card.label}</p>
-
-                {/* Subtitle */}
-                <p className="text-sm text-text-secondary dark:text-slate-300 mb-6">{card.subtitle}</p>
-
-                {/* Action button */}
-                <Button
-                  variant="primary"
-                  size="sm"
-                  className="w-full"
-                >
-                  {card.buttonText}
-                </Button>
-              </motion.div>
-            );
-          })}
-          </motion.div>
-        </FadeIn>
-
-        {/* Quick Stats Section */}
-        <FadeIn delay={0.1}>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
-          >
-            {translatedQuickStats.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={staggerItem}
-                className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-md shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <p className="text-[10px] md:text-xs uppercase tracking-wider text-text-secondary dark:text-slate-300 font-bold mb-2 md:mb-3">
-                  {stat.label}
-                </p>
-                <p className="text-heading-1 md:text-heading-1-md font-extrabold text-dark dark:text-white">{stat.value}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </FadeIn>
-
-        {/* Activity Feed */}
-        <FadeIn delay={0.2}>
-          <div className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500">
-          <div className="flex items-center justify-between mb-4 md:mb-6">
-            <div className="flex items-center gap-2">
-              <Activity className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-              <h3 className="text-lg md:text-heading-3 font-extrabold text-dark dark:text-white">{t('recentActivity')}</h3>
-            </div>
-          </div>
-          <div className="space-y-2 md:space-y-3 max-h-48 md:max-h-64 overflow-y-auto">
-            {translatedActivityFeed.map((item, index) => {
-              const ActivityIcon = item.icon;
-              return (
-                <div
-                  key={index}
-                  className="flex items-center gap-4 p-3 hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-all duration-200 cursor-pointer"
-                  style={{
-                    animation: `fadeIn 0.3s ease-out ${0.6 + index * 0.05}s both`
-                  }}
-                >
-                  <div className={`${item.color} flex-shrink-0`}>
-                    <ActivityIcon className="w-5 h-5" strokeWidth={2} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-dark dark:text-white">
-                      {item.service} <span className="font-normal text-text-secondary dark:text-slate-300">{item.action}</span>
+                    {/* Service name */}
+                    <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold mb-2">
+                      {card.name}
                     </p>
-                  </div>
-                  <p className="text-xs text-text-secondary dark:text-slate-400 whitespace-nowrap flex-shrink-0">{item.time}</p>
+
+                    {/* Value */}
+                    <p className="text-4xl font-bold text-gray-900 dark:text-white mb-1">{card.value}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{card.label}</p>
+
+                    {/* Subtitle */}
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-6 flex-1">{card.subtitle}</p>
+
+                    {/* CTA - always at bottom */}
+                    <Button variant="primary" size="sm" className="w-full">
+                      {card.buttonText}
+                    </Button>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </FadeIn>
+
+          {/* Section 2: KPI Stats - 4 columns, all in cards */}
+          <FadeIn delay={0.1}>
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+              className="grid grid-cols-2 md:grid-cols-4 gap-6"
+            >
+              {kpiStats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  variants={staggerItem}
+                  className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700"
+                >
+                  <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold mb-3">
+                    {stat.label}
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </FadeIn>
+
+          {/* Section 3: Activity Feed (left) + Performance Chart (right) */}
+          <FadeIn delay={0.2}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+              {/* Activity Feed */}
+              <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700">
+                <div className="flex items-center gap-2 mb-6">
+                  <Activity className="w-5 h-5 text-gray-900 dark:text-white" />
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">{t('recentActivity')}</h3>
                 </div>
-              );
-            })}
-          </div>
-          </div>
-        </FadeIn>
-
-        {/* Main Chart + Queue */}
-        <FadeIn delay={0.3}>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-          {/* Conversations Chart */}
-          <div
-            className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500"
-            style={{
-              animation: 'slideInFromLeft 0.6s ease-out 0.4s both'
-            }}
-          >
-            <div className="flex items-center justify-between mb-4 md:mb-6">
-              <h3 className="text-base md:text-heading-3 font-extrabold text-dark dark:text-white">{t('aiAgentPerformance')}</h3>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-xs md:text-sm"
-              >
-                {t('viewDetails')}
-              </Button>
-            </div>
-            <div className="h-[180px] tablet:h-[240px] lg:h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={translatedConversationsData}>
-                <defs>
-                  <linearGradient id="conversationsGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#4EB6C9" stopOpacity={0.4} />
-                    <stop offset="100%" stopColor="#003EF3" stopOpacity={0.1} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" className="dark:stroke-slate-700" />
-                <XAxis dataKey="date" stroke="#6B7280" className="dark:stroke-slate-400" style={{ fontSize: '12px' }} />
-                <YAxis stroke="#6B7280" className="dark:stroke-slate-400" style={{ fontSize: '12px' }} />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #E5E7EB',
-                    borderRadius: '8px',
-                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                  }}
-                  wrapperClassName="dark:bg-slate-800 dark:border-slate-700"
-                />
-                <Area
-                  type="monotone"
-                  dataKey="conversations"
-                  stroke="#003EF3"
-                  strokeWidth={3}
-                  fill="url(#conversationsGradient)"
-                />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          {/* Active AI Agents */}
-          <div
-            className="bg-white dark:bg-slate-800 rounded-2xl p-card-md shadow-lg hover:shadow-xl transition-all duration-500"
-            style={{
-              animation: 'slideInFromRight 0.6s ease-out 0.4s both'
-            }}
-          >
-            <div className="flex items-center gap-2 mb-6">
-              <div className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg">
-                <Zap className="w-5 h-5 text-primary dark:text-white animate-pulse" />
+                <div className="space-y-3 max-h-80 overflow-y-auto">
+                  {activityFeed.map((item, index) => {
+                    const ActivityIcon = item.icon;
+                    return (
+                      <div
+                        key={index}
+                        className="flex items-center gap-4 p-3 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
+                      >
+                        <div className={`${item.color} flex-shrink-0`}>
+                          <ActivityIcon className="w-5 h-5" strokeWidth={2} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                            {item.service}{' '}
+                            <span className="font-normal text-gray-600 dark:text-gray-300">{item.action}</span>
+                          </p>
+                        </div>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">{item.time}</p>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-              <h3 className="text-lg font-extrabold text-dark dark:text-white">{t('activeAgents')}</h3>
-            </div>
-            <div className="space-y-4">
-              {queueData.map((item, index) => (
-                <div
-                  key={index}
-                  className="p-4 bg-light-bg dark:bg-slate-700 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-md"
-                  style={{
-                    animation: `fadeIn 0.4s ease-out ${0.6 + index * 0.1}s both`
-                  }}
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-md">
-                      <Image
-                        src={item.photo}
-                        alt={item.name}
-                        fill
-                        className="object-cover"
+
+              {/* Performance Chart */}
+              <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">{t('aiAgentPerformance')}</h3>
+                  <Button variant="ghost" size="sm">
+                    {t('viewDetails')}
+                  </Button>
+                </div>
+                <div className="h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={chartData}>
+                      <defs>
+                        <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#3B82F6" stopOpacity={0.4} />
+                          <stop offset="100%" stopColor="#3B82F6" stopOpacity={0.05} />
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" className="dark:stroke-slate-700" />
+                      <XAxis dataKey="date" stroke="#6B7280" style={{ fontSize: '12px' }} />
+                      <YAxis stroke="#6B7280" style={{ fontSize: '12px' }} />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: '#FFFFFF',
+                          border: '1px solid #E5E7EB',
+                          borderRadius: '8px',
+                        }}
                       />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-semibold text-dark dark:text-white">{item.name}</p>
-                      <span className="text-xs px-2 py-0.5 bg-accent/20 dark:bg-accent/30 text-accent dark:text-accent rounded font-medium">
-                        {item.channel}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green rounded-full animate-pulse"></div>
-                    <p className="text-xs text-green font-semibold">{t('handlingChats', { count: item.chatCount })}</p>
-                  </div>
+                      <Area
+                        type="monotone"
+                        dataKey="value"
+                        stroke="#3B82F6"
+                        strokeWidth={2}
+                        fill="url(#gradient)"
+                      />
+                    </AreaChart>
+                  </ResponsiveContainer>
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
 
-        {/* Bottom Cards */}
-        <FadeIn delay={0.4}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-          {/* Top Channels */}
-          <div
-            className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500"
-            style={{
-              animation: 'slideInFromLeft 0.6s ease-out 0.8s both'
-            }}
-          >
-            <h3 className="text-lg md:text-heading-3 font-extrabold text-dark dark:text-white mb-4 md:mb-6">{t('topChannels')}</h3>
-            <div className="space-y-3 md:space-y-4">
-              {topChannels.map((channel, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-gray-50 dark:hover:bg-slate-700 p-3 rounded-lg cursor-pointer"
-                  style={{
-                    animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
-                  }}
-                >
-                  <div className="relative w-8 h-8 flex-shrink-0">
-                    <Image
-                      src={channel.logo}
-                      alt={channel.name}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <span className="flex-1 text-sm font-semibold text-dark dark:text-white">{channel.name}</span>
-                  <span className="text-lg font-extrabold text-dark dark:text-white">{channel.count}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Section 4: Top Channels + Lifecycles + Active Agents */}
+          <FadeIn delay={0.3}>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-          {/* Top Lifecycles */}
-          <div
-            className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500"
-            style={{
-              animation: 'slideInFromRight 0.6s ease-out 0.8s both'
-            }}
-          >
-            <h3 className="text-lg md:text-heading-3 font-extrabold text-dark dark:text-white mb-4 md:mb-6">{t('lifecycleDistribution')}</h3>
-            <div className="space-y-3 md:space-y-4">
-              {translatedLifecycles.map((lifecycle, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:bg-gray-50 dark:hover:bg-slate-700 p-3 rounded-lg cursor-pointer"
-                  style={{
-                    animation: `fadeIn 0.3s ease-out ${1 + index * 0.1}s both`
-                  }}
-                >
-                  <div className="text-heading-2">{lifecycle.icon}</div>
-                  <span className="flex-1 text-sm font-semibold text-dark dark:text-white">{lifecycle.name}</span>
-                  <span className="text-lg font-extrabold text-dark dark:text-white">{lifecycle.count}</span>
+              {/* Top Channels */}
+              <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6">{t('topChannels')}</h3>
+                <div className="space-y-4">
+                  {topChannels.map((channel, index) => (
+                    <div key={index} className="flex items-center gap-4 p-3 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                      <div className="relative w-8 h-8 flex-shrink-0">
+                        <Image src={channel.logo} alt={channel.name} fill className="object-contain" />
+                      </div>
+                      <span className="flex-1 text-sm font-semibold text-gray-900 dark:text-white">{channel.name}</span>
+                      <span className="text-lg font-bold text-gray-900 dark:text-white">{channel.count}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Lifecycle Distribution */}
+              <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6">{t('lifecycleDistribution')}</h3>
+                <div className="space-y-4">
+                  {lifecycles.map((lifecycle, index) => (
+                    <div key={index} className="flex items-center gap-4 p-3 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                      <div className="text-2xl">{lifecycle.icon}</div>
+                      <span className="flex-1 text-sm font-semibold text-gray-900 dark:text-white">{lifecycle.name}</span>
+                      <span className="text-lg font-bold text-gray-900 dark:text-white">{lifecycle.count}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Active Agents */}
+              <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700">
+                <div className="flex items-center gap-2 mb-6">
+                  <Zap className="w-5 h-5 text-blue-500" />
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">{t('activeAgents')}</h3>
+                </div>
+                <div className="space-y-4">
+                  {activeAgents.map((agent, index) => (
+                    <div key={index} className="p-4 bg-gray-50 dark:bg-slate-700 rounded-lg">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="relative w-10 h-10 rounded-full overflow-hidden">
+                          <Image src={agent.photo} alt={agent.name} fill className="object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-semibold text-gray-900 dark:text-white">{agent.name}</p>
+                          <span className="text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded font-medium">
+                            {agent.channel}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <p className="text-xs text-green-600 dark:text-green-400 font-semibold">
+                          {t('handlingChats', { count: agent.chatCount })}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
+
         </div>
       </div>
     </div>
