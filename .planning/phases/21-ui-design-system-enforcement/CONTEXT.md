@@ -1,8 +1,8 @@
 # Phase 21: UI Design System Enforcement — Context
 
-**Goal:** Create unified Button and Card components, enforce Tailwind design tokens across all pages, eliminate spacing/typography/color inconsistencies.
+**Goal:** Create unified Button and Card components, enforce Tailwind design tokens across all pages, eliminate spacing/typography/color inconsistencies, and add smooth, professional animations throughout the platform.
 
-**Source:** [codebase/CONCERNS.md](../../codebase/CONCERNS.md) — UI Consistency Issues (lines 5-62)
+**Source:** [codebase/CONCERNS.md](../../codebase/CONCERNS.md) — UI Consistency Issues (lines 5-62) + User requirement for modern animations
 
 ---
 
@@ -156,13 +156,159 @@
 
 ---
 
+### 6. No Motion Design / Animations (NEW REQUIREMENT)
+**Current State:**
+- Static UI with no animations
+- No transitions between states
+- Abrupt page changes and interactions
+- Missing that "wow factor" for modern web app
+
+**User Requirement:**
+> "I want animation. Like an animated website landing page. Something crazy fancy but not overwhelming. The middle ground, the perfect ground."
+
+**What This Means:**
+- Smooth, professional animations throughout the platform
+- Page transitions with subtle motion
+- Micro-interactions on buttons, cards, inputs
+- Scroll-based animations (parallax, fade-ins, reveals)
+- Loading states with elegant loaders
+- **Not overwhelming** — tasteful, purposeful animation that enhances UX
+
+**Animation Categories:**
+
+**1. Micro-interactions (Buttons, Inputs, Cards)**
+- Button hover: Scale + shadow lift
+- Button click: Satisfying "press" effect
+- Card hover: Subtle elevation change
+- Input focus: Border glow animation
+- Toggle switches: Smooth slide animation
+
+**2. Page Transitions**
+- Route changes: Fade + slide
+- Modal enter/exit: Scale + fade
+- Drawer slide-in: Smooth ease-out
+- Tab switching: Slide animation
+
+**3. Loading States**
+- Skeleton loaders for content
+- Spinner animations for actions
+- Progress bars with smooth fill
+- Shimmer effect for placeholders
+
+**4. Scroll Animations**
+- Fade in on scroll (dashboard cards)
+- Stagger animations (list items appear one by one)
+- Parallax effects (hero sections)
+- Progress indicators (scroll depth)
+
+**5. Data Visualizations**
+- Chart animations on load (Recharts)
+- Counter animations (dashboard metrics)
+- Status transitions (AI → Human takeover)
+
+**Recommended Libraries:**
+
+**Option 1: Framer Motion (Recommended)**
+- Industry standard for React animations
+- Declarative API, easy to use
+- Great performance
+- Built-in gesture support
+- Perfect for complex animations
+
+```tsx
+import { motion } from 'framer-motion'
+
+<motion.button
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+>
+  Click me
+</motion.button>
+```
+
+**Option 2: React Spring**
+- Physics-based animations
+- More complex, more control
+- Great for advanced animations
+
+**Option 3: Tailwind CSS animations (for simple cases)**
+- Built-in utilities: `animate-pulse`, `animate-spin`
+- Custom animations in tailwind.config.js
+- Good for simple hover effects
+
+**The Perfect Balance:**
+- Use **Framer Motion** for page transitions, micro-interactions
+- Use **Tailwind** for simple hover effects
+- Use **CSS keyframes** for infinite animations (spinners)
+- Keep animations under 300ms for snappy feel
+- Use ease-out curves for natural motion
+- Respect `prefers-reduced-motion` (accessibility)
+
+**Animation Principles:**
+- **Purposeful**: Every animation should serve UX (not decoration)
+- **Fast**: 150-300ms duration (snappy, not sluggish)
+- **Subtle**: Catch the eye without demanding attention
+- **Consistent**: Same easing curves throughout
+- **Accessible**: Respect motion preferences
+
+**Examples to Implement:**
+
+**Landing Page Hero:**
+```tsx
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+>
+  <h1>AI BY SEA</h1>
+</motion.div>
+```
+
+**Dashboard Cards (Stagger):**
+```tsx
+<motion.div
+  variants={containerVariants}
+  initial="hidden"
+  animate="visible"
+>
+  {cards.map((card, i) => (
+    <motion.div
+      key={i}
+      variants={itemVariants}
+      whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(0,0,0,0.15)" }}
+    >
+      {card}
+    </motion.div>
+  ))}
+</motion.div>
+```
+
+**Button Hover:**
+```tsx
+<Button
+  whileHover={{ scale: 1.02, boxShadow: "0 8px 16px rgba(0,0,0,0.1)" }}
+  whileTap={{ scale: 0.98 }}
+  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+>
+  Primary Action
+</Button>
+```
+
+---
+
 ## 📁 Files to Modify
 
 ### Components to Create
 ```
-src/components/ui/Button.tsx         # NEW: Unified button component
-src/components/ui/Card.tsx           # NEW: Unified card component
+src/components/ui/Button.tsx         # NEW: Unified button component (with Framer Motion)
+src/components/ui/Card.tsx           # NEW: Unified card component (with hover animations)
 src/lib/design-tokens.md             # NEW: Design token guide (docs)
+src/lib/animations/variants.ts       # NEW: Framer Motion variants library
+src/lib/animations/transitions.ts    # NEW: Reusable transition configs
+src/components/ui/PageTransition.tsx # NEW: Page transition wrapper
+src/components/ui/FadeIn.tsx         # NEW: Fade-in on scroll component
+src/components/ui/AnimatedCounter.tsx # NEW: Animated number counter
 ```
 
 ### Pages to Audit & Fix (25+ files)
@@ -298,6 +444,19 @@ Phase 21 is complete when:
   - [ ] Mobile + desktop visual consistency verified
   - [ ] Service color coding applied correctly (Voice=teal, Docs=orange)
 
+- [ ] **Animations & Motion Design:**
+  - [ ] Framer Motion installed and configured
+  - [ ] Animation variants library created (fadeIn, slideIn, stagger, etc.)
+  - [ ] Button micro-interactions (hover, tap) implemented
+  - [ ] Card hover animations (elevation change)
+  - [ ] Page transitions working smoothly
+  - [ ] Dashboard cards stagger on load
+  - [ ] Scroll-based fade-ins on key sections
+  - [ ] Loading states have elegant animations (skeleton, spinner)
+  - [ ] `prefers-reduced-motion` respected (accessibility)
+  - [ ] Animation timing: 150-300ms (snappy, not sluggish)
+  - [ ] **"Wow factor" achieved without overwhelming**
+
 ---
 
 ## 📚 Related Documentation
@@ -315,6 +474,13 @@ Phase 21 is complete when:
 - Phase 15: Responsive breakpoints & design tokens established
 - Phase 15: Touch target minimums (44px for buttons)
 - Service colors defined (Phase 8): Conversational=blue/purple, Voice=teal, Documents=orange
+
+**Animation resources:**
+- Framer Motion: https://www.framer.com/motion/
+- Animation examples: https://www.framer.com/motion/examples/
+- Tailwind animations: https://tailwindcss.com/docs/animation
+- Accessibility: https://web.dev/prefers-reduced-motion/
+- UI animation principles: https://material.io/design/motion/
 
 ---
 
@@ -343,15 +509,21 @@ Phase 21 is complete when:
 ## 💡 Planning Notes
 
 **Suggested plan breakdown:**
-1. **21-01:** Button & Card Components (create + test + document)
+1. **21-01:** Animation System & Component Library (Framer Motion setup + Button + Card with animations)
 2. **21-02:** Design Token Enforcement (spacing + typography + color audit)
-3. **21-03:** Component Migration (replace inline buttons/cards across all pages)
+3. **21-03:** Component Migration & Animations (replace inline components + add page transitions + micro-interactions)
 
 **Or combine into 2 plans:**
-1. **21-01:** UI Component Library (Button + Card + tests + Storybook)
-2. **21-02:** Token Enforcement & Migration (full codebase refactor)
+1. **21-01:** UI Component Library with Animations (Framer Motion + Button + Card + animation variants + tests)
+2. **21-02:** Token Enforcement & Animation Rollout (full codebase refactor + page transitions + scroll effects)
 
-**Estimated complexity:** Medium-High (many files, must maintain functionality)
+**Or expand to 4 plans for thoroughness:**
+1. **21-01:** Animation Foundation (Framer Motion + variants library + PageTransition + FadeIn components)
+2. **21-02:** Animated Components (Button + Card with hover/tap animations + testing)
+3. **21-03:** Design Token Enforcement (spacing + typography + color audit across all pages)
+4. **21-04:** Full Migration & Animation Polish (replace all inline components + dashboard stagger + scroll effects)
+
+**Estimated complexity:** High (many files, must maintain functionality, animations add complexity)
 
 **Testing strategy:**
 - Unit tests for Button/Card components
@@ -362,4 +534,6 @@ Phase 21 is complete when:
 ---
 
 *Context prepared: 2026-02-02*
+*Updated: 2026-02-02 — Added animation requirements (Framer Motion, micro-interactions, page transitions)*
+*User requirement: "Crazy fancy but not overwhelming — the perfect middle ground"*
 *Ready for: /gsd:plan-phase 21*
