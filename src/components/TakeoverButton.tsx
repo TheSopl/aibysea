@@ -47,8 +47,8 @@ export function TakeoverButton({
       {/* Handler Status Badge */}
       <div className={`text-xs px-2 py-1 rounded font-medium ${
         isAIHandling
-          ? 'bg-blue-100 text-blue-700'
-          : 'bg-orange-100 text-orange-700'
+          ? 'bg-primary-100 text-primary-700'
+          : 'bg-service-documents-100 text-service-documents-700'
       }`}>
         {isAIHandling ? 'AI Handling' : "You're Handling"}
       </div>
@@ -59,8 +59,8 @@ export function TakeoverButton({
         disabled={isPending}
         className={`text-xs px-3 py-1 min-h-[44px] rounded font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center ${
           isAIHandling
-            ? 'bg-orange-500 text-white hover:bg-orange-600'
-            : 'bg-blue-500 text-white hover:bg-blue-600'
+            ? 'bg-service-documents-500 text-white hover:bg-service-documents-600'
+            : 'bg-primary-500 text-white hover:bg-primary-600'
         }`}
       >
         {isPending ? (

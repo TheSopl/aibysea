@@ -96,7 +96,7 @@ export function GlobalSearch() {
                     onClick={() => setOpen(false)}
                     className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-light-bg dark:hover:bg-slate-700 transition-all duration-200 group cursor-pointer text-start"
                   >
-                    <div className="text-text-secondary dark:text-slate-400 group-hover:text-primary dark:group-hover:text-blue-400 transition-colors">
+                    <div className="text-text-secondary dark:text-slate-400 group-hover:text-primary dark:group-hover:text-primary-400 transition-colors">
                       {result.icon}
                     </div>
                     <div className="flex-1 min-w-0">

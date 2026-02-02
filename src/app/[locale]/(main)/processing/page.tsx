@@ -158,12 +158,12 @@ export default function ProcessingPage() {
       <div className="p-8 bg-white dark:bg-slate-900">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-primary-400/20 dark:border-primary-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Activity size={24} className="text-white" />
               </div>
-              <Zap size={20} className="text-blue-500 dark:text-blue-400" />
+              <Zap size={20} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.processing}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Currently Processing</p>
@@ -191,12 +191,12 @@ export default function ProcessingPage() {
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Failed</p>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-primary-400/20 dark:border-primary-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Clock size={24} className="text-white" />
               </div>
-              <BarChart3 size={20} className="text-blue-500 dark:text-blue-400" />
+              <BarChart3 size={20} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-heading-2 font-extrabold text-dark dark:text-white mb-1">{stats.avgTime}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Avg Processing</p>
@@ -207,7 +207,7 @@ export default function ProcessingPage() {
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md mb-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Filter size={20} className="text-blue-600 dark:text-blue-400" />
+              <Filter size={20} className="text-primary-600 dark:text-primary-400" />
               <h3 className="text-lg font-bold text-dark dark:text-white">Filter Jobs</h3>
             </div>
             <div className="flex gap-3">
@@ -264,10 +264,10 @@ export default function ProcessingPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <button className="p-3 hover:bg-light-bg dark:bg-slate-700 rounded-lg transition-all duration-300">
-                    <Download size={20} className="text-text-secondary dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400" />
+                    <Download size={20} className="text-text-secondary dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400" />
                   </button>
                   <button className="p-3 hover:bg-light-bg dark:bg-slate-700 rounded-lg transition-all duration-300">
-                    <MoreVertical size={20} className="text-text-secondary dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400" />
+                    <MoreVertical size={20} className="text-text-secondary dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400" />
                   </button>
                 </div>
               </div>
@@ -296,7 +296,7 @@ export default function ProcessingPage() {
                           idx < job.currentStage
                             ? 'bg-green-100 text-green-700 border-green-300'
                             : idx === job.currentStage
-                              ? 'bg-blue-100 text-blue-700 border-blue-300 scale-110'
+                              ? 'bg-primary-100 text-primary-700 border-primary-300 scale-110'
                               : 'bg-gray-100 text-gray-500 border-gray-300'
                         } border-2`}
                       >
@@ -312,7 +312,7 @@ export default function ProcessingPage() {
                     <>
                       <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Time Elapsed</p>
-                        <p className="text-heading-2 font-extrabold text-blue-600 dark:text-blue-400">{job.timeElapsed}</p>
+                        <p className="text-heading-2 font-extrabold text-primary-600 dark:text-primary-400">{job.timeElapsed}</p>
                       </div>
                       <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Est. Time Remaining</p>
@@ -328,7 +328,7 @@ export default function ProcessingPage() {
                       </div>
                       <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Confidence Score</p>
-                        <p className="text-heading-2 font-extrabold text-purple-600">{job.confidence}%</p>
+                        <p className="text-heading-2 font-extrabold text-accent-600">{job.confidence}%</p>
                       </div>
                     </>
                   )}

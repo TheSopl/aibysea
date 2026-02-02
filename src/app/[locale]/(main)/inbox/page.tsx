@@ -664,7 +664,7 @@ export default function InboxPage() {
                             {conv.ai_agent.name}
                           </span>
                         ) : conv.handler_type === 'ai' ? (
-                          <span className="text-xs px-2 py-0.5 bg-orange-500/20 text-orange-600 dark:text-orange-400 rounded-md font-bold">
+                          <span className="text-xs px-2 py-0.5 bg-service-documents-500/20 text-service-documents-600 dark:text-service-documents-400 rounded-md font-bold">
                             {t('noAgent')}
                           </span>
                         ) : null}
@@ -1052,10 +1052,10 @@ export default function InboxPage() {
                       </div>
                     </div>
                   ) : (
-                    <div className="bg-orange-500/10 rounded-xl p-4 border-2 border-orange-500/20">
+                    <div className="bg-service-documents-500/10 rounded-xl p-4 border-2 border-service-documents-500/20">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center">
-                          <Bot size={24} className="text-orange-500" />
+                        <div className="w-12 h-12 rounded-xl bg-service-documents-500/20 flex items-center justify-center">
+                          <Bot size={24} className="text-service-documents-500" />
                         </div>
                         <div>
                           <h3 className="font-bold text-dark dark:text-white text-sm">{t('noAgentAssignedTitle')}</h3>

@@ -335,7 +335,7 @@ export default function TemplatesPage() {
       case 'built-in':
         return 'bg-green-100 text-green-700 border-green-300';
       case 'custom':
-        return 'bg-blue-100 text-blue-700 border-blue-300';
+        return 'bg-primary-100 text-primary-700 border-primary-300';
       case 'archived':
         return 'bg-gray-100 text-gray-700 border-gray-300';
       default:
@@ -399,56 +399,56 @@ export default function TemplatesPage() {
         {/* Statistics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-service-documents-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0s both' }}
           >
             <div className="flex items-center justify-between mb-3">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FileText size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
+              <TrendingUp size={20} className="text-service-documents-500 hidden sm:block" />
             </div>
             <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.total}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">Total Templates</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-service-documents-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.1s both' }}
           >
             <div className="flex items-center justify-between mb-3">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
+              <TrendingUp size={20} className="text-service-documents-500 hidden sm:block" />
             </div>
             <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.active}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">Active in Use</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-service-documents-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.2s both' }}
           >
             <div className="flex items-center justify-between mb-3">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
                 <TrendingUp size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
+              <TrendingUp size={20} className="text-service-documents-500 hidden sm:block" />
             </div>
             <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.successRate}%</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">Success Rate</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-orange-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-orange-400/10 to-orange-600/10 rounded-2xl p-4 sm:p-6 border-2 border-service-documents-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.3s both' }}
           >
             <div className="flex items-center justify-between mb-3">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FileText size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-orange-500 hidden sm:block" />
+              <TrendingUp size={20} className="text-service-documents-500 hidden sm:block" />
             </div>
             <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.processed}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">Documents Processed</p>
@@ -474,7 +474,7 @@ export default function TemplatesPage() {
               {templates.map(template => (
                 <div
                   key={template.id}
-                  className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4 sm:p-6 border-2 border-transparent hover:border-orange-200/50 transition-all duration-300 cursor-pointer"
+                  className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4 sm:p-6 border-2 border-transparent hover:border-service-documents-200/50 transition-all duration-300 cursor-pointer"
                   onClick={() => setExpandedTemplate(expandedTemplate === template.id ? null : template.id)}
                 >
                   <div className="flex items-start justify-between mb-4">
@@ -488,7 +488,7 @@ export default function TemplatesPage() {
                             {getStatusLabel(template.status)}
                           </span>
                           {template.usageCount > 500 && (
-                            <span className="px-2 py-1 text-xs font-bold rounded-lg bg-orange-100 text-orange-700 border border-orange-300">
+                            <span className="px-2 py-1 text-xs font-bold rounded-lg bg-service-documents-100 text-service-documents-700 border border-service-documents-300">
                               Active
                             </span>
                           )}
@@ -512,13 +512,13 @@ export default function TemplatesPage() {
                     </div>
                     <div>
                       <p className="text-xs text-text-secondary font-semibold">Success</p>
-                      <p className="text-lg font-bold text-orange-600">{template.successRate}%</p>
+                      <p className="text-lg font-bold text-service-documents-600">{template.successRate}%</p>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
                   <div className="flex flex-wrap gap-2">
-                    <button className="flex-1 px-3 py-2 min-h-[44px] text-xs font-bold text-orange-600 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors flex items-center justify-center gap-1">
+                    <button className="flex-1 px-3 py-2 min-h-[44px] text-xs font-bold text-service-documents-600 bg-service-documents-50 rounded-lg hover:bg-service-documents-100 transition-colors flex items-center justify-center gap-1">
                       <Eye size={16} /> Use
                     </button>
                     <button className="flex-1 px-3 py-2 min-h-[44px] text-xs font-bold text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-1">
@@ -583,7 +583,7 @@ export default function TemplatesPage() {
 
           {/* Template Builder Form */}
           {showCreateForm && (
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-4 sm:p-6 border-2 border-orange-200 max-h-[calc(100vh-160px)] sm:max-h-[calc(100vh-200px)] overflow-y-auto">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-4 sm:p-6 border-2 border-service-documents-200 max-h-[calc(100vh-160px)] sm:max-h-[calc(100vh-200px)] overflow-y-auto">
               <div className="flex items-center justify-between mb-4 sm:mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
                 <h2 className="text-lg sm:text-heading-3 font-bold text-dark dark:text-white">Create New Template</h2>
                 <button
@@ -626,7 +626,7 @@ export default function TemplatesPage() {
                           }))
                         }
                         placeholder="e.g., Invoice Template"
-                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 text-sm"
+                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-service-documents-500 text-sm"
                       />
                     </div>
 
@@ -642,7 +642,7 @@ export default function TemplatesPage() {
                               basicInfo: { ...prev.basicInfo, type: e.target.value }
                             }))
                           }
-                          className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 text-sm appearance-none cursor-pointer"
+                          className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-service-documents-500 text-sm appearance-none cursor-pointer"
                         >
                           <option value="Custom">Custom</option>
                           <option value="Invoice">Invoice</option>
@@ -667,7 +667,7 @@ export default function TemplatesPage() {
                         }
                         placeholder="Describe what this template extracts..."
                         rows={3}
-                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 text-sm resize-none"
+                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-service-documents-500 text-sm resize-none"
                       />
                     </div>
 
@@ -684,7 +684,7 @@ export default function TemplatesPage() {
                           }))
                         }
                         placeholder="e.g., Finance, HR, Legal"
-                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 text-sm"
+                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-service-documents-500 text-sm"
                       />
                     </div>
                   </div>
@@ -702,7 +702,7 @@ export default function TemplatesPage() {
                       2
                     </div>
                     <span className="font-bold text-dark">Field Definitions</span>
-                    <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full">
+                    <span className="text-xs bg-service-documents-100 text-service-documents-700 px-2 py-1 rounded-full">
                       {formData.fields.length} fields
                     </span>
                   </div>
@@ -715,7 +715,7 @@ export default function TemplatesPage() {
                     {formData.fields.map((field, index) => (
                       <div
                         key={field.id}
-                        className="p-4 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 hover:border-orange-300 transition-colors"
+                        className="p-4 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 hover:border-service-documents-300 transition-colors"
                       >
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-2">
@@ -739,7 +739,7 @@ export default function TemplatesPage() {
                               value={field.name}
                               onChange={(e) => handleFieldChange(field.id, 'name', e.target.value)}
                               placeholder="e.g., Invoice Number"
-                              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500"
+                              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-service-documents-500"
                             />
                           </div>
                           <div>
@@ -748,7 +748,7 @@ export default function TemplatesPage() {
                               <select
                                 value={field.type}
                                 onChange={(e) => handleFieldChange(field.id, 'type', e.target.value)}
-                                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 appearance-none cursor-pointer"
+                                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-service-documents-500 appearance-none cursor-pointer"
                               >
                                 <option value="text">Text</option>
                                 <option value="number">Number</option>
@@ -770,7 +770,7 @@ export default function TemplatesPage() {
                             value={field.helpText}
                             onChange={(e) => handleFieldChange(field.id, 'helpText', e.target.value)}
                             placeholder="Describe what to extract..."
-                            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500"
+                            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-service-documents-500"
                           />
                         </div>
 
@@ -780,7 +780,7 @@ export default function TemplatesPage() {
                             type="checkbox"
                             checked={field.required}
                             onChange={(e) => handleFieldChange(field.id, 'required', e.target.checked)}
-                            className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer"
+                            className="w-4 h-4 rounded border-gray-300 text-service-documents-500 focus:ring-orange-500 cursor-pointer"
                           />
                           <label className="text-xs font-bold text-gray-600 cursor-pointer">
                             Required Field <span className="text-red-500">*</span>
@@ -795,7 +795,7 @@ export default function TemplatesPage() {
                               <select
                                 value={field.format || 'MM/DD/YYYY'}
                                 onChange={(e) => handleFieldChange(field.id, 'format', e.target.value)}
-                                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 appearance-none cursor-pointer"
+                                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-service-documents-500 appearance-none cursor-pointer"
                               >
                                 <option value="MM/DD/YYYY">MM/DD/YYYY</option>
                                 <option value="DD/MM/YYYY">DD/MM/YYYY</option>
@@ -813,7 +813,7 @@ export default function TemplatesPage() {
                               <select
                                 value={field.currency || 'USD'}
                                 onChange={(e) => handleFieldChange(field.id, 'currency', e.target.value)}
-                                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 appearance-none cursor-pointer"
+                                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-service-documents-500 appearance-none cursor-pointer"
                               >
                                 <option value="USD">USD</option>
                                 <option value="EUR">EUR</option>
@@ -830,7 +830,7 @@ export default function TemplatesPage() {
                     {/* Add Field Button */}
                     <button
                       onClick={handleAddField}
-                      className="w-full py-3 min-h-[44px] border-2 border-dashed border-orange-300 rounded-lg text-orange-600 font-bold hover:bg-orange-50 transition-colors flex items-center justify-center gap-2"
+                      className="w-full py-3 min-h-[44px] border-2 border-dashed border-service-documents-300 rounded-lg text-service-documents-600 font-bold hover:bg-service-documents-50 transition-colors flex items-center justify-center gap-2"
                     >
                       <Plus size={20} />
                       Add Field
@@ -866,7 +866,7 @@ export default function TemplatesPage() {
                             validation: { ...prev.validation, requireFields: e.target.checked }
                           }))
                         }
-                        className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer"
+                        className="w-4 h-4 rounded border-gray-300 text-service-documents-500 focus:ring-orange-500 cursor-pointer"
                       />
                       <div>
                         <label className="text-sm font-bold text-dark cursor-pointer">Require All Fields</label>
@@ -884,7 +884,7 @@ export default function TemplatesPage() {
                             validation: { ...prev.validation, trimWhitespace: e.target.checked }
                           }))
                         }
-                        className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer"
+                        className="w-4 h-4 rounded border-gray-300 text-service-documents-500 focus:ring-orange-500 cursor-pointer"
                       />
                       <div>
                         <label className="text-sm font-bold text-dark cursor-pointer">Trim Whitespace</label>
@@ -902,7 +902,7 @@ export default function TemplatesPage() {
                             validation: { ...prev.validation, autoCapitalize: e.target.checked }
                           }))
                         }
-                        className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer"
+                        className="w-4 h-4 rounded border-gray-300 text-service-documents-500 focus:ring-orange-500 cursor-pointer"
                       />
                       <div>
                         <label className="text-sm font-bold text-dark cursor-pointer">Auto-capitalize</label>
@@ -942,7 +942,7 @@ export default function TemplatesPage() {
                           }
                           className={`flex-1 py-2 rounded text-xs font-bold transition-colors ${
                             formData.preview.layout === 'single'
-                              ? 'bg-orange-500 text-white'
+                              ? 'bg-service-documents-500 text-white'
                               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                           }`}
                         >
@@ -957,7 +957,7 @@ export default function TemplatesPage() {
                           }
                           className={`flex-1 py-2 rounded text-xs font-bold transition-colors ${
                             formData.preview.layout === 'multi'
-                              ? 'bg-orange-500 text-white'
+                              ? 'bg-service-documents-500 text-white'
                               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                           }`}
                         >
@@ -992,7 +992,7 @@ export default function TemplatesPage() {
                       <button
                         onClick={handleExportJSON}
                         disabled={!formData.basicInfo.name}
-                        className="flex-1 py-2 px-3 bg-blue-500 text-white rounded-lg text-xs font-bold hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        className="flex-1 py-2 px-3 bg-primary-500 text-white rounded-lg text-xs font-bold hover:bg-primary-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                       >
                         <Download size={16} />
                         Export JSON

@@ -131,7 +131,7 @@ export default function ExtractedDataPage() {
 
   const getConfidenceColor = (confidence: number) => {
     if (confidence >= 95) return 'text-green-600';
-    if (confidence >= 85) return 'text-blue-600';
+    if (confidence >= 85) return 'text-primary-600';
     if (confidence >= 75) return 'text-amber-600';
     return 'text-red-600';
   };
@@ -154,12 +154,12 @@ export default function ExtractedDataPage() {
       <div className="p-8 bg-white dark:bg-slate-900">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-blue-400/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-primary-400/20 dark:border-primary-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FileText size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
+              <TrendingUp size={20} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.totalExtracted}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Total Extracted</p>
@@ -187,12 +187,12 @@ export default function ExtractedDataPage() {
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Pending Review</p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-400/10 to-purple-600/10 dark:from-purple-500/20 dark:to-purple-700/20 rounded-2xl p-card-md border-2 border-purple-400/20 dark:border-purple-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
+          <div className="bg-gradient-to-br from-purple-400/10 to-purple-600/10 dark:from-purple-500/20 dark:to-purple-700/20 rounded-2xl p-card-md border-2 border-accent-400/20 dark:border-accent-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105">
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                 <BarChart3 size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-purple-500 dark:text-purple-400" />
+              <TrendingUp size={20} className="text-accent-500 dark:text-accent-400" />
             </div>
             <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{stats.avgConfidence}%</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Avg Confidence</p>
@@ -210,7 +210,7 @@ export default function ExtractedDataPage() {
                 placeholder="Search by document name or job ID..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full ps-12 pe-4 py-3 border-2 border-gray-200 dark:border-slate-700 rounded-xl focus:border-blue-500 focus:outline-none transition-all duration-300"
+                className="w-full ps-12 pe-4 py-3 border-2 border-gray-200 dark:border-slate-700 rounded-xl focus:border-primary-500 focus:outline-none transition-all duration-300"
               />
             </div>
 
@@ -220,7 +220,7 @@ export default function ExtractedDataPage() {
               <select
                 value={filterTemplate}
                 onChange={(e) => setFilterTemplate(e.target.value)}
-                className="flex-1 px-4 py-3 border-2 border-gray-200 dark:border-slate-700 rounded-xl focus:border-blue-500 focus:outline-none transition-all duration-300 text-dark dark:text-white font-semibold"
+                className="flex-1 px-4 py-3 border-2 border-gray-200 dark:border-slate-700 rounded-xl focus:border-primary-500 focus:outline-none transition-all duration-300 text-dark dark:text-white font-semibold"
               >
                 <option value="all">All Templates</option>
                 {templates.map(template => (
@@ -256,7 +256,7 @@ export default function ExtractedDataPage() {
                       </span>
                     </div>
                     <p className="text-sm text-text-secondary dark:text-slate-300">
-                      Template: <span className="font-semibold">{data.template}</span> • Job ID: <span className="font-semibold text-blue-600 dark:text-blue-400">{data.jobId}</span> • Extracted: <span className="font-semibold">{data.extractedAt}</span>
+                      Template: <span className="font-semibold">{data.template}</span> • Job ID: <span className="font-semibold text-primary-600 dark:text-primary-400">{data.jobId}</span> • Extracted: <span className="font-semibold">{data.extractedAt}</span>
                     </p>
                   </div>
                 </div>
@@ -277,10 +277,10 @@ export default function ExtractedDataPage() {
                       }}
                       className="p-3 hover:bg-light-bg dark:bg-slate-700 rounded-lg transition-all duration-300"
                     >
-                      <Eye size={20} className="text-blue-600 dark:text-blue-400" />
+                      <Eye size={20} className="text-primary-600 dark:text-primary-400" />
                     </button>
                     <button className="p-3 hover:bg-light-bg dark:bg-slate-700 rounded-lg transition-all duration-300">
-                      <Download size={20} className="text-text-secondary hover:text-blue-600 dark:text-blue-400" />
+                      <Download size={20} className="text-text-secondary hover:text-primary-600 dark:text-primary-400" />
                     </button>
                   </div>
                 </div>
@@ -328,7 +328,7 @@ export default function ExtractedDataPage() {
               </div>
 
               {/* Status Bar */}
-              <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 mb-6 border-s-4 border-blue-500">
+              <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 mb-6 border-s-4 border-primary-500">
                 <div className="grid grid-cols-3 gap-4">
                   <div>
                     <p className="text-xs text-text-secondary mb-1">Status</p>
@@ -361,9 +361,9 @@ export default function ExtractedDataPage() {
                         type="text"
                         value={field.value}
                         readOnly
-                        className="flex-1 px-3 py-2 border-2 border-gray-200 dark:border-slate-700 rounded-lg bg-white text-dark dark:text-white font-semibold focus:border-blue-500 focus:outline-none"
+                        className="flex-1 px-3 py-2 border-2 border-gray-200 dark:border-slate-700 rounded-lg bg-white text-dark dark:text-white font-semibold focus:border-primary-500 focus:outline-none"
                       />
-                      <button className="p-2 hover:bg-blue-100 rounded-lg transition-all duration-300 text-blue-600 dark:text-blue-400">
+                      <button className="p-2 hover:bg-primary-100 rounded-lg transition-all duration-300 text-primary-600 dark:text-primary-400">
                         <Copy size={18} />
                       </button>
                     </div>

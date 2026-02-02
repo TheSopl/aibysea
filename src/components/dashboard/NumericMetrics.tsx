@@ -47,7 +47,7 @@ const MetricCard = ({ icon, label, value, iconBgColor, iconColor }: MetricCardPr
 const AIStateBadge = ({ state }: { state: string }) => {
   const stateStyles = {
     idle: 'bg-gray-100 text-gray-700 border-gray-300',
-    thinking: 'bg-purple-100 text-purple-700 border-purple-300',
+    thinking: 'bg-accent-100 text-accent-700 border-accent-300',
     responding: 'bg-primary/10 text-primary border-primary/30',
     waiting: 'bg-amber-100 text-amber-700 border-amber-300',
   };

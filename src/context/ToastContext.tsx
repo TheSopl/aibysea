@@ -79,7 +79,7 @@ function ToastContainer({ toasts, onRemove }: { toasts: Toast[]; onRemove: (id: 
       case 'warning':
         return 'bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-200';
       default:
-        return 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-200';
+        return 'bg-primary-50 dark:bg-primary-900/20 border-primary-200 dark:border-primary-800 text-primary-800 dark:text-primary-200';
     }
   };
 
@@ -92,7 +92,7 @@ function ToastContainer({ toasts, onRemove }: { toasts: Toast[]; onRemove: (id: 
       case 'warning':
         return 'text-amber-600 dark:text-amber-400';
       default:
-        return 'text-blue-600 dark:text-blue-400';
+        return 'text-primary-600 dark:text-primary-400';
     }
   };
 

@@ -136,7 +136,7 @@ export default function PhoneNumbersPage() {
         {/* Summary Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 lg:mb-8">
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 border-2 border-teal-200/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 border-2 border-service-voice-200/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0s both'
             }}
@@ -145,14 +145,14 @@ export default function PhoneNumbersPage() {
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
                 <Phone size={20} className="sm:w-6 sm:h-6 text-white" />
               </div>
-              <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
+              <TrendingUp size={16} className="sm:w-5 sm:h-5 text-service-voice-600" />
             </div>
             <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{activeCount}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('activeNumbers')}</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 border-2 border-teal-200/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 border-2 border-service-voice-200/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.1s both'
             }}
@@ -161,14 +161,14 @@ export default function PhoneNumbersPage() {
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
                 <DollarSign size={20} className="sm:w-6 sm:h-6 text-white" />
               </div>
-              <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
+              <TrendingUp size={16} className="sm:w-5 sm:h-5 text-service-voice-600" />
             </div>
             <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">${totalCost.toFixed(2)}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('monthlyCost')}</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 border-2 border-teal-200/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 border-2 border-service-voice-200/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.2s both'
             }}
@@ -177,14 +177,14 @@ export default function PhoneNumbersPage() {
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
                 <Phone size={20} className="sm:w-6 sm:h-6 text-white" />
               </div>
-              <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
+              <TrendingUp size={16} className="sm:w-5 sm:h-5 text-service-voice-600" />
             </div>
             <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{pendingCount}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('pending')}</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 border-2 border-teal-200/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 border-2 border-service-voice-200/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.3s both'
             }}
@@ -193,7 +193,7 @@ export default function PhoneNumbersPage() {
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
                 <Phone size={20} className="sm:w-6 sm:h-6 text-white" />
               </div>
-              <TrendingUp size={16} className="sm:w-5 sm:h-5 text-teal-600" />
+              <TrendingUp size={16} className="sm:w-5 sm:h-5 text-service-voice-600" />
             </div>
             <h3 className="text-heading-2 sm:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{testCount}</h3>
             <p className="text-xs sm:text-sm text-text-secondary font-bold">{t('test')}</p>
@@ -222,7 +222,7 @@ export default function PhoneNumbersPage() {
             return (
               <div
                 key={phone.id}
-                className={`bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 border-2 hover:shadow-xl transition-all duration-300 border-transparent hover:border-teal-200 ${
+                className={`bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 border-2 hover:shadow-xl transition-all duration-300 border-transparent hover:border-service-voice-200 ${
                   isPaused ? 'opacity-75' : ''
                 }`}
                 style={{
@@ -275,7 +275,7 @@ export default function PhoneNumbersPage() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-xs sm:text-sm text-text-secondary dark:text-slate-300">Conversions</span>
-                    <span className="text-xs sm:text-sm font-semibold text-teal-600">{phone.conversions}</span>
+                    <span className="text-xs sm:text-sm font-semibold text-service-voice-600">{phone.conversions}</span>
                   </div>
                 </div>
 
@@ -305,7 +305,7 @@ export default function PhoneNumbersPage() {
                     </button>
                   )}
                   <button className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-colors group flex items-center justify-center" title="Edit">
-                    <Edit size={18} className="text-text-secondary group-hover:text-teal-600 group-hover:scale-110 transition-all" />
+                    <Edit size={18} className="text-text-secondary group-hover:text-service-voice-600 group-hover:scale-110 transition-all" />
                   </button>
                   <button className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors group flex items-center justify-center" title="Delete">
                     <Trash
@@ -315,7 +315,7 @@ export default function PhoneNumbersPage() {
                     />
                   </button>
                   <button className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-colors group flex items-center justify-center" title="Settings">
-                    <SettingsIcon size={18} className="text-text-secondary group-hover:text-teal-600 group-hover:scale-110 transition-all" />
+                    <SettingsIcon size={18} className="text-text-secondary group-hover:text-service-voice-600 group-hover:scale-110 transition-all" />
                   </button>
                 </div>
               </div>

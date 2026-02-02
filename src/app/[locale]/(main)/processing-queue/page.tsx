@@ -262,56 +262,56 @@ export default function ProcessingQueuePage() {
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-primary-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0s both' }}
           >
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Activity size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
+              <TrendingUp size={20} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{activeJobs}</h3>
             <p className="text-sm text-text-secondary font-bold">Active Jobs</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-primary-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.1s both' }}
           >
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <BarChart3 size={20} className="text-blue-500 dark:text-blue-400" />
+              <BarChart3 size={20} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{completedToday}</h3>
             <p className="text-sm text-text-secondary font-bold">Completed Today</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-primary-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.2s both' }}
           >
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
+              <TrendingUp size={20} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{failedJobs}</h3>
             <p className="text-sm text-text-secondary font-bold">Failed Jobs</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-primary-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{ animation: 'scaleIn 0.5s ease-out 0.3s both' }}
           >
             <div className="flex items-center justify-between mb-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Clock size={24} className="text-white" />
               </div>
-              <Zap size={20} className="text-blue-500 dark:text-blue-400" />
+              <Zap size={20} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-heading-2 font-extrabold text-dark dark:text-white mb-1">{avgProcessingTime}</h3>
             <p className="text-sm text-text-secondary font-bold">Avg Processing Time</p>
@@ -358,7 +358,7 @@ export default function ProcessingQueuePage() {
               onClick={() => setSelectedTab(tab.id)}
               className={`pb-4 px-4 font-bold text-sm relative transition-all ${
                 selectedTab === tab.id
-                  ? 'text-blue-500'
+                  ? 'text-primary-500'
                   : 'text-text-secondary hover:text-dark'
               }`}
             >
@@ -378,7 +378,7 @@ export default function ProcessingQueuePage() {
                 <div
                   key={job.id}
                   onClick={() => setSelectedJob(job)}
-                  className={`p-6 cursor-pointer transition-all duration-300 hover:bg-blue-50/30 border-s-4 ${
+                  className={`p-6 cursor-pointer transition-all duration-300 hover:bg-primary-50/30 border-s-4 ${
                     job.status === 'processing'
                       ? 'border-s-orange-400 hover:shadow-md'
                       : job.status === 'completed'
@@ -386,7 +386,7 @@ export default function ProcessingQueuePage() {
                       : job.status === 'failed'
                       ? 'border-s-red-400'
                       : 'border-s-gray-300'
-                  } ${selectedJob?.id === job.id ? 'bg-orange-50 shadow-md' : ''}`}
+                  } ${selectedJob?.id === job.id ? 'bg-service-documents-50 shadow-md' : ''}`}
                   style={{ animation: `slideInFromLeft 0.3s ease-out ${index * 0.05}s both` }}
                 >
                   <div className="flex items-start gap-4 mb-4">
@@ -456,7 +456,7 @@ export default function ProcessingQueuePage() {
                           <div className="col-span-full">
                             <div className="flex items-center justify-between mb-1">
                               <span className="text-xs font-bold text-text-secondary dark:text-slate-300">Progress</span>
-                              <span className="text-xs font-bold text-blue-600">{job.progress}%</span>
+                              <span className="text-xs font-bold text-primary-600">{job.progress}%</span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
                               <div
@@ -498,7 +498,7 @@ export default function ProcessingQueuePage() {
                       )}
                       {job.status === 'failed' && (
                         <button className="p-2 hover:bg-light-bg rounded-lg transition-colors" title="Retry">
-                          <Play size={18} className="text-blue-500 dark:text-blue-400" />
+                          <Play size={18} className="text-primary-500 dark:text-primary-400" />
                         </button>
                       )}
                       {job.status === 'completed' && (

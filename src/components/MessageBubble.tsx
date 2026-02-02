@@ -28,7 +28,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
           className={`px-4 py-2 ${
             isInbound
               ? 'bg-gray-100 text-gray-900 rounded-lg rounded-tl-none'
-              : 'bg-blue-500 text-white rounded-lg rounded-tr-none'
+              : 'bg-primary-500 text-white rounded-lg rounded-tr-none'
           }`}
         >
           <p className="whitespace-pre-wrap break-words">{message.content}</p>
@@ -42,7 +42,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
             {formatTime(message.created_at)}
           </span>
           {isAI && (
-            <span className="text-xs bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded">
+            <span className="text-xs bg-accent-100 text-accent-700 px-1.5 py-0.5 rounded">
               AI
             </span>
           )}

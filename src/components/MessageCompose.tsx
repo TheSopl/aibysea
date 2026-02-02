@@ -82,7 +82,7 @@ export function MessageCompose({ conversationId, channel, onMessageSent }: Messa
         <button
           onClick={handleSubmit}
           disabled={!message.trim() || isPending}
-          className="bg-blue-500 text-white rounded-lg px-4 py-2 min-h-[44px] min-w-[44px] font-medium hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+          className="bg-primary-500 text-white rounded-lg px-4 py-2 min-h-[44px] min-w-[44px] font-medium hover:bg-primary-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
         >
           {isPending ? (
             <>

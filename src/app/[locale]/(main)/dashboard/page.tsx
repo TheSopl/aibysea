@@ -16,7 +16,7 @@ const serviceCards = [
     subtitle: 'Multi-channel (WhatsApp, Telegram, Facebook)',
     icon: MessageSquare,
     gradient: 'from-blue-600 to-blue-400',
-    borderColor: 'border-blue-500',
+    borderColor: 'border-primary-500',
     buttonText: 'View Inbox',
   },
   {
@@ -27,7 +27,7 @@ const serviceCards = [
     subtitle: 'Phone answering & outbound',
     icon: Phone,
     gradient: 'from-blue-600 to-blue-400',
-    borderColor: 'border-blue-500',
+    borderColor: 'border-primary-500',
     buttonText: 'Manage Voice',
   },
   {
@@ -38,7 +38,7 @@ const serviceCards = [
     subtitle: 'Invoice, contract, and data extraction',
     icon: FileText,
     gradient: 'from-blue-600 to-blue-400',
-    borderColor: 'border-blue-500',
+    borderColor: 'border-primary-500',
     buttonText: 'Process Documents',
   },
 ];
@@ -186,7 +186,7 @@ export default function DashboardPage() {
       subtitle: t('multiChannelSubtitle'),
       icon: MessageSquare,
       gradient: 'from-blue-600 to-blue-400',
-      borderColor: 'border-blue-500',
+      borderColor: 'border-primary-500',
       buttonText: t('viewInbox'),
     },
     {
@@ -197,7 +197,7 @@ export default function DashboardPage() {
       subtitle: t('phoneAnsweringSubtitle'),
       icon: Phone,
       gradient: 'from-blue-600 to-blue-400',
-      borderColor: 'border-blue-500',
+      borderColor: 'border-primary-500',
       buttonText: t('manageVoice'),
     },
     {
@@ -208,7 +208,7 @@ export default function DashboardPage() {
       subtitle: t('invoiceContractSubtitle'),
       icon: FileText,
       gradient: 'from-blue-600 to-blue-400',
-      borderColor: 'border-blue-500',
+      borderColor: 'border-primary-500',
       buttonText: t('processDocuments'),
     },
   ];
@@ -360,7 +360,7 @@ export default function DashboardPage() {
           >
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <h3 className="text-base md:text-heading-3 font-extrabold text-dark dark:text-white">{t('aiAgentPerformance')}</h3>
-              <button className="text-xs md:text-sm text-primary dark:text-blue-400 font-semibold hover:underline transition-all duration-300">{t('viewDetails')}</button>
+              <button className="text-xs md:text-sm text-primary dark:text-primary-400 font-semibold hover:underline transition-all duration-300">{t('viewDetails')}</button>
             </div>
             <div className="h-[180px] tablet:h-[240px] lg:h-[300px]">
               <ResponsiveContainer width="100%" height="100%">

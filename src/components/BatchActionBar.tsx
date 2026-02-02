@@ -20,10 +20,10 @@ export function BatchActionBar({
   if (count === 0) return null;
 
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-4 flex items-center gap-4 z-40 animate-slide-in border-2 border-blue-500 dark:border-blue-600">
+    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-4 flex items-center gap-4 z-40 animate-slide-in border-2 border-primary-500 dark:border-primary-600">
       {/* Count Info */}
-      <div className="px-4 py-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-        <p className="text-sm font-bold text-blue-600 dark:text-blue-400">
+      <div className="px-4 py-2 bg-primary-50 dark:bg-primary-900/30 rounded-lg">
+        <p className="text-sm font-bold text-primary-600 dark:text-primary-400">
           {count} selected
         </p>
       </div>

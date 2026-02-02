@@ -83,7 +83,7 @@ export default function VoiceAgentsPage() {
         {/* Stats Overview */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 lg:mb-8">
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border-2 border-teal-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border-2 border-service-voice-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0s both'
             }}
@@ -92,14 +92,14 @@ export default function VoiceAgentsPage() {
               <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
               </div>
-              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-teal-500" />
+              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-service-voice-500" />
             </div>
             <h3 className="text-xl sm:text-heading-2 lg:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">{activeAgentsCount}</h3>
             <p className="text-[10px] sm:text-xs lg:text-sm text-text-secondary font-bold">{t('activeVoiceAgents')}</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border-2 border-teal-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border-2 border-service-voice-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.1s both'
             }}
@@ -108,7 +108,7 @@ export default function VoiceAgentsPage() {
               <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
                 <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
               </div>
-              <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-teal-500" />
+              <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-service-voice-500" />
             </div>
             <h3 className="text-xl sm:text-heading-2 lg:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
               {totalCallsHandled.toLocaleString()}
@@ -117,7 +117,7 @@ export default function VoiceAgentsPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border-2 border-teal-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border-2 border-service-voice-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.2s both'
             }}
@@ -126,7 +126,7 @@ export default function VoiceAgentsPage() {
               <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
                 <Clock className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
               </div>
-              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-teal-500" />
+              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-service-voice-500" />
             </div>
             <h3 className="text-xl sm:text-heading-2 lg:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
               {avgCallDuration}m
@@ -135,7 +135,7 @@ export default function VoiceAgentsPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border-2 border-teal-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border-2 border-service-voice-400/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.3s both'
             }}
@@ -144,7 +144,7 @@ export default function VoiceAgentsPage() {
               <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
               </div>
-              <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 text-teal-500" />
+              <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 text-service-voice-500" />
             </div>
             <h3 className="text-xl sm:text-heading-2 lg:text-heading-1 font-extrabold text-dark dark:text-white mb-0.5 sm:mb-1">
               {avgSuccessRate}%
@@ -176,7 +176,7 @@ export default function VoiceAgentsPage() {
                     onClick={() => setSelectedAgent(agent)}
                     className={`p-3 sm:p-4 lg:p-5 rounded-lg sm:rounded-xl cursor-pointer transition-all duration-500 border-2 hover:scale-[1.01] sm:hover:scale-[1.02] min-h-[72px] ${
                       selectedAgent?.id === agent.id
-                        ? 'bg-gradient-to-r from-teal-400/5 to-teal-600/5 border-teal-400/30 shadow-xl'
+                        ? 'bg-gradient-to-r from-teal-400/5 to-teal-600/5 border-service-voice-400/30 shadow-xl'
                         : 'bg-light-bg dark:bg-slate-700/50 border-transparent hover:border-gray-200 dark:hover:border-slate-600 hover:shadow-lg'
                     }`}
                     style={{
@@ -214,7 +214,7 @@ export default function VoiceAgentsPage() {
                           </button>
                         )}
                         <button className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-light-bg rounded-lg transition-colors group flex items-center justify-center">
-                          <Edit size={18} className="text-text-secondary group-hover:text-teal-500 group-hover:scale-110 transition-all" />
+                          <Edit size={18} className="text-text-secondary group-hover:text-service-voice-500 group-hover:scale-110 transition-all" />
                         </button>
                         <button className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-red/10 rounded-lg transition-colors group flex items-center justify-center">
                           <Trash size={18} className="text-red group-hover:scale-110 transition-transform" />
@@ -241,11 +241,11 @@ export default function VoiceAgentsPage() {
                       </div>
                       <div className="bg-white/50 dark:bg-slate-800/50 rounded-lg p-2 sm:p-0 sm:bg-transparent">
                         <p className="text-[10px] sm:text-xs text-text-secondary font-bold uppercase tracking-wider mb-0.5 sm:mb-1">{t('success')}</p>
-                        <p className="text-sm sm:text-base lg:text-lg font-extrabold text-teal-500">{agent.successRate}%</p>
+                        <p className="text-sm sm:text-base lg:text-lg font-extrabold text-service-voice-500">{agent.successRate}%</p>
                       </div>
                       <div className="bg-white/50 dark:bg-slate-800/50 rounded-lg p-2 sm:p-0 sm:bg-transparent">
                         <p className="text-[10px] sm:text-xs text-text-secondary font-bold uppercase tracking-wider mb-0.5 sm:mb-1">{t('active')}</p>
-                        <p className="text-sm sm:text-base lg:text-lg font-extrabold text-teal-600">{agent.activeCalls}</p>
+                        <p className="text-sm sm:text-base lg:text-lg font-extrabold text-service-voice-600">{agent.activeCalls}</p>
                       </div>
                     </div>
                   </div>
@@ -310,7 +310,7 @@ export default function VoiceAgentsPage() {
                       <div>
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-xs font-bold text-dark dark:text-white">{t('successRate')}</span>
-                          <span className="text-xs font-bold text-teal-500">{selectedAgent.successRate}%</span>
+                          <span className="text-xs font-bold text-service-voice-500">{selectedAgent.successRate}%</span>
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2.5">
                           <div
@@ -327,7 +327,7 @@ export default function VoiceAgentsPage() {
                         </div>
                         <div className="bg-light-bg dark:bg-slate-700/50 rounded-lg p-3">
                           <p className="text-xs text-text-secondary font-bold mb-1">{t('activeNow')}</p>
-                          <p className="text-heading-3 font-extrabold text-teal-600">{selectedAgent.activeCalls}</p>
+                          <p className="text-heading-3 font-extrabold text-service-voice-600">{selectedAgent.activeCalls}</p>
                         </div>
                       </div>
                     </div>

@@ -294,7 +294,7 @@ export default function CallLogsPage() {
                   onClick={() => setStatusFilter(status)}
                   className={`px-3 py-1.5 min-h-[36px] text-xs font-bold rounded-lg transition-all ${
                     statusFilter === status
-                      ? 'bg-teal-500 text-white shadow-md'
+                      ? 'bg-service-voice-500 text-white shadow-md'
                       : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                   }`}
                 >
@@ -312,7 +312,7 @@ export default function CallLogsPage() {
                   onClick={() => setDirectionFilter(direction)}
                   className={`px-3 py-1.5 min-h-[36px] text-xs font-bold rounded-lg transition-all ${
                     directionFilter === direction
-                      ? 'bg-teal-500 text-white shadow-md'
+                      ? 'bg-service-voice-500 text-white shadow-md'
                       : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                   }`}
                 >
@@ -350,7 +350,7 @@ export default function CallLogsPage() {
                 key={call.id}
                 onClick={() => setSelectedCall(call)}
                 className={`p-3 sm:p-4 min-h-[72px] border-b border-gray-100 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:bg-gray-50 dark:hover:bg-slate-700 ${
-                  selectedCall?.id === call.id ? 'bg-teal-50 dark:bg-slate-700 border-s-4 border-s-teal-500 shadow-md' : ''
+                  selectedCall?.id === call.id ? 'bg-service-voice-50 dark:bg-slate-700 border-s-4 border-s-teal-500 shadow-md' : ''
                 }`}
                 style={{
                   animation: `slideInFromLeft 0.3s ease-out ${index * 0.05}s both`
@@ -361,9 +361,9 @@ export default function CallLogsPage() {
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         {call.direction === 'inbound' ? (
-                          <Phone size={16} className="text-teal-600" />
+                          <Phone size={16} className="text-service-voice-600" />
                         ) : (
-                          <Phone size={16} className="text-teal-600 rotate-180" />
+                          <Phone size={16} className="text-service-voice-600 rotate-180" />
                         )}
                         <span className="font-bold text-dark dark:text-white text-sm">{call.callerName}</span>
                         <span className="text-xs text-gray-500">{call.callerId}</span>
@@ -453,7 +453,7 @@ export default function CallLogsPage() {
                   {selectedCall.transcription.map((line, idx) => (
                     <div key={idx} className={`p-3 rounded-lg text-sm ${
                       line.speaker === 'Agent'
-                        ? 'bg-teal-100 text-teal-900 border-s-4 border-teal-500'
+                        ? 'bg-service-voice-100 text-service-voice-900 border-s-4 border-service-voice-500'
                         : 'bg-gray-100 text-gray-900'
                     }`}>
                       <span className="font-bold text-xs uppercase block mb-1">
@@ -469,10 +469,10 @@ export default function CallLogsPage() {
               <div className="p-4 border-b border-gray-200 dark:border-slate-700">
                 <h4 className="font-bold text-dark dark:text-white text-sm mb-3">{t('callTimeline')}</h4>
                 <div className="space-y-3 relative ps-6">
-                  <div className="absolute start-2 top-0 bottom-0 w-0.5 bg-teal-300"></div>
+                  <div className="absolute start-2 top-0 bottom-0 w-0.5 bg-service-voice-300"></div>
                   {selectedCall.events.map((event, idx) => (
                     <div key={idx} className="relative">
-                      <div className="absolute -start-3.5 top-0.5 w-3 h-3 bg-teal-500 rounded-full border-2 border-white dark:border-slate-800 shadow-md"></div>
+                      <div className="absolute -start-3.5 top-0.5 w-3 h-3 bg-service-voice-500 rounded-full border-2 border-white dark:border-slate-800 shadow-md"></div>
                       <div>
                         <p className="text-sm font-bold text-dark dark:text-white">{event.action}</p>
                         <p className="text-xs text-gray-500 dark:text-slate-400">{event.time}</p>
@@ -500,7 +500,7 @@ export default function CallLogsPage() {
                   <label className="text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider">{t('keywords')}</label>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {getKeywords(selectedCall).map((keyword, idx) => (
-                      <span key={idx} className="px-2 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-bold">
+                      <span key={idx} className="px-2 py-1 bg-service-voice-100 text-service-voice-700 rounded-full text-xs font-bold">
                         {keyword}
                       </span>
                     ))}
@@ -521,7 +521,7 @@ export default function CallLogsPage() {
 
             {/* Action Buttons */}
             <div className="p-4 pb-safe border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 space-y-2 sticky bottom-0">
-              <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-teal-500 text-white rounded-lg font-bold text-sm hover:bg-teal-600 transition-all hover:shadow-lg">
+              <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-service-voice-500 text-white rounded-lg font-bold text-sm hover:bg-service-voice-600 transition-all hover:shadow-lg">
                 <Download size={18} />
                 {t('downloadRecording')}
               </button>
@@ -538,8 +538,8 @@ export default function CallLogsPage() {
         ) : (
           <div className="flex-1 bg-gradient-to-br from-gray-50 dark:from-slate-900 to-white dark:to-slate-900 flex items-center justify-center">
             <div className="text-center">
-              <div className="w-24 h-24 mx-auto mb-6 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
-                <Phone size={48} className="text-teal-600 dark:text-teal-400" />
+              <div className="w-24 h-24 mx-auto mb-6 bg-service-voice-100 dark:bg-service-voice-900/30 rounded-full flex items-center justify-center">
+                <Phone size={48} className="text-service-voice-600 dark:text-service-voice-400" />
               </div>
               <h3 className="text-heading-2 font-extrabold text-dark dark:text-white mb-2">{t('selectCall')}</h3>
               <p className="text-gray-600 dark:text-slate-400">{t('selectCallHint')}</p>

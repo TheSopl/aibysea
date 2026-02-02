@@ -80,7 +80,7 @@ export default function VoiceSettingsPage() {
 
       <div className="p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
         {/* Greeting Settings */}
-        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-service-voice-200/50 transition-all duration-300">
           <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-200 dark:border-slate-700">
             <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
               <span className="text-white font-bold text-base sm:text-lg">1</span>
@@ -118,7 +118,7 @@ export default function VoiceSettingsPage() {
                 value={settings.greetingMessage}
                 onChange={(e) => handleInputChange('greetingMessage', e.target.value)}
                 rows={3}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 resize-none text-sm"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-service-voice-500 resize-none text-sm"
                 placeholder="Enter greeting message..."
               />
               <p className="text-xs text-text-secondary mt-2">Max 500 characters</p>
@@ -131,7 +131,7 @@ export default function VoiceSettingsPage() {
                 <select
                   value={settings.language}
                   onChange={(e) => handleInputChange('language', e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 text-sm appearance-none cursor-pointer"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-service-voice-500 text-sm appearance-none cursor-pointer"
                 >
                   {languages.map(lang => (
                     <option key={lang} value={lang}>{lang}</option>
@@ -145,7 +145,7 @@ export default function VoiceSettingsPage() {
         </div>
 
         {/* Voicemail Settings */}
-        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-service-voice-200/50 transition-all duration-300">
           <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-200 dark:border-slate-700">
             <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
               <span className="text-white font-bold text-base sm:text-lg">2</span>
@@ -183,7 +183,7 @@ export default function VoiceSettingsPage() {
                 value={settings.voicemailGreeting}
                 onChange={(e) => handleInputChange('voicemailGreeting', e.target.value)}
                 rows={3}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 resize-none text-sm"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-service-voice-500 resize-none text-sm"
                 placeholder="Enter voicemail greeting..."
               />
               <p className="text-xs text-text-secondary mt-2">Max 500 characters</p>
@@ -199,7 +199,7 @@ export default function VoiceSettingsPage() {
                   onChange={(e) => handleInputChange('maxVoicemailDuration', parseInt(e.target.value))}
                   min="30"
                   max="600"
-                  className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 text-sm"
+                  className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-service-voice-500 text-sm"
                 />
                 <span className="text-sm text-text-secondary font-semibold">seconds</span>
               </div>
@@ -231,7 +231,7 @@ export default function VoiceSettingsPage() {
         </div>
 
         {/* Call Routing Settings */}
-        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-service-voice-200/50 transition-all duration-300">
           <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-200 dark:border-slate-700">
             <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
               <span className="text-white font-bold text-base sm:text-lg">3</span>
@@ -247,7 +247,7 @@ export default function VoiceSettingsPage() {
                 <select
                   value={settings.defaultAgent}
                   onChange={(e) => handleInputChange('defaultAgent', e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 text-sm appearance-none cursor-pointer"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-service-voice-500 text-sm appearance-none cursor-pointer"
                 >
                   {voiceAgents.map(agent => (
                     <option key={agent} value={agent}>{agent}</option>
@@ -265,7 +265,7 @@ export default function VoiceSettingsPage() {
                 <select
                   value={settings.queueBehavior}
                   onChange={(e) => handleInputChange('queueBehavior', e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 text-sm appearance-none cursor-pointer"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-service-voice-500 text-sm appearance-none cursor-pointer"
                 >
                   {queueBehaviors.map(behavior => (
                     <option key={behavior} value={behavior}>{behavior}</option>
@@ -286,7 +286,7 @@ export default function VoiceSettingsPage() {
                   onChange={(e) => handleInputChange('maxConcurrentCalls', parseInt(e.target.value))}
                   min="1"
                   max="1000"
-                  className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 text-sm"
+                  className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-service-voice-500 text-sm"
                 />
                 <span className="text-sm text-text-secondary font-semibold">calls</span>
               </div>
@@ -303,7 +303,7 @@ export default function VoiceSettingsPage() {
                   onChange={(e) => handleInputChange('callTimeout', parseInt(e.target.value))}
                   min="10"
                   max="600"
-                  className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 text-sm"
+                  className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-service-voice-500 text-sm"
                 />
                 <span className="text-sm text-text-secondary font-semibold">seconds</span>
               </div>
@@ -313,7 +313,7 @@ export default function VoiceSettingsPage() {
         </div>
 
         {/* Advanced Settings */}
-        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-teal-200/50 transition-all duration-300">
+        <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-4 sm:mb-6 border-2 border-transparent hover:border-service-voice-200/50 transition-all duration-300">
           <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-200 dark:border-slate-700">
             <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
               <span className="text-white font-bold text-base sm:text-lg">4</span>
@@ -373,7 +373,7 @@ export default function VoiceSettingsPage() {
                 type="text"
                 value={settings.callTransferRules}
                 onChange={(e) => handleInputChange('callTransferRules', e.target.value)}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 text-sm"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-service-voice-500 text-sm"
                 placeholder="Enter transfer rules..."
               />
               <p className="text-xs text-text-secondary mt-2">Define rules for call transfers between departments</p>
@@ -386,7 +386,7 @@ export default function VoiceSettingsPage() {
                 type="text"
                 value={settings.webhookUrl}
                 onChange={(e) => handleInputChange('webhookUrl', e.target.value)}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 text-sm"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-service-voice-500 text-sm"
                 placeholder="https://api.example.com/call-events"
               />
               <p className="text-xs text-text-secondary mt-2">Receive real-time call event notifications</p>

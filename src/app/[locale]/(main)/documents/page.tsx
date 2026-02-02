@@ -170,7 +170,7 @@ export default function DocumentsPage() {
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-blue-400 dark:border-blue-500/20 dark:border-blue-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-2xl p-card-md border-2 border-primary-400 dark:border-primary-500/20 dark:border-primary-500/40 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0s both'
             }}
@@ -179,14 +179,14 @@ export default function DocumentsPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Upload size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
+              <TrendingUp size={20} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{statistics.totalProcessed}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Documents Processed</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400 dark:border-blue-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-primary-400 dark:border-primary-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.1s both'
             }}
@@ -195,7 +195,7 @@ export default function DocumentsPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <Clock size={24} className="text-white" />
               </div>
-              <Activity size={20} className="text-blue-500 dark:text-blue-400" />
+              <Activity size={20} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">
               {statistics.avgProcessingTime}m
@@ -204,7 +204,7 @@ export default function DocumentsPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400 dark:border-blue-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-primary-400 dark:border-primary-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.2s both'
             }}
@@ -213,7 +213,7 @@ export default function DocumentsPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <CheckCircle size={24} className="text-white" />
               </div>
-              <BarChart3 size={20} className="text-blue-500 dark:text-blue-400" />
+              <BarChart3 size={20} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">
               {statistics.successRate}%
@@ -222,7 +222,7 @@ export default function DocumentsPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-blue-400 dark:border-blue-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
+            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl p-card-md border-2 border-primary-400 dark:border-primary-500/20 hover:shadow-xl transition-all duration-500 hover:scale-105"
             style={{
               animation: 'scaleIn 0.5s ease-out 0.3s both'
             }}
@@ -231,7 +231,7 @@ export default function DocumentsPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                 <AlertCircle size={24} className="text-white" />
               </div>
-              <TrendingUp size={20} className="text-blue-500 dark:text-blue-400" />
+              <TrendingUp size={20} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-heading-1 font-extrabold text-dark dark:text-white mb-1">{failedDocs}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-bold">Failed Uploads</p>
@@ -243,8 +243,8 @@ export default function DocumentsPage() {
           <div
             className={`lg:col-span-2 rounded-2xl p-8 border-2 border-dashed transition-all duration-300 ${
               dragActive
-                ? 'border-blue-500 bg-blue-50/50 dark:bg-slate-700 shadow-lg'
-                : 'border-blue-300 dark:border-slate-600 bg-blue-50/30 dark:bg-slate-700/50 hover:border-blue-400 dark:border-blue-500 hover:bg-blue-50/50 dark:bg-slate-700'
+                ? 'border-primary-500 bg-primary-50/50 dark:bg-slate-700 shadow-lg'
+                : 'border-primary-300 dark:border-slate-600 bg-primary-50/30 dark:bg-slate-700/50 hover:border-primary-400 dark:border-primary-500 hover:bg-primary-50/50 dark:bg-slate-700'
             }`}
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
@@ -280,14 +280,14 @@ export default function DocumentsPage() {
                   onClick={() => setSelectedTemplate(template)}
                   className={`w-full text-start p-4 rounded-xl transition-all duration-300 border-2 ${
                     selectedTemplate.id === template.id
-                      ? 'bg-gradient-to-r from-blue-400/10 to-blue-600/10 border-blue-400 dark:border-blue-500 shadow-lg'
-                      : 'bg-light-bg border-transparent hover:border-blue-300 dark:border-slate-600'
+                      ? 'bg-gradient-to-r from-blue-400/10 to-blue-600/10 border-primary-400 dark:border-primary-500 shadow-lg'
+                      : 'bg-light-bg border-transparent hover:border-primary-300 dark:border-slate-600'
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <FileText
                       size={18}
-                      className={selectedTemplate.id === template.id ? 'text-blue-500' : 'text-text-secondary'}
+                      className={selectedTemplate.id === template.id ? 'text-primary-500' : 'text-text-secondary'}
                     />
                     <div>
                       <h4 className="font-bold text-dark dark:text-white text-sm">{template.name}</h4>
@@ -312,7 +312,7 @@ export default function DocumentsPage() {
                 return (
                   <div
                     key={doc.id}
-                    className="p-5 border-2 border-blue-200 rounded-xl hover:shadow-lg transition-all bg-gradient-to-r from-blue-50 to-transparent"
+                    className="p-5 border-2 border-primary-200 rounded-xl hover:shadow-lg transition-all bg-gradient-to-r from-blue-50 to-transparent"
                     style={{
                       animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
                     }}
@@ -336,7 +336,7 @@ export default function DocumentsPage() {
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs font-bold text-text-secondary">Progress</span>
-                          <span className="text-xs font-bold text-blue-600">{doc.progress}%</span>
+                          <span className="text-xs font-bold text-primary-600">{doc.progress}%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inset">
                           <div
@@ -371,7 +371,7 @@ export default function DocumentsPage() {
                     ? 'bg-green-50/30 border-green-200'
                     : upload.status === 'failed'
                       ? 'bg-red-50/30 border-red-200'
-                      : 'bg-blue-50/30 dark:bg-slate-700/50 border-blue-200'
+                      : 'bg-primary-50/30 dark:bg-slate-700/50 border-primary-200'
                 }`}
                 style={{
                   animation: `fadeIn 0.5s ease-out ${0.6 + index * 0.1}s both`
@@ -423,7 +423,7 @@ export default function DocumentsPage() {
                   <div className="mb-4">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-bold text-text-secondary">Processing Status</span>
-                      <span className="text-xs font-bold text-blue-600">{upload.progress}%</span>
+                      <span className="text-xs font-bold text-primary-600">{upload.progress}%</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden shadow-inset">
                       <div
@@ -451,8 +451,8 @@ export default function DocumentsPage() {
                 {/* Action Buttons */}
                 <div className="flex items-center gap-2">
                   <button className="flex-1 p-2 hover:bg-white/50 rounded-lg transition-colors group flex items-center justify-center gap-2">
-                    <Eye size={16} className="text-text-secondary group-hover:text-blue-500 dark:text-blue-400" />
-                    <span className="text-xs font-bold text-text-secondary group-hover:text-blue-500 dark:text-blue-400">View</span>
+                    <Eye size={16} className="text-text-secondary group-hover:text-primary-500 dark:text-primary-400" />
+                    <span className="text-xs font-bold text-text-secondary group-hover:text-primary-500 dark:text-primary-400">View</span>
                   </button>
                   <button
                     onClick={() => deleteUpload(upload.id)}

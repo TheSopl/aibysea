@@ -20,7 +20,7 @@ export default function Error({
         <h2 className="text-heading-2 font-bold">Something went wrong</h2>
         <button
           onClick={reset}
-          className="mt-4 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+          className="mt-4 rounded bg-primary-500 px-4 py-2 text-white hover:bg-primary-600"
         >
           Try again
         </button>
