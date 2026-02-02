@@ -25,6 +25,7 @@ import { AIAgent } from '@/types/database';
 import DeleteConfirmModal from '@/components/agents/DeleteConfirmModal';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import Button from '@/components/ui/Button';
+import FadeIn from '@/components/ui/FadeIn';
 
 export default function AgentsPage() {
   usePageTitle('Agents');
@@ -252,9 +253,10 @@ export default function AgentsPage() {
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-6">
-              {/* Agents List */}
-              <div className="flex-1 min-w-0">
+            <FadeIn>
+              <div className="flex flex-col lg:flex-row gap-6">
+                {/* Agents List */}
+                <div className="flex-1 min-w-0">
                 <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md mb-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
@@ -491,7 +493,8 @@ export default function AgentsPage() {
                   </div>
                 )}
               </div>
-            </div>
+              </div>
+            </FadeIn>
           </>
         )}
       </div>

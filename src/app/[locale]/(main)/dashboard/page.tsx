@@ -6,6 +6,10 @@ import { MessageSquare, Users, CheckCircle, TrendingUp, Calendar, Zap, Phone, Fi
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
+import FadeIn from '@/components/ui/FadeIn';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/lib/animations/variants';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
 
 // Service health cards data
 const serviceCards = [
@@ -259,16 +263,20 @@ export default function DashboardPage() {
       <div className="flex-1 overflow-y-auto">
         <div className="p-card md:p-card-lg space-y-section md:space-y-section-lg">
         {/* Service Health Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {translatedServiceCards.map((card, index) => {
+        <FadeIn>
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
+          >
+            {translatedServiceCards.map((card, index) => {
             const Icon = card.icon;
             return (
-              <div
+              <motion.div
                 key={index}
+                variants={staggerItem}
                 className={`min-w-0 bg-white dark:bg-slate-800 rounded-2xl p-card-md border-s-4 ${card.borderColor} shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1`}
-                style={{
-                  animation: `scaleIn 0.5s ease-out ${index * 0.1}s both`
-                }}
               >
                 {/* Header with icon */}
                 <div className="flex items-start justify-end mb-4">
@@ -297,31 +305,38 @@ export default function DashboardPage() {
                 >
                   {card.buttonText}
                 </Button>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+          </motion.div>
+        </FadeIn>
 
         {/* Quick Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          {translatedQuickStats.map((stat, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-md shadow-lg hover:shadow-xl transition-all duration-300"
-              style={{
-                animation: `fadeIn 0.4s ease-out ${0.3 + index * 0.05}s both`
-              }}
-            >
-              <p className="text-[10px] md:text-xs uppercase tracking-wider text-text-secondary dark:text-slate-300 font-bold mb-2 md:mb-3">
-                {stat.label}
-              </p>
-              <p className="text-heading-1 md:text-heading-1-md font-extrabold text-dark dark:text-white">{stat.value}</p>
-            </div>
-          ))}
-        </div>
+        <FadeIn delay={0.1}>
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
+          >
+            {translatedQuickStats.map((stat, index) => (
+              <motion.div
+                key={index}
+                variants={staggerItem}
+                className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-md shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <p className="text-[10px] md:text-xs uppercase tracking-wider text-text-secondary dark:text-slate-300 font-bold mb-2 md:mb-3">
+                  {stat.label}
+                </p>
+                <p className="text-heading-1 md:text-heading-1-md font-extrabold text-dark dark:text-white">{stat.value}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </FadeIn>
 
         {/* Activity Feed */}
-        <div className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500">
+        <FadeIn delay={0.2}>
+          <div className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500">
           <div className="flex items-center justify-between mb-4 md:mb-6">
             <div className="flex items-center gap-2">
               <Activity className="w-4 h-4 md:w-5 md:h-5 text-primary" />
@@ -352,10 +367,12 @@ export default function DashboardPage() {
               );
             })}
           </div>
-        </div>
+          </div>
+        </FadeIn>
 
         {/* Main Chart + Queue */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+        <FadeIn delay={0.3}>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Conversations Chart */}
           <div
             className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500"
@@ -452,10 +469,12 @@ export default function DashboardPage() {
               ))}
             </div>
           </div>
-        </div>
+          </div>
+        </FadeIn>
 
         {/* Bottom Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+        <FadeIn delay={0.4}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Top Channels */}
           <div
             className="bg-white dark:bg-slate-800 rounded-xl md:rounded-2xl p-card md:p-card-lg shadow-lg hover:shadow-xl transition-all duration-500"
@@ -512,7 +531,8 @@ export default function DashboardPage() {
               ))}
             </div>
           </div>
-        </div>
+          </div>
+        </FadeIn>
         </div>
       </div>
     </div>

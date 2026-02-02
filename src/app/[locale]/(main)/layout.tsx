@@ -4,6 +4,7 @@ import Sidebar from '@/components/layout/Sidebar';
 import MobileNav from '@/components/layout/MobileNav';
 import BottomNav from '@/components/layout/BottomNav';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import PageTransition from '@/components/ui/PageTransition';
 
 export default function MainLayout({
   children,
@@ -26,7 +27,9 @@ export default function MainLayout({
         <div className="hidden lg:block">
           <Breadcrumbs />
         </div>
-        <div className="flex-1 overflow-auto">{children}</div>
+        <div className="flex-1 overflow-auto">
+          <PageTransition>{children}</PageTransition>
+        </div>
       </div>
     </div>
   );
