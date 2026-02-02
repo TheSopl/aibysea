@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, Bot, Loader2 } from 'lucide-react';
+import { X, Bot } from 'lucide-react';
 import { AIAgent, NewAIAgent } from '@/types/database';
+import Button from '@/components/ui/Button';
 
 interface AgentFormModalProps {
   isOpen: boolean;
@@ -123,12 +124,14 @@ export default function AgentFormModal({ isOpen, onClose, onSave, agent }: Agent
               {isEditing ? 'Edit Agent' : 'Create Agent'}
             </h2>
           </div>
-          <button
+          <Button
             onClick={onClose}
-            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
-          >
-            <X size={20} className="text-text-secondary" />
-          </button>
+            variant="ghost"
+            size="sm"
+            iconOnly
+            icon={<X size={20} />}
+            aria-label="Close"
+          />
         </div>
 
         {/* Form */}
@@ -212,54 +215,48 @@ export default function AgentFormModal({ isOpen, onClose, onSave, agent }: Agent
               Status
             </label>
             <div className="flex items-center gap-4">
-              <button
+              <Button
                 type="button"
                 onClick={() => setStatus('active')}
-                className={`flex-1 py-3 rounded-xl font-bold transition-all ${
-                  status === 'active'
-                    ? 'bg-green/20 text-green border-2 border-green/30'
-                    : 'bg-light-bg dark:bg-slate-700 text-text-secondary border-2 border-transparent hover:border-gray-200 dark:hover:border-slate-600'
-                }`}
+                variant={status === 'active' ? 'primary' : 'secondary'}
+                size="lg"
+                className="flex-1"
               >
                 Active
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
                 onClick={() => setStatus('inactive')}
-                className={`flex-1 py-3 rounded-xl font-bold transition-all ${
-                  status === 'inactive'
-                    ? 'bg-gray-200 dark:bg-slate-600 text-dark dark:text-white border-2 border-gray-300 dark:border-slate-500'
-                    : 'bg-light-bg dark:bg-slate-700 text-text-secondary border-2 border-transparent hover:border-gray-200 dark:hover:border-slate-600'
-                }`}
+                variant={status === 'inactive' ? 'primary' : 'secondary'}
+                size="lg"
+                className="flex-1"
               >
                 Inactive
-              </button>
+              </Button>
             </div>
           </div>
 
           {/* Actions */}
           <div className="flex gap-3 pt-4">
-            <button
+            <Button
               type="button"
               onClick={onClose}
-              className="flex-1 py-3 bg-light-bg dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-dark dark:text-white rounded-xl font-bold transition-colors"
+              variant="secondary"
+              size="lg"
+              className="flex-1"
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
               disabled={loading}
-              className="flex-1 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              loading={loading}
+              variant="primary"
+              size="lg"
+              className="flex-1"
             >
-              {loading ? (
-                <>
-                  <Loader2 size={18} className="animate-spin" />
-                  Saving...
-                </>
-              ) : (
-                isEditing ? 'Save Changes' : 'Create Agent'
-              )}
-            </button>
+              {isEditing ? 'Save Changes' : 'Create Agent'}
+            </Button>
           </div>
         </form>
       </div>

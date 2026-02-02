@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { MessageSquare, Users, CheckCircle, TrendingUp, Calendar, Zap, Phone, FileText, Activity } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { useTranslations } from 'next-intl';
+import Button from '@/components/ui/Button';
 
 // Service health cards data
 const serviceCards = [
@@ -289,9 +290,13 @@ export default function DashboardPage() {
                 <p className="text-sm text-text-secondary dark:text-slate-300 mb-6">{card.subtitle}</p>
 
                 {/* Action button */}
-                <button className={`w-full py-2 px-4 bg-gradient-to-r ${card.gradient} text-white rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity duration-300`}>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  className="w-full"
+                >
                   {card.buttonText}
-                </button>
+                </Button>
               </div>
             );
           })}
@@ -360,7 +365,13 @@ export default function DashboardPage() {
           >
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <h3 className="text-base md:text-heading-3 font-extrabold text-dark dark:text-white">{t('aiAgentPerformance')}</h3>
-              <button className="text-xs md:text-sm text-primary dark:text-primary-400 font-semibold hover:underline transition-all duration-300">{t('viewDetails')}</button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-xs md:text-sm"
+              >
+                {t('viewDetails')}
+              </Button>
             </div>
             <div className="h-[180px] tablet:h-[240px] lg:h-[300px]">
               <ResponsiveContainer width="100%" height="100%">

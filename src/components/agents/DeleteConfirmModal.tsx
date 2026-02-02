@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { AlertTriangle, Loader2, X } from 'lucide-react';
+import { AlertTriangle, X } from 'lucide-react';
+import Button from '@/components/ui/Button';
 
 interface DeleteConfirmModalProps {
   isOpen: boolean;
@@ -46,12 +47,14 @@ export default function DeleteConfirmModal({
               Delete Agent
             </h2>
           </div>
-          <button
+          <Button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
-          >
-            <X size={20} className="text-text-secondary" />
-          </button>
+            variant="ghost"
+            size="sm"
+            iconOnly
+            icon={<X size={20} />}
+            aria-label="Close"
+          />
         </div>
 
         {/* Content */}
@@ -67,29 +70,27 @@ export default function DeleteConfirmModal({
 
         {/* Actions */}
         <div className="flex gap-3 p-6 pt-0">
-          <button
+          <Button
             type="button"
             onClick={onClose}
             disabled={loading}
-            className="flex-1 py-3 bg-light-bg dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-dark dark:text-white rounded-xl font-bold transition-colors disabled:opacity-50"
+            variant="secondary"
+            size="lg"
+            className="flex-1"
           >
             Cancel
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             onClick={handleConfirm}
             disabled={loading}
-            className="flex-1 py-3 bg-red hover:bg-red/90 text-white rounded-xl font-bold transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            loading={loading}
+            variant="danger"
+            size="lg"
+            className="flex-1"
           >
-            {loading ? (
-              <>
-                <Loader2 size={18} className="animate-spin" />
-                Deleting...
-              </>
-            ) : (
-              'Delete Agent'
-            )}
-          </button>
+            Delete Agent
+          </Button>
         </div>
       </div>
     </div>

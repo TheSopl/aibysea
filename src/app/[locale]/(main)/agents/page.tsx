@@ -24,6 +24,7 @@ import {
 import { AIAgent } from '@/types/database';
 import DeleteConfirmModal from '@/components/agents/DeleteConfirmModal';
 import { usePageTitle } from '@/hooks/usePageTitle';
+import Button from '@/components/ui/Button';
 
 export default function AgentsPage() {
   usePageTitle('Agents');
@@ -260,13 +261,14 @@ export default function AgentsPage() {
                       <h2 className="text-heading-3 font-extrabold text-dark dark:text-white">Your AI Agents</h2>
                       <p className="text-sm text-text-secondary dark:text-slate-400 mt-1">Manage and monitor your AI workforce</p>
                     </div>
-                    <button
+                    <Button
                       onClick={handleCreateClick}
-                      className="px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5"
+                      variant="primary"
+                      size="md"
+                      icon={<Plus size={18} />}
                     >
-                      <Plus size={18} />
                       {t('createAgent')}
-                    </button>
+                    </Button>
                   </div>
 
                   {/* Empty State */}
@@ -279,13 +281,15 @@ export default function AgentsPage() {
                       <p className="text-sm text-text-secondary dark:text-slate-400 mb-6">
                         Create your first AI agent to start automating conversations
                       </p>
-                      <button
+                      <Button
                         onClick={handleCreateClick}
-                        className="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2 mx-auto"
+                        variant="primary"
+                        size="lg"
+                        icon={<Plus size={18} />}
+                        className="mx-auto"
                       >
-                        <Plus size={18} />
                         Create Your First Agent
-                      </button>
+                      </Button>
                     </div>
                   )}
 
@@ -324,36 +328,44 @@ export default function AgentsPage() {
                       {/* Action Buttons Row */}
                       <div className="flex items-center justify-end gap-1 mb-3 -mt-1">
                         {agent.status === 'active' ? (
-                          <button
+                          <Button
                             onClick={(e) => handleStatusToggle(agent, e)}
-                            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center hover:bg-amber/10 rounded-lg transition-colors group"
+                            variant="ghost"
+                            size="sm"
+                            iconOnly
+                            icon={<Pause size={18} className="text-amber" />}
+                            aria-label="Pause agent"
                             title="Pause agent"
-                          >
-                            <Pause size={18} className="text-amber group-hover:scale-110 transition-transform" />
-                          </button>
+                          />
                         ) : (
-                          <button
+                          <Button
                             onClick={(e) => handleStatusToggle(agent, e)}
-                            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center hover:bg-green/10 rounded-lg transition-colors group"
+                            variant="ghost"
+                            size="sm"
+                            iconOnly
+                            icon={<Play size={18} className="text-green" />}
+                            aria-label="Activate agent"
                             title="Activate agent"
-                          >
-                            <Play size={18} className="text-green group-hover:scale-110 transition-transform" />
-                          </button>
+                          />
                         )}
-                        <button
+                        <Button
                           onClick={(e) => handleEditClick(agent, e)}
-                          className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center hover:bg-light-bg dark:hover:bg-slate-600 rounded-lg transition-colors group"
+                          variant="ghost"
+                          size="sm"
+                          iconOnly
+                          icon={<Edit size={18} />}
+                          aria-label="Edit agent"
                           title="Edit agent"
-                        >
-                          <Edit size={18} className="text-text-secondary group-hover:text-primary group-hover:scale-110 transition-all" />
-                        </button>
-                        <button
+                        />
+                        <Button
                           onClick={(e) => handleDeleteClick(agent, e)}
-                          className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center hover:bg-red/10 rounded-lg transition-colors group"
+                          variant="ghost"
+                          size="sm"
+                          iconOnly
+                          icon={<Trash size={18} className="text-red" />}
+                          aria-label="Delete agent"
                           title="Delete agent"
-                        >
-                          <Trash size={18} className="text-red group-hover:scale-110 transition-transform" />
-                        </button>
+                        />
                       </div>
 
                         {agent.system_prompt && (
@@ -451,17 +463,23 @@ export default function AgentsPage() {
                     </div>
 
                     <div className="mt-6 pt-6 border-t border-gray-200 dark:border-slate-700 space-y-3">
-                      <button
+                      <Button
                         onClick={() => router.push(`/agents/${selectedAgent.id}/edit`)}
-                        className="w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                        variant="primary"
+                        size="lg"
+                        icon={<SettingsIcon size={18} />}
+                        className="w-full"
                       >
-                        <SettingsIcon size={18} />
                         Configure Agent
-                      </button>
-                      <button className="w-full px-4 py-3 bg-light-bg dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-dark dark:text-white rounded-xl font-bold transition-colors flex items-center justify-center gap-2">
-                        <BarChart3 size={18} />
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        size="lg"
+                        icon={<BarChart3 size={18} />}
+                        className="w-full"
+                      >
                         View Analytics
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 ) : (
