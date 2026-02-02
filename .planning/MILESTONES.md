@@ -30,4 +30,37 @@
 
 ---
 
+## v5.0 Enterprise Transformation (Planned: 2026-02-02)
+
+**Goal:** Transform the platform into enterprise-grade software with comprehensive testing, error monitoring, real service integrations, UI design system enforcement, Arabic/RTL excellence, and production-ready quality.
+
+**Phases planned:** 20-26 (7 phases)
+
+**Key objectives:**
+
+- Testing infrastructure with Vitest, Testing Library, Playwright
+- Error monitoring and observability (Sentry integration)
+- CI/CD pipeline with GitHub Actions
+- Unified Button and Card components with design token enforcement
+- 100% Arabic translation coverage with RTL perfection
+- Real Voice Agents integration (Twilio/ElevenLabs/Bland.ai)
+- Real Document Intelligence (GPT-4 Vision, OCR)
+- Performance optimization (code splitting, N+1 query fixes, Core Web Vitals)
+- Multi-tenant RLS architecture for external customers
+- Unified webhook security and rate limiting
+- API documentation (OpenAPI), Storybook, deployment guides
+
+**Status:** 0/7 phases complete
+
+**Critical fixes from codebase audit:**
+- 🚨 ZERO tests across 121 TypeScript files
+- 🚨 No error monitoring (production errors invisible)
+- 💔 Voice + Documents modules are mock data only
+- 🎨 UI inconsistencies (spacing, typography, buttons, cards)
+- 🌍 Arabic translation gaps and RTL layout issues
+- ⚡ Performance bottlenecks (N+1 queries, no code splitting)
+- 🔒 Security gaps (no rate limiting, inconsistent webhook auth)
+
+---
+
 See [Milestone Archive](milestones/v1.0-ROADMAP.md) for full phase details and decisions.

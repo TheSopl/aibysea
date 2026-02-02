@@ -6,6 +6,7 @@
 - ✅ **v2.0 Multi-Service Platform** — Voice Agents UI + Document Intelligence UI + Dark Mode (Phases 8-12) — COMPLETE 2026-01-16
 - ✅ **v3.0 Backend & Integrations** — Real backend connections, messaging integrations (Phases 13-14.1) — COMPLETE 2026-01-21
 - 🚧 **v4.0 Mobile Compatibility** — Professional responsive design, mobile navigation, performance (Phases 15-19) — IN PROGRESS
+- 📋 **v5.0 Enterprise Transformation** — Production-grade quality, testing, real services, polish (Phases 20-26) — PLANNED
 
 ## Domain Expertise
 
@@ -152,12 +153,114 @@ Plans:
 Plans:
 - [ ] 19-01: TBD
 
+### 📋 v5.0 Enterprise Transformation (Planned)
+
+**Milestone Goal:** Transform the platform into enterprise-grade software with comprehensive testing, error monitoring, real service integrations, UI design system enforcement, Arabic/RTL excellence, and production-ready quality across all features.
+
+#### Phase 20: Foundation & Quality Infrastructure
+
+**Goal**: Establish testing framework, error monitoring, CI/CD pipeline, and database migration system for enterprise-grade development practices.
+
+**Depends on**: v4.0 complete
+
+**Research**: Likely (testing frameworks, monitoring tools, CI/CD setup)
+
+**Research topics**: Vitest vs Jest for Next.js 16, Sentry setup, GitHub Actions configuration, Supabase CLI migrations
+
+**Plans**: TBD
+
+Plans:
+- [ ] 20-01: TBD (run /gsd:plan-phase 20 to break down)
+
+#### Phase 21: UI Design System Enforcement
+
+**Goal**: Create unified Button and Card components, enforce Tailwind design tokens across all pages, eliminate spacing/typography/color inconsistencies.
+
+**Depends on**: Phase 20
+
+**Research**: Unlikely (internal patterns, existing design system)
+
+**Plans**: TBD
+
+Plans:
+- [ ] 21-01: TBD
+
+#### Phase 22: Arabic & RTL Excellence
+
+**Goal**: Complete Arabic translation coverage, audit and fix RTL layout issues, implement locale-aware date/number formatting, verify Arabic font loading.
+
+**Depends on**: Phase 21
+
+**Research**: Unlikely (next-intl established, RTL patterns known)
+
+**Plans**: TBD
+
+Plans:
+- [ ] 22-01: TBD
+
+#### Phase 23: Real Service Integrations
+
+**Goal**: Replace mock data with real integrations for Voice Agents (Twilio/ElevenLabs/Bland.ai) and Document Intelligence (GPT-4 Vision, OCR), connect to Supabase.
+
+**Depends on**: Phase 22
+
+**Research**: Likely (voice provider APIs, document processing services)
+
+**Research topics**: Twilio Voice API, ElevenLabs/Bland.ai integration, GPT-4 Vision API for document extraction, OCR services
+
+**Plans**: TBD
+
+Plans:
+- [ ] 23-01: TBD
+
+#### Phase 24: Performance Optimization
+
+**Goal**: Implement code splitting for heavy dependencies (Recharts), fix N+1 queries, optimize images, add Lighthouse CI, monitor Core Web Vitals.
+
+**Depends on**: Phase 23
+
+**Research**: Unlikely (Next.js optimization patterns, React performance best practices)
+
+**Plans**: TBD
+
+Plans:
+- [ ] 24-01: TBD
+
+#### Phase 25: Enterprise Security & Architecture
+
+**Goal**: Implement multi-tenant RLS policies, unify webhook security (HMAC for all), add rate limiting, create .env.example, audit service role usage.
+
+**Depends on**: Phase 24
+
+**Research**: Likely (multi-tenant architecture patterns, rate limiting solutions)
+
+**Research topics**: Organization-based RLS patterns, Upstash Rate Limit vs Vercel KV, multi-tenancy migration strategy
+
+**Plans**: TBD
+
+Plans:
+- [ ] 25-01: TBD
+
+#### Phase 26: Documentation & Developer Experience
+
+**Goal**: Create API documentation (OpenAPI), set up Storybook for component library, write deployment guide, add architecture diagrams.
+
+**Depends on**: Phase 25
+
+**Research**: Unlikely (standard documentation tools)
+
+**Plans**: TBD
+
+Plans:
+- [ ] 26-01: TBD
+
 ## Progress
 
 **v1.0 MVP Execution:** ✅ Complete (Phases 1-7)
 **v2.0 Multi-Service Platform:** ✅ Complete (Phases 8-12)
 **v3.0 Backend & Integrations:** ✅ Complete (Phases 13-14.1)
 **v4.0 Mobile Compatibility:** 🚧 In Progress (Phases 15-19)
+**v5.0 Enterprise Transformation:** 📋 Planned (Phases 20-26)
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -184,5 +287,12 @@ Plans:
 | 18. Secondary Pages Responsive | v4.0 | 2/3 | In progress | - |
 | 18.1. Internationalization | v4.0 | 3/4 | In progress | - |
 | 19. Performance & Polish | v4.0 | 0/? | Not started | - |
+| 20. Foundation & Quality Infrastructure | v5.0 | 0/? | Not started | - |
+| 21. UI Design System Enforcement | v5.0 | 0/? | Not started | - |
+| 22. Arabic & RTL Excellence | v5.0 | 0/? | Not started | - |
+| 23. Real Service Integrations | v5.0 | 0/? | Not started | - |
+| 24. Performance Optimization | v5.0 | 0/? | Not started | - |
+| 25. Enterprise Security & Architecture | v5.0 | 0/? | Not started | - |
+| 26. Documentation & Developer Experience | v5.0 | 0/? | Not started | - |
 
 **Overall Progress**: v4.0 — 3/6 phases complete (18, 18.1, 19 remaining)
