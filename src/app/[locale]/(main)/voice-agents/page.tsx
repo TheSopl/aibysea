@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
+import Button from '@/components/ui/Button';
 
 const voiceAgents = [
   {
@@ -162,11 +163,15 @@ export default function VoiceAgentsPage() {
                   <h2 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white">{t('yourVoiceAgents')}</h2>
                   <p className="text-xs sm:text-sm text-text-secondary mt-1">{t('manageAndMonitor')}</p>
                 </div>
-                <button className="px-4 py-2.5 min-h-[44px] bg-gradient-to-r from-teal-400 to-teal-600 text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5 w-full sm:w-auto justify-center">
-                  <Plus size={18} />
+                <Button
+                  variant="primary"
+                  size="md"
+                  icon={<Plus size={18} />}
+                  className="w-full sm:w-auto justify-center"
+                >
                   <span className="sm:hidden">{t('createAgentShort')}</span>
                   <span className="hidden sm:inline">{t('createAgent')}</span>
-                </button>
+                </Button>
               </div>
 
               <div className="space-y-3 sm:space-y-4">
