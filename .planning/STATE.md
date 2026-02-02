@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-16)
 ## Current Position
 
 Phase: 20 of 26 (Foundation & Quality Infrastructure)
-Plan: 1 of 4 in current phase, Status: Complete
+Plan: 2 of 4 in current phase
 Status: In progress
-Last activity: 2026-02-02 — Phase 20 Plan 1 complete (Testing Infrastructure)
+Last activity: 2026-02-02 — Completed 20-02-PLAN.md
 
-Progress: █░░░░░░░░░ 3.8% (v5.0 Phase 20 - 1/4 plans complete)
+Progress: ██░░░░░░░░ 7.7% (v5.0 Phase 20 - 2/4 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 43 (v1.0 + v2.0 + v3.0 + v4.0 + v5.0)
-- Average duration: 9.3 min
-- Total execution time: 7.5 hours
+- Total plans completed: 44 (v1.0 + v2.0 + v3.0 + v4.0 + v5.0)
+- Average duration: 9.8 min
+- Total execution time: 7.8 hours
 
 **By Phase (v1.0 + v2.0):**
 
@@ -47,7 +47,7 @@ Progress: █░░░░░░░░░ 3.8% (v5.0 Phase 20 - 1/4 plans complet
 | 17 | 2 | 40 min | 20 min |
 | 18 | 2 | 30 min | 15 min |
 | 18.1 | 4 | 92 min | 23 min |
-| 20 | 1 | 5 min | 5 min |
+| 20 | 2 | 23 min | 11.5 min |
 
 ## Accumulated Context
 
@@ -55,6 +55,12 @@ Progress: █░░░░░░░░░ 3.8% (v5.0 Phase 20 - 1/4 plans complet
 
 Recent decisions affecting current work:
 
+- **Phase 20-02:** Playwright over Cypress (official Next.js recommendation, faster)
+- **Phase 20-02:** Disabled parallel execution to avoid database state conflicts
+- **Phase 20-02:** Use placeholder selectors instead of getByLabel (forms lack proper associations)
+- **Phase 20-02:** Skip authenticated tests when TEST_USER_EMAIL/PASSWORD not set
+- **Phase 20-02:** Auto-start Next.js dev server before E2E tests (120s timeout)
+- **Phase 20-02:** Only Chromium enabled initially (Firefox/WebKit commented out for future)
 - **Phase 20-01:** Vitest over Jest (30-70% faster, ESM native, Next.js 16 official recommendation)
 - **Phase 20-01:** jsdom over happy-dom (better Next.js compatibility)
 - **Phase 20-01:** @testing-library/react for component tests (industry standard, accessible patterns)
@@ -149,6 +155,6 @@ None blocking current development.
 ## Session Continuity
 
 Last session: 2026-02-02
-Stopped at: Phase 20 Plan 1 complete
-Resume file: .planning/phases/20-foundation-quality-infrastructure/20-01-SUMMARY.md
-Next action: Execute Phase 20 Plan 2 (E2E Testing with Playwright)
+Stopped at: Completed 20-02-PLAN.md
+Resume file: .planning/phases/20-foundation-quality-infrastructure/20-02-SUMMARY.md
+Next action: Execute Phase 20 Plan 3 (Error Monitoring with Sentry)
