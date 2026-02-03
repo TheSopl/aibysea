@@ -9,6 +9,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
 
 export default function DashboardPage() {
   const t = useTranslations('Dashboard');
@@ -110,7 +111,7 @@ export default function DashboardPage() {
                       </p>
                     </div>
                     <p className="text-2xl font-bold text-gray-900 dark:text-white mt-2">
-                      {card.value}
+                      <AnimatedCounter value={parseInt(card.value)} />
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">{card.label}</p>
                   </div>
@@ -128,7 +129,7 @@ export default function DashboardPage() {
                     {stat.label}
                   </p>
                   <p className="text-xl font-bold text-gray-900 dark:text-white">
-                    {stat.prefix}{stat.numericValue.toLocaleString()}{stat.suffix}
+                    {stat.prefix}<AnimatedCounter value={stat.numericValue} />{stat.suffix}
                   </p>
                 </div>
               ))}
@@ -231,7 +232,7 @@ export default function DashboardPage() {
                           <BrandIcon size={24} />
                         </div>
                         <span className="flex-1 text-sm font-semibold text-gray-900 dark:text-white">{channel.name}</span>
-                        <span className="text-base lg:text-lg font-bold text-gray-900 dark:text-white">{channel.count}</span>
+                        <span className="text-base lg:text-lg font-bold text-gray-900 dark:text-white"><AnimatedCounter value={channel.count} /></span>
                       </div>
                     );
                   })}
@@ -249,7 +250,7 @@ export default function DashboardPage() {
                     <div key={index} className="flex items-center gap-4 p-3 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors h-[52px]">
                       <div className="w-9 h-9 flex items-center justify-center text-2xl flex-shrink-0">{lifecycle.icon}</div>
                       <span className="flex-1 text-sm font-semibold text-gray-900 dark:text-white">{lifecycle.name}</span>
-                      <span className="text-base lg:text-lg font-bold text-gray-900 dark:text-white">{lifecycle.count}</span>
+                      <span className="text-base lg:text-lg font-bold text-gray-900 dark:text-white"><AnimatedCounter value={lifecycle.count} /></span>
                     </div>
                   ))}
                 </div>
