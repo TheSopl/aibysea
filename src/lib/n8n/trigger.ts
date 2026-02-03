@@ -54,7 +54,7 @@ export async function triggerN8nWorkflow(payload: TriggerPayload): Promise<void>
     return;
   }
 
-  const webhookUrl = `${n8nUrl}/webhook/customer-message`;
+  const webhookUrl = `${n8nUrl}/webhook-test/customer-message`;
 
   try {
     console.log('[n8n Trigger] Sending message to n8n:', {
