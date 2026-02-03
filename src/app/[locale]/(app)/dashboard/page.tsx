@@ -10,6 +10,7 @@ import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import FadeIn from '@/components/ui/FadeIn';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
 import { motion } from 'framer-motion';
 import { staggerContainer, staggerItem } from '@/lib/animations/variants';
 
@@ -45,10 +46,10 @@ export default function DashboardPage() {
   ];
 
   const kpiStats = [
-    { label: t('totalAIInteractions'), value: '12,847' },
-    { label: t('activeServices'), value: '3 of 3' },
-    { label: t('costSavingsThisMonth'), value: '$23,400' },
-    { label: t('automationRate'), value: '87%' },
+    { label: t('totalAIInteractions'), numericValue: 12847, prefix: '', suffix: '' },
+    { label: t('activeServices'), numericValue: 3, prefix: '', suffix: ' of 3' },
+    { label: t('costSavingsThisMonth'), numericValue: 23400, prefix: '$', suffix: '' },
+    { label: t('automationRate'), numericValue: 87, prefix: '', suffix: '%' },
   ];
 
   const activityFeed = [
@@ -119,7 +120,9 @@ export default function DashboardPage() {
                       <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold mb-3">
                         {card.name}
                       </p>
-                      <p className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-2">{card.value}</p>
+                      <p className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-2">
+                        <AnimatedCounter value={parseInt(card.value)} className="text-4xl lg:text-5xl font-bold" />
+                      </p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">{card.label}</p>
                     </motion.div>
                   );
@@ -141,7 +144,9 @@ export default function DashboardPage() {
                     <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold mb-2">
                       {stat.label}
                     </p>
-                    <p className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
+                    <p className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
+                      {stat.prefix}<AnimatedCounter value={stat.numericValue} className="text-2xl lg:text-3xl font-bold" />{stat.suffix}
+                    </p>
                   </motion.div>
                 ))}
               </motion.div>

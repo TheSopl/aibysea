@@ -25,6 +25,7 @@ import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import FadeIn from '@/components/ui/FadeIn';
 
 const voiceAgents = [
   {
@@ -82,6 +83,7 @@ export default function VoiceAgentsPage() {
       <TopBar title={t('title')} />
 
       <div className="p-4 sm:p-6 bg-gray-100 dark:bg-slate-900 max-w-[1600px] mx-auto">
+        <FadeIn>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           <div
             className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
@@ -153,7 +155,9 @@ export default function VoiceAgentsPage() {
             <p className="text-sm text-text-secondary font-medium">{t('successRate')}</p>
           </div>
         </div>
+        </FadeIn>
 
+        <FadeIn delay={0.1}>
         <div className="flex flex-col lg:flex-row gap-4">
           <div className={cn("flex-1 min-w-0", selectedAgent && "hidden lg:block")}>
             <Card variant="default" className="mb-4">
@@ -344,6 +348,7 @@ export default function VoiceAgentsPage() {
             </div>
           )}
         </div>
+        </FadeIn>
       </div>
     </>
   );

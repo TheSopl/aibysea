@@ -7,6 +7,7 @@ import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import FadeIn from '@/components/ui/FadeIn';
 
 const contacts = [
   {
@@ -94,6 +95,7 @@ export default function ContactsPage() {
       <TopBar title={t('title')} />
 
       <div className="p-4 tablet:p-6 bg-gray-100 dark:bg-slate-900 min-h-screen overflow-y-auto max-w-[1600px] mx-auto">
+        <FadeIn>
         <Card variant="default" className="overflow-hidden">
           <div className="tablet:hidden divide-y divide-gray-100 dark:divide-slate-700">
             {contacts.map((contact, index) => (
@@ -256,6 +258,7 @@ export default function ContactsPage() {
             </table>
           </div>
         </Card>
+        </FadeIn>
       </div>
     </>
   );
