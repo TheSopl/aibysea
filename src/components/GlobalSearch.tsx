@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Search, FileText, Clock, CheckCircle, X } from 'lucide-react';
+import Button from '@/components/ui/Button';
 
 interface SearchResult {
   id: string;
@@ -73,12 +74,14 @@ export function GlobalSearch() {
               onChange={(e) => setSearch(e.target.value)}
               className="flex-1 bg-transparent text-dark dark:text-white placeholder:text-text-secondary dark:placeholder:text-slate-500 outline-none text-lg font-semibold"
             />
-            <button
+            <Button
+              variant="ghost"
+              size="sm"
+              iconOnly
+              icon={<X size={20} />}
               onClick={() => setOpen(false)}
               className="text-text-secondary dark:text-slate-400 hover:text-dark dark:hover:text-white"
-            >
-              <X size={20} />
-            </button>
+            />
           </div>
 
           <div className="max-h-96 overflow-y-auto p-4">

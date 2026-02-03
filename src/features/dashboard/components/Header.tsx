@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect, useMemo } from 'react';
-import { useMetricsStore } from '@/stores/metricsStore';
+import { useMetricsStore } from '@/features/dashboard/store/metricsStore';
 import Button from '@/components/ui/Button';
 
 export default function Header() {

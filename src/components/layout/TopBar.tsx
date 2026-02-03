@@ -1,11 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, Bell, Moon, Sun, X, ArrowLeft } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
-import { useRouter } from '@/i18n/navigation';
+import { useRouter } from '@/lib/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import LanguageToggle from '@/components/LanguageToggle';
+import Link from 'next/link';
+import { createClient } from '@/lib/supabase/client';
+import Button from '@/components/ui/Button';
 
 interface TopBarProps {
   title: string;
@@ -16,8 +19,25 @@ interface TopBarProps {
 export default function TopBar({ title, showBackButton = false, backHref }: TopBarProps) {
   const { theme, toggleTheme } = useTheme();
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [userInitial, setUserInitial] = useState('U');
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const router = useRouter();
   const t = useTranslations('TopBar');
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        const meta = user.user_metadata || {};
+        if (meta.avatar_url) setAvatarUrl(meta.avatar_url);
+        if (meta.full_name) {
+          setUserInitial(meta.full_name.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2));
+        } else if (user.email) {
+          setUserInitial(user.email[0].toUpperCase());
+        }
+      }
+    });
+  }, []);
 
   const handleBack = () => {
     if (backHref) {
@@ -29,23 +49,23 @@ export default function TopBar({ title, showBackButton = false, backHref }: TopB
 
   return (
     <div className="sticky top-0 z-30 h-14 md:h-16 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border-b border-gray-200 dark:border-slate-700 px-3 md:px-6 flex items-center justify-between transition-all duration-300">
-      {/* Back Button + Page Title */}
       <div className={`flex items-center gap-2 ${showMobileSearch ? 'hidden' : ''}`}>
         {showBackButton && (
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
+            iconOnly
+            icon={<ArrowLeft size={20} className="text-dark dark:text-white" />}
             onClick={handleBack}
-            className="lg:hidden p-2 -ms-2 hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-colors"
+            className="lg:hidden -ms-2"
             aria-label="Go back"
-          >
-            <ArrowLeft size={20} className="text-dark dark:text-white" />
-          </button>
+          />
         )}
         <h1 className="text-lg md:text-heading-2 font-bold text-dark dark:text-white truncate">
           {title}
         </h1>
       </div>
 
-      {/* Search Bar - Desktop */}
       <div className="hidden md:block flex-1 max-w-2xl mx-8">
         <div className="relative">
           <Search className="absolute start-4 top-1/2 -translate-y-1/2 text-text-secondary dark:text-slate-500" size={20} />
@@ -57,7 +77,6 @@ export default function TopBar({ title, showBackButton = false, backHref }: TopB
         </div>
       </div>
 
-      {/* Mobile Search Bar - Full width when open */}
       {showMobileSearch && (
         <div className="flex-1 md:hidden me-2">
           <div className="relative">
@@ -72,50 +91,45 @@ export default function TopBar({ title, showBackButton = false, backHref }: TopB
         </div>
       )}
 
-      {/* Right Actions */}
       <div className="flex items-center gap-1 md:gap-4">
-        {/* Mobile Search Toggle */}
-        <button
+        <Button
+          variant="ghost"
+          size="sm"
+          iconOnly
+          icon={showMobileSearch ? <X size={20} className="text-text-secondary dark:text-slate-400" /> : <Search size={20} className="text-text-secondary dark:text-slate-400" />}
           onClick={() => setShowMobileSearch(!showMobileSearch)}
-          className="md:hidden p-2 hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-colors"
-        >
-          {showMobileSearch ? (
-            <X size={20} className="text-text-secondary dark:text-slate-400" />
-          ) : (
-            <Search size={20} className="text-text-secondary dark:text-slate-400" />
-          )}
-        </button>
+          className="md:hidden"
+        />
 
-        {/* Language Toggle */}
         <div className="hidden md:block">
           <LanguageToggle />
         </div>
 
-        {/* Theme Toggle */}
-        <button
+        <Button
+          variant="ghost"
+          size="sm"
+          iconOnly
+          icon={theme === 'light' ? <Moon size={20} className="text-text-secondary dark:text-slate-400" /> : <Sun size={20} className="text-yellow-500" />}
           onClick={toggleTheme}
-          className="p-2 hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-colors"
           title={t('toggleDarkMode')}
-        >
-          {theme === 'light' ? (
-            <Moon size={20} className="text-text-secondary dark:text-slate-400" />
-          ) : (
-            <Sun size={20} className="text-yellow-500" />
-          )}
-        </button>
+        />
 
-        {/* Notifications */}
-        <button className="relative p-2 hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-colors">
-          <Bell size={20} className="text-text-secondary dark:text-slate-400" />
+        <Button variant="ghost" size="sm" iconOnly icon={<Bell size={20} className="text-text-secondary dark:text-slate-400" />} className="relative">
           <span className="absolute top-1 end-1 w-2 h-2 bg-red rounded-full"></span>
-        </button>
+        </Button>
 
-        {/* User Menu - Hidden on mobile (shown in mobile nav) */}
-        <button className="hidden md:flex items-center gap-3 p-2 hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-colors">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold text-sm">
-            R
+        <Link href="/profile" className="hidden md:flex items-center gap-3 p-2 hover:bg-light-bg dark:hover:bg-slate-700 rounded-lg transition-colors">
+          <div
+            className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-sm ring-2 ring-gray-200 dark:ring-slate-600 overflow-hidden"
+            style={{ background: 'linear-gradient(to bottom right, #4EB6C9, #003EF3)' }}
+          >
+            {avatarUrl ? (
+              <img src={avatarUrl} alt="" className="w-full h-full object-cover" />
+            ) : (
+              userInitial
+            )}
           </div>
-        </button>
+        </Link>
       </div>
     </div>
   );

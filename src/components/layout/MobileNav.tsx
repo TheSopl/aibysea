@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Link, usePathname } from '@/i18n/navigation';
+import { Link, usePathname } from '@/lib/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import {
@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { useNavigationStore } from '@/stores/navigation';
+import Button from '@/components/ui/Button';
 
 interface NavItem {
   nameKey: string;
@@ -132,13 +133,15 @@ export default function MobileNav() {
       {/* Mobile Header Bar */}
       <div className="lg:hidden fixed top-0 inset-x-0 h-16 bg-gradient-to-r from-[#1a1a2e] to-[#16213e] z-50 flex items-center justify-between px-4 shadow-lg">
         {/* Menu Button */}
-        <button
+        <Button
+          variant="ghost"
+          size="sm"
+          iconOnly
+          icon={<Menu size={24} />}
           onClick={openDrawer}
-          className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors"
+          className="min-w-[44px] min-h-[44px] text-white hover:bg-white/10"
           aria-label="Open menu"
-        >
-          <Menu size={24} />
-        </button>
+        />
 
         {/* Logo */}
         <div className="relative w-10 h-10">
@@ -191,13 +194,15 @@ export default function MobileNav() {
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-white/10">
               <span className="text-white font-bold text-lg">{t('more')}</span>
-              <button
+              <Button
+                variant="ghost"
+                size="sm"
+                iconOnly
+                icon={<X size={24} />}
                 onClick={closeDrawer}
-                className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                className="min-w-[44px] min-h-[44px] text-white/60 hover:text-white hover:bg-white/10"
                 aria-label="Close menu"
-              >
-                <X size={24} />
-              </button>
+              />
             </div>
 
             {/* Navigation - Flat grouped list with section headers */}
