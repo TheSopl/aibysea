@@ -7,6 +7,9 @@ import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/lib/animations/variants';
+import FadeIn from '@/components/ui/FadeIn';
 
 const contacts = [
   {
@@ -94,11 +97,13 @@ export default function ContactsPage() {
       <TopBar title={t('title')} />
 
       <div className="p-4 tablet:p-6 bg-gray-100 dark:bg-slate-900 min-h-screen overflow-y-auto max-w-[1600px] mx-auto">
+        <FadeIn delay={0.1}>
         <Card variant="default" className="overflow-hidden">
-          <div className="tablet:hidden divide-y divide-gray-100 dark:divide-slate-700">
+          <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="tablet:hidden divide-y divide-gray-100 dark:divide-slate-700">
             {contacts.map((contact, index) => (
-              <div
+              <motion.div
                 key={contact.id}
+                variants={staggerItem}
                 className="p-2 hover:bg-light-bg dark:hover:bg-slate-700 transition-colors"
               >
                 <div className="flex items-start justify-between gap-2">
@@ -150,9 +155,9 @@ export default function ContactsPage() {
                     <span>{contact.assignee}</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           <div className="hidden tablet:block overflow-x-auto">
             <table className="w-full">
@@ -250,6 +255,7 @@ export default function ContactsPage() {
             </table>
           </div>
         </Card>
+        </FadeIn>
       </div>
     </>
   );

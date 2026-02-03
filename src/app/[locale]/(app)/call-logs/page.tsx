@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/lib/animations/variants';
 
 const callLogs = [
   {
@@ -333,10 +335,11 @@ export default function CallLogsPage() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto">
+          <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="flex-1 overflow-y-auto">
             {filteredCalls.map((call, index) => (
-              <div
+              <motion.div
                 key={call.id}
+                variants={staggerItem}
                 onClick={() => setSelectedCall(call)}
                 className={`p-1.5 border-b border-gray-50 dark:border-slate-700 cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-slate-700 ${
                   selectedCall?.id === call.id ? 'bg-service-voice-50 dark:bg-slate-700 border-l-2 border-l-teal-500' : ''
@@ -371,9 +374,9 @@ export default function CallLogsPage() {
                     {call.sentiment}
                   </span>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {selectedCall ? (

@@ -19,6 +19,10 @@ import {
 import { usePageTitle } from '@/hooks/usePageTitle';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/lib/animations/variants';
+import FadeIn from '@/components/ui/FadeIn';
 
 
 const templates = [
@@ -166,19 +170,19 @@ export default function DocumentsPage() {
       <TopBar title="Upload & Process Documents" />
 
       <div className="p-4 sm:p-6 bg-gray-100 dark:bg-slate-900 max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                 <Upload size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-primary-500" />
             </div>
-            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{statistics.totalProcessed}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={statistics.totalProcessed} /></h3>
             <p className="text-sm text-text-secondary font-medium">Documents Processed</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                 <Clock size={20} className="text-white" />
@@ -189,9 +193,9 @@ export default function DocumentsPage() {
               {statistics.avgProcessingTime}m
             </h3>
             <p className="text-sm text-text-secondary font-medium">Avg Processing Time</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                 <CheckCircle size={20} className="text-white" />
@@ -199,23 +203,24 @@ export default function DocumentsPage() {
               <BarChart3 size={16} className="text-primary-500" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
-              {statistics.successRate}%
+              <AnimatedCounter value={statistics.successRate} />%
             </h3>
             <p className="text-sm text-text-secondary font-medium">Success Rate</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                 <AlertCircle size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-primary-500" />
             </div>
-            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{failedDocs}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={failedDocs} /></h3>
             <p className="text-sm text-text-secondary font-medium">Failed Uploads</p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
+        <FadeIn delay={0.1}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
           <div
             className={`lg:col-span-2 rounded-xl p-6 border border-dashed transition-all duration-200 ${
@@ -274,6 +279,7 @@ export default function DocumentsPage() {
             </div>
           </Card>
         </div>
+        </FadeIn>
         {processingDocs.length > 0 && (
           <Card variant="default" className="mb-6">
             <h2 className="text-lg font-bold text-dark dark:text-white mb-3">Currently Processing</h2>
@@ -331,10 +337,11 @@ export default function DocumentsPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {uploads.map((upload, index) => (
-              <div
+              <motion.div
                 key={upload.id}
+                variants={staggerItem}
                 className={`rounded-lg border p-3 transition-all duration-200 hover:shadow-sm ${
                   upload.status === 'completed'
                     ? 'bg-green-50/30 dark:bg-green-900/10 border-green-200/50'
@@ -415,9 +422,9 @@ export default function DocumentsPage() {
                     <span className="text-xs font-medium">Delete</span>
                   </Button>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </Card>
       </div>
     </>

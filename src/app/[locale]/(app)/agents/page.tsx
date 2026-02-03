@@ -26,6 +26,9 @@ import DeleteConfirmModal from '@/features/ai-agents/components/DeleteConfirmMod
 import { usePageTitle } from '@/hooks/usePageTitle';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/lib/animations/variants';
+import FadeIn from '@/components/ui/FadeIn';
 
 export default function AgentsPage() {
   usePageTitle('Agents');
@@ -160,8 +163,9 @@ export default function AgentsPage() {
 
         {!loading && !error && (
           <>
-            <div className="grid grid-cols-2 gap-3 mb-6">
-              <div
+            <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-2 gap-3 mb-6">
+              <motion.div
+                variants={staggerItem}
                 className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
               >
                 <div className="flex items-center justify-between mb-2">
@@ -176,9 +180,10 @@ export default function AgentsPage() {
                 <p className="text-sm text-text-secondary dark:text-slate-400 font-medium">
                   {agents.filter(a => a.status === 'active').length === 1 ? 'Active Agent' : 'Active Agents'}
                 </p>
-              </div>
+              </motion.div>
 
-              <div
+              <motion.div
+                variants={staggerItem}
                 className="bg-gradient-to-br from-green/10 to-emerald/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
               >
                 <div className="flex items-center justify-between mb-2">
@@ -189,8 +194,8 @@ export default function AgentsPage() {
                 </div>
                 <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{agents.length}</h3>
                 <p className="text-sm text-text-secondary dark:text-slate-400 font-medium">Total Agents</p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
               <div className="flex flex-col lg:flex-row gap-4">
                 <div className="flex-1 min-w-0">
@@ -231,10 +236,11 @@ export default function AgentsPage() {
                     </div>
                   )}
 
-                  <div className="space-y-2">
+                  <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-2">
                     {agents.map((agent, index) => (
-                      <div
+                      <motion.div
                         key={agent.id}
+                        variants={staggerItem}
                         onClick={() => setSelectedAgent(agent)}
                         className={`p-3 rounded-lg cursor-pointer transition-all duration-200 border ${
                           selectedAgent?.id === agent.id
@@ -298,14 +304,15 @@ export default function AgentsPage() {
                         />
                       </div>
                       </div>
-                      </div>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 </Card>
               </div>
 
               <div className="w-full lg:w-72 flex-shrink-0">
                 {selectedAgent ? (
+                  <FadeIn delay={0.1}>
                   <Card variant="default" className="sticky top-8">
                     <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">
                       <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 rounded-lg flex items-center justify-center">
@@ -391,6 +398,7 @@ export default function AgentsPage() {
                       </Button>
                     </div>
                   </Card>
+                  </FadeIn>
                 ) : (
                   <Card variant="default" className="sticky top-8">
                     <div className="text-center py-6">

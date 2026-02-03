@@ -21,6 +21,9 @@ import {
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Card from '@/components/ui/Card';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/lib/animations/variants';
 
 // Mock processing jobs data
 const processingJobs = [
@@ -158,41 +161,41 @@ export default function ProcessingPage() {
 
       <div className="p-4 sm:p-6 bg-gray-100 dark:bg-slate-900 max-w-[1600px] mx-auto">
         {/* Stats Overview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-xl p-3 border border-primary-400/20 dark:border-primary-500/40 shadow-sm transition-all duration-300">
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-xl p-3 border border-primary-400/20 dark:border-primary-500/40 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                 <Activity size={20} className="text-white" />
               </div>
               <Zap size={16} className="text-primary-500 dark:text-primary-400" />
             </div>
-            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{stats.processing}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={stats.processing} /></h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-medium">Currently Processing</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-green-400/10 to-green-600/10 dark:from-green-500/20 dark:to-green-700/20 rounded-xl p-3 border border-green-400/20 dark:border-green-500/40 shadow-sm transition-all duration-300">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-green-400/10 to-green-600/10 dark:from-green-500/20 dark:to-green-700/20 rounded-xl p-3 border border-green-400/20 dark:border-green-500/40 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
                 <CheckCircle size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-green-500 dark:text-green-400" />
             </div>
-            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{stats.completed}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={stats.completed} /></h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-medium">Completed Today</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-red-400/10 to-red-600/10 dark:from-red-500/20 dark:to-red-700/20 rounded-xl p-3 border border-red-400/20 dark:border-red-500/40 shadow-sm transition-all duration-300">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-red-400/10 to-red-600/10 dark:from-red-500/20 dark:to-red-700/20 rounded-xl p-3 border border-red-400/20 dark:border-red-500/40 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center">
                 <AlertCircle size={20} className="text-white" />
               </div>
               <ArrowUpRight size={16} className="text-red-500 dark:text-red-400" />
             </div>
-            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{stats.failed}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={stats.failed} /></h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-medium">Failed</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-xl p-3 border border-primary-400/20 dark:border-primary-500/40 shadow-sm transition-all duration-300">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-xl p-3 border border-primary-400/20 dark:border-primary-500/40 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                 <Clock size={20} className="text-white" />
@@ -201,8 +204,8 @@ export default function ProcessingPage() {
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{stats.avgTime}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-medium">Avg Processing</p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Filter Section */}
         <Card variant="default" className="rounded-xl mb-4">
@@ -230,10 +233,10 @@ export default function ProcessingPage() {
         </Card>
 
         {/* Jobs List */}
-        <div className="space-y-3">
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-3">
           {filteredJobs.map((job, index) => (
+            <motion.div key={job.id} variants={staggerItem}>
             <Card
-              key={job.id}
               variant="default"
               className="rounded-xl p-3 hover:shadow-sm transition-all duration-200"
             >
@@ -277,7 +280,7 @@ export default function ProcessingPage() {
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <label className="text-sm font-bold text-text-secondary dark:text-slate-300">Overall Progress</label>
-                    <span className="text-lg font-extrabold text-dark dark:text-white">{job.progress}%</span>
+                    <span className="text-lg font-extrabold text-dark dark:text-white"><AnimatedCounter value={job.progress} />%</span>
                   </div>
                   <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden mb-3">
                     <div
@@ -327,7 +330,7 @@ export default function ProcessingPage() {
                       </div>
                       <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Confidence Score</p>
-                        <p className="text-heading-2 font-extrabold text-accent-600">{job.confidence}%</p>
+                        <p className="text-heading-2 font-extrabold text-accent-600"><AnimatedCounter value={job.confidence} />%</p>
                       </div>
                     </>
                   )}
@@ -375,8 +378,9 @@ export default function ProcessingPage() {
                 </div>
               )}
             </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </>
   );

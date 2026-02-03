@@ -20,6 +20,7 @@ import { FaWhatsapp, FaTelegramPlane, FaFacebook, FaInstagram } from 'react-icon
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Card from '@/components/ui/Card';
+import FadeIn from '@/components/ui/FadeIn';
 
 type SettingsTab = 'users' | 'team' | 'channels' | 'lifecycle';
 
@@ -155,6 +156,7 @@ export default function SettingsPage() {
         <div className="flex-1 overflow-y-auto bg-light-bg scroll-smooth">
           <div className="p-4 sm:p-6 lg:p-8 bg-light-bg dark:bg-slate-900">
             {activeTab === 'users' && (
+              <FadeIn delay={0.1}>
               <div className="space-y-6">
                 <Card variant="default" className="sm:rounded-2xl">
                   <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white mb-1 sm:mb-2">Invite User</h3>
@@ -250,9 +252,11 @@ export default function SettingsPage() {
                   </div>
                 </Card>
               </div>
+              </FadeIn>
             )}
 
             {activeTab === 'team' && (
+              <FadeIn delay={0.1}>
               <div className="space-y-4 sm:space-y-6">
                 <Card variant="default" className="sm:rounded-2xl">
                   <h3 className="text-lg sm:text-heading-3 font-extrabold text-dark dark:text-white mb-1 sm:mb-2">Team Information</h3>
@@ -337,9 +341,11 @@ export default function SettingsPage() {
                   </div>
                 </Card>
               </div>
+              </FadeIn>
             )}
 
             {activeTab === 'channels' && (
+              <FadeIn delay={0.1}>
               <div className="space-y-4 sm:space-y-6">
                 <Card variant="default" className="sm:rounded-2xl">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
@@ -430,9 +436,11 @@ export default function SettingsPage() {
                   </div>
                 </Card>
               </div>
+              </FadeIn>
             )}
 
             {activeTab === 'lifecycle' && (
+              <FadeIn delay={0.1}>
               <div className="space-y-4 sm:space-y-6">
                 <Card variant="default" className="sm:rounded-2xl">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
@@ -499,6 +507,7 @@ export default function SettingsPage() {
                   </button>
                 </div>
               </div>
+              </FadeIn>
             )}
           </div>
         </div>

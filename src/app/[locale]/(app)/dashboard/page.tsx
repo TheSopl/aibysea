@@ -10,6 +10,9 @@ import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/lib/animations/variants';
+import FadeIn from '@/components/ui/FadeIn';
 
 export default function DashboardPage() {
   const t = useTranslations('Dashboard');
@@ -94,12 +97,13 @@ export default function DashboardPage() {
         <div className="max-w-[1600px] 2xl:max-w-[1680px] mx-auto p-4 space-y-4">
 
           <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {serviceCards.map((card, index) => {
                 const Icon = card.icon;
                 return (
-                  <div
+                  <motion.div
                     key={index}
+                    variants={staggerItem}
                     className="bg-white dark:bg-slate-800 rounded-xl p-3 shadow-sm border border-gray-200 dark:border-slate-700"
                   >
                     <div className="flex items-center gap-2">
@@ -114,15 +118,16 @@ export default function DashboardPage() {
                       <AnimatedCounter value={parseInt(card.value)} />
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">{card.label}</p>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {kpiStats.map((stat, index) => (
-                <div
+                <motion.div
                   key={index}
+                  variants={staggerItem}
                   className="bg-white dark:bg-slate-800 rounded-lg p-3 shadow-sm border border-gray-200 dark:border-slate-700"
                 >
                   <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold mb-2">
@@ -131,11 +136,12 @@ export default function DashboardPage() {
                   <p className="text-xl font-bold text-gray-900 dark:text-white">
                     {stat.prefix}<AnimatedCounter value={stat.numericValue} />{stat.suffix}
                   </p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
+          <FadeIn delay={0.1}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
 
             <Card variant="default" className="lg:col-span-5">
@@ -215,7 +221,9 @@ export default function DashboardPage() {
               </div>
             </Card>
           </div>
+          </FadeIn>
 
+          <FadeIn delay={0.2}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-start">
 
             <Card variant="default">
@@ -291,6 +299,7 @@ export default function DashboardPage() {
               </Card.Content>
             </Card>
           </div>
+          </FadeIn>
 
         </div>
       </div>

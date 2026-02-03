@@ -25,6 +25,10 @@ import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/lib/animations/variants';
+import FadeIn from '@/components/ui/FadeIn';
 
 const voiceAgents = [
   {
@@ -82,8 +86,9 @@ export default function VoiceAgentsPage() {
       <TopBar title={t('title')} />
 
       <div className="p-4 sm:p-6 bg-gray-100 dark:bg-slate-900 max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-          <div
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+          <motion.div
+            variants={staggerItem}
             className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
           >
             <div className="flex items-center justify-between mb-2">
@@ -92,11 +97,12 @@ export default function VoiceAgentsPage() {
               </div>
               <TrendingUp className="w-4 h-4 text-service-voice-500" />
             </div>
-            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{activeAgentsCount}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={activeAgentsCount} /></h3>
             <p className="text-sm text-text-secondary font-medium">{t('activeVoiceAgents')}</p>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            variants={staggerItem}
             className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
           >
             <div className="flex items-center justify-between mb-2">
@@ -106,12 +112,13 @@ export default function VoiceAgentsPage() {
               <Activity className="w-4 h-4 text-service-voice-500" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
-              {totalCallsHandled.toLocaleString()}
+              <AnimatedCounter value={totalCallsHandled} />
             </h3>
             <p className="text-sm text-text-secondary font-medium">{t('totalCalls')}</p>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            variants={staggerItem}
             className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
           >
             <div className="flex items-center justify-between mb-2">
@@ -124,9 +131,10 @@ export default function VoiceAgentsPage() {
               {avgCallDuration}m
             </h3>
             <p className="text-sm text-text-secondary font-medium">{t('avgDuration')}</p>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            variants={staggerItem}
             className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
           >
             <div className="flex items-center justify-between mb-2">
@@ -136,11 +144,11 @@ export default function VoiceAgentsPage() {
               <BarChart3 className="w-4 h-4 text-service-voice-500" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
-              {avgSuccessRate}%
+              <AnimatedCounter value={avgSuccessRate} />%
             </h3>
             <p className="text-sm text-text-secondary font-medium">{t('successRate')}</p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-4">
           <div className={cn("flex-1 min-w-0", selectedAgent && "hidden lg:block")}>
@@ -161,10 +169,11 @@ export default function VoiceAgentsPage() {
                 </Button>
               </div>
 
-              <div className="space-y-2">
+              <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-2">
                 {voiceAgents.map((agent, index) => (
-                  <div
+                  <motion.div
                     key={agent.id}
+                    variants={staggerItem}
                     onClick={() => setSelectedAgent(agent)}
                     className={`p-3 rounded-lg cursor-pointer transition-all duration-200 border ${
                       selectedAgent?.id === agent.id
@@ -208,7 +217,7 @@ export default function VoiceAgentsPage() {
                     <div className="grid grid-cols-4 gap-2">
                       <div>
                         <p className="text-xs text-text-secondary font-medium uppercase mb-0.5">{t('calls')}</p>
-                        <p className="text-base font-bold text-dark dark:text-white">{agent.totalCalls.toLocaleString()}</p>
+                        <p className="text-base font-bold text-dark dark:text-white"><AnimatedCounter value={agent.totalCalls} /></p>
                       </div>
                       <div>
                         <p className="text-xs text-text-secondary font-medium uppercase mb-0.5">{t('duration')}</p>
@@ -216,20 +225,21 @@ export default function VoiceAgentsPage() {
                       </div>
                       <div>
                         <p className="text-xs text-text-secondary font-medium uppercase mb-0.5">{t('success')}</p>
-                        <p className="text-base font-bold text-service-voice-500">{agent.successRate}%</p>
+                        <p className="text-base font-bold text-service-voice-500"><AnimatedCounter value={agent.successRate} />%</p>
                       </div>
                       <div>
                         <p className="text-xs text-text-secondary font-medium uppercase mb-0.5">{t('active')}</p>
-                        <p className="text-base font-bold text-service-voice-600">{agent.activeCalls}</p>
+                        <p className="text-base font-bold text-service-voice-600"><AnimatedCounter value={agent.activeCalls} /></p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </Card>
           </div>
 
           {selectedAgent && (
+            <FadeIn delay={0.1}>
             <div className="fixed inset-0 z-40 bg-white dark:bg-slate-800 lg:relative lg:w-80 lg:z-auto lg:bg-transparent dark:lg:bg-transparent overflow-y-auto">
               <Card variant="default" className="lg:sticky lg:top-8 min-h-full lg:min-h-0">
                 <Button
@@ -285,7 +295,7 @@ export default function VoiceAgentsPage() {
                       <div>
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-xs font-medium text-dark dark:text-white">{t('successRate')}</span>
-                          <span className="text-xs font-bold text-service-voice-500">{selectedAgent.successRate}%</span>
+                          <span className="text-xs font-bold text-service-voice-500"><AnimatedCounter value={selectedAgent.successRate} />%</span>
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
                           <div
@@ -298,11 +308,11 @@ export default function VoiceAgentsPage() {
                       <div className="grid grid-cols-2 gap-2">
                         <div className="bg-light-bg dark:bg-slate-700/50 rounded-md p-2">
                           <p className="text-xs text-text-secondary font-medium mb-0.5">{t('totalCallsLabel')}</p>
-                          <p className="text-base font-bold text-dark dark:text-white">{selectedAgent.totalCalls}</p>
+                          <p className="text-base font-bold text-dark dark:text-white"><AnimatedCounter value={selectedAgent.totalCalls} /></p>
                         </div>
                         <div className="bg-light-bg dark:bg-slate-700/50 rounded-md p-2">
                           <p className="text-xs text-text-secondary font-medium mb-0.5">{t('activeNow')}</p>
-                          <p className="text-base font-bold text-service-voice-600">{selectedAgent.activeCalls}</p>
+                          <p className="text-base font-bold text-service-voice-600"><AnimatedCounter value={selectedAgent.activeCalls} /></p>
                         </div>
                       </div>
                     </div>
@@ -327,6 +337,7 @@ export default function VoiceAgentsPage() {
                 </div>
               </Card>
             </div>
+            </FadeIn>
           )}
         </div>
       </div>

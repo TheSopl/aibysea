@@ -17,6 +17,9 @@ import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/lib/animations/variants';
 
 const phoneNumbers = [
   {
@@ -134,19 +137,19 @@ export default function PhoneNumbersPage() {
       <TopBar title={t('title')} />
 
       <div className="p-4 sm:p-6 bg-gray-100 dark:bg-slate-900 max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-          <div className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
                 <Phone size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-service-voice-600" />
             </div>
-            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{activeCount}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={activeCount} /></h3>
             <p className="text-sm text-text-secondary font-medium">{t('activeNumbers')}</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
                 <DollarSign size={20} className="text-white" />
@@ -155,30 +158,30 @@ export default function PhoneNumbersPage() {
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">${totalCost.toFixed(2)}</h3>
             <p className="text-sm text-text-secondary font-medium">{t('monthlyCost')}</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
                 <Phone size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-service-voice-600" />
             </div>
-            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{pendingCount}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={pendingCount} /></h3>
             <p className="text-sm text-text-secondary font-medium">{t('pending')}</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
                 <Phone size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-service-voice-600" />
             </div>
-            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{testCount}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={testCount} /></h3>
             <p className="text-sm text-text-secondary font-medium">{t('test')}</p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4">
           <div>
@@ -190,14 +193,14 @@ export default function PhoneNumbersPage() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {numbers.map((phone, index) => {
             const isPaused = pausedNumbers.includes(phone.id);
             const displayStatus = isPaused ? 'paused' : phone.status;
 
             return (
+              <motion.div key={phone.id} variants={staggerItem}>
               <Card
-                key={phone.id}
                 variant="default"
                 className={`p-3 hover:shadow-md transition-all duration-200 hover:border-service-voice-200/50 border border-white/10 ${
                   isPaused ? 'opacity-75' : ''
@@ -243,11 +246,11 @@ export default function PhoneNumbersPage() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-xs text-text-secondary dark:text-slate-300">Calls</span>
-                    <span className="text-xs font-medium text-dark dark:text-white">{phone.incomingCalls.toLocaleString()}</span>
+                    <span className="text-xs font-medium text-dark dark:text-white"><AnimatedCounter value={phone.incomingCalls} /></span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-xs text-text-secondary dark:text-slate-300">Conversions</span>
-                    <span className="text-xs font-medium text-service-voice-600">{phone.conversions}</span>
+                    <span className="text-xs font-medium text-service-voice-600"><AnimatedCounter value={phone.conversions} /></span>
                   </div>
                 </div>
 
@@ -280,9 +283,10 @@ export default function PhoneNumbersPage() {
                   <Button variant="ghost" size="sm" iconOnly icon={<SettingsIcon size={14} className="text-text-secondary" />} title="Settings" />
                 </div>
               </Card>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </>
   );

@@ -64,13 +64,19 @@ function Card({
   // Base styles — tight padding, subtle border instead of heavy shadow
   const baseStyles = 'rounded-lg p-4';
 
-  // Animation props for interactive variant — subtle hover only
+  // Animation props — interactive gets lift + glow, default gets subtle border hint
   const animationProps = variant === 'interactive' && !shouldReduceMotion
     ? {
-        whileHover: { borderColor: 'rgba(59,130,246,0.4)' },
+        whileHover: { y: -2, boxShadow: '0 8px 25px -5px rgba(0, 62, 243, 0.15)', borderColor: 'rgba(59,130,246,0.4)' },
+        whileTap: { scale: 0.98 },
         transition: smooth,
       }
-    : {};
+    : variant === 'default' && !shouldReduceMotion
+      ? {
+          whileHover: { borderColor: 'rgba(156,163,175,0.5)' },
+          transition: smooth,
+        }
+      : {};
 
   const MotionDiv = motion.div;
 

@@ -18,6 +18,10 @@ import {
 import { usePageTitle } from '@/hooks/usePageTitle';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import AnimatedCounter from '@/components/ui/AnimatedCounter';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/lib/animations/variants';
+import FadeIn from '@/components/ui/FadeIn';
 
 const workflows = [
   {
@@ -76,53 +80,53 @@ export default function WorkflowsPage() {
 
       <div className="p-4 bg-light-bg dark:bg-slate-900">
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4">
-          <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg p-3 border border-primary/20 transition-all duration-500">
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg p-3 border border-primary/20 transition-all duration-500">
             <div className="flex items-center justify-between mb-3">
               <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
                 <Workflow size={18} className="text-white" />
               </div>
             </div>
-            <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1">{workflows.filter(w => w.status === 'active').length}</h3>
+            <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1"><AnimatedCounter value={workflows.filter(w => w.status === 'active').length} /></h3>
             <p className="text-sm text-text-secondary font-bold">Active Workflows</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-green/10 to-emerald/10 rounded-lg p-3 border border-green/20 transition-all duration-500">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-green/10 to-emerald/10 rounded-lg p-3 border border-green/20 transition-all duration-500">
             <div className="flex items-center justify-between mb-3">
               <div className="w-8 h-8 bg-gradient-to-br from-green to-emerald-500 rounded-xl flex items-center justify-center">
                 <CheckCircle size={18} className="text-white" />
               </div>
             </div>
             <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1">
-              {workflows.reduce((sum, w) => sum + w.totalRuns, 0).toLocaleString()}
+              <AnimatedCounter value={workflows.reduce((sum, w) => sum + w.totalRuns, 0)} />
             </h3>
             <p className="text-sm text-text-secondary font-bold">Total Executions</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-blue/10 to-cyan/10 rounded-lg p-3 border border-blue/20 transition-all duration-500">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue/10 to-cyan/10 rounded-lg p-3 border border-blue/20 transition-all duration-500">
             <div className="flex items-center justify-between mb-3">
               <div className="w-8 h-8 bg-gradient-to-br from-blue to-cyan-500 rounded-xl flex items-center justify-center">
                 <Zap size={18} className="text-white" />
               </div>
             </div>
             <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1">
-              {Math.round(workflows.reduce((sum, w) => sum + w.successRate, 0) / workflows.length)}%
+              <AnimatedCounter value={Math.round(workflows.reduce((sum, w) => sum + w.successRate, 0) / workflows.length)} />%
             </h3>
             <p className="text-sm text-text-secondary font-bold">Avg Success Rate</p>
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-br from-purple/10 to-pink/10 rounded-lg p-3 border border-purple/20 transition-all duration-500">
+          <motion.div variants={staggerItem} className="bg-gradient-to-br from-purple/10 to-pink/10 rounded-lg p-3 border border-purple/20 transition-all duration-500">
             <div className="flex items-center justify-between mb-3">
               <div className="w-8 h-8 bg-gradient-to-br from-purple to-pink-500 rounded-xl flex items-center justify-center">
                 <GitBranch size={18} className="text-white" />
               </div>
             </div>
             <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1">
-              {workflows.reduce((sum, w) => sum + w.actions, 0)}
+              <AnimatedCounter value={workflows.reduce((sum, w) => sum + w.actions, 0)} />
             </h3>
             <p className="text-sm text-text-secondary font-bold">Total Actions</p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <Card variant="default">
           <div className="flex items-center justify-between mb-3">
@@ -135,10 +139,11 @@ export default function WorkflowsPage() {
             </Button>
           </div>
 
-          <div className="space-y-2">
+          <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-2">
             {workflows.map((workflow, index) => (
-              <div
+              <motion.div
                 key={workflow.id}
+                variants={staggerItem}
                 className="p-3 rounded-lg bg-light-bg hover:bg-gradient-to-r hover:from-primary/5 hover:to-accent/5 transition-all duration-500 cursor-pointer"
               >
                 <div className="flex items-start justify-between mb-2">
@@ -165,13 +170,13 @@ export default function WorkflowsPage() {
                           📡 {workflow.trigger}
                         </span>
                         <span className="text-xs px-2 py-0.5 bg-blue/20 text-blue rounded-lg font-bold">
-                          ⚡ {workflow.actions} actions
+                          ⚡ <AnimatedCounter value={workflow.actions} /> actions
                         </span>
                         <span className="text-xs px-2 py-0.5 bg-purple/20 text-purple rounded-lg font-bold">
-                          📊 {workflow.totalRuns} runs
+                          📊 <AnimatedCounter value={workflow.totalRuns} /> runs
                         </span>
                         <span className="text-xs px-2 py-0.5 bg-green/20 text-green rounded-lg font-bold">
-                          ✓ {workflow.successRate}% success
+                          ✓ <AnimatedCounter value={workflow.successRate} />% success
                         </span>
                       </div>
                     </div>
@@ -198,12 +203,13 @@ export default function WorkflowsPage() {
                     View Details →
                   </Button>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </Card>
 
         {/* N8N Integration Notice */}
+        <FadeIn delay={0.2}>
         <div className="mt-4 bg-gradient-to-r from-primary/10 via-accent/10 to-purple/10 rounded-lg p-4 border border-primary/20">
           <div className="flex items-start gap-4">
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center flex-shrink-0">
@@ -221,6 +227,7 @@ export default function WorkflowsPage() {
             </div>
           </div>
         </div>
+        </FadeIn>
       </div>
     </>
   );

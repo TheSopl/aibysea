@@ -140,3 +140,68 @@ export const staggerItem: Variants = {
     transition: { duration: 0.3, ease: "easeOut" }
   }
 };
+
+/**
+ * Scale in with spring (bouncy entrance)
+ * Use for: Featured cards, hero elements
+ */
+export const springIn: Variants = {
+  hidden: { opacity: 0, scale: 0.9, y: 20 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 20,
+      mass: 0.8
+    }
+  }
+};
+
+/**
+ * Blur in (modern reveal effect)
+ * Use for: Text content, descriptions
+ */
+export const blurIn: Variants = {
+  hidden: { opacity: 0, filter: 'blur(10px)', y: 10 },
+  visible: {
+    opacity: 1,
+    filter: 'blur(0px)',
+    y: 0,
+    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+  }
+};
+
+/**
+ * Fast stagger (tighter timing for compact grids)
+ * Use for: KPI cards, stat grids
+ */
+export const fastStagger: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.02
+    }
+  }
+};
+
+/**
+ * Slide up with spring
+ * Use for: List items, table rows
+ */
+export const slideUpSpring: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 400,
+      damping: 25
+    }
+  }
+};
