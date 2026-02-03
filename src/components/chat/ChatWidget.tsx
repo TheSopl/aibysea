@@ -12,15 +12,57 @@ interface ChatMessage {
   timestamp: string;
 }
 
+const STORAGE_KEY = 'rashed-chat-conversation-id';
+
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [conversationId, setConversationId] = useState<string | null>(null);
+  const [historyLoaded, setHistoryLoaded] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const subscriptionRef = useRef<ReturnType<ReturnType<typeof createClient>['channel']> | null>(null);
+
+  // Restore conversationId from localStorage on mount
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      setConversationId(stored);
+    }
+  }, []);
+
+  // Save conversationId to localStorage when it changes
+  useEffect(() => {
+    if (conversationId) {
+      localStorage.setItem(STORAGE_KEY, conversationId);
+    }
+  }, [conversationId]);
+
+  // Load previous messages when chat opens and we have a conversation
+  useEffect(() => {
+    if (!isOpen || !conversationId || historyLoaded) return;
+
+    const supabase = createClient();
+    supabase
+      .from('messages')
+      .select('id, direction, content, created_at')
+      .eq('conversation_id', conversationId)
+      .order('created_at', { ascending: true })
+      .limit(50)
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          const loaded: ChatMessage[] = data.map((msg: { id: string; direction: string; content: string; created_at: string }) => ({
+            id: msg.id,
+            role: msg.direction === 'inbound' ? 'user' as const : 'assistant' as const,
+            content: msg.content,
+            timestamp: msg.created_at,
+          }));
+          setMessages(loaded);
+        }
+        setHistoryLoaded(true);
+      });
+  }, [isOpen, conversationId, historyLoaded]);
 
   // Auto-scroll to bottom
   const scrollToBottom = useCallback(() => {
@@ -58,7 +100,6 @@ export default function ChatWidget() {
           // Only add AI/agent responses (outbound messages)
           if (msg.direction === 'outbound') {
             setMessages(prev => {
-              // Deduplicate
               if (prev.some(m => m.id === msg.id)) return prev;
               return [...prev, {
                 id: msg.id,
@@ -72,8 +113,6 @@ export default function ChatWidget() {
         }
       )
       .subscribe();
-
-    subscriptionRef.current = channel;
 
     return () => {
       supabase.removeChannel(channel);
@@ -92,7 +131,6 @@ export default function ChatWidget() {
     const trimmed = input.trim();
     if (!trimmed || loading) return;
 
-    // Add user message immediately
     const tempId = `temp-${Date.now()}`;
     const userMessage: ChatMessage = {
       id: tempId,
@@ -120,12 +158,10 @@ export default function ChatWidget() {
 
       const data = await res.json();
 
-      // Set conversation ID on first message
       if (!conversationId) {
         setConversationId(data.conversation_id);
       }
 
-      // Update temp message with real ID
       setMessages(prev =>
         prev.map(m => m.id === tempId ? { ...m, id: data.message_id } : m)
       );
@@ -182,7 +218,7 @@ export default function ChatWidget() {
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
-            {messages.length === 0 && (
+            {messages.length === 0 && !loading && (
               <div className="flex flex-col items-center justify-center h-full text-center px-4">
                 <div className="w-16 h-16 rounded-2xl overflow-hidden mb-3 ring-2 ring-primary/20">
                   <Image src="/rashed-avatar.jpeg" alt="Rashed" width={64} height={64} className="w-full h-full object-cover" />

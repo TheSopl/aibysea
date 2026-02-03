@@ -2,7 +2,7 @@
  * Chat Widget API
  *
  * Handles web chat messages from the floating chat widget.
- * Creates conversations, inserts messages, and triggers n8n for AI responses.
+ * Reuses existing contact/conversation per user, inserts messages, triggers n8n.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -22,10 +22,9 @@ interface ChatRequest {
  * POST /api/chat
  *
  * Send a message in the web chat widget.
- * Creates a conversation on first message, inserts the message, triggers n8n.
+ * Reuses existing contact + conversation for the logged-in user.
  */
 export async function POST(request: NextRequest): Promise<NextResponse> {
-  // Verify the user is authenticated
   const serverSupabase = await createClient();
   const { data: { user }, error: authError } = await serverSupabase.auth.getUser();
 
@@ -47,51 +46,66 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   const supabase: SupabaseAdmin = createAdminClient();
+  const contactPhone = `web:${user.id}`;
 
   try {
-    let convId = conversation_id;
+    let convId: string | undefined = conversation_id;
     let aiAgent = null;
 
-    // If no conversation exists, create one
-    if (!convId) {
-      // Find or create contact for this user
-      const contactPhone = `web:${user.id}`;
+    // Find or create contact (one per user, always reused)
+    let contact;
+    const { data: existingContact } = await supabase
+      .from('contacts')
+      .select('id')
+      .eq('phone', contactPhone)
+      .maybeSingle();
+
+    if (existingContact) {
+      contact = existingContact;
+    } else {
       const contactName = user.user_metadata?.full_name || user.email || 'Web User';
-
-      let contact;
-      const { data: existingContact } = await supabase
+      const { data: newContact, error: contactError } = await supabase
         .from('contacts')
+        .insert({ phone: contactPhone, name: contactName, metadata: { source: 'web_chat', user_id: user.id } })
         .select('id')
-        .eq('phone', contactPhone)
-        .maybeSingle();
-
-      if (existingContact) {
-        contact = existingContact;
-      } else {
-        const { data: newContact, error: contactError } = await supabase
-          .from('contacts')
-          .insert({ phone: contactPhone, name: contactName, metadata: { source: 'web_chat', user_id: user.id } })
-          .select('id')
-          .single();
-
-        if (contactError || !newContact) {
-          return NextResponse.json({ error: 'Failed to create contact' }, { status: 500 });
-        }
-        contact = newContact;
-      }
-
-      // Get the default active AI agent
-      const { data: defaultAgent } = await supabase
-        .from('ai_agents')
-        .select('id, name, model, system_prompt, greeting_message, behaviors')
-        .eq('status', 'active')
-        .order('created_at', { ascending: true })
-        .limit(1)
         .single();
 
-      aiAgent = defaultAgent || null;
+      if (contactError || !newContact) {
+        return NextResponse.json({ error: 'Failed to create contact' }, { status: 500 });
+      }
+      contact = newContact;
+    }
 
-      // Create conversation
+    // Get the default active AI agent
+    const { data: defaultAgent } = await supabase
+      .from('ai_agents')
+      .select('id, name, model, system_prompt, greeting_message, behaviors')
+      .eq('status', 'active')
+      .order('created_at', { ascending: true })
+      .limit(1)
+      .maybeSingle();
+
+    aiAgent = defaultAgent || null;
+
+    // If no conversation_id provided, find existing web conversation for this contact
+    if (!convId) {
+      const { data: existingConv } = await supabase
+        .from('conversations')
+        .select('id')
+        .eq('contact_id', contact.id)
+        .eq('channel', 'web')
+        .eq('status', 'active')
+        .order('last_message_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (existingConv) {
+        convId = existingConv.id;
+      }
+    }
+
+    // Still no conversation? Create one
+    if (!convId) {
       const now = new Date().toISOString();
       const { data: conv, error: convError } = await supabase
         .from('conversations')
@@ -110,13 +124,14 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       if (convError || !conv) {
         return NextResponse.json({ error: 'Failed to create conversation' }, { status: 500 });
       }
-
       convId = conv.id;
-    } else {
-      // Fetch the AI agent for the existing conversation
+    }
+
+    // Fetch AI agent from conversation if we don't have it yet
+    if (!aiAgent) {
       const { data: convData } = await supabase
         .from('conversations')
-        .select('ai_agent_id, ai_agent:ai_agents(id, name, model, system_prompt, greeting_message, behaviors)')
+        .select('ai_agent:ai_agents(id, name, model, system_prompt, greeting_message, behaviors)')
         .eq('id', convId)
         .single();
 
@@ -160,7 +175,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       message_id: insertedMessage.id,
       customer_message: message.trim(),
       channel: 'web',
-      contact: { id: user.id, phone: `web:${user.id}`, name: user.user_metadata?.full_name || null },
+      contact: { id: contact.id, phone: contactPhone, name: user.user_metadata?.full_name || null },
       ai_agent: aiAgent,
     }).catch(err => console.error('[Chat API] n8n trigger error:', err));
 
