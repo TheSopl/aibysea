@@ -9,10 +9,6 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import FadeIn from '@/components/ui/FadeIn';
-import AnimatedCounter from '@/components/ui/AnimatedCounter';
-import { motion } from 'framer-motion';
-import { staggerContainer, staggerItem } from '@/lib/animations/variants';
 
 export default function DashboardPage() {
   const t = useTranslations('Dashboard');
@@ -94,224 +90,206 @@ export default function DashboardPage() {
       <TopBar title={t('title')} />
 
       <div className="flex-1 overflow-y-auto">
-        <div className="max-w-[1600px] 2xl:max-w-[1680px] mx-auto p-4 lg:p-6 space-y-6">
+        <div className="max-w-[1600px] 2xl:max-w-[1680px] mx-auto p-4 space-y-4">
 
-          <FadeIn>
-            <div className="space-y-4">
-              <motion.div
-                variants={staggerContainer}
-                initial="hidden"
-                animate="visible"
-                className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6"
-              >
-                {serviceCards.map((card, index) => {
-                  const Icon = card.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      variants={staggerItem}
-                      className="bg-white dark:bg-slate-800 rounded-xl p-5 lg:p-6 shadow-sm border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
-                    >
-                      <div className="mb-4">
-                        <div className={`bg-gradient-to-br ${card.gradient} rounded-lg p-3 shadow-sm`}>
-                          <Icon className="w-6 h-6 text-white" strokeWidth={2} />
-                        </div>
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {serviceCards.map((card, index) => {
+                const Icon = card.icon;
+                return (
+                  <div
+                    key={index}
+                    className="bg-white dark:bg-slate-800 rounded-xl p-3 shadow-sm border border-gray-200 dark:border-slate-700"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className={`bg-gradient-to-br ${card.gradient} rounded-lg p-2 shadow-sm`}>
+                        <Icon className="w-5 h-5 text-white" strokeWidth={2} />
                       </div>
-                      <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold mb-3">
+                      <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold">
                         {card.name}
                       </p>
-                      <p className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-2">
-                        <AnimatedCounter value={parseInt(card.value)} className="text-4xl lg:text-5xl font-bold" />
-                      </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{card.label}</p>
-                    </motion.div>
+                    </div>
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white mt-2">
+                      {card.value}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{card.label}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {kpiStats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-slate-800 rounded-lg p-3 shadow-sm border border-gray-200 dark:border-slate-700"
+                >
+                  <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold mb-2">
+                    {stat.label}
+                  </p>
+                  <p className="text-xl font-bold text-gray-900 dark:text-white">
+                    {stat.prefix}{stat.numericValue.toLocaleString()}{stat.suffix}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
+
+            <Card variant="default" className="lg:col-span-5">
+              <Card.Header>
+                <div className="flex items-center gap-2">
+                  <Activity className="w-5 h-5 text-gray-900 dark:text-white" />
+                  <Card.Title>{t('recentActivity')}</Card.Title>
+                </div>
+              </Card.Header>
+              <div className="space-y-2.5">
+                {activityFeed.map((item, index) => {
+                  const ActivityIcon = item.icon;
+                  return (
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
+                    >
+                      <div className={`${item.color} flex-shrink-0`}>
+                        <ActivityIcon className="w-4 h-4" strokeWidth={2} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs lg:text-sm font-medium text-gray-900 dark:text-white">
+                          {item.service}{' '}
+                          <span className="font-normal text-gray-600 dark:text-gray-300">{item.action}</span>
+                        </p>
+                      </div>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">{item.time}</p>
+                    </div>
                   );
                 })}
-              </motion.div>
+              </div>
+            </Card>
 
-              <motion.div
-                variants={staggerContainer}
-                initial="hidden"
-                animate="visible"
-                className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6"
-              >
-                {kpiStats.map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    variants={staggerItem}
-                    className="bg-white dark:bg-slate-800 rounded-lg p-4 lg:p-5 shadow-sm border border-gray-200 dark:border-slate-700"
-                  >
-                    <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold mb-2">
-                      {stat.label}
-                    </p>
-                    <p className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
-                      {stat.prefix}<AnimatedCounter value={stat.numericValue} className="text-2xl lg:text-3xl font-bold" />{stat.suffix}
-                    </p>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </FadeIn>
+            <Card variant="default" className="lg:col-span-7">
+              <Card.Header>
+                <Card.Title>{t('aiAgentPerformance')}</Card.Title>
+                <Button variant="ghost" size="sm">
+                  {t('viewDetails')}
+                </Button>
+              </Card.Header>
+              <div className="h-72 lg:h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={chartData}>
+                    <defs>
+                      <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#3B82F6" stopOpacity={0.5} />
+                        <stop offset="100%" stopColor="#3B82F6" stopOpacity={0.05} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" className="dark:stroke-slate-700" />
+                    <XAxis
+                      dataKey="date"
+                      stroke="#6B7280"
+                      style={{ fontSize: '13px', fontWeight: 500 }}
+                    />
+                    <YAxis
+                      stroke="#6B7280"
+                      style={{ fontSize: '13px', fontWeight: 500 }}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#FFFFFF',
+                        border: '1px solid #E5E7EB',
+                        borderRadius: '8px',
+                        fontSize: '13px',
+                      }}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="value"
+                      stroke="#3B82F6"
+                      strokeWidth={3}
+                      fill="url(#gradient)"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            </Card>
+          </div>
 
-          <FadeIn delay={0.1}>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-start">
 
-              <Card variant="default" className="lg:col-span-5">
-                <Card.Header>
-                  <div className="flex items-center gap-2">
-                    <Activity className="w-5 h-5 text-gray-900 dark:text-white" />
-                    <Card.Title>{t('recentActivity')}</Card.Title>
-                  </div>
-                </Card.Header>
-                <div className="space-y-2.5">
-                  {activityFeed.map((item, index) => {
-                    const ActivityIcon = item.icon;
+            <Card variant="default">
+              <Card.Header>
+                <Card.Title className="h-7">{t('topChannels')}</Card.Title>
+              </Card.Header>
+              <Card.Content>
+                <div className="space-y-3">
+                  {topChannels.map((channel, index) => {
+                    const BrandIcon = channel.Icon;
                     return (
-                      <div
-                        key={index}
-                        className="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
-                      >
-                        <div className={`${item.color} flex-shrink-0`}>
-                          <ActivityIcon className="w-4 h-4" strokeWidth={2} />
+                      <div key={index} className="flex items-center gap-4 p-3 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors h-[52px]">
+                        <div className={`w-9 h-9 flex items-center justify-center flex-shrink-0 ${channel.color}`}>
+                          <BrandIcon size={24} />
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs lg:text-sm font-medium text-gray-900 dark:text-white">
-                            {item.service}{' '}
-                            <span className="font-normal text-gray-600 dark:text-gray-300">{item.action}</span>
-                          </p>
-                        </div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">{item.time}</p>
+                        <span className="flex-1 text-sm font-semibold text-gray-900 dark:text-white">{channel.name}</span>
+                        <span className="text-base lg:text-lg font-bold text-gray-900 dark:text-white">{channel.count}</span>
                       </div>
                     );
                   })}
                 </div>
-              </Card>
+              </Card.Content>
+            </Card>
 
-              <Card variant="default" className="lg:col-span-7">
-                <Card.Header>
-                  <Card.Title>{t('aiAgentPerformance')}</Card.Title>
-                  <Button variant="ghost" size="sm">
-                    {t('viewDetails')}
-                  </Button>
-                </Card.Header>
-                <div className="h-72 lg:h-80">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={chartData}>
-                      <defs>
-                        <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#3B82F6" stopOpacity={0.5} />
-                          <stop offset="100%" stopColor="#3B82F6" stopOpacity={0.05} />
-                        </linearGradient>
-                      </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" className="dark:stroke-slate-700" />
-                      <XAxis
-                        dataKey="date"
-                        stroke="#6B7280"
-                        style={{ fontSize: '13px', fontWeight: 500 }}
-                      />
-                      <YAxis
-                        stroke="#6B7280"
-                        style={{ fontSize: '13px', fontWeight: 500 }}
-                      />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: '#FFFFFF',
-                          border: '1px solid #E5E7EB',
-                          borderRadius: '8px',
-                          fontSize: '13px',
-                        }}
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="value"
-                        stroke="#3B82F6"
-                        strokeWidth={3}
-                        fill="url(#gradient)"
-                      />
-                    </AreaChart>
-                  </ResponsiveContainer>
+            <Card variant="default">
+              <Card.Header>
+                <Card.Title className="h-7">{t('lifecycleDistribution')}</Card.Title>
+              </Card.Header>
+              <Card.Content>
+                <div className="space-y-3">
+                  {lifecycles.map((lifecycle, index) => (
+                    <div key={index} className="flex items-center gap-4 p-3 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors h-[52px]">
+                      <div className="w-9 h-9 flex items-center justify-center text-2xl flex-shrink-0">{lifecycle.icon}</div>
+                      <span className="flex-1 text-sm font-semibold text-gray-900 dark:text-white">{lifecycle.name}</span>
+                      <span className="text-base lg:text-lg font-bold text-gray-900 dark:text-white">{lifecycle.count}</span>
+                    </div>
+                  ))}
                 </div>
-              </Card>
-            </div>
-          </FadeIn>
+              </Card.Content>
+            </Card>
 
-          <FadeIn delay={0.2}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 items-start">
-
-              <Card variant="default">
-                <Card.Header>
-                  <Card.Title className="h-7">{t('topChannels')}</Card.Title>
-                </Card.Header>
-                <Card.Content>
-                  <div className="space-y-3">
-                    {topChannels.map((channel, index) => {
-                      const BrandIcon = channel.Icon;
-                      return (
-                        <div key={index} className="flex items-center gap-4 p-3 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors h-[52px]">
-                          <div className={`w-9 h-9 flex items-center justify-center flex-shrink-0 ${channel.color}`}>
-                            <BrandIcon size={24} />
-                          </div>
-                          <span className="flex-1 text-sm font-semibold text-gray-900 dark:text-white">{channel.name}</span>
-                          <span className="text-base lg:text-lg font-bold text-gray-900 dark:text-white">{channel.count}</span>
+            <Card variant="default">
+              <Card.Header>
+                <div className="flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-blue-500" />
+                  <Card.Title>{t('activeAgents')}</Card.Title>
+                </div>
+              </Card.Header>
+              <Card.Content>
+                <div className="space-y-3">
+                  {activeAgents.map((agent, index) => (
+                    <div key={index} className="p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="relative w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
+                          <Image src={agent.photo} alt={agent.name} fill className="object-cover" />
                         </div>
-                      );
-                    })}
-                  </div>
-                </Card.Content>
-              </Card>
-
-              <Card variant="default">
-                <Card.Header>
-                  <Card.Title className="h-7">{t('lifecycleDistribution')}</Card.Title>
-                </Card.Header>
-                <Card.Content>
-                  <div className="space-y-3">
-                    {lifecycles.map((lifecycle, index) => (
-                      <div key={index} className="flex items-center gap-4 p-3 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg transition-colors h-[52px]">
-                        <div className="w-9 h-9 flex items-center justify-center text-2xl flex-shrink-0">{lifecycle.icon}</div>
-                        <span className="flex-1 text-sm font-semibold text-gray-900 dark:text-white">{lifecycle.name}</span>
-                        <span className="text-base lg:text-lg font-bold text-gray-900 dark:text-white">{lifecycle.count}</span>
-                      </div>
-                    ))}
-                  </div>
-                </Card.Content>
-              </Card>
-
-              <Card variant="default">
-                <Card.Header>
-                  <div className="flex items-center gap-2">
-                    <Zap className="w-5 h-5 text-blue-500" />
-                    <Card.Title>{t('activeAgents')}</Card.Title>
-                  </div>
-                </Card.Header>
-                <Card.Content>
-                  <div className="space-y-3">
-                    {activeAgents.map((agent, index) => (
-                      <div key={index} className="p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="relative w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
-                            <Image src={agent.photo} alt={agent.name} fill className="object-cover" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">{agent.name}</p>
-                            <span className="text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded font-medium">
-                              {agent.channel}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                          <p className="text-xs text-green-600 dark:text-green-400 font-semibold">
-                            {t('handlingChats', { count: agent.chatCount })}
-                          </p>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-semibold text-gray-900 dark:text-white">{agent.name}</p>
+                          <span className="text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded font-medium">
+                            {agent.channel}
+                          </span>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </Card.Content>
-              </Card>
-            </div>
-          </FadeIn>
+                      <div className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                        <p className="text-xs text-green-600 dark:text-green-400 font-semibold">
+                          {t('handlingChats', { count: agent.chatCount })}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Card.Content>
+            </Card>
+          </div>
 
         </div>
       </div>
