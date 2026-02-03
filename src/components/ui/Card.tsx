@@ -56,18 +56,18 @@ function Card({
 
   // Variant styles
   const variantStyles = {
-    default: 'bg-white dark:bg-gray-800 shadow-card',
-    interactive: 'bg-white dark:bg-gray-800 shadow-card cursor-pointer',
+    default: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-slate-700',
+    interactive: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-slate-700 cursor-pointer',
     flat: 'bg-white dark:bg-gray-800',
   };
 
-  // Base styles
-  const baseStyles = 'rounded-design-lg p-card';
+  // Base styles — tight padding, subtle border instead of heavy shadow
+  const baseStyles = 'rounded-lg p-4';
 
-  // Animation props for interactive variant
+  // Animation props for interactive variant — subtle hover only
   const animationProps = variant === 'interactive' && !shouldReduceMotion
     ? {
-        whileHover: { y: -4, boxShadow: "0 12px 24px rgba(0,0,0,0.15)" },
+        whileHover: { borderColor: 'rgba(59,130,246,0.4)' },
         transition: smooth,
       }
     : {};
@@ -95,7 +95,7 @@ function Card({
  */
 function CardHeader({ className, children }: CardSubComponentProps) {
   return (
-    <div className={cn('flex justify-between items-start mb-4', className)}>
+    <div className={cn('flex justify-between items-start mb-2', className)}>
       {children}
     </div>
   );
@@ -143,7 +143,7 @@ function CardContent({ className, children }: CardSubComponentProps) {
  */
 function CardFooter({ className, children }: CardSubComponentProps) {
   return (
-    <div className={cn('mt-6 flex justify-end gap-2', className)}>
+    <div className={cn('mt-3 flex justify-end gap-2', className)}>
       {children}
     </div>
   );
