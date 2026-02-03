@@ -25,7 +25,6 @@ import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import FadeIn from '@/components/ui/FadeIn';
 
 const voiceAgents = [
   {
@@ -83,13 +82,9 @@ export default function VoiceAgentsPage() {
       <TopBar title={t('title')} />
 
       <div className="p-4 sm:p-6 bg-gray-100 dark:bg-slate-900 max-w-[1600px] mx-auto">
-        <FadeIn>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0s both'
-            }}
+            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
@@ -97,15 +92,12 @@ export default function VoiceAgentsPage() {
               </div>
               <TrendingUp className="w-4 h-4 text-service-voice-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">{activeAgentsCount}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{activeAgentsCount}</h3>
             <p className="text-sm text-text-secondary font-medium">{t('activeVoiceAgents')}</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0.1s both'
-            }}
+            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
@@ -113,17 +105,14 @@ export default function VoiceAgentsPage() {
               </div>
               <Activity className="w-4 h-4 text-service-voice-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
               {totalCallsHandled.toLocaleString()}
             </h3>
             <p className="text-sm text-text-secondary font-medium">{t('totalCalls')}</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0.2s both'
-            }}
+            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
@@ -131,17 +120,14 @@ export default function VoiceAgentsPage() {
               </div>
               <TrendingUp className="w-4 h-4 text-service-voice-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
               {avgCallDuration}m
             </h3>
             <p className="text-sm text-text-secondary font-medium">{t('avgDuration')}</p>
           </div>
 
           <div
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0.3s both'
-            }}
+            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
@@ -149,15 +135,13 @@ export default function VoiceAgentsPage() {
               </div>
               <BarChart3 className="w-4 h-4 text-service-voice-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
               {avgSuccessRate}%
             </h3>
             <p className="text-sm text-text-secondary font-medium">{t('successRate')}</p>
           </div>
         </div>
-        </FadeIn>
 
-        <FadeIn delay={0.1}>
         <div className="flex flex-col lg:flex-row gap-4">
           <div className={cn("flex-1 min-w-0", selectedAgent && "hidden lg:block")}>
             <Card variant="default" className="mb-4">
@@ -182,14 +166,11 @@ export default function VoiceAgentsPage() {
                   <div
                     key={agent.id}
                     onClick={() => setSelectedAgent(agent)}
-                    className={`p-3 rounded-lg cursor-pointer transition-all duration-200 border hover:scale-[1.01] ${
+                    className={`p-3 rounded-lg cursor-pointer transition-all duration-200 border ${
                       selectedAgent?.id === agent.id
                         ? 'bg-gradient-to-r from-teal-400/5 to-teal-600/5 border-service-voice-400/20 shadow-sm'
                         : 'bg-light-bg dark:bg-slate-700/50 border-white/5 hover:border-gray-200 dark:hover:border-slate-600 hover:shadow-sm'
                     }`}
-                    style={{
-                      animation: `fadeIn 0.5s ease-out ${0.6 + index * 0.1}s both`
-                    }}
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2 flex-1">
@@ -275,7 +256,7 @@ export default function VoiceAgentsPage() {
                   <div>
                     <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">{t('status')}</label>
                     <div className="mt-1.5">
-                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium border ${
+                      <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium border ${
                         selectedAgent.status === 'active'
                           ? 'bg-green/10 text-green border-green/20'
                           : 'bg-gray-100 text-gray-700 border-gray-200'
@@ -348,7 +329,6 @@ export default function VoiceAgentsPage() {
             </div>
           )}
         </div>
-        </FadeIn>
       </div>
     </>
   );
