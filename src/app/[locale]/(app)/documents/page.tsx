@@ -19,7 +19,7 @@ import {
 import { usePageTitle } from '@/hooks/usePageTitle';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import FadeIn from '@/components/ui/FadeIn';
+
 
 const templates = [
   { id: 'invoice', name: 'Invoice', description: 'Extract invoice details' },
@@ -166,80 +166,56 @@ export default function DocumentsPage() {
       <TopBar title="Upload & Process Documents" />
 
       <div className="p-4 sm:p-6 bg-gray-100 dark:bg-slate-900 max-w-[1600px] mx-auto">
-        <FadeIn>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-          <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0s both'
-            }}
-          >
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                 <Upload size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-primary-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">{statistics.totalProcessed}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{statistics.totalProcessed}</h3>
             <p className="text-sm text-text-secondary font-medium">Documents Processed</p>
           </div>
 
-          <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0.1s both'
-            }}
-          >
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                 <Clock size={20} className="text-white" />
               </div>
               <Activity size={16} className="text-primary-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
               {statistics.avgProcessingTime}m
             </h3>
             <p className="text-sm text-text-secondary font-medium">Avg Processing Time</p>
           </div>
 
-          <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0.2s both'
-            }}
-          >
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                 <CheckCircle size={20} className="text-white" />
               </div>
               <BarChart3 size={16} className="text-primary-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
               {statistics.successRate}%
             </h3>
             <p className="text-sm text-text-secondary font-medium">Success Rate</p>
           </div>
 
-          <div
-            className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0.3s both'
-            }}
-          >
+          <div className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                 <AlertCircle size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-primary-500" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">{failedDocs}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{failedDocs}</h3>
             <p className="text-sm text-text-secondary font-medium">Failed Uploads</p>
           </div>
         </div>
 
-        </FadeIn>
-
-        <FadeIn delay={0.1}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
           <div
             className={`lg:col-span-2 rounded-xl p-6 border border-dashed transition-all duration-200 ${
@@ -298,9 +274,6 @@ export default function DocumentsPage() {
             </div>
           </Card>
         </div>
-        </FadeIn>
-
-        <FadeIn delay={0.2}>
         {processingDocs.length > 0 && (
           <Card variant="default" className="mb-6">
             <h2 className="text-lg font-bold text-dark dark:text-white mb-3">Currently Processing</h2>
@@ -369,9 +342,6 @@ export default function DocumentsPage() {
                       ? 'bg-red-50/30 dark:bg-red-900/10 border-red-200/50'
                       : 'bg-primary-50/30 dark:bg-slate-700/50 border-primary-200/50'
                 }`}
-                style={{
-                  animation: `fadeIn 0.5s ease-out ${0.6 + index * 0.1}s both`
-                }}
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2 flex-1 min-w-0">
@@ -449,31 +419,7 @@ export default function DocumentsPage() {
             ))}
           </div>
         </Card>
-        </FadeIn>
       </div>
-
-      <style jsx>{`
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </>
   );
 }

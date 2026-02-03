@@ -135,67 +135,47 @@ export default function PhoneNumbersPage() {
 
       <div className="p-4 sm:p-6 bg-gray-100 dark:bg-slate-900 max-w-[1600px] mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-          <div
-            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0s both'
-            }}
-          >
+          <div className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
                 <Phone size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-service-voice-600" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">{activeCount}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{activeCount}</h3>
             <p className="text-sm text-text-secondary font-medium">{t('activeNumbers')}</p>
           </div>
 
-          <div
-            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0.1s both'
-            }}
-          >
+          <div className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
                 <DollarSign size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-service-voice-600" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">${totalCost.toFixed(2)}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">${totalCost.toFixed(2)}</h3>
             <p className="text-sm text-text-secondary font-medium">{t('monthlyCost')}</p>
           </div>
 
-          <div
-            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0.2s both'
-            }}
-          >
+          <div className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
                 <Phone size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-service-voice-600" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">{pendingCount}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{pendingCount}</h3>
             <p className="text-sm text-text-secondary font-medium">{t('pending')}</p>
           </div>
 
-          <div
-            className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              animation: 'scaleIn 0.5s ease-out 0.3s both'
-            }}
-          >
+          <div className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
                 <Phone size={20} className="text-white" />
               </div>
               <TrendingUp size={16} className="text-service-voice-600" />
             </div>
-            <h3 className="text-3xl font-extrabold text-dark dark:text-white mb-0.5">{testCount}</h3>
+            <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{testCount}</h3>
             <p className="text-sm text-text-secondary font-medium">{t('test')}</p>
           </div>
         </div>
@@ -304,29 +284,6 @@ export default function PhoneNumbersPage() {
           })}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </>
   );
 }

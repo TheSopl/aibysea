@@ -492,7 +492,7 @@ export default function SettingsPage() {
                     Automatically move contacts between lifecycle stages based on their behavior and interactions
                   </p>
                   <button
-                    className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-white rounded-lg sm:rounded-xl font-bold text-sm hover:shadow-xl transition-all duration-300 hover:scale-105 shadow-lg"
+                    className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-white rounded-lg sm:rounded-xl font-bold text-sm hover:shadow-sm transition-all duration-300"
                     style={{ background: 'linear-gradient(to right, #003EF3, #4EB6C9)' }}
                   >
                     Configure Automation
