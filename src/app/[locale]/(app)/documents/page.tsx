@@ -11,10 +11,7 @@ import {
   Clock,
   Plus,
   Eye,
-  Trash2,
-  TrendingUp,
-  BarChart3,
-  Activity
+  Trash2
 } from 'lucide-react';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import Button from '@/components/ui/Button';
@@ -156,9 +153,22 @@ export default function DocumentsPage() {
   };
 
   const getProgressBarColor = (status: string) => {
-    if (status === 'completed') return 'bg-gradient-to-r from-green-400 to-green-600';
-    if (status === 'failed') return 'bg-gradient-to-r from-red-400 to-red-600';
-    return 'bg-gradient-to-r from-blue-400 to-blue-600';
+    if (status === 'completed') return 'bg-green-500';
+    if (status === 'failed') return 'bg-red-500';
+    return 'bg-blue-500';
+  };
+
+  const getLeftBorderColor = (status: string) => {
+    switch (status) {
+      case 'completed':
+        return 'border-l-green-500';
+      case 'failed':
+        return 'border-l-red-500';
+      case 'processing':
+        return 'border-l-blue-500';
+      default:
+        return 'border-l-gray-300';
+    }
   };
 
   const processingDocs = uploads.filter(u => u.status === 'processing');
@@ -171,23 +181,21 @@ export default function DocumentsPage() {
 
       <div className="p-4 sm:p-6 bg-gray-100 dark:bg-slate-900 max-w-[1600px] mx-auto">
         <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
-                <Upload size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <Upload size={20} className="text-blue-600 dark:text-blue-400" />
               </div>
-              <TrendingUp size={16} className="text-primary-500" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={statistics.totalProcessed} /></h3>
             <p className="text-sm text-text-secondary font-medium">Documents Processed</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
-                <Clock size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <Clock size={20} className="text-blue-600 dark:text-blue-400" />
               </div>
-              <Activity size={16} className="text-primary-500" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
               {statistics.avgProcessingTime}m
@@ -195,12 +203,11 @@ export default function DocumentsPage() {
             <p className="text-sm text-text-secondary font-medium">Avg Processing Time</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
-                <CheckCircle size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <CheckCircle size={20} className="text-green-600 dark:text-green-400" />
               </div>
-              <BarChart3 size={16} className="text-primary-500" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
               <AnimatedCounter value={statistics.successRate} />%
@@ -208,12 +215,11 @@ export default function DocumentsPage() {
             <p className="text-sm text-text-secondary font-medium">Success Rate</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
-                <AlertCircle size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <AlertCircle size={20} className="text-red-600 dark:text-red-400" />
               </div>
-              <TrendingUp size={16} className="text-primary-500" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={failedDocs} /></h3>
             <p className="text-sm text-text-secondary font-medium">Failed Uploads</p>
@@ -226,7 +232,7 @@ export default function DocumentsPage() {
             className={`lg:col-span-2 rounded-xl p-6 border border-dashed transition-all duration-200 ${
               dragActive
                 ? 'border-primary-500 bg-primary-50/50 dark:bg-slate-700 shadow-sm'
-                : 'border-primary-300 dark:border-slate-600 bg-primary-50/30 dark:bg-slate-700/50 hover:border-primary-400'
+                : 'border-primary-300 dark:border-slate-600 bg-white dark:bg-slate-800 hover:border-primary-400'
             }`}
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
@@ -234,8 +240,8 @@ export default function DocumentsPage() {
             onDrop={handleDrop}
           >
             <div className="flex flex-col items-center justify-center py-6">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mb-3">
-                <Upload size={28} className="text-white" />
+              <div className="w-16 h-16 rounded-full bg-blue-100 dark:bg-slate-700 flex items-center justify-center mb-3">
+                <Upload size={28} className="text-blue-600 dark:text-blue-400" />
               </div>
               <h3 className="text-lg font-bold text-dark dark:text-white mb-1.5 text-center">
                 Drag documents here or click to browse
@@ -260,8 +266,8 @@ export default function DocumentsPage() {
                   onClick={() => setSelectedTemplate(template)}
                   className={`w-full text-start p-2.5 rounded-lg transition-all border ${
                     selectedTemplate.id === template.id
-                      ? 'bg-gradient-to-r from-blue-400/10 to-blue-600/10 border-primary-400/30 shadow-sm'
-                      : 'bg-light-bg dark:bg-slate-700 border-transparent hover:border-primary-300/30'
+                      ? 'bg-gray-100 dark:bg-slate-700 border-gray-300 dark:border-slate-600 shadow-sm'
+                      : 'bg-light-bg dark:bg-slate-700 border-transparent hover:border-gray-200 dark:hover:border-slate-600'
                   }`}
                 >
                   <div className="flex items-center gap-2">
@@ -291,12 +297,12 @@ export default function DocumentsPage() {
                 return (
                   <div
                     key={doc.id}
-                    className="p-3 border border-primary-200 rounded-lg hover:shadow-sm transition-all bg-gradient-to-r from-blue-50/50 to-transparent dark:from-blue-900/10"
+                    className="p-3 border border-gray-200 dark:border-slate-700 rounded-lg hover:shadow-sm transition-all bg-white dark:bg-slate-800"
                   >
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex items-center gap-2 flex-1">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
-                          <FileText size={18} className="text-white" />
+                        <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                          <FileText size={18} className="text-blue-600 dark:text-blue-400" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <h4 className="font-medium text-dark dark:text-white text-sm truncate">{doc.fileName}</h4>
@@ -316,7 +322,7 @@ export default function DocumentsPage() {
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
                           <div
-                            className="bg-gradient-to-r from-blue-400 to-blue-600 h-2 rounded-full transition-all duration-500"
+                            className="bg-blue-500 h-2 rounded-full transition-all duration-500"
                             style={{ width: `${doc.progress}%` }}
                           ></div>
                         </div>
@@ -342,24 +348,18 @@ export default function DocumentsPage() {
               <motion.div
                 key={upload.id}
                 variants={staggerItem}
-                className={`rounded-lg border p-3 transition-all duration-200 hover:shadow-sm ${
-                  upload.status === 'completed'
-                    ? 'bg-green-50/30 dark:bg-green-900/10 border-green-200/50'
-                    : upload.status === 'failed'
-                      ? 'bg-red-50/30 dark:bg-red-900/10 border-red-200/50'
-                      : 'bg-primary-50/30 dark:bg-slate-700/50 border-primary-200/50'
-                }`}
+                className={`rounded-lg border border-l-4 p-3 transition-all duration-200 hover:shadow-sm bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700 ${getLeftBorderColor(upload.status)}`}
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2 flex-1 min-w-0">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                      upload.status === 'completed'
-                        ? 'bg-gradient-to-br from-green-400 to-green-600'
-                        : upload.status === 'failed'
-                          ? 'bg-gradient-to-br from-red-400 to-red-600'
-                          : 'bg-gradient-to-br from-blue-400 to-blue-600'
-                    }`}>
-                      <FileText size={18} className="text-white" />
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-gray-100 dark:bg-slate-700">
+                      <FileText size={18} className={
+                        upload.status === 'completed'
+                          ? 'text-green-600 dark:text-green-400'
+                          : upload.status === 'failed'
+                            ? 'text-red-600 dark:text-red-400'
+                            : 'text-blue-600 dark:text-blue-400'
+                      } />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium text-dark dark:text-white text-xs truncate">{upload.fileName}</h3>
@@ -401,16 +401,6 @@ export default function DocumentsPage() {
                         style={{ width: `${upload.progress}%` }}
                       ></div>
                     </div>
-                  </div>
-                )}
-                {upload.status === 'completed' && (
-                  <div className="mb-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-md">
-                    <span className="text-xs font-medium text-green-700 dark:text-green-400">Complete • {upload.extractedFields} fields</span>
-                  </div>
-                )}
-                {upload.status === 'failed' && (
-                  <div className="mb-2 p-2 bg-red-50 dark:bg-red-900/20 rounded-md">
-                    <span className="text-xs font-medium text-red-700 dark:text-red-400">Failed - Retry needed</span>
                   </div>
                 )}
 

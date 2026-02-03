@@ -13,11 +13,9 @@ import { useMetricsSubscription } from '@/hooks/useMetricsSubscription';
 import { useMockMetricsStream } from '@/hooks/useMockMetricsStream';
 
 export default function AIMetricsDashboard() {
-  // Subscribe to real-time metrics (production) or mock stream (development)
   useMetricsSubscription();
   useMockMetricsStream();
 
-  // Get current metrics from store
   const latency = useMetricsStore((state) => state.latency);
   const quality = useMetricsStore((state) => state.quality);
   const sentiment = useMetricsStore((state) => state.sentiment);
@@ -25,14 +23,11 @@ export default function AIMetricsDashboard() {
   const activeConversations = useMetricsStore((state) => state.activeConversations);
   const metricsHistory = useMetricsStore((state) => state.metrics);
 
-  // Prepare metrics cards data
   const metrics = useMemo(() => {
-    // Get sparkline data from last 15 points
     const latencySparkline = metricsHistory.slice(-15).map((m) => m.latency);
     const qualitySparkline = metricsHistory.slice(-15).map((m) => m.quality);
     const sentimentSparkline = metricsHistory.slice(-15).map((m) => (m.sentiment + 1) * 50); // Map -1,1 to 0,100
 
-    // Calculate trends (compare current to 15 points ago)
     const latencyTrend = metricsHistory.length >= 15
       ? latency - metricsHistory[metricsHistory.length - 15].latency
       : 0;
@@ -84,14 +79,12 @@ export default function AIMetricsDashboard() {
       transition={{ duration: 0.5 }}
       className="space-y-10 md:space-y-12"
     >
-      {/* Top section: Health Score + AI Agent Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10"
       >
-        {/* Health Score Card */}
         <div className="bg-white border border-gray-200 rounded-design-lg p-card-lg md:p-10 shadow-lg">
           <div className="text-xs uppercase tracking-widest text-text-secondary mb-6 md:mb-8 font-bold">
             Overall Health
@@ -106,7 +99,6 @@ export default function AIMetricsDashboard() {
           </div>
         </div>
 
-        {/* AI Agent Card */}
         <AIAgentCard
           name="Rashed"
           avatarUrl="/images/rashed.jpeg"
@@ -116,7 +108,6 @@ export default function AIMetricsDashboard() {
         />
       </motion.div>
 
-      {/* Numeric Metrics Row */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -125,7 +116,6 @@ export default function AIMetricsDashboard() {
         <NumericMetrics />
       </motion.div>
 
-      {/* Charts Grid - Responsive: Stack on mobile, side-by-side on desktop */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -136,7 +126,6 @@ export default function AIMetricsDashboard() {
         <ConfidenceScoresContainer />
       </motion.div>
 
-      {/* Metrics Grid */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -150,7 +139,6 @@ export default function AIMetricsDashboard() {
         </div>
       </motion.div>
 
-      {/* Active Conversations Counter */}
       {activeConversations > 0 && (
         <motion.div
           initial={{ opacity: 0 }}

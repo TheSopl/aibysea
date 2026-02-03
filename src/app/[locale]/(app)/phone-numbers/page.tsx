@@ -10,8 +10,7 @@ import {
   Trash,
   Settings as SettingsIcon,
   DollarSign,
-  Phone,
-  TrendingUp
+  Phone
 } from 'lucide-react';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
@@ -138,45 +137,41 @@ export default function PhoneNumbersPage() {
 
       <div className="p-4 sm:p-6 bg-gray-100 dark:bg-slate-900 max-w-[1600px] mx-auto">
         <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
-                <Phone size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <Phone size={20} className="text-teal-600 dark:text-teal-400" />
               </div>
-              <TrendingUp size={16} className="text-service-voice-600" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={activeCount} /></h3>
             <p className="text-sm text-text-secondary font-medium">{t('activeNumbers')}</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
-                <DollarSign size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <DollarSign size={20} className="text-emerald-600 dark:text-emerald-400" />
               </div>
-              <TrendingUp size={16} className="text-service-voice-600" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">${totalCost.toFixed(2)}</h3>
             <p className="text-sm text-text-secondary font-medium">{t('monthlyCost')}</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
-                <Phone size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <Phone size={20} className="text-amber-600 dark:text-amber-400" />
               </div>
-              <TrendingUp size={16} className="text-service-voice-600" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={pendingCount} /></h3>
             <p className="text-sm text-text-secondary font-medium">{t('pending')}</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
-                <Phone size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <Phone size={20} className="text-blue-600 dark:text-blue-400" />
               </div>
-              <TrendingUp size={16} className="text-service-voice-600" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={testCount} /></h3>
             <p className="text-sm text-text-secondary font-medium">{t('test')}</p>

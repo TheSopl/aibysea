@@ -4,12 +4,10 @@ import { useMetricsStore } from '@/stores/metricsStore';
 import numeral from 'numeral';
 import { Activity, MessageSquare, Zap, Gauge, Brain, Wifi } from 'lucide-react';
 
-// Helper function to format numbers
 const formatNumber = (value: number, format: string): string => {
   return numeral(value).format(format);
 };
 
-// Metric Card with large colored icon circle (Purity UI style)
 interface MetricCardProps {
   icon: React.ReactNode;
   label: string;
@@ -22,14 +20,12 @@ const MetricCard = ({ icon, label, value, iconBgColor, iconColor }: MetricCardPr
   return (
     <div className="bg-white border border-gray-200 rounded-design-lg p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1">
       <div className="flex items-start gap-4">
-        {/* Large colored icon circle */}
         <div className={`${iconBgColor} rounded-full p-4 flex items-center justify-center flex-shrink-0`}>
           <div className={iconColor}>
             {icon}
           </div>
         </div>
 
-        {/* Value and label */}
         <div className="flex flex-col">
           <div className="text-xs uppercase tracking-widest text-text-secondary font-bold mb-2">
             {label}
@@ -43,7 +39,6 @@ const MetricCard = ({ icon, label, value, iconBgColor, iconColor }: MetricCardPr
   );
 };
 
-// Badge component for AI State
 const AIStateBadge = ({ state }: { state: string }) => {
   const stateStyles = {
     idle: 'bg-gray-100 text-gray-700 border-gray-300',
@@ -66,7 +61,6 @@ const AIStateBadge = ({ state }: { state: string }) => {
   );
 };
 
-// Connection status with icon
 const ConnectionStatus = ({ status }: { status: string }) => {
   const statusStyles = {
     connected: { bg: 'bg-green/20', dot: 'bg-green', text: 'text-green' },
@@ -95,29 +89,24 @@ const ConnectionStatus = ({ status }: { status: string }) => {
 };
 
 export default function NumericMetrics() {
-  // Get current values from store
   const aiState = useMetricsStore((state) => state.aiState);
   const activeConversations = useMetricsStore((state) => state.activeConversations);
   const connectionStatus = useMetricsStore((state) => state.connectionStatus);
   const metricsHistory = useMetricsStore((state) => state.metrics);
   const currentConfidence = useMetricsStore((state) => state.confidence);
 
-  // Calculate average latency
   const avgLatency = metricsHistory.length > 0
     ? metricsHistory.slice(-600).reduce((sum, m) => sum + m.latency, 0) / Math.min(metricsHistory.length, 600)
     : 0;
 
-  // Calculate context size
   const contextSize = metricsHistory.length > 0
     ? Math.floor(avgLatency * 10)
     : 0;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 md:gap-8">
-      {/* AI State Badge */}
       <AIStateBadge state={aiState} />
 
-      {/* Active Conversations */}
       <MetricCard
         icon={<MessageSquare className="w-8 h-8" strokeWidth={2.5} />}
         label="Conversations"
@@ -126,7 +115,6 @@ export default function NumericMetrics() {
         iconColor="text-white"
       />
 
-      {/* Average Latency */}
       <MetricCard
         icon={<Zap className="w-8 h-8" strokeWidth={2.5} />}
         label="Avg Latency"
@@ -135,7 +123,6 @@ export default function NumericMetrics() {
         iconColor="text-white"
       />
 
-      {/* Current Confidence */}
       <MetricCard
         icon={<Gauge className="w-8 h-8" strokeWidth={2.5} />}
         label="Confidence"
@@ -144,7 +131,6 @@ export default function NumericMetrics() {
         iconColor="text-white"
       />
 
-      {/* Context Size */}
       <MetricCard
         icon={<Brain className="w-8 h-8" strokeWidth={2.5} />}
         label="Context Size"
@@ -153,7 +139,6 @@ export default function NumericMetrics() {
         iconColor="text-white"
       />
 
-      {/* Connection Status */}
       <ConnectionStatus status={connectionStatus} />
     </div>
   );

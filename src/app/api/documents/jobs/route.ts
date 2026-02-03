@@ -17,7 +17,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { ExtractionJob, CreateJobRequest } from '@/types/documents'
+import { ExtractionJob, CreateJobRequest } from '@/features/documents/types'
 
 /**
  * Mock data for extraction jobs

@@ -45,7 +45,8 @@
     "logout": "تسجيل الخروج",
     "conversational": "المحادثات",
     "voice": "الصوت",
-    "documents": "المستندات"
+    "documents": "المستندات",
+    "workflows": "سير العمل"
   },
   "Dashboard": {
     "title": "لوحة التحكم",

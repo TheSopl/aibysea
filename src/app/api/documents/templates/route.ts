@@ -14,7 +14,7 @@ import {
   Template,
   DocumentField,
   CreateTemplateRequest,
-} from '@/types/documents'
+} from '@/features/documents/types'
 
 /**
  * Mock data for extraction templates

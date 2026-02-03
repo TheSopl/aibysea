@@ -2,8 +2,8 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
-import { sendTextMessage, isWithin24HourWindow } from '@/lib/whatsapp/client'
-import { sendTelegramMessage } from '@/lib/telegram/client'
+import { sendTextMessage, isWithin24HourWindow } from '@/features/channels/whatsapp/lib/client'
+import { sendTelegramMessage } from '@/features/channels/telegram/lib/client'
 import type { NewMessage } from '@/types/database'
 
 interface SendMessageResult {

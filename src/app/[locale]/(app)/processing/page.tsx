@@ -8,15 +8,12 @@ import {
   CheckCircle,
   AlertCircle,
   Filter,
-  ArrowUpRight,
   Download,
   Play,
   X,
   MoreVertical,
   Activity,
-  TrendingUp,
-  BarChart3,
-  Zap
+  Pause
 } from 'lucide-react';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
@@ -147,11 +144,11 @@ export default function ProcessingPage() {
   const getProgressColor = (status: string) => {
     switch (status) {
       case 'completed':
-        return 'bg-gradient-to-r from-green-400 to-green-600';
+        return 'bg-green-500';
       case 'failed':
-        return 'bg-gradient-to-r from-red-400 to-red-600';
+        return 'bg-red-500';
       default:
-        return 'bg-gradient-to-r from-blue-400 to-blue-600';
+        return 'bg-blue-500';
     }
   };
 
@@ -162,45 +159,41 @@ export default function ProcessingPage() {
       <div className="p-4 sm:p-6 bg-gray-100 dark:bg-slate-900 max-w-[1600px] mx-auto">
         {/* Stats Overview */}
         <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-xl p-3 border border-primary-400/20 dark:border-primary-500/40 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
-                <Activity size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <Activity size={20} className="text-blue-600 dark:text-blue-400" />
               </div>
-              <Zap size={16} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={stats.processing} /></h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-medium">Currently Processing</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-green-400/10 to-green-600/10 dark:from-green-500/20 dark:to-green-700/20 rounded-xl p-3 border border-green-400/20 dark:border-green-500/40 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
-                <CheckCircle size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <CheckCircle size={20} className="text-green-600 dark:text-green-400" />
               </div>
-              <TrendingUp size={16} className="text-green-500 dark:text-green-400" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={stats.completed} /></h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-medium">Completed Today</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-red-400/10 to-red-600/10 dark:from-red-500/20 dark:to-red-700/20 rounded-xl p-3 border border-red-400/20 dark:border-red-500/40 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center">
-                <AlertCircle size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <AlertCircle size={20} className="text-red-600 dark:text-red-400" />
               </div>
-              <ArrowUpRight size={16} className="text-red-500 dark:text-red-400" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={stats.failed} /></h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-medium">Failed</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue-400/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-700/20 rounded-xl p-3 border border-primary-400/20 dark:border-primary-500/40 shadow-sm transition-all duration-300">
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
-                <Clock size={20} className="text-white" />
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300">
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <Clock size={20} className="text-blue-600 dark:text-blue-400" />
               </div>
-              <BarChart3 size={16} className="text-primary-500 dark:text-primary-400" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{stats.avgTime}</h3>
             <p className="text-sm text-text-secondary dark:text-slate-300 font-medium">Avg Processing</p>
@@ -221,7 +214,7 @@ export default function ProcessingPage() {
                   onClick={() => setSelectedStatus(status)}
                   className={`px-6 py-2 rounded-xl font-semibold transition-all duration-300 text-sm ${
                     selectedStatus === status
-                      ? 'bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-lg'
+                      ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
                       : 'bg-light-bg dark:bg-slate-700 text-text-secondary dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                   }`}
                 >
@@ -243,14 +236,14 @@ export default function ProcessingPage() {
               {/* Header */}
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-start gap-3 flex-1">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                    job.status === 'completed'
-                      ? 'bg-gradient-to-br from-green-400 to-green-600'
-                      : job.status === 'failed'
-                        ? 'bg-gradient-to-br from-red-400 to-red-600'
-                        : 'bg-gradient-to-br from-blue-400 to-blue-600'
-                  }`}>
-                    <FileText size={18} className="text-white" />
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100 dark:bg-slate-700`}>
+                    <FileText size={18} className={
+                      job.status === 'completed'
+                        ? 'text-green-600 dark:text-green-400'
+                        : job.status === 'failed'
+                          ? 'text-red-600 dark:text-red-400'
+                          : 'text-blue-600 dark:text-blue-400'
+                    } />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -296,11 +289,11 @@ export default function ProcessingPage() {
                         key={stage}
                         className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold text-center transition-all duration-300 ${
                           idx < job.currentStage
-                            ? 'bg-green-100 text-green-700 border-green-300'
+                            ? 'bg-gray-100 dark:bg-slate-700 text-green-600 dark:text-green-400'
                             : idx === job.currentStage
-                              ? 'bg-primary-100 text-primary-700 border-primary-300'
-                              : 'bg-gray-100 text-gray-500 border-gray-300'
-                        } border`}
+                              ? 'bg-gray-100 dark:bg-slate-700 text-blue-600 dark:text-blue-400'
+                              : 'bg-gray-50 dark:bg-slate-800 text-gray-400 dark:text-slate-500'
+                        }`}
                       >
                         {stage.charAt(0).toUpperCase() + stage.slice(1)}
                       </div>
@@ -312,11 +305,11 @@ export default function ProcessingPage() {
                 <div className="space-y-4">
                   {job.status === 'processing' && (
                     <>
-                      <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+                      <div className="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Time Elapsed</p>
                         <p className="text-heading-2 font-extrabold text-primary-600 dark:text-primary-400">{job.timeElapsed}</p>
                       </div>
-                      <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4">
+                      <div className="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Est. Time Remaining</p>
                         <p className="text-heading-2 font-extrabold text-amber-600">{job.timeRemaining}</p>
                       </div>
@@ -324,18 +317,18 @@ export default function ProcessingPage() {
                   )}
                   {job.status === 'completed' && (
                     <>
-                      <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+                      <div className="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Total Processing Time</p>
                         <p className="text-heading-2 font-extrabold text-green-600">{job.timeElapsed}</p>
                       </div>
-                      <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+                      <div className="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-4">
                         <p className="text-xs text-text-secondary mb-1">Confidence Score</p>
                         <p className="text-heading-2 font-extrabold text-accent-600"><AnimatedCounter value={job.confidence} />%</p>
                       </div>
                     </>
                   )}
                   {job.status === 'failed' && (
-                    <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 col-span-1 lg:col-span-2">
+                    <div className="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-4 col-span-1 lg:col-span-2">
                       <p className="text-xs text-red-600 font-bold mb-1">Error Message</p>
                       <p className="text-sm text-red-700">{job.errorMessage}</p>
                     </div>
@@ -346,33 +339,33 @@ export default function ProcessingPage() {
               {/* Action Buttons */}
               {job.status === 'processing' && (
                 <div className="flex gap-3">
-                  <button className="flex-1 py-3 px-6 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-xl font-bold hover:shadow-sm transition-all duration-300 flex items-center justify-center gap-2">
-                    <Zap size={18} />
+                  <button className="flex-1 py-3 px-6 bg-[#003EF3] text-white rounded-xl font-bold hover:bg-[#0035D0] transition-all duration-300 flex items-center justify-center gap-2">
+                    <Pause size={18} />
                     Pause Processing
                   </button>
-                  <button className="px-6 py-3 bg-light-bg dark:bg-slate-700 text-dark dark:text-white rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
+                  <button className="px-6 py-3 bg-gray-100 dark:bg-slate-700 text-dark dark:text-white rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-slate-600 transition-all duration-300">
                     Cancel
                   </button>
                 </div>
               )}
               {job.status === 'failed' && (
                 <div className="flex gap-3">
-                  <button className="flex-1 py-3 px-6 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-xl font-bold hover:shadow-sm transition-all duration-300 flex items-center justify-center gap-2">
+                  <button className="flex-1 py-3 px-6 bg-[#003EF3] text-white rounded-xl font-bold hover:bg-[#0035D0] transition-all duration-300 flex items-center justify-center gap-2">
                     <Play size={18} />
                     Retry Processing
                   </button>
-                  <button className="px-6 py-3 bg-light-bg dark:bg-slate-700 text-dark dark:text-white rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
+                  <button className="px-6 py-3 bg-gray-100 dark:bg-slate-700 text-dark dark:text-white rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-slate-600 transition-all duration-300">
                     Delete
                   </button>
                 </div>
               )}
               {job.status === 'completed' && (
                 <div className="flex gap-3">
-                  <button className="flex-1 py-3 px-6 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-xl font-bold hover:shadow-sm transition-all duration-300 flex items-center justify-center gap-2">
+                  <button className="flex-1 py-3 px-6 bg-[#003EF3] text-white rounded-xl font-bold hover:bg-[#0035D0] transition-all duration-300 flex items-center justify-center gap-2">
                     <Download size={18} />
                     View Results
                   </button>
-                  <button className="px-6 py-3 bg-light-bg dark:bg-slate-700 text-dark dark:text-white rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
+                  <button className="px-6 py-3 bg-gray-100 dark:bg-slate-700 text-dark dark:text-white rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-slate-600 transition-all duration-300">
                     Export
                   </button>
                 </div>

@@ -1,0 +1,2 @@
+export const POLLING_INTERVAL_MS = 3000
+export const MESSAGE_POLL_INTERVAL_MS = 2000

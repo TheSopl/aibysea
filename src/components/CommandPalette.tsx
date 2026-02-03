@@ -138,14 +138,12 @@ export function CommandPalette() {
         setOpen(open => !open);
       }
 
-      // Keyboard shortcuts
       if (!open) return;
 
       if (e.key === 'Escape') {
         setOpen(false);
       }
 
-      // Navigate to specific pages with shortcuts
       if (e.ctrlKey || e.metaKey) {
         if (e.key === 'd') {
           e.preventDefault();
@@ -179,16 +177,13 @@ export function CommandPalette() {
 
   return (
     <>
-      {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/30 dark:bg-black/50 z-40 backdrop-blur-sm"
         onClick={() => setOpen(false)}
       />
 
-      {/* Command Palette */}
       <div className="fixed inset-0 z-50 flex items-start justify-center pt-20">
         <div className="w-full max-w-2xl bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden">
-          {/* Search Input */}
           <div className="flex items-center gap-3 px-6 py-4 border-b border-gray-200 dark:border-slate-700">
             <Search size={24} className="text-text-secondary dark:text-slate-400 flex-shrink-0" />
             <input
@@ -204,7 +199,6 @@ export function CommandPalette() {
             </span>
           </div>
 
-          {/* Commands List */}
           <div className="max-h-96 overflow-y-auto p-4 space-y-4">
             {Object.entries(grouped).length === 0 ? (
               <div className="text-center py-8">

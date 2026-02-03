@@ -6,19 +6,15 @@ import { cn } from '@/lib/utils';
 import {
   Phone,
   Plus,
-  TrendingUp,
   Smartphone,
   Clock,
   CheckCircle,
-  Activity,
   Edit,
   Trash,
   Play,
   Pause,
   Settings as SettingsIcon,
   BarChart3,
-  PhoneOff,
-  Share2,
   ChevronLeft
 } from 'lucide-react';
 import { usePageTitle } from '@/hooks/usePageTitle';
@@ -89,13 +85,12 @@ export default function VoiceAgentsPage() {
         <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
           <motion.div
             variants={staggerItem}
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
+            className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300"
           >
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
-                <Phone className="w-5 h-5 text-white" />
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <Phone className="w-5 h-5 text-teal-600 dark:text-teal-400" />
               </div>
-              <TrendingUp className="w-4 h-4 text-service-voice-500" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5"><AnimatedCounter value={activeAgentsCount} /></h3>
             <p className="text-sm text-text-secondary font-medium">{t('activeVoiceAgents')}</p>
@@ -103,13 +98,12 @@ export default function VoiceAgentsPage() {
 
           <motion.div
             variants={staggerItem}
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
+            className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300"
           >
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
-                <Smartphone className="w-5 h-5 text-white" />
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <Smartphone className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               </div>
-              <Activity className="w-4 h-4 text-service-voice-500" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
               <AnimatedCounter value={totalCallsHandled} />
@@ -119,13 +113,12 @@ export default function VoiceAgentsPage() {
 
           <motion.div
             variants={staggerItem}
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
+            className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300"
           >
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
-                <Clock className="w-5 h-5 text-white" />
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400" />
               </div>
-              <TrendingUp className="w-4 h-4 text-service-voice-500" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
               {avgCallDuration}m
@@ -135,13 +128,12 @@ export default function VoiceAgentsPage() {
 
           <motion.div
             variants={staggerItem}
-            className="bg-gradient-to-br from-teal-400/10 to-teal-600/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
+            className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300"
           >
-            <div className="flex items-center justify-between mb-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
-                <CheckCircle className="w-5 h-5 text-white" />
+            <div className="flex items-center mb-2">
+              <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <BarChart3 className="w-4 h-4 text-service-voice-500" />
             </div>
             <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
               <AnimatedCounter value={avgSuccessRate} />%
@@ -177,7 +169,7 @@ export default function VoiceAgentsPage() {
                     onClick={() => setSelectedAgent(agent)}
                     className={`p-3 rounded-lg cursor-pointer transition-all duration-200 border ${
                       selectedAgent?.id === agent.id
-                        ? 'bg-gradient-to-r from-teal-400/5 to-teal-600/5 border-service-voice-400/20 shadow-sm'
+                        ? 'bg-gray-50 dark:bg-slate-700/50 border-gray-300 dark:border-slate-600 shadow-sm'
                         : 'bg-light-bg dark:bg-slate-700/50 border-white/5 hover:border-gray-200 dark:hover:border-slate-600 hover:shadow-sm'
                     }`}
                   >
@@ -185,10 +177,10 @@ export default function VoiceAgentsPage() {
                       <div className="flex items-center gap-2 flex-1">
                         <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
                           agent.status === 'active'
-                            ? 'bg-gradient-to-br from-teal-400 to-teal-600'
-                            : 'bg-gray-400'
+                            ? 'bg-gray-100 dark:bg-slate-700'
+                            : 'bg-gray-100 dark:bg-slate-700'
                         }`}>
-                          <Phone className="w-5 h-5 text-white" />
+                          <Phone className={`w-5 h-5 ${agent.status === 'active' ? 'text-teal-600 dark:text-teal-400' : 'text-gray-400'}`} />
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-1.5">
@@ -253,8 +245,8 @@ export default function VoiceAgentsPage() {
                 </Button>
 
                 <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">
-                  <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone size={24} className="text-white" />
+                  <div className="w-12 h-12 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone size={24} className="text-teal-600 dark:text-teal-400" />
                   </div>
                   <div className="min-w-0">
                     <h3 className="text-base font-bold text-dark dark:text-white truncate">{selectedAgent.name}</h3>
@@ -299,7 +291,7 @@ export default function VoiceAgentsPage() {
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
                           <div
-                            className="bg-gradient-to-r from-teal-400 to-teal-600 h-2 rounded-full transition-all duration-500"
+                            className="bg-teal-500 h-2 rounded-full transition-all duration-500"
                             style={{ width: `${selectedAgent.successRate}%` }}
                           ></div>
                         </div>

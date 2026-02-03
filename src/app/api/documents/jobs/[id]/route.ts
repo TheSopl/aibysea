@@ -10,7 +10,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { ExtractionJob, UpdateJobRequest, ExtractedData } from '@/types/documents'
+import { ExtractionJob, UpdateJobRequest, ExtractedData } from '@/features/documents/types'
 
 // Mock job data (would come from database in real implementation)
 const mockJobs: ExtractionJob[] = [

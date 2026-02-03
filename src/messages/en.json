@@ -45,7 +45,8 @@
     "logout": "Logout",
     "conversational": "Conversational",
     "voice": "Voice",
-    "documents": "Documents"
+    "documents": "Documents",
+    "workflows": "Workflows"
   },
   "Dashboard": {
     "title": "Dashboard",

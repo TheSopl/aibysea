@@ -166,13 +166,13 @@ export default function AgentsPage() {
             <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-2 gap-3 mb-6">
               <motion.div
                 variants={staggerItem}
-                className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
+                className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <div className="w-10 h-10 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
-                    <Bot size={20} className="text-primary dark:text-white" />
+                  <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                    <Bot size={20} className="text-primary" />
                   </div>
-                  <TrendingUp size={16} className="text-primary dark:text-white" />
+                  <TrendingUp size={16} className="text-primary" />
                 </div>
                 <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">
                   {agents.filter(a => a.status === 'active').length}
@@ -184,13 +184,13 @@ export default function AgentsPage() {
 
               <motion.div
                 variants={staggerItem}
-                className="bg-gradient-to-br from-green/10 to-emerald/10 rounded-xl p-3 border border-white/10 shadow-sm transition-all duration-300"
+                className="bg-white dark:bg-slate-800 rounded-xl p-3 border border-gray-200 dark:border-slate-700 shadow-sm transition-all duration-300"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <div className="w-10 h-10 bg-green/10 dark:bg-green/20 rounded-lg flex items-center justify-center">
-                    <MessageSquare size={20} className="text-green dark:text-white" />
+                  <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                    <MessageSquare size={20} className="text-green" />
                   </div>
-                  <Activity size={16} className="text-green dark:text-white" />
+                  <Activity size={16} className="text-green" />
                 </div>
                 <h3 className="text-xl font-extrabold text-dark dark:text-white mb-0.5">{agents.length}</h3>
                 <p className="text-sm text-text-secondary dark:text-slate-400 font-medium">Total Agents</p>
@@ -244,12 +244,12 @@ export default function AgentsPage() {
                         onClick={() => setSelectedAgent(agent)}
                         className={`p-3 rounded-lg cursor-pointer transition-all duration-200 border ${
                           selectedAgent?.id === agent.id
-                            ? 'bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20 shadow-sm'
+                            ? 'bg-gray-50 dark:bg-slate-700/50 border-gray-300 dark:border-slate-600 shadow-sm'
                             : 'bg-light-bg dark:bg-slate-700 border-white/5 hover:border-gray-200 dark:hover:border-slate-600 hover:shadow-sm'
                         }`}
                       >
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <div className="w-10 h-10 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0">
                           <Bot size={20} className="text-primary dark:text-white" />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -315,7 +315,7 @@ export default function AgentsPage() {
                   <FadeIn delay={0.1}>
                   <Card variant="default" className="sticky top-8">
                     <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
                         <Bot size={24} className="text-primary dark:text-white" />
                       </div>
                       <div>

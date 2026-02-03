@@ -15,7 +15,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
-  // On mount, check localStorage and apply theme immediately
   useEffect(() => {
     setMounted(true);
     const stored = localStorage.getItem('theme') as Theme | null;
@@ -25,7 +24,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Apply theme to DOM
   const applyTheme = (newTheme: Theme) => {
     if (newTheme === 'dark') {
       document.documentElement.classList.add('dark');

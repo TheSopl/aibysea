@@ -81,20 +81,20 @@ export default function WorkflowsPage() {
       <div className="p-4 bg-light-bg dark:bg-slate-900">
         {/* Stats */}
         <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4">
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg p-3 border border-primary/20 transition-all duration-500">
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-gray-200 dark:border-slate-700 transition-all duration-500">
             <div className="flex items-center justify-between mb-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
-                <Workflow size={18} className="text-white" />
+              <div className="w-8 h-8 bg-gray-100 dark:bg-slate-700 rounded-xl flex items-center justify-center">
+                <Workflow size={18} className="text-primary" />
               </div>
             </div>
             <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1"><AnimatedCounter value={workflows.filter(w => w.status === 'active').length} /></h3>
             <p className="text-sm text-text-secondary font-bold">Active Workflows</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-green/10 to-emerald/10 rounded-lg p-3 border border-green/20 transition-all duration-500">
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-gray-200 dark:border-slate-700 transition-all duration-500">
             <div className="flex items-center justify-between mb-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-green to-emerald-500 rounded-xl flex items-center justify-center">
-                <CheckCircle size={18} className="text-white" />
+              <div className="w-8 h-8 bg-gray-100 dark:bg-slate-700 rounded-xl flex items-center justify-center">
+                <CheckCircle size={18} className="text-green" />
               </div>
             </div>
             <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1">
@@ -103,10 +103,10 @@ export default function WorkflowsPage() {
             <p className="text-sm text-text-secondary font-bold">Total Executions</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-blue/10 to-cyan/10 rounded-lg p-3 border border-blue/20 transition-all duration-500">
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-gray-200 dark:border-slate-700 transition-all duration-500">
             <div className="flex items-center justify-between mb-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue to-cyan-500 rounded-xl flex items-center justify-center">
-                <Zap size={18} className="text-white" />
+              <div className="w-8 h-8 bg-gray-100 dark:bg-slate-700 rounded-xl flex items-center justify-center">
+                <Zap size={18} className="text-blue" />
               </div>
             </div>
             <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1">
@@ -115,10 +115,10 @@ export default function WorkflowsPage() {
             <p className="text-sm text-text-secondary font-bold">Avg Success Rate</p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-gradient-to-br from-purple/10 to-pink/10 rounded-lg p-3 border border-purple/20 transition-all duration-500">
+          <motion.div variants={staggerItem} className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-gray-200 dark:border-slate-700 transition-all duration-500">
             <div className="flex items-center justify-between mb-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple to-pink-500 rounded-xl flex items-center justify-center">
-                <GitBranch size={18} className="text-white" />
+              <div className="w-8 h-8 bg-gray-100 dark:bg-slate-700 rounded-xl flex items-center justify-center">
+                <GitBranch size={18} className="text-purple" />
               </div>
             </div>
             <h3 className="text-2xl font-extrabold text-dark dark:text-white mb-1">
@@ -144,16 +144,16 @@ export default function WorkflowsPage() {
               <motion.div
                 key={workflow.id}
                 variants={staggerItem}
-                className="p-3 rounded-lg bg-light-bg hover:bg-gradient-to-r hover:from-primary/5 hover:to-accent/5 transition-all duration-500 cursor-pointer"
+                className="p-3 rounded-lg bg-light-bg dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all duration-500 cursor-pointer"
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-start gap-4 flex-1">
                     <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
                       workflow.status === 'active'
-                        ? 'bg-gradient-to-br from-primary to-accent'
-                        : 'bg-gray-400'
+                        ? 'bg-gray-100 dark:bg-slate-700'
+                        : 'bg-gray-100 dark:bg-slate-700'
                     }`}>
-                      <Workflow size={18} className="text-white" />
+                      <Workflow size={18} className={workflow.status === 'active' ? 'text-primary' : 'text-gray-400'} />
                     </div>
 
                     <div className="flex-1">
@@ -166,17 +166,17 @@ export default function WorkflowsPage() {
                       <p className="text-sm text-text-secondary mb-3">{workflow.description}</p>
 
                       <div className="flex items-center gap-4 flex-wrap">
-                        <span className="text-xs px-2 py-0.5 bg-accent/20 text-accent rounded-lg font-bold">
-                          📡 {workflow.trigger}
+                        <span className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 rounded-lg font-bold">
+                          {workflow.trigger}
                         </span>
-                        <span className="text-xs px-2 py-0.5 bg-blue/20 text-blue rounded-lg font-bold">
-                          ⚡ <AnimatedCounter value={workflow.actions} /> actions
+                        <span className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 rounded-lg font-bold">
+                          <AnimatedCounter value={workflow.actions} /> actions
                         </span>
-                        <span className="text-xs px-2 py-0.5 bg-purple/20 text-purple rounded-lg font-bold">
-                          📊 <AnimatedCounter value={workflow.totalRuns} /> runs
+                        <span className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 rounded-lg font-bold">
+                          <AnimatedCounter value={workflow.totalRuns} /> runs
                         </span>
-                        <span className="text-xs px-2 py-0.5 bg-green/20 text-green rounded-lg font-bold">
-                          ✓ <AnimatedCounter value={workflow.successRate} />% success
+                        <span className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 rounded-lg font-bold">
+                          <AnimatedCounter value={workflow.successRate} />% success
                         </span>
                       </div>
                     </div>
@@ -210,10 +210,10 @@ export default function WorkflowsPage() {
 
         {/* N8N Integration Notice */}
         <FadeIn delay={0.2}>
-        <div className="mt-4 bg-gradient-to-r from-primary/10 via-accent/10 to-purple/10 rounded-lg p-4 border border-primary/20">
+        <div className="mt-4 bg-gray-50 dark:bg-slate-800 rounded-lg p-4 border border-gray-200 dark:border-slate-700">
           <div className="flex items-start gap-4">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center flex-shrink-0">
-              <Zap size={16} className="text-white" />
+            <div className="w-8 h-8 bg-gray-100 dark:bg-slate-700 rounded-xl flex items-center justify-center flex-shrink-0">
+              <Zap size={16} className="text-primary" />
             </div>
             <div className="flex-1">
               <h3 className="text-lg font-extrabold text-dark dark:text-white mb-2">Powered by n8n Integration</h3>

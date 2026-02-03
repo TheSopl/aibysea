@@ -10,7 +10,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { Template, UpdateTemplateRequest } from '@/types/documents'
+import { Template, UpdateTemplateRequest } from '@/features/documents/types'
 
 // Mock templates data (same as in the list route - in real implementation would query DB)
 const mockTemplates: Template[] = [

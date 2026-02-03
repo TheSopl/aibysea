@@ -13,6 +13,7 @@ import {
   Phone,
   Menu,
   Database,
+  Workflow,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useNavigationStore } from '@/stores/navigation';
@@ -34,7 +35,10 @@ const drawerNavigationConfig: { sections: NavSection[]; bottom: NavItem[] } = {
   sections: [
     {
       nameKey: 'conversational',
-      items: [{ nameKey: 'contacts', href: '/contacts', icon: Users }],
+      items: [
+        { nameKey: 'contacts', href: '/contacts', icon: Users },
+        { nameKey: 'workflows', href: '/workflows', icon: Workflow },
+      ],
     },
     {
       nameKey: 'voice',

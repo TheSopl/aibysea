@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# local settings
+.claude/
+
 # dependencies
 /node_modules
 /.pnp
@@ -55,3 +58,20 @@ next-env.d.ts
 # Supabase
 .branches
 .temp
+
+# Claude Code local files
+.claude/
+tmpclaude-*
+
+# Planning docs (local only)
+.planning/
+docs/assistant/
+
+# Standalone scripts/files not part of the app
+*.sql
+*.py
+n8n-*.md
+FEATURES.md
+SMOOTHNESS_GUIDE.md
+WHATSAPP_TROUBLESHOOTING.md
+N8N_INTEGRATION.md

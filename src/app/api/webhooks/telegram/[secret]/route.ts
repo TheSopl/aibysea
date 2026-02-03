@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { TelegramUpdate } from '@/lib/telegram/types';
-import { getWebhookSecretPath } from '@/lib/telegram/constants';
-import { processTelegramUpdate } from '@/services/telegram/processor';
+import type { TelegramUpdate } from '@/features/channels/telegram/lib/types';
+import { getWebhookSecretPath } from '@/features/channels/telegram/lib/constants';
+import { processTelegramUpdate } from '@/features/channels/telegram/processor';
 
 /**
  * POST /api/webhooks/telegram/[secret]

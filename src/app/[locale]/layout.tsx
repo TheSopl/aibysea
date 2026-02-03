@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import { routing } from '@/i18n/routing';
+import { routing } from '@/lib/i18n/routing';
 import { notFound } from 'next/navigation';
-import "../globals.css";
+import "@/styles/globals.css";
 import { Providers } from "@/components/Providers";
 import { SentryInit } from "@/components/SentryInit";
 

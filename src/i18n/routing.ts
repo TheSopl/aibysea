@@ -1,9 +1,1 @@
-import { defineRouting } from 'next-intl/routing';
-
-export const routing = defineRouting({
-  locales: ['en', 'ar'],
-  defaultLocale: 'en',
-  localePrefix: 'as-needed' // Only prefix non-default locales
-});
-
-export type Locale = (typeof routing.locales)[number];
+export { routing, type Locale } from '@/lib/i18n/routing'

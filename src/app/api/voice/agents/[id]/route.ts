@@ -10,7 +10,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { VoiceAgent, VoiceAgentRequest } from '@/types/voice'
+import { VoiceAgent, VoiceAgentRequest } from '@/features/voice/types'
 
 /**
  * Mock data for voice agents (replicated from agents/route.ts for now)

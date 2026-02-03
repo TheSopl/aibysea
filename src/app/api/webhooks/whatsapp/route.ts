@@ -9,9 +9,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { verifySignature } from '@/lib/whatsapp/signature';
-import type { WebhookPayload } from '@/lib/whatsapp/types';
-import { processWebhook } from '@/services/whatsapp/processor';
+import { verifySignature } from '@/features/channels/whatsapp/lib/signature';
+import type { WebhookPayload } from '@/features/channels/whatsapp/lib/types';
+import { processWebhook } from '@/features/channels/whatsapp/processor';
 
 /**
  * GET /api/webhooks/whatsapp

@@ -9,7 +9,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { CallLog, CallLogRequest } from '@/types/voice'
+import { CallLog, CallLogRequest } from '@/features/voice/types'
 
 /**
  * Mock data for call logs

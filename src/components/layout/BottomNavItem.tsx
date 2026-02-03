@@ -1,6 +1,6 @@
 'use client';
 
-import { Link } from '@/i18n/navigation';
+import { Link } from '@/lib/i18n/navigation';
 import { LucideIcon } from 'lucide-react';
 
 interface BottomNavItemProps {

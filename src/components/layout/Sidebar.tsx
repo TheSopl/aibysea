@@ -1,6 +1,6 @@
 'use client';
 
-import { Link, usePathname } from '@/i18n/navigation';
+import { Link, usePathname } from '@/lib/i18n/navigation';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import {
@@ -12,7 +12,8 @@ import {
   Settings,
   MessageCircle,
   Phone,
-  File
+  File,
+  Workflow
 } from 'lucide-react';
 
 interface NavItem {
@@ -47,6 +48,7 @@ const navigationConfig: NavigationStructure = {
         { nameKey: 'inbox', href: '/inbox', icon: Inbox },
         { nameKey: 'agents', href: '/agents', icon: Zap },
         { nameKey: 'contacts', href: '/contacts', icon: Users },
+        { nameKey: 'workflows', href: '/workflows', icon: Workflow },
       ],
     },
     {
@@ -79,7 +81,7 @@ export default function Sidebar() {
   const pathname = usePathname();
   const t = useTranslations('Navigation');
 
-  const renderNavItem = (item: NavItem) => {
+  const renderNavItem = (item: NavItem, moduleColor?: string) => {
     const isActive = pathname?.startsWith(item.href);
     const Icon = item.icon;
     const name = t(item.nameKey);
@@ -88,23 +90,27 @@ export default function Sidebar() {
       <Link
         key={item.nameKey}
         href={item.href}
-        className={`group flex items-center justify-center w-full h-14 rounded-xl transition-all duration-300 relative ${
+        className={`group relative flex items-center justify-center w-full h-11 rounded-lg transition-all duration-200 ${
           isActive
-            ? 'bg-gradient-to-r from-accent to-primary text-white shadow-xl shadow-accent/30'
-            : 'text-white/60 hover:bg-white/10 hover:text-white hover:shadow-lg'
+            ? 'bg-white/15 text-white'
+            : 'text-white/50 hover:bg-white/8 hover:text-white/80'
         }`}
         title={name}
       >
-        <Icon size={22} strokeWidth={2.5} className={`${isActive ? 'scale-110' : 'group-hover:scale-110'} transition-transform duration-300`} />
+        {/* Active indicator bar */}
+        {isActive && (
+          <div className={`absolute start-0 top-1/2 -translate-y-1/2 w-[3px] h-5 rounded-e-full bg-gradient-to-b ${moduleColor || 'from-accent to-primary'}`} />
+        )}
+        <Icon size={20} strokeWidth={isActive ? 2.5 : 2} className={`transition-transform duration-200 ${isActive ? 'scale-105' : 'group-hover:scale-105'}`} />
       </Link>
     );
   };
 
   return (
-    <div className="hidden lg:flex fixed start-0 top-0 h-full w-20 bg-gradient-to-b from-[#1a1a2e] to-[#16213e] text-white z-50 flex-col shadow-2xl">
+    <div className="hidden lg:flex fixed start-0 top-0 h-full w-[72px] bg-gradient-to-b from-[#0f1629] via-[#131b35] to-[#0d1220] text-white z-50 flex-col shadow-2xl border-e border-white/5">
       {/* Logo */}
-      <div className="flex items-center justify-center border-b border-white/10 h-20">
-        <div className="relative w-16 h-16">
+      <div className="flex items-center justify-center h-[80px] border-b border-white/8">
+        <div className="relative w-[52px] h-[52px]">
           <Image
             src="/images/ChatGPT Image Jan 16, 2026, 11_30_10 PM.png"
             alt="AI BY SEA"
@@ -116,7 +122,7 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-3 space-y-2 overflow-hidden">
+      <nav className="flex-1 px-2 py-2 space-y-0.5 overflow-y-auto overflow-x-hidden scrollbar-none">
         {/* Top Section */}
         {navigationConfig.topSection.map(item => renderNavItem(item))}
 
@@ -126,54 +132,39 @@ export default function Sidebar() {
           const hasActiveItem = module.items.some(item => pathname?.startsWith(item.href));
 
           return (
-            <div key={module.nameKey}>
-              {/* Module Divider */}
-              <div className="h-px bg-white/10 my-2"></div>
-
-              {/* Module Icon (visible on hover) */}
-              <div className="flex items-center justify-center h-10 group relative">
-                <div className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 ${
+            <div key={module.nameKey} className="pt-2 mt-2 first:pt-0 first:mt-0">
+              {/* Module Divider with Icon */}
+              <div className="flex items-center justify-center mb-1.5">
+                <div className="h-px bg-white/8 flex-1" />
+                <div className={`mx-1.5 flex items-center justify-center w-6 h-6 rounded-md transition-all duration-200 ${
                   hasActiveItem
-                    ? `bg-gradient-to-br ${module.color} shadow-lg ${
-                        module.nameKey === 'voice' ? 'shadow-service-voice-glow' :
-                        module.nameKey === 'documents' ? 'shadow-service-documents-glow' :
-                        'shadow-accent/30'
-                      }`
-                    : `text-white/40 group-hover:text-white/60 group-hover:${
-                        module.nameKey === 'voice' ? 'shadow-lg shadow-service-voice-500/50' :
-                        module.nameKey === 'documents' ? 'shadow-lg shadow-service-documents-500/50' :
-                        ''
-                      }`
+                    ? `bg-gradient-to-br ${module.color} shadow-sm`
+                    : 'text-white/25'
                 }`}>
-                  <ModuleIcon size={16} strokeWidth={2.5} />
+                  <ModuleIcon size={12} strokeWidth={2.5} />
                 </div>
+                <div className="h-px bg-white/8 flex-1" />
               </div>
 
               {/* Module Items */}
-              <div className="space-y-2">
-                {module.items.map(item => renderNavItem(item))}
+              <div className="space-y-0.5">
+                {module.items.map(item => renderNavItem(item, module.color))}
               </div>
             </div>
           );
         })}
 
-        {/* Divider before bottom section */}
-        {navigationConfig.bottomSection.length > 0 && <div className="h-px bg-white/10 my-2"></div>}
-      </nav>
-
-      {/* Bottom Section */}
-      <div className="p-3 space-y-2 border-t border-white/10">
-        {navigationConfig.bottomSection.map(item => renderNavItem(item))}
-      </div>
-
-      {/* User Profile at Bottom */}
-      <div className="p-3 border-t border-white/10">
-        <div className="flex items-center justify-center">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white font-bold shadow-lg hover:shadow-accent/50 transition-all duration-300 hover:scale-105 cursor-pointer">
-            R
+        {/* Settings - right after nav items */}
+        <div className="pt-2 mt-2">
+          <div className="flex items-center justify-center mb-1.5">
+            <div className="h-px bg-white/8 flex-1" />
+          </div>
+          <div className="space-y-0.5">
+            {navigationConfig.bottomSection.map(item => renderNavItem(item))}
           </div>
         </div>
-      </div>
+      </nav>
+
     </div>
   );
 }
