@@ -7,7 +7,6 @@ import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import FadeIn from '@/components/ui/FadeIn';
 
 const contacts = [
   {
@@ -95,16 +94,12 @@ export default function ContactsPage() {
       <TopBar title={t('title')} />
 
       <div className="p-4 tablet:p-6 bg-gray-100 dark:bg-slate-900 min-h-screen overflow-y-auto max-w-[1600px] mx-auto">
-        <FadeIn>
         <Card variant="default" className="overflow-hidden">
           <div className="tablet:hidden divide-y divide-gray-100 dark:divide-slate-700">
             {contacts.map((contact, index) => (
               <div
                 key={contact.id}
-                className="p-3 hover:bg-light-bg dark:hover:bg-slate-700 transition-colors"
-                style={{
-                  animation: `fadeIn 0.4s ease-out ${index * 0.05}s both`
-                }}
+                className="p-2 hover:bg-light-bg dark:hover:bg-slate-700 transition-colors"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0 flex-1">
@@ -118,7 +113,7 @@ export default function ContactsPage() {
                   </div>
                   <div className="flex items-center gap-0.5 flex-shrink-0">
                     <Button variant="ghost" size="sm" iconOnly icon={<Edit size={14} className="text-text-secondary dark:text-slate-300" />} className="min-w-[44px] min-h-[44px]" />
-                    <Button variant="danger" size="sm" iconOnly icon={<Trash size={14} />} className="min-w-[44px] min-h-[44px] bg-transparent hover:bg-red/10 text-red" />
+                    <Button variant="ghost" size="sm" iconOnly icon={<Trash size={14} className="text-gray-400 hover:text-red-500" />} className="min-w-[44px] min-h-[44px]" />
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-1.5 mt-2">
@@ -191,13 +186,10 @@ export default function ContactsPage() {
                   <tr
                     key={contact.id}
                     className="hover:bg-light-bg dark:hover:bg-slate-700 transition-colors"
-                    style={{
-                      animation: `fadeIn 0.4s ease-out ${index * 0.05}s both`
-                    }}
                   >
-                    <td className="px-4 py-2 whitespace-nowrap">
+                    <td className="px-4 py-1.5 whitespace-nowrap">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white text-xs font-bold">
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white text-[10px] font-bold">
                           {contact.name[0]}
                         </div>
                         <div>
@@ -206,13 +198,13 @@ export default function ContactsPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-2 whitespace-nowrap">
+                    <td className="px-4 py-1.5 whitespace-nowrap">
                       <div className="flex items-center gap-1.5 px-2 py-1 bg-light-bg dark:bg-slate-700 rounded-md w-fit">
                         {getChannelIcon(contact.channel)}
                         <span className="text-sm font-medium text-dark dark:text-white">{contact.channel}</span>
                       </div>
                     </td>
-                    <td className="px-4 py-2 whitespace-nowrap">
+                    <td className="px-4 py-1.5 whitespace-nowrap">
                       <span
                         className={`inline-flex items-center gap-1 px-2 py-0.5 text-sm font-medium rounded-md ${
                           contact.status === 'active'
@@ -224,10 +216,10 @@ export default function ContactsPage() {
                         {contact.status}
                       </span>
                     </td>
-                    <td className="px-4 py-2 whitespace-nowrap text-sm text-text-secondary dark:text-slate-300">
+                    <td className="px-4 py-1.5 whitespace-nowrap text-sm text-text-secondary dark:text-slate-300">
                       {contact.lastMessage}
                     </td>
-                    <td className="px-4 py-2 whitespace-nowrap">
+                    <td className="px-4 py-1.5 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-0.5 text-sm font-medium rounded-md ${
                         contact.lifecycle === 'Customer' ? 'bg-green/10 text-green' :
                         contact.lifecycle === 'Lead' ? 'bg-blue/10 text-blue' :
@@ -238,7 +230,7 @@ export default function ContactsPage() {
                         {contact.lifecycle}
                       </span>
                     </td>
-                    <td className="px-4 py-2 whitespace-nowrap">
+                    <td className="px-4 py-1.5 whitespace-nowrap">
                       <div className="flex items-center gap-1.5">
                         <div className="w-6 h-6 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white text-xs font-bold">
                           {contact.assignee[0]}
@@ -246,10 +238,10 @@ export default function ContactsPage() {
                         <span className="text-sm text-dark dark:text-white font-medium">{contact.assignee}</span>
                       </div>
                     </td>
-                    <td className="px-4 py-2 whitespace-nowrap">
+                    <td className="px-4 py-1.5 whitespace-nowrap">
                       <div className="flex items-center gap-1">
                         <Button variant="ghost" size="sm" iconOnly icon={<Edit size={14} className="text-text-secondary dark:text-slate-300" />} />
-                        <Button variant="danger" size="sm" iconOnly icon={<Trash size={14} />} className="bg-transparent hover:bg-red/10 text-red" />
+                        <Button variant="ghost" size="sm" iconOnly icon={<Trash size={14} className="text-gray-400 hover:text-red-500" />} />
                       </div>
                     </td>
                   </tr>
@@ -258,7 +250,6 @@ export default function ContactsPage() {
             </table>
           </div>
         </Card>
-        </FadeIn>
       </div>
     </>
   );

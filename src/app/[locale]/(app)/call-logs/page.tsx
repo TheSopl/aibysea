@@ -338,12 +338,9 @@ export default function CallLogsPage() {
               <div
                 key={call.id}
                 onClick={() => setSelectedCall(call)}
-                className={`p-2 border-b border-gray-50 dark:border-slate-700 cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-slate-700 ${
+                className={`p-1.5 border-b border-gray-50 dark:border-slate-700 cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-slate-700 ${
                   selectedCall?.id === call.id ? 'bg-service-voice-50 dark:bg-slate-700 border-l-2 border-l-teal-500' : ''
                 }`}
-                style={{
-                  animation: `slideInFromLeft 0.3s ease-out ${index * 0.05}s both`
-                }}
               >
                 <div className="flex items-center justify-between mb-1">
                   <div className="flex items-center gap-2">
@@ -522,26 +519,6 @@ export default function CallLogsPage() {
         )}
       </div>
 
-      <style jsx>{`
-        @keyframes slideInFromLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
     </>
   );
 }
