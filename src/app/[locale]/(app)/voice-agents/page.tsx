@@ -24,6 +24,7 @@ import {
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
 
 const voiceAgents = [
   {
@@ -155,7 +156,7 @@ export default function VoiceAgentsPage() {
 
         <div className="flex flex-col lg:flex-row gap-4">
           <div className={cn("flex-1 min-w-0", selectedAgent && "hidden lg:block")}>
-            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-white/10 p-4 mb-4">
+            <Card variant="default" className="mb-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4">
                 <div>
                   <h2 className="text-xl font-bold text-dark dark:text-white">{t('yourVoiceAgents')}</h2>
@@ -240,12 +241,12 @@ export default function VoiceAgentsPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </Card>
           </div>
 
           {selectedAgent && (
             <div className="fixed inset-0 z-40 bg-white dark:bg-slate-800 lg:relative lg:w-80 lg:z-auto lg:bg-transparent dark:lg:bg-transparent overflow-y-auto">
-              <div className="bg-white dark:bg-slate-800 lg:rounded-xl lg:shadow-sm lg:border lg:border-white/10 p-4 lg:sticky lg:top-8 min-h-full lg:min-h-0">
+              <Card variant="default" className="lg:sticky lg:top-8 min-h-full lg:min-h-0">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -339,7 +340,7 @@ export default function VoiceAgentsPage() {
                     {t('viewCallLogs')}
                   </Button>
                 </div>
-              </div>
+              </Card>
             </div>
           )}
         </div>

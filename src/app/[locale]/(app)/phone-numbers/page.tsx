@@ -16,6 +16,7 @@ import {
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
 
 const phoneNumbers = [
   {
@@ -215,14 +216,12 @@ export default function PhoneNumbersPage() {
             const displayStatus = isPaused ? 'paused' : phone.status;
 
             return (
-              <div
+              <Card
                 key={phone.id}
-                className={`bg-white dark:bg-slate-800 rounded-xl shadow-sm p-3 border border-white/10 hover:shadow-md transition-all duration-200 hover:border-service-voice-200/50 ${
+                variant="default"
+                className={`p-3 hover:shadow-md transition-all duration-200 hover:border-service-voice-200/50 border border-white/10 ${
                   isPaused ? 'opacity-75' : ''
                 }`}
-                style={{
-                  animation: `fadeIn 0.5s ease-out ${0.4 + index * 0.1}s both`
-                }}
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex-1 min-w-0">
@@ -300,7 +299,7 @@ export default function PhoneNumbersPage() {
                   <Button variant="ghost" size="sm" iconOnly icon={<Trash size={14} className="text-red" />} onClick={() => deleteNumber(phone.id)} className="hover:bg-red-50 dark:hover:bg-red-900/20" title="Delete" />
                   <Button variant="ghost" size="sm" iconOnly icon={<SettingsIcon size={14} className="text-text-secondary" />} title="Settings" />
                 </div>
-              </div>
+              </Card>
             );
           })}
         </div>

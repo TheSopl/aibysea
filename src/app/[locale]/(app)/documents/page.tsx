@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
 
 const templates = [
   { id: 'invoice', name: 'Invoice', description: 'Extract invoice details' },
@@ -262,7 +263,7 @@ export default function DocumentsPage() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-white/10 p-4">
+          <Card variant="default">
             <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">
               Select Template
             </label>
@@ -290,11 +291,11 @@ export default function DocumentsPage() {
                 </button>
               ))}
             </div>
-          </div>
+          </Card>
         </div>
 
         {processingDocs.length > 0 && (
-          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-white/10 p-4 mb-6">
+          <Card variant="default" className="mb-6">
             <h2 className="text-lg font-bold text-dark dark:text-white mb-3">Currently Processing</h2>
             <div className="space-y-2">
               {processingDocs.map((doc, index) => {
@@ -339,10 +340,10 @@ export default function DocumentsPage() {
                 );
               })}
             </div>
-          </div>
+          </Card>
         )}
 
-        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-white/10 p-4">
+        <Card variant="default">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-lg font-bold text-dark dark:text-white">Recent Uploads</h2>
@@ -440,7 +441,7 @@ export default function DocumentsPage() {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
       </div>
 
       <style jsx>{`

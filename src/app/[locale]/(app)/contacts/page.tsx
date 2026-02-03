@@ -6,6 +6,7 @@ import { FaWhatsapp, FaTelegram, FaFacebook, FaInstagram } from 'react-icons/fa'
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
 
 const contacts = [
   {
@@ -93,12 +94,7 @@ export default function ContactsPage() {
       <TopBar title={t('title')} />
 
       <div className="p-4 tablet:p-6 bg-gray-100 dark:bg-slate-900 min-h-screen overflow-y-auto max-w-[1600px] mx-auto">
-        <div
-          className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-white/10 overflow-hidden"
-          style={{
-            animation: 'scaleIn 0.5s ease-out both'
-          }}
-        >
+        <Card variant="default" className="overflow-hidden">
           <div className="tablet:hidden divide-y divide-gray-100 dark:divide-slate-700">
             {contacts.map((contact, index) => (
               <div
@@ -259,7 +255,7 @@ export default function ContactsPage() {
               </tbody>
             </table>
           </div>
-        </div>
+        </Card>
       </div>
     </>
   );

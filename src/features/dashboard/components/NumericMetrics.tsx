@@ -1,0 +1,146 @@
+'use client';
+
+import { useMetricsStore } from '@/features/dashboard/store/metricsStore';
+import numeral from 'numeral';
+import { Activity, MessageSquare, Zap, Gauge, Brain, Wifi } from 'lucide-react';
+import Card from '@/components/ui/Card';
+
+const formatNumber = (value: number, format: string): string => {
+  return numeral(value).format(format);
+};
+
+interface MetricCardProps {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  iconBgColor: string;
+  iconColor: string;
+}
+
+const MetricCard = ({ icon, label, value, iconBgColor, iconColor }: MetricCardProps) => {
+  return (
+    <Card variant="interactive" className="md:p-8 hover:-translate-y-1">
+      <div className="flex items-start gap-4">
+        <div className={`${iconBgColor} rounded-full p-4 flex items-center justify-center flex-shrink-0`}>
+          <div className={iconColor}>
+            {icon}
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <div className="text-xs uppercase tracking-widest text-text-secondary font-bold mb-2">
+            {label}
+          </div>
+          <div className="text-heading-1 md:text-4xl font-extrabold text-dark leading-none">
+            {value}
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+};
+
+const AIStateBadge = ({ state }: { state: string }) => {
+  const stateStyles = {
+    idle: 'bg-gray-100 text-gray-700 border-gray-300',
+    thinking: 'bg-accent-100 text-accent-700 border-accent-300',
+    responding: 'bg-primary/10 text-primary border-primary/30',
+    waiting: 'bg-amber-100 text-amber-700 border-amber-300',
+  };
+
+  const style = stateStyles[state as keyof typeof stateStyles] || stateStyles.idle;
+
+  return (
+    <Card variant="default" className="md:p-8">
+      <div className="text-xs uppercase tracking-widest text-text-secondary font-bold mb-3">
+        AI State
+      </div>
+      <span className={`inline-flex px-4 py-2.5 rounded-design text-sm font-bold border transition-all duration-200 ${style} capitalize`}>
+        {state}
+      </span>
+    </Card>
+  );
+};
+
+const ConnectionStatus = ({ status }: { status: string }) => {
+  const statusStyles = {
+    connected: { bg: 'bg-green/20', dot: 'bg-green', text: 'text-green' },
+    connecting: { bg: 'bg-amber/20', dot: 'bg-amber', text: 'text-amber' },
+    disconnected: { bg: 'bg-red/20', dot: 'bg-red', text: 'text-red' },
+  };
+
+  const style = statusStyles[status as keyof typeof statusStyles] || statusStyles.disconnected;
+
+  return (
+    <Card variant="default" className="md:p-8">
+      <div className="text-xs uppercase tracking-widest text-text-secondary font-bold mb-3">
+        Connection
+      </div>
+      <div className="flex items-center gap-3">
+        <Wifi className={`w-8 h-8 ${style.text}`} />
+        <div className="flex flex-col">
+          <div className={`w-3 h-3 rounded-full ${style.dot} animate-pulse mb-1`} />
+          <span className={`text-sm font-bold ${style.text} capitalize`}>
+            {status}
+          </span>
+        </div>
+      </div>
+    </Card>
+  );
+};
+
+export default function NumericMetrics() {
+  const aiState = useMetricsStore((state) => state.aiState);
+  const activeConversations = useMetricsStore((state) => state.activeConversations);
+  const connectionStatus = useMetricsStore((state) => state.connectionStatus);
+  const metricsHistory = useMetricsStore((state) => state.metrics);
+  const currentConfidence = useMetricsStore((state) => state.confidence);
+
+  const avgLatency = metricsHistory.length > 0
+    ? metricsHistory.slice(-600).reduce((sum, m) => sum + m.latency, 0) / Math.min(metricsHistory.length, 600)
+    : 0;
+
+  const contextSize = metricsHistory.length > 0
+    ? Math.floor(avgLatency * 10)
+    : 0;
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 md:gap-8">
+      <AIStateBadge state={aiState} />
+
+      <MetricCard
+        icon={<MessageSquare className="w-8 h-8" strokeWidth={2.5} />}
+        label="Conversations"
+        value={formatNumber(activeConversations, '0,0')}
+        iconBgColor="bg-accent"
+        iconColor="text-white"
+      />
+
+      <MetricCard
+        icon={<Zap className="w-8 h-8" strokeWidth={2.5} />}
+        label="Avg Latency"
+        value={`${formatNumber(avgLatency, '0,0')}ms`}
+        iconBgColor="bg-primary"
+        iconColor="text-white"
+      />
+
+      <MetricCard
+        icon={<Gauge className="w-8 h-8" strokeWidth={2.5} />}
+        label="Confidence"
+        value={`${formatNumber(currentConfidence * 100, '0.0')}%`}
+        iconBgColor="bg-accent"
+        iconColor="text-white"
+      />
+
+      <MetricCard
+        icon={<Brain className="w-8 h-8" strokeWidth={2.5} />}
+        label="Context Size"
+        value={`${formatNumber(contextSize, '0.0a')}`}
+        iconBgColor="bg-primary"
+        iconColor="text-white"
+      />
+
+      <ConnectionStatus status={connectionStatus} />
+    </div>
+  );
+}

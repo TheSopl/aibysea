@@ -19,6 +19,7 @@ import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
 
 interface ProfileData {
   full_name: string;
@@ -191,10 +192,7 @@ export default function ProfilePage() {
         <div className="max-w-3xl mx-auto space-y-6">
 
           {/* Profile Header Card */}
-          <div
-            className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden"
-            style={{ animation: 'scaleIn 0.5s ease-out both' }}
-          >
+          <Card variant="default" className="rounded-2xl overflow-hidden">
             {/* Banner */}
             <div className="h-32 sm:h-40 relative" style={{ background: 'linear-gradient(135deg, #4052a8 0%, #4EB6C9 100%)' }}>
               <div className="absolute inset-0 overflow-hidden">
@@ -268,13 +266,10 @@ export default function ProfilePage() {
                 </div>
               )}
             </div>
-          </div>
+          </Card>
 
           {/* Edit Profile Card */}
-          <div
-            className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 sm:p-8"
-            style={{ animation: 'scaleIn 0.5s ease-out 0.1s both' }}
-          >
+          <Card variant="default" className="rounded-2xl sm:p-8">
             <h3 className="text-lg font-extrabold text-dark dark:text-white mb-1">Edit Profile</h3>
             <p className="text-xs sm:text-sm text-text-secondary dark:text-slate-400 mb-6">Update your personal information</p>
 
@@ -383,13 +378,10 @@ export default function ProfilePage() {
                 Save Changes
               </Button>
             </div>
-          </div>
+          </Card>
 
           {/* Sign Out Card */}
-          <div
-            className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 sm:p-8 border-2 border-red/10"
-            style={{ animation: 'scaleIn 0.5s ease-out 0.2s both' }}
-          >
+          <Card variant="default" className="rounded-2xl sm:p-8 border-2 border-red/10">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <h3 className="text-lg font-extrabold text-dark dark:text-white mb-1 flex items-center gap-2">
@@ -409,7 +401,7 @@ export default function ProfilePage() {
                 Sign Out
               </Button>
             </div>
-          </div>
+          </Card>
 
         </div>
       </div>

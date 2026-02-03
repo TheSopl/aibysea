@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
 
 const workflows = [
   {
@@ -143,7 +144,7 @@ export default function WorkflowsPage() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-card-md">
+        <Card variant="default" className="rounded-2xl">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-heading-3 font-extrabold text-dark">Your Workflows</h2>
@@ -223,7 +224,7 @@ export default function WorkflowsPage() {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
 
         {/* N8N Integration Notice */}
         <div className="mt-8 bg-gradient-to-r from-primary/10 via-accent/10 to-purple/10 rounded-2xl p-card-md border-2 border-primary/20">
